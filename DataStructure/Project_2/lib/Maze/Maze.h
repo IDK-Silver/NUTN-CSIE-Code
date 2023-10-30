@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <memory>
+#include <ostream>
 
 /* the object of maze map */
 enum MazeObject {
@@ -25,10 +26,14 @@ public:
 
     /* get map object method */
     std::vector<MazeObject> at(size_t row);
-    MazeObject at(size_t row, size_t column);
+    MazeObject& at(size_t row, size_t column);
 
     /* get map object method */
-    void set_maze_obj(size_t row, size_t column, const MazeObject & obj);
+    void setMazeObject(size_t row, size_t column, const MazeObject & obj);
+    std::pair<int, int> getSize();
+
+    // override operator
+    friend std::ostream& operator<<(std::ostream& os, const Maze& obj);
 
 private:
     const size_t map_size_M;
