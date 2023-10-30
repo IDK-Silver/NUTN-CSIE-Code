@@ -1,0 +1,11 @@
+# ninja log v5
+0	44	1698237230625047019	Maze_autogen/timestamp	8cc8eb54598b2cb7
+45	69	1698237230648381527	CMakeFiles/Maze.dir/Maze_autogen/mocs_compilation.cpp.o	fa2eace1f2122d73
+1	266	1698238474749645411	build.ninja	2c35b305e40a54d4
+0	44	1698237230625047019	Maze_autogen/mocs_compilation.cpp	8cc8eb54598b2cb7
+0	44	1698237230625047019	/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_2/cmake-build-debug/Maze_autogen/mocs_compilation.cpp	8cc8eb54598b2cb7
+40	500	1698237043668976231	CMakeFiles/Maze.dir/main.cpp.o	9ebf619c73abfa0b
+426	751	1698237231325082251	Maze	90e473274b364f89
+0	44	1698237230625047019	/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_2/cmake-build-debug/Maze_autogen/timestamp	8cc8eb54598b2cb7
+45	426	1698237231005066145	CMakeFiles/Maze.dir/src/main.cpp.o	cbe6a8515697a2f7
+2	274	1698238474749645411	build.ninja	2c35b305e40a54d4

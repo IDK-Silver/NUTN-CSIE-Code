@@ -1,0 +1,3 @@
+/home/idk/Documents/GitHub/NUTN_Code/DataStructure/practice_1/build/CMakeFiles/practice_1.dir
+/home/idk/Documents/GitHub/NUTN_Code/DataStructure/practice_1/build/CMakeFiles/edit_cache.dir
+/home/idk/Documents/GitHub/NUTN_Code/DataStructure/practice_1/build/CMakeFiles/rebuild_cache.dir
