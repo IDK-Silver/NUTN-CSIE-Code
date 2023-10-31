@@ -28,6 +28,23 @@ MazeQtGraphicsView::MazeQtGraphicsView(QWidget *parent) : QGraphicsView(parent) 
 
 void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
 
+    /* if not painting mode not change maze obj */
+    if (!this->isPaintingMode()) {
+        QGraphicsView::mousePressEvent(event);
+        return;
+    }
+
+    MazeObject changeObj = MazeObject::Blank;
+
+    if (this->_nextIsSetStartPoint) {
+        changeObj = MazeObject::Start;
+    }
+
+    if (this->_nextIsSetEndPoint) {
+        changeObj = MazeObject::End;
+    }
+
+
     // Get the position of the click event.
     QPointF clickPos = mapToScene(event->pos());
 
@@ -41,12 +58,26 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
             // Change the content of the QGraphicsPixmapItem.
             auto *pixmapItem = dynamic_cast<MazeQtGraphicsPixmapItem *>(item);
 
-            // set maze obj type
-            pixmapItem->setType(MazeObject::Blank);
+            size_t  row_index = pixmapItem->getIndex().first,
+                    column_index = pixmapItem->getIndex().second;
 
-            this->originMaze->at(pixmapItem->getIndex().first, pixmapItem->getIndex().second) = MazeObject::Blank;
+            // set maze obj type
+            pixmapItem->setType(changeObj);
+            this->originMaze->at(row_index, column_index) = changeObj;
+
+            // emit qt Signal of completed start point
+            if (_nextIsSetStartPoint)
+                    emit completedStartPoint(row_index, column_index);
+
+            // emit qt Signal of completed end point
+            if (_nextIsSetEndPoint)
+                    emit completedEndPoint(row_index, column_index);
         }
     }
+
+    /* restore flag */
+    this->_nextIsSetEndPoint = false;
+    this->_nextIsSetStartPoint = false;
 
     /* print maze */
 //    for (size_t row = 0; row < originMaze->getSize().first; row++) {
@@ -55,9 +86,6 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
 
     // Call the base class implementation to ensure normal event handling.
     QGraphicsView::mousePressEvent(event);
-
-
-
 }
 
 void MazeQtGraphicsView::createMaze(std::shared_ptr<Maze> obj) {
@@ -104,7 +132,6 @@ void MazeQtGraphicsView::createMaze(std::shared_ptr<Maze> obj) {
 
     // fit graphics window
     fitInView(this->scene->sceneRect(), Qt::KeepAspectRatio);
-
 }
 
 MazeQtGraphicsView::~MazeQtGraphicsView() {
@@ -114,3 +141,21 @@ MazeQtGraphicsView::~MazeQtGraphicsView() {
 MazeObject MazeQtGraphicsView::get(size_t row, size_t column) {
     return this->maze->at(row).at(column)->getType();
 }
+
+void MazeQtGraphicsView::setPaintingMode(bool flag) {
+    this->_isPaintingMode = flag;
+}
+
+bool MazeQtGraphicsView::isPaintingMode() const {
+    return this->_isPaintingMode;
+}
+
+void MazeQtGraphicsView::setNextIsStartPoint() {
+    this->_nextIsSetStartPoint = true;
+}
+
+void MazeQtGraphicsView::setNextIsEndPoint() {
+    this->_nextIsSetEndPoint = true;
+
+}
+

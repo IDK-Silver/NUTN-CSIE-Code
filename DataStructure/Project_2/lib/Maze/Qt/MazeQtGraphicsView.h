@@ -14,7 +14,7 @@ class MazeQtGraphicsView : public QGraphicsView{
 Q_OBJECT
 public:
     explicit MazeQtGraphicsView(QWidget *parent = nullptr);
-    ~MazeQtGraphicsView();
+    ~MazeQtGraphicsView() override;
 
     /* the method to create graphics maze */
     void createMaze(std::shared_ptr<Maze> obj);
@@ -22,6 +22,14 @@ public:
 
     /* get maze object */
     MazeObject get(size_t row, size_t column);
+
+    /* set or get Painting mode */
+    void setPaintingMode(bool flag);
+    bool isPaintingMode() const;
+
+    /* set special flag */
+    void setNextIsStartPoint();
+    void setNextIsEndPoint();
 
 private:
     std::shared_ptr<Maze> originMaze;
@@ -36,6 +44,15 @@ protected:
     /* the graphics maze */
     std::shared_ptr<QVector<QVector<MazeQtGraphicsPixmapItem*>>> maze;
 
+    /* painting mode */
+    bool _isPaintingMode = false;
+
+    /* special flag */
+    bool _nextIsSetStartPoint = false;
+    bool _nextIsSetEndPoint = false;
+Q_SIGNALS:
+    void completedStartPoint(size_t row, size_t column);
+    void completedEndPoint(size_t row, size_t column);
 };
 
 

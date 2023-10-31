@@ -26,9 +26,15 @@ MazeQtGraphicsPixmapItem::MazeQtGraphicsPixmapItem() : QGraphicsPixmapItem() {
         roadHintPixmap = std::make_shared<QPixmap>("/home/idk/Documents/GitHub/C++/res/road_hit.png");
     }
 
+    if (startPixmap == nullptr) {
+        startPixmap = std::make_shared<QPixmap>("/home/idk/Documents/GitHub/C++/res/start.png");
+    }
+
+    if (endPixmap == nullptr) {
+        endPixmap = std::make_shared<QPixmap>("/home/idk/Documents/GitHub/C++/res/end.png");
+    }
+
     this->setType(MazeObject::Wall);
-
-
 }
 
 MazeQtGraphicsPixmapItem::~MazeQtGraphicsPixmapItem() = default;
@@ -51,6 +57,12 @@ void MazeQtGraphicsPixmapItem::setType(MazeObject obj) {
 
         case RoadHint:
             this->setPixmap(*roadHintPixmap);
+            break;
+        case Start:
+            this->setPixmap(*startPixmap);
+            break;
+        case End:
+            this->setPixmap(*endPixmap);
             break;
     }
 

@@ -13,6 +13,8 @@ static std::shared_ptr<QPixmap> wallPixmap;
 static std::shared_ptr<QPixmap> blankPixmap;
 static std::shared_ptr<QPixmap> playerPixmap;
 static std::shared_ptr<QPixmap> roadHintPixmap;
+static std::shared_ptr<QPixmap> startPixmap;
+static std::shared_ptr<QPixmap> endPixmap;
 
 class MazeQtGraphicsPixmapItem : public QGraphicsPixmapItem {
 public:

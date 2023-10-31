@@ -14,7 +14,9 @@ enum MazeObject {
     Wall,
     Blank,
     Player,
-    RoadHint
+    RoadHint,
+    Start,
+    End
 };
 
 

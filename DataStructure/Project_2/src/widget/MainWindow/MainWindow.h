@@ -27,10 +27,14 @@ public:
 
 private:
     Ui::MainWindow *ui{};
-//    std::shared_ptr<MazeQtGraphics> maze_view;
+
+    /* the origin maze data */
+    std::shared_ptr<Maze> maze;
+
+    void connectSetUp();
 
 private slots:
-
+    void createMaze();
 
 };
 

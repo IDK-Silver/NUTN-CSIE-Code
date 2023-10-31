@@ -2,6 +2,7 @@
 // Created by idk on 2023/10/25.
 //
 
+#include <iostream>
 #include "MainWindow.h"
 #include "./ui_MainWindow.h"
 
@@ -12,43 +13,77 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // init widget object
     this->ui->setupUi(this);
 
-//    // init maze graphics view
-//    this->maze_view = std::make_shared<MazeQtGraphics>(this->ui->mazeView_graphicsView);
-//
-//    auto scene = new QGraphicsScene();
-//    auto view =  this->ui->mazeView_graphicsView;
-//    view->setScene(scene);
-//
-//    // 添加迷宮元素到場景中
-//    QGraphicsRectItem *wall = new QGraphicsRectItem(50, 50, 100, 100);
-//    wall->setBrush(QBrush(Qt::black));
-//    scene->addItem(wall);
-//
-//    QGraphicsEllipseItem *player = new QGraphicsEllipseItem(75, 75, 10, 10);
-//    player->setBrush(QBrush(Qt::red));
-//    scene->addItem(player);
-//
-//    // 創建一條直線
-//    QGraphicsLineItem *line = new QGraphicsLineItem(50, 50, 200, 200);
-//
-//    // 設置線條顏色和寬度
-//    QPen pen;
-//    pen.setColor(Qt::blue);
-//    pen.setWidth(2);
-//    line->setPen(pen);
-//    scene->addItem(line);
-//    line->setLine(100, 100, 300, 1000);
-////    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-////    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-//
-//
-//    // 設置視圖視口
-//    view->setRenderHint(QPainter::Antialiasing);
-//    view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
-//    view->setRenderHint(QPainter::Antialiasing);
-//    view->setBackgroundBrush(QBrush(Qt::white));
-//    // view->setFixedSize(1000, 1000);
-//    view->show();
+    // initial Slot
+    this->connectSetUp();
+
+
+    // set choose maze start end spin box can't change value by user
+    this->ui->mazeStartPoint_X_spinBox->setReadOnly(true);
+    this->ui->mazeStartPoint_Y_spinBox->setReadOnly(true);
+    this->ui->mazeEndPoint_X_spinBox->setReadOnly(true);
+    this->ui->mazeEndPoint_Y_spinBox->setReadOnly(true);
 }
+
+void MainWindow::createMaze() {
+
+
+    // create maze
+    this->maze = std::make_shared<Maze>(
+            this->ui->mazeM_spinBox->value(),
+            this->ui->mazeN_spinBox->value());
+
+    // create and initial maze obj, push into maze
+    for (int row = 0; row < maze->getSize().first; row++) {
+
+        for (int column = 0; column < maze->getSize().second; column++) {
+            maze->at(row).at(column) = MazeObject::Blank;
+        }
+    }
+
+    // make graphics view to show maze
+    this->ui->mazeView_graphicsView->createMaze(maze);
+
+    // make graphics view can change wall obj by mouse press *.
+    this->ui->mazeView_graphicsView->setPaintingMode(true);
+
+    // set choose maze start end spin box maximum
+    this->ui->mazeStartPoint_X_spinBox->setMaximum(this->ui->mazeM_spinBox->value() - 1);
+    this->ui->mazeStartPoint_Y_spinBox->setMaximum(this->ui->mazeN_spinBox->value() - 1);
+    this->ui->mazeEndPoint_X_spinBox->setMaximum(this->ui->mazeM_spinBox->value() - 1);
+    this->ui->mazeEndPoint_Y_spinBox->setMaximum(this->ui->mazeN_spinBox->value() - 1);
+}
+
+/* the function to initial Qt Slot connect */
+void MainWindow::connectSetUp() {
+
+    // connect Maze Size Confirm Push Button to createMaze
+    connect(this->ui->mazeSizeConfirm_pushButton, SIGNAL(clicked()), SLOT(createMaze()));
+
+    // connect choose maze start point to setting maze graphics view to mark maze obj
+    connect(this->ui->chooseStartPoint_pushButton, &QPushButton::clicked, [=]() {
+        this->ui->mazeView_graphicsView->setNextIsStartPoint();
+    });
+
+    // connect choose maze end point to setting maze graphics view to mark maze obj
+    connect(this->ui->chooseEndPoint_pushButton, &QPushButton::clicked, [=]() {
+        this->ui->mazeView_graphicsView->setNextIsEndPoint();
+    });
+
+
+    connect(this->ui->mazeView_graphicsView, &MazeQtGraphicsView::completedStartPoint, [=](size_t row, size_t column) {
+        this->ui->mazeStartPoint_X_spinBox->setValue(row);
+        this->ui->mazeStartPoint_Y_spinBox->setValue(column);
+    });
+
+    connect(this->ui->mazeView_graphicsView, &MazeQtGraphicsView::completedEndPoint, [=](size_t row, size_t column) {
+        this->ui->mazeEndPoint_X_spinBox->setValue(row);
+        this->ui->mazeEndPoint_Y_spinBox->setValue(column);
+    });
+
+
+//    connect(this->ui->mazeView_graphicsView, SIGNAL(completedStartPoint), SLOT(chooseStartPoint));
+//    connect(this->ui->mazeView_graphicsView)
+}
+
 
 MainWindow::~MainWindow() = default;
