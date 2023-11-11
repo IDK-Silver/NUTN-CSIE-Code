@@ -190,6 +190,30 @@ lib/Maze/Maze.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Maze.dir/build.make CMakeFiles/Maze.dir/lib/Maze/Maze.cpp.s
 .PHONY : lib/Maze/Maze.cpp.s
 
+lib/Maze/MazeAlgorithm.o: lib/Maze/MazeAlgorithm.cpp.o
+.PHONY : lib/Maze/MazeAlgorithm.o
+
+# target to build an object file
+lib/Maze/MazeAlgorithm.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Maze.dir/build.make CMakeFiles/Maze.dir/lib/Maze/MazeAlgorithm.cpp.o
+.PHONY : lib/Maze/MazeAlgorithm.cpp.o
+
+lib/Maze/MazeAlgorithm.i: lib/Maze/MazeAlgorithm.cpp.i
+.PHONY : lib/Maze/MazeAlgorithm.i
+
+# target to preprocess a source file
+lib/Maze/MazeAlgorithm.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Maze.dir/build.make CMakeFiles/Maze.dir/lib/Maze/MazeAlgorithm.cpp.i
+.PHONY : lib/Maze/MazeAlgorithm.cpp.i
+
+lib/Maze/MazeAlgorithm.s: lib/Maze/MazeAlgorithm.cpp.s
+.PHONY : lib/Maze/MazeAlgorithm.s
+
+# target to generate assembly for a file
+lib/Maze/MazeAlgorithm.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Maze.dir/build.make CMakeFiles/Maze.dir/lib/Maze/MazeAlgorithm.cpp.s
+.PHONY : lib/Maze/MazeAlgorithm.cpp.s
+
 lib/Maze/Qt/MazeQtGraphicsPixmapItem.o: lib/Maze/Qt/MazeQtGraphicsPixmapItem.cpp.o
 .PHONY : lib/Maze/Qt/MazeQtGraphicsPixmapItem.o
 
@@ -302,6 +326,9 @@ help:
 	@echo "... lib/Maze/Maze.o"
 	@echo "... lib/Maze/Maze.i"
 	@echo "... lib/Maze/Maze.s"
+	@echo "... lib/Maze/MazeAlgorithm.o"
+	@echo "... lib/Maze/MazeAlgorithm.i"
+	@echo "... lib/Maze/MazeAlgorithm.s"
 	@echo "... lib/Maze/Qt/MazeQtGraphicsPixmapItem.o"
 	@echo "... lib/Maze/Qt/MazeQtGraphicsPixmapItem.i"
 	@echo "... lib/Maze/Qt/MazeQtGraphicsPixmapItem.s"

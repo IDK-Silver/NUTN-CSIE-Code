@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_2/cmake-build-debug/Maze_autogen/mocs_compilation.cpp" "CMakeFiles/Maze.dir/Maze_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/Maze.dir/Maze_autogen/mocs_compilation.cpp.o.d"
   "/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_2/lib/Maze/Maze.cpp" "CMakeFiles/Maze.dir/lib/Maze/Maze.cpp.o" "gcc" "CMakeFiles/Maze.dir/lib/Maze/Maze.cpp.o.d"
+  "/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_2/lib/Maze/MazeAlgorithm.cpp" "CMakeFiles/Maze.dir/lib/Maze/MazeAlgorithm.cpp.o" "gcc" "CMakeFiles/Maze.dir/lib/Maze/MazeAlgorithm.cpp.o.d"
   "/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_2/lib/Maze/Qt/MazeQtGraphicsPixmapItem.cpp" "CMakeFiles/Maze.dir/lib/Maze/Qt/MazeQtGraphicsPixmapItem.cpp.o" "gcc" "CMakeFiles/Maze.dir/lib/Maze/Qt/MazeQtGraphicsPixmapItem.cpp.o.d"
   "/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_2/lib/Maze/Qt/MazeQtGraphicsView.cpp" "CMakeFiles/Maze.dir/lib/Maze/Qt/MazeQtGraphicsView.cpp.o" "gcc" "CMakeFiles/Maze.dir/lib/Maze/Qt/MazeQtGraphicsView.cpp.o.d"
   "/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_2/src/main.cpp" "CMakeFiles/Maze.dir/src/main.cpp.o" "gcc" "CMakeFiles/Maze.dir/src/main.cpp.o.d"

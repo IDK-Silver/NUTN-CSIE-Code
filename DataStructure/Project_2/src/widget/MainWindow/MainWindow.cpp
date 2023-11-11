@@ -5,7 +5,7 @@
 #include <iostream>
 #include "MainWindow.h"
 #include "./ui_MainWindow.h"
-
+#include <lib/Maze/MazeAlgorithm.h>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->ui->mazeStartPoint_Y_spinBox->setReadOnly(true);
     this->ui->mazeEndPoint_X_spinBox->setReadOnly(true);
     this->ui->mazeEndPoint_Y_spinBox->setReadOnly(true);
+
+
 }
 
 void MainWindow::createMaze() {
@@ -80,6 +82,21 @@ void MainWindow::connectSetUp() {
         this->ui->mazeEndPoint_Y_spinBox->setValue(column);
     });
 
+    connect(this->ui->mazePaintConfirm_pushButton, &QPushButton::clicked, [=]() {
+        auto result = MazeAlgorithm::getRoadHit(this->maze);
+
+        for (auto road_hit_point : result) {
+
+            this->ui->mazeView_graphicsView->setMazeObject(road_hit_point.x,
+                                                           road_hit_point.y,
+                                                           MazeObject::RoadHint);
+        }
+
+        this->ui->mazeView_graphicsView->setMazeObject(this->ui->mazeStartPoint_X_spinBox->value(),
+                                                       this->ui->mazeStartPoint_Y_spinBox->value(),
+                                                       MazeObject::Start);
+
+    });
 
 //    connect(this->ui->mazeView_graphicsView, SIGNAL(completedStartPoint), SLOT(chooseStartPoint));
 //    connect(this->ui->mazeView_graphicsView)

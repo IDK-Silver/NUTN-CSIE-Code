@@ -375,6 +375,12 @@
 			null
 		],
 		[
+			"/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_2/lib/Maze/MazeAlgorithm.h",
+			"MU",
+			"WJVQFOJFPK/moc_MazeAlgorithm.cpp",
+			null
+		],
+		[
 			"/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_2/lib/Maze/Qt/MazeQtGraphicsPixmapItem.h",
 			"MU",
 			"K3IMHB2ARD/moc_MazeQtGraphicsPixmapItem.cpp",
@@ -454,6 +460,11 @@
 	[
 		[
 			"/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_2/lib/Maze/Maze.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_2/lib/Maze/MazeAlgorithm.cpp",
 			"MU",
 			null
 		],

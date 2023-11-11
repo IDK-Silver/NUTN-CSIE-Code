@@ -37,6 +37,8 @@ public:
     // override operator
     friend std::ostream& operator<<(std::ostream& os, const Maze& obj);
 
+    std::vector<std::vector<MazeObject>> getMazeMatrix();
+
 private:
     const size_t map_size_M;
     const size_t map_size_N;

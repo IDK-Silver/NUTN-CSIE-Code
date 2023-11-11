@@ -20,8 +20,9 @@ public:
     void createMaze(std::shared_ptr<Maze> obj);
 
 
-    /* get maze object */
+    /* set get maze object */
     MazeObject get(size_t row, size_t column);
+    void setMazeObject(size_t row, size_t column, MazeObject obj);
 
     /* set or get Painting mode */
     void setPaintingMode(bool flag);
@@ -50,6 +51,12 @@ protected:
     /* special flag */
     bool _nextIsSetStartPoint = false;
     bool _nextIsSetEndPoint = false;
+
+    QPointF lastMousePos;
+
+    bool isPainting = false;
+    
+
 Q_SIGNALS:
     void completedStartPoint(size_t row, size_t column);
     void completedEndPoint(size_t row, size_t column);

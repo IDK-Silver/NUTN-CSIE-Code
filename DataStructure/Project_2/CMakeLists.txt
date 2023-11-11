@@ -35,6 +35,8 @@ set(ProjectSourceCode
         lib/Maze/Qt/MazeQtGraphicsView.h
         lib/Maze/Qt/MazeQtGraphicsPixmapItem.cpp
         lib/Maze/Qt/MazeQtGraphicsPixmapItem.h
+        lib/Maze/MazeAlgorithm.cpp
+        lib/Maze/MazeAlgorithm.h
 )
 
 add_executable(Maze ${ProjectSourceCode})

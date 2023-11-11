@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Maze.dir/Maze_autogen/mocs_compilation.cpp.o.d"
   "CMakeFiles/Maze.dir/lib/Maze/Maze.cpp.o"
   "CMakeFiles/Maze.dir/lib/Maze/Maze.cpp.o.d"
+  "CMakeFiles/Maze.dir/lib/Maze/MazeAlgorithm.cpp.o"
+  "CMakeFiles/Maze.dir/lib/Maze/MazeAlgorithm.cpp.o.d"
   "CMakeFiles/Maze.dir/lib/Maze/Qt/MazeQtGraphicsPixmapItem.cpp.o"
   "CMakeFiles/Maze.dir/lib/Maze/Qt/MazeQtGraphicsPixmapItem.cpp.o.d"
   "CMakeFiles/Maze.dir/lib/Maze/Qt/MazeQtGraphicsView.cpp.o"

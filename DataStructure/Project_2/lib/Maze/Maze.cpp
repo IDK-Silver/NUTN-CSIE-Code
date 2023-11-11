@@ -54,3 +54,7 @@ std::ostream &operator<<(std::ostream &os, const Maze &obj) {
     return os;
 }
 
+std::vector<std::vector<MazeObject>> Maze::getMazeMatrix() {
+    return *this->map;
+}
+

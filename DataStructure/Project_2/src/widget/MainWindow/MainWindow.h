@@ -31,6 +31,7 @@ private:
     /* the origin maze data */
     std::shared_ptr<Maze> maze;
 
+    /* Qt slot connect initial */
     void connectSetUp();
 
 private slots:

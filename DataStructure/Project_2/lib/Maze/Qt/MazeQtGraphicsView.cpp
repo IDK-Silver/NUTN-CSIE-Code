@@ -20,8 +20,7 @@ MazeQtGraphicsView::MazeQtGraphicsView(QWidget *parent) : QGraphicsView(parent) 
 
     // create maze data
     this->maze = std::make_shared<QVector<QVector<MazeQtGraphicsPixmapItem*>>>();
-
-
+    
 }
 
 
@@ -36,14 +35,6 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
 
     MazeObject changeObj = MazeObject::Blank;
 
-    if (this->_nextIsSetStartPoint) {
-        changeObj = MazeObject::Start;
-    }
-
-    if (this->_nextIsSetEndPoint) {
-        changeObj = MazeObject::End;
-    }
-
 
     // Get the position of the click event.
     QPointF clickPos = mapToScene(event->pos());
@@ -55,11 +46,25 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
     {
         if (item->type() == MazeQtGraphicsPixmapItem::Type)
         {
+
+
             // Change the content of the QGraphicsPixmapItem.
             auto *pixmapItem = dynamic_cast<MazeQtGraphicsPixmapItem *>(item);
 
             size_t  row_index = pixmapItem->getIndex().first,
                     column_index = pixmapItem->getIndex().second;
+
+            // if clicked obj is blank change obj to wall
+            if (this->_nextIsSetStartPoint) {
+                changeObj = MazeObject::Start;
+            }
+            else if (this->_nextIsSetEndPoint) {
+                changeObj = MazeObject::End;
+            }
+            else if (pixmapItem->getType() == Blank) {
+                changeObj = Wall;
+            }
+
 
             // set maze obj type
             pixmapItem->setType(changeObj);
@@ -79,16 +84,20 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
     this->_nextIsSetEndPoint = false;
     this->_nextIsSetStartPoint = false;
 
-    /* print maze */
-//    for (size_t row = 0; row < originMaze->getSize().first; row++) {
-//        qDebug() << originMaze->at(row);
-//    }
-
-    // Call the base class implementation to ensure normal event handling.
     QGraphicsView::mousePressEvent(event);
 }
 
 void MazeQtGraphicsView::createMaze(std::shared_ptr<Maze> obj) {
+
+    // delete old scene
+    if (this->scene != nullptr) {
+        this->scene->clear();
+        delete(this->scene);
+    }
+
+    // create new scene
+    this->scene = new QGraphicsScene(this);
+    this->setScene(this->scene);
 
     // storage origin maze
     this->originMaze = obj;
@@ -157,5 +166,9 @@ void MazeQtGraphicsView::setNextIsStartPoint() {
 void MazeQtGraphicsView::setNextIsEndPoint() {
     this->_nextIsSetEndPoint = true;
 
+}
+
+void MazeQtGraphicsView::setMazeObject(size_t row, size_t column, MazeObject obj) {
+    this->maze->at(row).at(column)->setType(obj);
 }
 

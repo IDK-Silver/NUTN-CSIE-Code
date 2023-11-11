@@ -20,6 +20,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
@@ -44,8 +45,18 @@ public:
     QSpinBox *mazeN_spinBox;
     QPushButton *mazeSizeConfirm_pushButton;
     QGroupBox *groupBox_2;
+    QVBoxLayout *verticalLayout_4;
     QGridLayout *gridLayout;
-    QPushButton *pushButton;
+    QSpinBox *mazeStartPoint_Y_spinBox;
+    QLabel *label_4;
+    QSpinBox *mazeStartPoint_X_spinBox;
+    QSpinBox *mazeEndPoint_Y_spinBox;
+    QLabel *label_3;
+    QSpinBox *mazeEndPoint_X_spinBox;
+    QPushButton *chooseStartPoint_pushButton;
+    QPushButton *chooseEndPoint_pushButton;
+    QPushButton *mazePaintConfirm_pushButton;
+    QSpacerItem *verticalSpacer;
     MazeQtGraphicsView *mazeView_graphicsView;
     QMenuBar *menubar;
     QMenu *menu;
@@ -56,7 +67,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(924, 585);
+        MainWindow->resize(924, 624);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         horizontalLayout = new QHBoxLayout(centralwidget);
@@ -110,15 +121,65 @@ public:
 
         groupBox_2 = new QGroupBox(groupBox);
         groupBox_2->setObjectName("groupBox_2");
-        gridLayout = new QGridLayout(groupBox_2);
+        verticalLayout_4 = new QVBoxLayout(groupBox_2);
+        verticalLayout_4->setObjectName("verticalLayout_4");
+        gridLayout = new QGridLayout();
         gridLayout->setObjectName("gridLayout");
-        pushButton = new QPushButton(groupBox_2);
-        pushButton->setObjectName("pushButton");
+        mazeStartPoint_Y_spinBox = new QSpinBox(groupBox_2);
+        mazeStartPoint_Y_spinBox->setObjectName("mazeStartPoint_Y_spinBox");
 
-        gridLayout->addWidget(pushButton, 0, 0, 1, 1);
+        gridLayout->addWidget(mazeStartPoint_Y_spinBox, 2, 2, 1, 1);
+
+        label_4 = new QLabel(groupBox_2);
+        label_4->setObjectName("label_4");
+
+        gridLayout->addWidget(label_4, 3, 0, 1, 1);
+
+        mazeStartPoint_X_spinBox = new QSpinBox(groupBox_2);
+        mazeStartPoint_X_spinBox->setObjectName("mazeStartPoint_X_spinBox");
+        mazeStartPoint_X_spinBox->setValue(0);
+
+        gridLayout->addWidget(mazeStartPoint_X_spinBox, 2, 1, 1, 1);
+
+        mazeEndPoint_Y_spinBox = new QSpinBox(groupBox_2);
+        mazeEndPoint_Y_spinBox->setObjectName("mazeEndPoint_Y_spinBox");
+
+        gridLayout->addWidget(mazeEndPoint_Y_spinBox, 3, 2, 1, 1);
+
+        label_3 = new QLabel(groupBox_2);
+        label_3->setObjectName("label_3");
+
+        gridLayout->addWidget(label_3, 2, 0, 1, 1);
+
+        mazeEndPoint_X_spinBox = new QSpinBox(groupBox_2);
+        mazeEndPoint_X_spinBox->setObjectName("mazeEndPoint_X_spinBox");
+
+        gridLayout->addWidget(mazeEndPoint_X_spinBox, 3, 1, 1, 1);
+
+        chooseStartPoint_pushButton = new QPushButton(groupBox_2);
+        chooseStartPoint_pushButton->setObjectName("chooseStartPoint_pushButton");
+
+        gridLayout->addWidget(chooseStartPoint_pushButton, 2, 3, 1, 1);
+
+        chooseEndPoint_pushButton = new QPushButton(groupBox_2);
+        chooseEndPoint_pushButton->setObjectName("chooseEndPoint_pushButton");
+
+        gridLayout->addWidget(chooseEndPoint_pushButton, 3, 3, 1, 1);
+
+
+        verticalLayout_4->addLayout(gridLayout);
+
+        mazePaintConfirm_pushButton = new QPushButton(groupBox_2);
+        mazePaintConfirm_pushButton->setObjectName("mazePaintConfirm_pushButton");
+
+        verticalLayout_4->addWidget(mazePaintConfirm_pushButton);
 
 
         verticalLayout_3->addWidget(groupBox_2);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_3->addItem(verticalSpacer);
 
 
         verticalLayout->addWidget(groupBox);
@@ -155,12 +216,16 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "\350\277\267\345\256\256\346\216\242\347\264\242", nullptr));
-        groupBox->setTitle(QCoreApplication::translate("MainWindow", "\350\277\267\345\256\256\350\250\255\345\256\232\345\215\200\345\237\237", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("MainWindow", "\350\277\267\345\256\256\345\237\272\350\250\255\345\256\232\345\215\200\345\237\237", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "\351\225\267\345\272\246 (M)", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "\345\257\254\345\272\246(N)", nullptr));
         mazeSizeConfirm_pushButton->setText(QCoreApplication::translate("MainWindow", "\347\242\272\350\252\215\350\250\255\345\256\232", nullptr));
-        groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "\345\212\237\350\203\275\346\214\211\351\210\225", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "\350\265\267\345\247\213\351\273\236  / \347\265\202\351\273\236\350\250\255\345\256\232", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "\347\265\202\351\273\236\350\250\255\345\256\232", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "\350\265\267\345\247\213\351\273\236", nullptr));
+        chooseStartPoint_pushButton->setText(QCoreApplication::translate("MainWindow", "\351\201\270\345\217\226\350\265\267\345\247\213\351\273\236", nullptr));
+        chooseEndPoint_pushButton->setText(QCoreApplication::translate("MainWindow", " \351\201\270\345\217\226\347\265\202\351\273\236", nullptr));
+        mazePaintConfirm_pushButton->setText(QCoreApplication::translate("MainWindow", "\347\271\252\350\243\275\347\242\272\350\252\215", nullptr));
         menu->setTitle(QCoreApplication::translate("MainWindow", "\350\252\252\346\230\216", nullptr));
         menu_2->setTitle(QCoreApplication::translate("MainWindow", "\346\252\224\346\241\210", nullptr));
     } // retranslateUi

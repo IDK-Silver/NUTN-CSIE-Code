@@ -1,0 +1,3 @@
+/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_1/build/CMakeFiles/Calculator.dir
+/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_1/build/CMakeFiles/edit_cache.dir
+/home/idk/Documents/GitHub/NUTN_Code/DataStructure/Project_1/build/CMakeFiles/rebuild_cache.dir
