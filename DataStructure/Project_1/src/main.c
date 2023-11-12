@@ -53,7 +53,7 @@ int main()
         }
 
         // if user input is either number or operation, print the waring message and exit program
-        if (!is_math_number(input_char) && !is_math_operator(input_char))
+        if (!is_math_number(input_char) && !is_math_operator(input_char)  && input_char != ' ')
         {
             // print message
             printf("Warring input is not a number.");
@@ -84,7 +84,13 @@ int main()
     infix_to_postfix(&list, &postfix_list);
 
     // print ans
-    printf("Result : %lf", postfix_to_value(&postfix_list));
+    printf("Result : %lf\n", postfix_to_value(&postfix_list));
+
+
+    // exit
+     printf("Enter any to exit.");
+    char exit_char = 0;
+    scanf("%c", &exit_char);
 
     // free list
     list_for_each_safe(pos, n, &list)
