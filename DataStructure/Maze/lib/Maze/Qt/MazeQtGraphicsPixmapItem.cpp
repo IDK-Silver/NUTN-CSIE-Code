@@ -12,26 +12,26 @@ MazeQtGraphicsPixmapItem::MazeQtGraphicsPixmapItem() : QGraphicsPixmapItem() {
 
     /* create texture if not exist */
     if (wallPixmap == nullptr) {
-        wallPixmap = std::make_shared<QPixmap>("/home/idk/Documents/GitHub/C++/res/wall.png");
+        wallPixmap = std::make_shared<QPixmap>("./res/wall.png");
     }
 
     if (blankPixmap == nullptr) {
-        blankPixmap = std::make_shared<QPixmap>("/home/idk/Documents/GitHub/C++/res/blank.png");
+        blankPixmap = std::make_shared<QPixmap>("./res/blank.png");
     }
 
     if (playerPixmap == nullptr) {
-        playerPixmap = std::make_shared<QPixmap>("/home/idk/Documents/GitHub/C++/res/player.png");
+        playerPixmap = std::make_shared<QPixmap>("./res/player.png");
     }
     if (roadHintPixmap == nullptr) {
-        roadHintPixmap = std::make_shared<QPixmap>("/home/idk/Documents/GitHub/C++/res/road_hit.png");
+        roadHintPixmap = std::make_shared<QPixmap>("./res/road_hit.png");
     }
 
     if (startPixmap == nullptr) {
-        startPixmap = std::make_shared<QPixmap>("/home/idk/Documents/GitHub/C++/res/start.png");
+        startPixmap = std::make_shared<QPixmap>("./res/start.png");
     }
 
     if (endPixmap == nullptr) {
-        endPixmap = std::make_shared<QPixmap>("/home/idk/Documents/GitHub/C++/res/end.png");
+        endPixmap = std::make_shared<QPixmap>("./res/end.png");
     }
 
     this->setType(MazeObject::Wall);

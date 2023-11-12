@@ -42,3 +42,19 @@ set(ProjectSourceCode
 add_executable(Maze ${ProjectSourceCode})
 
 target_link_libraries(Maze PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+
+# 設定輸出目錄
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+
+# 複製檔案的自訂命令
+add_custom_command(
+        TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/res
+        ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/res
+        COMMENT "Copying resources to build directory"
+)
+
+# 將複製檔案的自訂命令設定為目標的依賴
+add_custom_target(CopyResources ALL DEPENDS ${PROJECT_NAME})
