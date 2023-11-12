@@ -25,10 +25,7 @@ set(QT_Widget
 
 )
 
-set(ProjectSourceCode
-
-        src/main.cpp
-        ${QT_Widget}
+set(LibSourceCode
         lib/Maze/Maze.cpp
         lib/Maze/Maze.h
         lib/Maze/Qt/MazeQtGraphicsView.cpp
@@ -39,15 +36,29 @@ set(ProjectSourceCode
         lib/Maze/MazeAlgorithm.h
 )
 
-add_executable(Maze ${ProjectSourceCode})
+set(ProjectSourceCode
+        src/main.cpp
+        ${QT_Widget}
+        ${LibSourceCode}
+)
 
+
+IF (WIN32)
+    # non-console for Windows
+    add_executable(Maze WIN32 ${ProjectSourceCode})
+ELSE()
+    add_executable(Maze ${ProjectSourceCode})
+ENDIF()
+
+
+# link library
 target_link_libraries(Maze PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 
-# 設定輸出目錄
+# set build output folder
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
-# 複製檔案的自訂命令
+# copy file command
 add_custom_command(
         TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -56,5 +67,5 @@ add_custom_command(
         COMMENT "Copying resources to build directory"
 )
 
-# 將複製檔案的自訂命令設定為目標的依賴
+# copy res file
 add_custom_target(CopyResources ALL DEPENDS ${PROJECT_NAME})
