@@ -8,7 +8,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Set C++ Std 11
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_EXE_LINKER_FLAGS -static)
 
 # Set Qt
 set(CMAKE_AUTOMOC ON)
@@ -69,13 +68,13 @@ add_custom_command(
 )
 
 if (MSYS OR MINGW OR WIN32)
-	
+
 	# create directory
 	file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/dlls)
-	
+
 	# dll list
-	set(DLL_LIST 
-		libgcc libwinpthread libstdc++ libb2 libfreetype 
+	set(DLL_LIST
+		libgcc libwinpthread libstdc++ libb2 libfreetype
 		libharfbuzz libpng libmd zlib libdouble-conversion
 		libicuin libicuuc libpcre libzstd libbz libbrotlidec
 		libglib libicudt libgraphite libintl libbrotlicommon
@@ -86,13 +85,13 @@ if (MSYS OR MINGW OR WIN32)
 	# get cmake path to get folder of which dll
 	set(DLL_SOURCE_DIR)
 	get_filename_component(DLL_SOURCE_DIR ${CMAKE_COMMAND} DIRECTORY)
-	
+
 	# find dll
 	foreach(DLL ${DLL_LIST})
-		
+
 		# get file by dll source dir
 		file(GLOB DLL_FILES ${DLL_SOURCE_DIR}/${DLL}*.dll)
-		
+
 		# copy each match file
 		foreach(DLL_FILE ${DLL_FILES})
 
