@@ -6,6 +6,7 @@
 #include "MainWindow.h"
 #include "./ui_MainWindow.h"
 #include <lib/Maze/MazeAlgorithm.h>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -27,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 }
 
 void MainWindow::createMaze() {
-
 
     // create maze
     this->maze = std::make_shared<Maze>(
@@ -53,6 +53,12 @@ void MainWindow::createMaze() {
     this->ui->mazeStartPoint_Y_spinBox->setMaximum(this->ui->mazeN_spinBox->value() - 1);
     this->ui->mazeEndPoint_X_spinBox->setMaximum(this->ui->mazeM_spinBox->value() - 1);
     this->ui->mazeEndPoint_Y_spinBox->setMaximum(this->ui->mazeN_spinBox->value() - 1);
+
+    // Qt widget init
+    this->ui->mazeStartPoint_X_spinBox->setValue(0);
+    this->ui->mazeStartPoint_Y_spinBox->setValue(0);
+    this->ui->mazeEndPoint_X_spinBox->setValue(0);
+    this->ui->mazeEndPoint_Y_spinBox->setValue(0);
 }
 
 /* the function to initial Qt Slot connect */
@@ -83,8 +89,28 @@ void MainWindow::connectSetUp() {
     });
 
     connect(this->ui->mazePaintConfirm_pushButton, &QPushButton::clicked, [=]() {
+
+        // clear the last road hit
+        this->ui->mazeView_graphicsView->clearRoadHit();
+
+        // get new road hit
         auto result = MazeAlgorithm::getRoadHit(this->maze);
 
+
+        /* if maze solution is not exits */
+        if (result.size() <= 2 &&
+            !(result.size() == 2 &&
+             result.at(0).x == this->ui->mazeStartPoint_X_spinBox->value() &&
+             result.at(0).y == this->ui->mazeStartPoint_Y_spinBox->value() &&
+             result.at(1).x == this->ui->mazeStartPoint_X_spinBox->value() &&
+             result.at(1).y == this->ui->mazeStartPoint_Y_spinBox->value())
+                )
+        {
+            QMessageBox::critical(nullptr, "提示", "迷宮無解");
+            return;
+        }
+
+        // show the road hit
         for (auto road_hit_point : result) {
 
             this->ui->mazeView_graphicsView->setMazeObject(road_hit_point.x,
@@ -92,6 +118,7 @@ void MainWindow::connectSetUp() {
                                                            MazeObject::RoadHint);
         }
 
+        // reset start road hit
         this->ui->mazeView_graphicsView->setMazeObject(this->ui->mazeStartPoint_X_spinBox->value(),
                                                        this->ui->mazeStartPoint_Y_spinBox->value(),
                                                        MazeObject::Start);
