@@ -26,14 +26,18 @@ public:
 
     /* set or get Painting mode */
     void setPaintingMode(bool flag);
-    bool isPaintingMode() const;
+    [[nodiscard]] bool isPaintingMode() const;
 
     /* set special flag */
     void setNextIsStartPoint();
     void setNextIsEndPoint();
 
 private:
+    // origin maze data
     std::shared_ptr<Maze> originMaze;
+
+    // the maze start and end point
+    std::pair<size_t, size_t> start_point, end_point;
 
 protected:
     /* the Qt slot */

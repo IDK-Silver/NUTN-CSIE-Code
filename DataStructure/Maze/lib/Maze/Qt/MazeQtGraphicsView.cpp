@@ -56,9 +56,25 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
 
             // if clicked obj is blank change obj to wall
             if (this->_nextIsSetStartPoint) {
+
+                /* change last start point to wall */
+                // change origin obj
+                this->originMaze->at(this->start_point.first, this->start_point.second) = Wall;
+                // change graphics view  obj
+                this->setMazeObject(this->start_point.first, this->start_point.second, Wall);
+
+                // set obj type
                 changeObj = MazeObject::Start;
             }
             else if (this->_nextIsSetEndPoint) {
+
+                /* change last start point to wall */
+                // change origin obj
+                this->originMaze->at(this->end_point.first, this->end_point.second) = Wall;
+                // change graphics view  obj
+                this->setMazeObject(this->end_point.first, this->end_point.second, Wall);
+
+                // set obj type
                 changeObj = MazeObject::End;
             }
             else if (pixmapItem->getType() == Blank) {
@@ -70,13 +86,26 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
             pixmapItem->setType(changeObj);
             this->originMaze->at(row_index, column_index) = changeObj;
 
-            // emit qt Signal of completed start point
-            if (_nextIsSetStartPoint)
-                    emit completedStartPoint(row_index, column_index);
+            // change success event
+            if (_nextIsSetStartPoint) {
 
-            // emit qt Signal of completed end point
-            if (_nextIsSetEndPoint)
-                    emit completedEndPoint(row_index, column_index);
+                // set last start point
+                start_point = std::pair<size_t , size_t >(row_index, column_index);
+
+                // emit qt Signal of completed start point
+                emit completedStartPoint(row_index, column_index);
+            }
+
+            // change success event
+            if (_nextIsSetEndPoint) {
+
+                // set last start point
+                end_point = std::pair<size_t , size_t >(row_index, column_index);
+
+                // emit qt Signal of completed end point
+                emit completedEndPoint(row_index, column_index);
+            }
+
         }
     }
 
