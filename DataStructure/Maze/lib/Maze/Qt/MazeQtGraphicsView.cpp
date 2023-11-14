@@ -102,8 +102,12 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
                 changeObj = MazeObject::End;
             }
 
+            // if click road git clear all
+            if (pixmapItem->getType() == RoadHint)
+                this->clearRoadHit();
+
             // change blank to wall
-            else if (pixmapItem->getType() == Blank) {
+            else if (pixmapItem->getType() == Blank || pixmapItem->getType() == RoadHint) {
                 changeObj = Wall;
             }
 
@@ -147,11 +151,19 @@ void MazeQtGraphicsView::createMaze(std::shared_ptr<Maze> obj) {
     this->start_point = unset_point;
     this->end_point = unset_point;
 
+    // delete old maze obj
+    for (auto item : this->scene->items()) {
+        delete(item);
+    }
+
     // delete old scene
     if (this->scene != nullptr) {
         this->scene->clear();
         delete(this->scene);
     }
+
+    // clear old map
+    this->maze->clear();
 
     // create new scene
     this->scene = new QGraphicsScene(this);
@@ -159,14 +171,6 @@ void MazeQtGraphicsView::createMaze(std::shared_ptr<Maze> obj) {
 
     // storage origin maze
     this->originMaze = obj;
-
-    // clear old map
-    this->maze->clear();
-
-    // delete old maze obj
-    for (auto item : this->scene->items()) {
-        delete(item);
-    }
 
     // create maze
     for (int row = 0; row < obj->getSize().first; row++) {

@@ -38,6 +38,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Maze& obj);
 
     std::vector<std::vector<MazeObject>> getMazeMatrix();
+    std::shared_ptr<std::vector<std::vector<MazeObject>>> getMazeMatrixByRef();
 
 private:
     const size_t map_size_M;
@@ -45,6 +46,7 @@ private:
 
     /* the maze map */
     std::shared_ptr<std::vector<std::vector<MazeObject>>> map;
+
 
 
 };

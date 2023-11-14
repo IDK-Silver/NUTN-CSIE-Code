@@ -58,3 +58,7 @@ std::vector<std::vector<MazeObject>> Maze::getMazeMatrix() {
     return *this->map;
 }
 
+std::shared_ptr<std::vector<std::vector<MazeObject>>> Maze::getMazeMatrixByRef() {
+    return this->map;
+}
+

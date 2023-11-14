@@ -18,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->connectSetUp();
 
 
+    // set painting group is not enable
+    this->ui->PaintingGroup->setEnabled(false);
+
     // set choose maze start end spin box can't change value by user
     this->ui->mazeStartPoint_X_spinBox->setReadOnly(true);
     this->ui->mazeStartPoint_Y_spinBox->setReadOnly(true);
@@ -29,6 +32,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 void MainWindow::createMaze() {
 
+    // set painting group enable
+    this->ui->PaintingGroup->setEnabled(true);
+
+
+
     // create maze
     this->maze = std::make_shared<Maze>(
             this->ui->mazeM_spinBox->value(),
@@ -38,9 +46,10 @@ void MainWindow::createMaze() {
     for (int row = 0; row < maze->getSize().first; row++) {
 
         for (int column = 0; column < maze->getSize().second; column++) {
-            maze->at(row).at(column) = MazeObject::Blank;
+            maze->at(row, column) = MazeObject::Wall;
         }
     }
+
 
     // make graphics view to show maze
     this->ui->mazeView_graphicsView->createMaze(maze);
@@ -90,6 +99,13 @@ void MainWindow::connectSetUp() {
 
     connect(this->ui->mazePaintConfirm_pushButton, &QPushButton::clicked, [=]() {
 
+
+        // if not create maze
+        if (this->maze == nullptr) {
+            QMessageBox::warning(nullptr, "提示", "請先創建地圖");
+            return;
+        }
+
         // clear the last road hit
         this->ui->mazeView_graphicsView->clearRoadHit();
 
@@ -106,7 +122,7 @@ void MainWindow::connectSetUp() {
              result.at(1).y == this->ui->mazeStartPoint_Y_spinBox->value())
                 )
         {
-            QMessageBox::critical(nullptr, "提示", "迷宮無解");
+            QMessageBox::warning(nullptr, "提示", "迷宮無解");
             return;
         }
 
@@ -122,6 +138,9 @@ void MainWindow::connectSetUp() {
         this->ui->mazeView_graphicsView->setMazeObject(this->ui->mazeStartPoint_X_spinBox->value(),
                                                        this->ui->mazeStartPoint_Y_spinBox->value(),
                                                        MazeObject::Start);
+
+        //  show how many step that star point to end point
+        QMessageBox::information(nullptr, "提示", QString("迷宮所需步數 : %1").arg(result.size() -2));
 
     });
 

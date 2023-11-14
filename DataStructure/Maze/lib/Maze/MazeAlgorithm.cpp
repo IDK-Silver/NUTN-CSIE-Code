@@ -13,6 +13,8 @@
 
 using namespace std;
 
+
+
 void MazeAlgorithm::bfs_maze(const std::shared_ptr<Maze>& maze, Point startPoint, Point endPoint, vector<vector<Point>>& last_point) {
 
     std::deque<Point> path_queue;
@@ -20,8 +22,7 @@ void MazeAlgorithm::bfs_maze(const std::shared_ptr<Maze>& maze, Point startPoint
 
 
     const std::vector<Point> move_vec = {
-            {0, 1}, {0, -1}, {-1, 0}, {1, 0},
-            {1, 1}, {-1, -1}, {1, -1}, {-1, 1}
+            {0, 1}, {0, -1}, {-1, 0}, {1, 0}
     };
 
 
@@ -118,3 +119,4 @@ void MazeAlgorithm::mark_maze(Point enter_point, Point start_point, vector<vecto
 
     result.push_back(f_p);
 }
+
