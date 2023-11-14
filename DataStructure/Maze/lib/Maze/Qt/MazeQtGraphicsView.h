@@ -32,12 +32,15 @@ public:
     void setNextIsStartPoint();
     void setNextIsEndPoint();
 
+    /* clear the road hit */
+    void clearRoadHit();
+
 private:
     // origin maze data
     std::shared_ptr<Maze> originMaze;
 
     // the maze start and end point
-    std::pair<size_t, size_t> start_point, end_point;
+    std::pair<size_t, size_t> start_point, end_point, unset_point = std::pair<size_t, size_t>(-1, -1);
 
 protected:
     /* the Qt slot */

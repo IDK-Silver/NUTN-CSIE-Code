@@ -47,21 +47,34 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
         if (item->type() == MazeQtGraphicsPixmapItem::Type)
         {
 
-
             // Change the content of the QGraphicsPixmapItem.
             auto *pixmapItem = dynamic_cast<MazeQtGraphicsPixmapItem *>(item);
 
             size_t  row_index = pixmapItem->getIndex().first,
                     column_index = pixmapItem->getIndex().second;
 
+            // if select start point or end point to change
+            // and it not the set start point or end point event
+            // then cancel
+            if (!_nextIsSetStartPoint && !_nextIsSetEndPoint) {
+                if (pixmapItem->getIndex() == start_point || pixmapItem->getIndex() == end_point)  {
+                    return;
+                }
+            }
+
+
             // if clicked obj is blank change obj to wall
             if (this->_nextIsSetStartPoint) {
 
                 /* change last start point to wall */
-                // change origin obj
-                this->originMaze->at(this->start_point.first, this->start_point.second) = Wall;
-                // change graphics view  obj
-                this->setMazeObject(this->start_point.first, this->start_point.second, Wall);
+                if (start_point != unset_point)
+                {
+                    // change origin obj
+                    this->originMaze->at(this->start_point.first, this->start_point.second) = Wall;
+                    // change graphics view  obj
+                    this->setMazeObject(this->start_point.first, this->start_point.second, Wall);
+                }
+
 
                 // set obj type
                 changeObj = MazeObject::Start;
@@ -69,18 +82,23 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
             else if (this->_nextIsSetEndPoint) {
 
                 /* change last start point to wall */
-                // change origin obj
-                this->originMaze->at(this->end_point.first, this->end_point.second) = Wall;
-                // change graphics view  obj
-                this->setMazeObject(this->end_point.first, this->end_point.second, Wall);
+                if (end_point != unset_point)
+                {
+                    // change origin obj
+                    this->originMaze->at(this->end_point.first, this->end_point.second) = Wall;
+                    // change graphics view  obj
+                    this->setMazeObject(this->end_point.first, this->end_point.second, Wall);
+                }
+
 
                 // set obj type
                 changeObj = MazeObject::End;
             }
+
+            // change blank to wall
             else if (pixmapItem->getType() == Blank) {
                 changeObj = Wall;
             }
-
 
             // set maze obj type
             pixmapItem->setType(changeObj);
@@ -117,6 +135,10 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
 }
 
 void MazeQtGraphicsView::createMaze(std::shared_ptr<Maze> obj) {
+
+    // reset start point and end point
+    this->start_point = unset_point;
+    this->end_point = unset_point;
 
     // delete old scene
     if (this->scene != nullptr) {
@@ -199,5 +221,27 @@ void MazeQtGraphicsView::setNextIsEndPoint() {
 
 void MazeQtGraphicsView::setMazeObject(size_t row, size_t column, MazeObject obj) {
     this->maze->at(row).at(column)->setType(obj);
+}
+
+void MazeQtGraphicsView::clearRoadHit() {
+
+    /* to traversal obj or maze */
+    for (int row = 0; row < this->originMaze->getSize().first; row++)
+    {
+        for (int column = 0; column < this->originMaze->getSize().second; column++)
+        {
+            // if obj is road, set to blank
+            if (this->maze->at(row).at(column)->getType() == RoadHint)
+            {
+                // set origin maze obj
+                this->originMaze->at(row, column) = Blank;
+
+                // set graphics view obj
+                this->maze->at(row).at(column)->setType(Blank);
+            }
+
+        }
+    }
+
 }
 
