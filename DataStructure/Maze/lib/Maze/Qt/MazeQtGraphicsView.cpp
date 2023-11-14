@@ -56,15 +56,18 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
             // if select start point or end point to change
             // and it not the set start point or end point event
             // then cancel
-            if (!_nextIsSetStartPoint && !_nextIsSetEndPoint) {
-                if (pixmapItem->getIndex() == start_point || pixmapItem->getIndex() == end_point)  {
-                    return;
-                }
+            if ((!_nextIsSetStartPoint && !_nextIsSetEndPoint) &&
+                (pixmapItem->getIndex() == start_point || pixmapItem->getIndex() == end_point))
+            {
+                return;
             }
-
 
             // if clicked obj is blank change obj to wall
             if (this->_nextIsSetStartPoint) {
+
+                // if clicked obj is end point, cancel
+                if (pixmapItem->getIndex() == end_point)
+                    return;
 
                 /* change last start point to wall */
                 if (start_point != unset_point)
@@ -80,6 +83,10 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
                 changeObj = MazeObject::Start;
             }
             else if (this->_nextIsSetEndPoint) {
+
+                // if clicked obj is start point, cancel
+                if (pixmapItem->getIndex() == start_point)
+                    return;
 
                 /* change last start point to wall */
                 if (end_point != unset_point)
