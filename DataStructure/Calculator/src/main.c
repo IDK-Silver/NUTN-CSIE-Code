@@ -1,5 +1,6 @@
 #include <list/list.h>
 #include <algorithm/ExpressionConverter.h>
+#include <system/system.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -56,7 +57,7 @@ int main()
         {
             // print message
             fprintf(stderr, "Warring input is not a number or valid operator.");
-            exit(0);
+            exit_with_press_any_key(0);
         }
 
         // add to list
@@ -69,7 +70,7 @@ int main()
     // if left pair != right pari it mean the math expression is not valid
     if (left_pair_count != right_pari_count) {
         fprintf(stderr, "The expression is not valid\ncheck the right pair and left pair.");
-        exit(0);
+        exit_with_press_any_key(0);
     }
 
 
@@ -88,9 +89,7 @@ int main()
 
 
     // exit
-     printf("Enter any to exit.");
-    char exit_char = 0;
-    scanf("%c", &exit_char);
+    exit_with_press_any_key(0);
 
     // free list
     list_for_each_safe(pos, n, &list)

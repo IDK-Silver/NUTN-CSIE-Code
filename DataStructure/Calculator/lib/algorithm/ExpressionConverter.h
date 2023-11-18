@@ -7,6 +7,7 @@
 
 #define CALCULATOR_BUFFER_SIZE 128
 
+#include <system/system.h>
 #include <list/list.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -95,7 +96,7 @@ int get_math_operator_priority(enum MathOperator operator) {
         default:
             // operator is not exists, exit program and print error message
             fprintf(stderr, "ExpressionConverter : unable to get math operator priority input operator is undefined");
-            exit(-1);
+            exit_with_press_any_key(0);
     }
 }
 
@@ -268,7 +269,7 @@ double postfix_to_value(struct list_head* list) {
             if (list_empty(&result_stack))
             {
                 fprintf(stderr, "Not a standard expression.");
-                exit(0);
+                exit_with_press_any_key(0);
             }
 
             // get stack top element
@@ -283,7 +284,7 @@ double postfix_to_value(struct list_head* list) {
             if (list_empty(&result_stack))
             {
                 fprintf(stderr, "Not a standard expression.");
-                exit(0);
+                exit_with_press_any_key(0);
             }
 
             // get stack top element
@@ -318,7 +319,7 @@ double postfix_to_value(struct list_head* list) {
                     // if div by zero print to stderr to note user, exit the program
                     if (r == 0) {
                         fprintf(stderr, "Expression exists the problem : div by zero\ncheck your expression");
-                        exit(0);
+                        exit_with_press_any_key(0);
                     }
                     cal_result = l / r;
                     break;
