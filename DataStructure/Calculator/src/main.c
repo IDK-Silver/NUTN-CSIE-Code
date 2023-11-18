@@ -55,7 +55,7 @@ int main()
         if (!is_math_number(input_char) && !is_math_operator(input_char)  && input_char != ' ')
         {
             // print message
-            fprintf(stderr, "Warring input is not a number or valid operation.");
+            fprintf(stderr, "Warring input is not a number or valid operator.");
             exit(0);
         }
 
