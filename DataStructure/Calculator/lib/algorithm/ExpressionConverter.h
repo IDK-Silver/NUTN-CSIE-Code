@@ -95,7 +95,7 @@ int get_math_operator_priority(enum MathOperator operator) {
 
         default:
             // operator is not exists, exit program and print error message
-            fprintf(stderr, "ExpressionConverter : unable to get math operator priority input operator is undefined");
+            fprintf(stderr, "ExpressionConverter : unable to get math operator priority input operator is undefined\n");
             exit_with_press_any_key(0);
     }
 }
@@ -268,7 +268,7 @@ double postfix_to_value(struct list_head* list) {
             // if stack is empty => input is not a standard postfix format
             if (list_empty(&result_stack))
             {
-                fprintf(stderr, "Not a standard expression.");
+                fprintf(stderr, "Not a standard expression.\n");
                 exit_with_press_any_key(0);
             }
 
@@ -283,7 +283,7 @@ double postfix_to_value(struct list_head* list) {
             // if stack is empty => input is not a standard postfix format
             if (list_empty(&result_stack))
             {
-                fprintf(stderr, "Not a standard expression.");
+                fprintf(stderr, "Not a standard expression.\n");
                 exit_with_press_any_key(0);
             }
 
@@ -318,7 +318,7 @@ double postfix_to_value(struct list_head* list) {
 
                     // if div by zero print to stderr to note user, exit the program
                     if (r == 0) {
-                        fprintf(stderr, "Expression exists the problem : div by zero\ncheck your expression");
+                        fprintf(stderr, "Expression exists the problem : div by zero\ncheck your expression\n");
                         exit_with_press_any_key(0);
                     }
                     cal_result = l / r;

@@ -56,7 +56,7 @@ int main()
         if (!is_math_number(input_char) && !is_math_operator(input_char)  && input_char != ' ')
         {
             // print message
-            fprintf(stderr, "Warring input is not a number or valid operator.");
+            fprintf(stderr, "Warring input is not a number or valid operator.\n");
             exit_with_press_any_key(0);
         }
 
@@ -69,7 +69,7 @@ int main()
 
     // if left pair != right pari it mean the math expression is not valid
     if (left_pair_count != right_pari_count) {
-        fprintf(stderr, "The expression is not valid\ncheck the right pair and left pair.");
+        fprintf(stderr, "The expression is not valid\ncheck the right pair and left pair.\n");
         exit_with_press_any_key(0);
     }
 
