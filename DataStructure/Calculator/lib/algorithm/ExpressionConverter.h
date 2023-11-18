@@ -133,7 +133,7 @@ void infix_to_postfix(struct list_head* list, struct list_head* result_list) {
     // for each node in input list
     list_for_each(pos, list)
     {
-        // get node
+        // get node by copy value, so memory address is not same.
         struct list_node_char *_node = list_entry(pos, struct list_node_char, list);
 
         struct list_node_char *node = (struct list_node_char*)malloc(sizeof(struct list_node_char));
@@ -264,6 +264,13 @@ double postfix_to_value(struct list_head* list) {
             // the calculate result node
             struct list_node_double *num_node = {0};
 
+            // if stack is empty => input is not a standard postfix format
+            if (list_empty(&result_stack))
+            {
+                fprintf(stderr, "Not a standard expression.");
+                exit(0);
+            }
+
             // get stack top element
             num_node = list_first_entry(&result_stack, struct list_node_double, list);
             r = num_node->data;
@@ -271,6 +278,13 @@ double postfix_to_value(struct list_head* list) {
             // free num_node
             list_del(&num_node->list);
             free(num_node);
+
+            // if stack is empty => input is not a standard postfix format
+            if (list_empty(&result_stack))
+            {
+                fprintf(stderr, "Not a standard expression.");
+                exit(0);
+            }
 
             // get stack top element
             num_node = list_first_entry(&result_stack, struct list_node_double, list);

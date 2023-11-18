@@ -2,7 +2,6 @@
 #include <algorithm/ExpressionConverter.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 
 int main()
 {
@@ -56,7 +55,7 @@ int main()
         if (!is_math_number(input_char) && !is_math_operator(input_char)  && input_char != ' ')
         {
             // print message
-            printf("Warring input is not a number.");
+            fprintf(stderr, "Warring input is not a number or valid operation.");
             exit(0);
         }
 
@@ -82,6 +81,7 @@ int main()
 
     // infix to postfix
     infix_to_postfix(&list, &postfix_list);
+
 
     // print ans
     printf("Result : %lf\n", postfix_to_value(&postfix_list));
