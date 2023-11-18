@@ -66,7 +66,7 @@ cmake --build .
 
 * Run APP
 ```
-./Maze
+./Calculator
 ```
 
 
