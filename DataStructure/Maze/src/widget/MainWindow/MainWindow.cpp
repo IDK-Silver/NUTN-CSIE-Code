@@ -144,8 +144,6 @@ void MainWindow::connectSetUp() {
 
     });
 
-//    connect(this->ui->mazeView_graphicsView, SIGNAL(completedStartPoint), SLOT(chooseStartPoint));
-//    connect(this->ui->mazeView_graphicsView)
 }
 
 

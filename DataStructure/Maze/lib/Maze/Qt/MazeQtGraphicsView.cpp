@@ -103,7 +103,7 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
             }
 
             // if click road git clear all
-            if (pixmapItem->getType() == RoadHint)
+            if (pixmapItem->getType() == RoadHint || pixmapItem->getType() == Start || pixmapItem->getType() == End)
                 this->clearRoadHit();
 
             // change blank to wall
@@ -117,6 +117,8 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
 
             // change success event
             if (_nextIsSetStartPoint) {
+                //clear road git
+                this->clearRoadHit();
 
                 // set last start point
                 start_point = std::pair<size_t , size_t >(row_index, column_index);
@@ -127,6 +129,9 @@ void MazeQtGraphicsView::mousePressEvent(QMouseEvent *event) {
 
             // change success event
             if (_nextIsSetEndPoint) {
+                // clear road hit
+                this->clearRoadHit();
+
 
                 // set last start point
                 end_point = std::pair<size_t , size_t >(row_index, column_index);
