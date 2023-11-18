@@ -9,3 +9,5 @@ add_executable(Calculator src/main.c lib/list/list.h
         lib/algorithm/ExpressionConverter.h)
 
 target_link_libraries(Calculator m)
+
+target_compile_options(Calculator PRIVATE -w)
