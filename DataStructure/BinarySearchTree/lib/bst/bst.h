@@ -18,8 +18,10 @@ struct bst_head {
  * INIT_BST_HEAD - to init tree root
  * @root: tree root pointer.
  */
-#define INIT_BST_HEAD(root) do { \
-    \
+#define INIT_BST_HEAD(root) do {   \
+    root.left = NULL;              \
+    root.right = NULL;             \
+    root.parent = NULL;            \
 }   while(0)
 
 
@@ -39,26 +41,27 @@ struct bst_head {
  * @root: tree root
  * @compare_func: compare entry function
  */
-#define bst_insert(ptr, root, compare_func) do {                                \
-    struct bst_head *_x = root;                                                 \
-    struct bst_head *_y = NULL;                                                 \
-    struct bst_head *_z = ptr;                                                  \
-    while (_x != NULL)                                                          \
-    {                                                                           \
-        _y = _x;                                                                \
-        if (compare_func(ptr, _x) == -1)                                        \
-            _x = _x->left;                                                      \
-        else                                                                    \
-            _x = _x->right;                                                     \
-    }                                                                           \
-    _z->parent = _y;                                                            \
-    if (_y == NULL)                                                             \
-        root = _z;                                                              \
-    else if (compare_func(_z, _y) == -1)                                        \
-        _y->left = _z;                                                          \
-    else                                                                        \
-         _y->right = _z;                                                        \
-} while(0)
+void bst_insert(struct bst_head *ptr, struct bst_head **root,
+                int (*compare_func)(struct bst_head*, struct bst_head*)) {
+    struct bst_head *_x = *root;
+    struct bst_head *_y = NULL;
+    struct bst_head *_z = ptr;
+    while (_x != NULL)
+    {
+        _y = _x;
+        if (compare_func(ptr, _x) == -1)
+            _x = _x->left;
+        else
+            _x = _x->right;
+    }
+    _z->parent = _y;
+    if (_y == NULL)
+        *root = _z;
+    else if (compare_func(_z, _y) == -1)
+        _y->left = _z;
+    else
+         _y->right = _z;
+}
 
 
 /**
@@ -87,7 +90,7 @@ struct bst_head* bst_search(struct bst_head *ptr, struct bst_head *root,
  */
 struct bst_head* bst_minimum(struct bst_head *ptr)
 {
-    while (ptr->left != NULL)
+    while (ptr != NULL && ptr->left != NULL)
         ptr = ptr->left;
     return  ptr;
 }
@@ -99,7 +102,7 @@ struct bst_head* bst_minimum(struct bst_head *ptr)
  */
 struct bst_head* bst_maximum(struct bst_head *ptr)
 {
-    while (ptr->right != NULL)
+    while (ptr != NULL && ptr->right != NULL)
         ptr = ptr->right;
     return  ptr;
 }
@@ -150,10 +153,10 @@ struct bst_head* bst_predecessor(struct  bst_head *ptr)
  * @v: the subtree v
  * @root: the tree root
  */
-void bst_transplant(struct bst_head *u, struct  bst_head *v, struct bst_head *root)
+void bst_transplant(struct bst_head *u, struct  bst_head *v, struct bst_head **root)
 {
     if (u->parent == NULL)
-        root = v;
+        *root = v;
     else if (u == u->parent->left)
         u->parent->left = v;
     else
@@ -168,7 +171,7 @@ void bst_transplant(struct bst_head *u, struct  bst_head *v, struct bst_head *ro
  * @ptr: the entry that want to delete
  * @root: the tree root
  */
-void bst_delete(struct bst_head *ptr, struct bst_head *root)
+void bst_delete(struct bst_head *ptr, struct bst_head **root)
 {
     if (ptr->left == NULL)
         bst_transplant(ptr, ptr->right, root);
