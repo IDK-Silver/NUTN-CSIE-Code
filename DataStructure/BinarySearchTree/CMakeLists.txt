@@ -5,4 +5,5 @@ set(CMAKE_C_STANDARD 11)
 
 include_directories(lib)
 
-add_executable(BinarySearchTree main.c lib/bst/bst.h)
+add_executable(BinarySearchTree main.c lib/bst/bst.h
+        "lib/bst/bst_expansion.h")
