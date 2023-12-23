@@ -101,7 +101,7 @@ cd build/
 * 用CMake 生成 Makefile 並編譯
 
 ```
-camke ..
+cmake ..
 cmake --build .
 ```
 
