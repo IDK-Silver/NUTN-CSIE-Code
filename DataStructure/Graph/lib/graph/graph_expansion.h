@@ -1,5 +1,5 @@
 //
-// Created by idk on 2023/12/21.
+// Created by idk on 2023/12/24.
 //
 
 #ifndef IDK_GRAPH_EXPANSION_H
@@ -24,9 +24,11 @@ struct graph* graph_create_by_adjacency_list_array(const graph_size *array, grap
     // get vertex number
     graph_size vertex_num = array[0] - 1;
 
-    // create adjacency list
-    gh->vertex_num = vertex_num;
-
+    // create vertex
+    for (graph_size i = 0; i < vertex_num; i++)
+    {
+        graph_add_vertex(gh);
+    }
 
 
     // decode array
@@ -38,57 +40,23 @@ struct graph* graph_create_by_adjacency_list_array(const graph_size *array, grap
         // get start index
         graph_size start_index = array[vertex_index];
 
-        // to storage each vertex
-        struct graph_vertex_list *vertex_list = (struct graph_vertex_list*) malloc(sizeof(struct graph_vertex_list));
-        INIT_GRAPH_VERTEX_LIST(vertex_list);
+
+        struct graph_vertex *u = graph_get_vertex_by_id(gh, vertex_index);
 
         // for each node
         for (graph_size node_index = start_index; node_index < start_index + range; node_index++)
         {
-            // create vertex
-            struct graph_vertex_head *vertex = (struct graph_vertex_head*) malloc(sizeof(struct graph_vertex_head));
-            INIT_GRAPH_VERTEX_HEAD(vertex);
+            struct graph_vertex *v = graph_get_vertex_by_id(gh, array[node_index]);
 
-            // set vertex node
-            vertex->id = array[node_index];
-
-            // add vertex
-            list_add_tail(&(vertex->list), &vertex_list->data);
+            graph_add_edge(gh, u, v);
         }
 
-        INIT_LIST_HEAD(&vertex_list->list);
-
-
-        // add vertex list to adjacency list
-        list_add_tail(&vertex_list->list, &gh->adjacency_list);
     }
-
-
-//            list_entry(&gh->adjacency_list, struct graph_vertex_list, list);
-
-
-//        vertex_list = list_first_entry(pos, struct graph_vertex_list, list);
-
-
-//        printf("%p \n", vertex_list);
-
-
-//        struct graph_vertex_head *h = list_entry(&vertex_list->data, struct graph_vertex_head, list);
-//        printf("%p", h);
-
-
-//        printf("%d \n", h->id);
-//        list_del(pos);
-//        struct list_head *vertex = pos;
-//        list_del(pos);
-//        list_move_tail(&vertex_list.list, pos);
-//        list_add_tail(vertex, &vertex_list.list);
-
-
 
     // return result
     return gh;
 }
+
 
 
 #endif //IDK_GRAPH_EXPANSION_H
