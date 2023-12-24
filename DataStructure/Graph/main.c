@@ -343,7 +343,7 @@ int main()
 
     // get the first vertex in graph
     struct graph_vertex *start_vertex = list_first_entry(&gh->vertex_list, struct graph_vertex, list);
-    
+
     // bfs
     bfs(gh, start_vertex);
 
