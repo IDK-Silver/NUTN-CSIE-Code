@@ -69,3 +69,25 @@ replay_pid*
 *.classpath
 *.project
 
+db
+incremental_db
+*.qmsg
+*.qpf
+*.qsf
+*.qws
+*.rpt
+*.cdb
+*.cnf.hdb
+*.asm.rdb
+*.cbx.xml
+*.cmp*.*
+*.map.*
+*.ddb
+*.pof
+*.tan.*
+*.bak
+*.*lpc*.*
+*.sgdiff*
+*.fit*.*
+*.done
+*.sof
