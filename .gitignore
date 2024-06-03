@@ -69,6 +69,8 @@ replay_pid*
 *.classpath
 *.project
 
+
+# VHDL
 db
 incremental_db
 *.qmsg
