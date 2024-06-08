@@ -106,3 +106,34 @@ void sprint_memory_info(char **dest, int address, const uint32_t max_address_len
         sprintf((*dest) + (max_address_len - address_len + -2), "%X\t%X\n", address, content);
 }
 
+FILE* open_output_file(const char *soucre, const char *extension) {
+    FILE *out_file = NULL;
+
+        // the length of out file path must lower than lenghth of sourece + extension
+        char *out_file_path = malloc(sizeof(char) * (
+            strlen(soucre) + strlen(extension)
+        ));
+        memset(out_file_path, '\0', sizeof(out_file_path));
+
+        // get the source path without extension
+        filename_without_extension(&out_file_path, soucre);
+
+        // add we want extension
+        strcat(out_file_path, extension);
+
+    #if LOADER_DEBUG_LOG
+        printf("%s", out_file_path);
+    #endif
+
+        // try to open file
+        out_file = fopen(out_file_path,"w+");
+
+        // ensure file is valid
+        if(out_file == NULL)
+        {
+            fprintf(stderr, "faild to open output file\n");
+            exit(1);
+        }
+
+    return out_file;
+}
