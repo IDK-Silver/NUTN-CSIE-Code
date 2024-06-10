@@ -12,11 +12,15 @@ git clone https://github.com/IDK-Silver/NUTN-CSIE-Code.git
 ```
 
 ```
- cd   NUTN-CSIE-Code/SystemSoftware/absolute_loader/
+ cd NUTN-CSIE-Code/SystemSoftware/absolute_loader/
 ```
 
 ```
 mkdir build && cd build
+```
+
+```
+cmake .. && cmake --build .
 ```
 ## Windows
 用 MSYS2 或 MSVC
