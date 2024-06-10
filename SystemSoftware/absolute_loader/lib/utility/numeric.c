@@ -8,7 +8,6 @@
 int num_from_ascii(const char* accii, const uint32_t ascii_len, const int base) {
 
     int result = 0;
-    // uint32_t ascii_len = strlen(accii);
 
     switch (base) {
         case 10:

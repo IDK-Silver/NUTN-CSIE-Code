@@ -13,7 +13,9 @@ int main(int argc, char *argv[]) {
     args_init(&arg_result);
 
     // parseing argument
-    args_parse(argc, argv, &arg_result);
+    if (args_parse(argc, argv, &arg_result) < 0) {
+        exit(-1);
+    }
 
     // storage loading file
     uint8_t *hex_array  = NULL;

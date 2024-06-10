@@ -17,7 +17,8 @@ void conversion_hex(const char *file_path, uint8_t** dest, uint32_t *dest_len) {
         // ensure file is valid
         if(file == NULL)
         {
-            fprintf(stderr, "faild to open file\n");
+            fprintf(stderr, "faild to open source file\ncheck it path\n");
+            fprintf(stderr, "source path is \'%s\'\n", file_path);
             exit(1);
         }
 
@@ -131,7 +132,9 @@ FILE* open_output_file(const char *soucre, const char *extension) {
         // ensure file is valid
         if(out_file == NULL)
         {
-            fprintf(stderr, "faild to open output file\n");
+            fprintf(stderr, "faild to open output file\ncheck input source file path");
+            fprintf(stderr, "give source path is %s\t", soucre);
+            fprintf(stderr, "output file path is %s\t", out_file_path);
             exit(1);
         }
 

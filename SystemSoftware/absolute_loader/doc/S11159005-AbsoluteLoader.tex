@@ -1,0 +1,400 @@
+\documentclass[UTF8,12pt]{article} % 12pt 為字號大小
+\usepackage{amssymb,amsfonts,amsmath,amsthm}
+\usepackage{times}
+\usepackage{graphicx} % 插圖
+\usepackage{cite}
+\usepackage{xeCJK}
+\usepackage{placeins} % 防止浮動
+%----------
+% 插入代碼的格式定義
+% 參考 https://www.latexstudio.net/archives/5900.html
+%----------
+\usepackage{listings}
+\lstset{
+	columns=fixed,
+	numbers=left,                                        % 在左側顯示行號
+	numberstyle=\tiny\color{gray},                       % 設定行號格式
+	frame=none,                                          % 不顯示背景邊框
+	backgroundcolor=\color[RGB]{245,245,244},            % 設定背景顏色
+	keywordstyle=\color[RGB]{40,40,255},                 % 設定關鍵字顏色
+	numberstyle=\footnotesize\color{darkgray},
+	commentstyle=\it\color[RGB]{0,96,96},                % 設置代碼註釋的格式
+	stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 設置字串格式
+	showstringspaces=false,                              % 不顯示字串中的空格
+	language=c++,                                        % 設置語言,
+	xleftmargin=4em,  % 設置左邊距
+	xrightmargin=0em, % 設置右邊距
+	tabsize=2,
+}
+%----------
+% 演算法偽代碼
+% https://blog.csdn.net/lwb102063/article/details/53046265
+%----------
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm
+
+%----------
+% 字體定義
+%----------
+\setCJKmainfont[BoldFont={Noto Sans CJK TC Bold}, AutoFakeSlant=0.2]{Noto Serif CJK TC}
+\setCJKsansfont{Noto Sans CJK TC}
+\setCJKfamilyfont{zhsong}{Noto Serif CJK TC}      % 正黑體
+\setCJKfamilyfont{zhhei}{Noto Sans CJK TC Bold}   % 粗黑體
+\setCJKfamilyfont{zhkai}{Noto Serif CJK TC}       % 斜體楷書（模擬斜體）
+\setCJKfamilyfont{zhfs}{Noto Serif CJK TC}        % 仿宋體
+\setCJKfamilyfont{zhli}{Noto Serif CJK TC}        % 隸書體
+\setCJKfamilyfont{zhyou}{Noto Sans CJK TC}        % 圓體
+\newcommand*{\songti}{\CJKfamily{zhsong}} % 正黑體
+\newcommand*{\heiti}{\CJKfamily{zhhei}}   % 粗黑體
+\newcommand*{\kaiti}{\CJKfamily{zhkai}}   % 斜體楷書（模擬斜體）
+\newcommand*{\fangsong}{\CJKfamily{zhfs}} % 仿宋體
+\newcommand*{\lishu}{\CJKfamily{zhli}}    % 隸書體
+\newcommand*{\yuanti}{\CJKfamily{zhyou}}  % 圓體
+
+
+%----------
+% 版面設置
+%----------
+%首段縮進
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+%行距
+\renewcommand{\baselinestretch}{1.25} % 1.25倍行距
+%頁邊距
+\usepackage[a4paper]{geometry}
+\geometry{verbose,
+	tmargin=2cm,% 上邊距
+	bmargin=2cm,% 下邊距
+	lmargin=1cm,% 左邊距
+	rmargin=1cm % 右邊距
+}
+
+% ----------
+% 多級標題格式在此設置
+% https://zhuanlan.zhihu.com/p/32712209
+% \titleformat{command}[shape]%定義標題類型和標題樣式，字體
+% {format}%定義標題格式:字號（大小），加粗，斜體
+% {label}%定義標題的標籤，即標題的標號等
+% {sep}%定義標題和標號之間的水平距離
+% {before-code}%定義標題前的內容
+% [after-code]%定義標題後的內容
+% ----------
+\usepackage{titlesec} %自定義多級標題格式的宏包
+% 三級標題
+% 4
+\titleformat{\section}[block]{\large \bfseries}{\arabic{section}}{1em}{}[]
+% 4.1
+\titleformat{\subsection}[block]{\normalsize \bfseries}{\arabic{section}.\arabic{subsection}}{1em}{}[]
+% 4.1.1
+\titleformat{\subsubsection}[block]{\small \mdseries}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{1em}{}[]
+\titleformat{\paragraph}[block]{\footnotesize \bfseries}{[\arabic{paragraph}]}{1em}{}[]
+
+
+%----------
+% 其他宏包
+%----------
+%圖形相關
+\usepackage[x11names]{xcolor} % must before tikz, x11names defines RoyalBlue3
+\usepackage{graphicx}
+\usepackage{pstricks,pst-plot,pst-eps}
+\usepackage{subfig}
+\def\pgfsysdriver{pgfsys-dvipdfmx.def} % put before tikz
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+
+%原文照排
+\usepackage{verbatim}
+
+%連結的格式
+\usepackage[colorlinks,linkcolor=red]{hyperref}
+%表格
+\usepackage{tabularx}
+
+%==========
+% 正文部分
+%==========
+
+
+\begin{document}
+
+
+
+\title{\bf{\kaiti 絕對載入器開發報告}}
+\author{姓名：黃毓峰\hspace{1cm}學號：S11159005}
+\date{2024/06/10}
+\maketitle
+
+% \abstract{ }
+% \paragraph{\bf{ \kaiti KeyWord}}
+% \paragraph{\\}
+
+\section{摘要}
+% \textbf{標題大小、樣式可設置，請參閱.tex原始檔\%--標題設定--部分。}
+
+  根據課本的Absolute Loader的設計構想，並利用C來實做出來，該設計出的程式可以讀取以由 ACSII Code 編碼組成的一串16進位數值，並根據給予的記憶體起始位置輸出載入後的記憶體位置，與其改位置的記記憶體數值，可以選在在Shell or Console中顯示或是把結果寫入在文件。
+
+% \subsection{二級標題}
+% \subsubsection{三級標題}
+
+
+\section{流程圖}
+ % Define block styles
+ \tikzstyle{decision} = [diamond, draw, fill=blue!20,
+ text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+ \tikzstyle{block} = [rectangle, draw, fill=blue!20,
+ text width=5em, text centered, rounded corners, minimum height=4em]
+ \tikzstyle{line} = [draw, -latex']
+ \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+ minimum height=2em]
+
+ \begin{tikzpicture}[node distance = 2cm, auto]
+ 	% Place nodes
+ 	\node [block] (parse-argument) {Parse Argument};
+ 	\node [cloud, left of=parse-argument, node distance=5cm] (start) {Program Start};
+ 	\node [block, below of=parse-argument] (conversion-hex) {Conversion ACSII to Hex};
+
+
+
+ 	% \node [block, below of=conversion-hex] (evaluate) {evaluate candidate models};
+
+
+ 	\node [decision, below of=conversion-hex] (decide) {Is write to file};
+
+ 	\node [block, left of=decide, node distance=5cm] (open-result-file) {Open result file};
+
+ 	\node [block, below of=open-result-file, node distance=3cm] (write-to-file) {Write info to file};
+ 	\path [line] (open-result-file) -- (write-to-file);
+ 	\node [block, below of=decide, node distance=3cm] (print-shell) {Print in shell};
+
+ 	\node [block, below of=print-shell, node distance=2cm] (end) {End of Program};
+
+ 	% Draw edges
+ 	\path [line] (parse-argument) -- (conversion-hex);
+ 	\path [line] (conversion-hex) -- (decide);
+ 	\path [line] (decide) -- node [near start] {yes} (open-result-file);
+ 	\path [line] (decide) -- node {no}(print-shell);
+ 	\path [line,dashed] (start) -- (parse-argument);
+
+ 	\path [line] (write-to-file) -- (end);
+ 	\path [line] (print-shell) -- (end);
+
+ \end{tikzpicture}
+
+
+
+
+\section{設計方法}
+\subsection{Parse Argument}
+定義了一enumeration來標示該程式共有記個argument可以做使用
+\begin{lstlisting}[language={C}]
+enum ARG_OPTS {
+	START_ADDRESS,
+	IS_OUT_RESULT,
+};
+\end{lstlisting}
+
+並定義了一function來把enumeration轉成對應的字串
+\begin{lstlisting}[language={C}]
+int argtoc(enum ARG_OPTS options, char **result) {
+if (result == NULL || *result == NULL) {
+	fprintf(
+		stderr,
+		"argument to string failed : null pointer\n"
+	);
+	return -1;
+}
+
+switch (options) {
+
+	case START_ADDRESS:
+	strcpy(*result, "-A");
+	return 0;
+	return -1;
+}
+}
+\end{lstlisting}
+
+用來存解析結果
+\begin{lstlisting}[language={C}]
+struct args {
+	char* program_path;
+	char* start_address;
+	char* file_path;
+	bool is_out_result;
+};
+\end{lstlisting}
+\newpage
+用來則解析程式的argument 的部份程式
+
+\begin{lstlisting}[language={C}]
+argtoc(START_ADDRESS, &opt_str);
+opt_len = strlen(opt_str);
+
+if (strncmp(arg, opt_str, opt_len) == 0) {
+
+	if (arg_len == opt_len) {
+		// move to next argument to get the file path
+		arg_index++;
+
+		if (get_arg(argc, argv, arg_index, &arg, &arg_len) < 0) {
+			exit(-1);
+		}
+
+		result->start_address = arg;
+		continue;
+	}
+
+	result->start_address = (arg + opt_len);
+	continue;
+}
+\end{lstlisting}
+\newpage
+
+
+
+\subsection{Conversion ACSII to Hex}
+\subsubsection{Number from ASCII}
+因不給使用atoi, 以此猜測也不開放使用strtol等等得的function, 故重新設計一把ASCII的字串轉成特定base的function，以下為真對base為16的轉換程式，這樣就可以把Memory Start Address (argument 給的)轉成數字，也可以把輸入文件的ACSII轉成對應的半位元
+\begin{lstlisting}[language={C}]
+int num_from_ascii(
+	const char* accii, const uint32_t ascii_len, const int base
+) {
+	int result = 0;
+	switch (base) {
+		case 0x10:
+			for (uint32_t index = 0; index < ascii_len; index++) {
+
+				// get the character of string
+				char c = accii[index];
+
+				// get dec num from ascii
+				c -= '0';
+
+				// more the pure number (9)
+				c = (c > (10 - 1)) ? c - (0x10 - (10 - 1)) : c;
+
+				// if character is upper case, sub offset
+				c = (c > (0x10 - 1)) ? c - ('a' - 'A') : c;
+
+				// carrying
+				result *= base;
+
+				// add number
+				result += c;
+			}
+			break;
+		default:
+			fprintf(stderr, "num_from_ascii : unknow base");
+			return 0;
+	}
+	return result;
+}
+\end{lstlisting}
+
+
+\subsubsection{合併半位元}
+
+為了方便做合併動作定一結構為 hex\_wf (hex with half)
+
+\begin{lstlisting}[language={C}]
+struct hex_wf {
+	uint8_t rf : 4;
+	uint8_t lf : 4;
+};
+\end{lstlisting}
+
+這樣可以方便且快數（不用做位移以及or bitwise) 可以取得合併2個半位元
+
+\begin{lstlisting}[language={C}]
+struct hex_wf* data = (struct hex_wf *)malloc(sizeof(struct hex_wf));
+data->lf = 0xf;
+data->rf = 0x1;
+uint8_t fullbyte = *((uint8_t*) data);
+\end{lstlisting}
+
+把合併後的結果存在list裡面並記入list長度, 待全部完成後把list轉成array
+\begin{lstlisting}[language={C}]
+*dest = (uint8_t*) malloc(sizeof(uint8_t) * (*dest_len));
+
+// to for each element of list
+struct list_head *pos, *n;
+
+uint32_t index = 0;
+list_for_each_safe(pos, n, &hex_wf_list)
+{
+	struct list_node_hex_wf *st = list_entry(
+		pos,struct list_node_hex_wf, list
+	);
+	uint8_t content = *((uint8_t*) st->data);
+	(*dest)[index] = content;
+	index++;
+	list_del(pos);
+	free(st);
+}
+\end{lstlisting}
+
+
+詳細程式碼請見 project\_root/lib/core/loader.c 的 conversion\_hex
+\newpage
+\subsection{Wirte info to File \& Print in Shell}
+
+藉由上述的步驟可以取的記憶體起始位置，輸入文件載入後的16進位數值，最後要做輸出的部份
+為了能夠輸出到不同的IO流又不用寫太多重複的程式碼於是設計了一function可以把資訊寫入到byffer （char array）理面, 最後在輸出到不同的IO流
+
+\begin{lstlisting}[language={C}]
+// storage loading file
+uint8_t *hex_array  = NULL;
+uint32_t hex_len = 0;
+
+// conversion ascii to hex (byte)
+conversion_hex(arg_result.file_path, &hex_array,  &hex_len);
+
+// init memory info str buffer
+char *buffer = (char *) malloc(sizeof(char) * CONSOLE_MESSAGE_BUFFER_LEN);
+memset(buffer, '\0', CONSOLE_MESSAGE_BUFFER_LEN);
+
+// show memory data or wirte to output file
+for (int i = 0; i < hex_len; i++) {
+
+	// print info to buffer
+	sprint_memory_info(&buffer, address, 5, hex_array[i]);
+
+	// add memory address
+	address += sizeof(uint8_t);
+	// select IO (stdout, or outputfile)
+	if (arg_result.is_out_result) {
+		fprintf(out_file, "%s", buffer);
+	}
+	else {
+		fprintf(stdout, "%s", buffer);
+	}
+}
+\end{lstlisting}
+
+
+
+
+\section{開發環境}
+\textbf{作業系統　Linux 6.6.32-1-lts x86\_64}
+
+\textbf{桌面環境　KDE Plasma 6.0.5, Qt 6.7.1 , Wayland 1.23.0-1 }
+
+\textbf{CMake　3.29.5 }
+
+\textbf{GCC　　14.1.1}
+
+\textbf{Make　　4.4.1}
+
+\newpage
+
+\section{討論與心得}
+\subsection{討論}
+讀文件減數值輸出
+\subsection{心得}
+最近好累好忙，下次忙的時候不用latex寫學校報告了
+
+\end{document}

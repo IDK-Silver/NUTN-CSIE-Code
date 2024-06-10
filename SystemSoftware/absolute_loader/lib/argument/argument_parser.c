@@ -4,6 +4,8 @@
 
 #include "argument_parser.h"
 
+#include <build_config/absolute_loader_config.h>
+
 
 int args_parse(int argc, char *argv[], struct args *result) {
 
@@ -90,6 +92,15 @@ int args_parse(int argc, char *argv[], struct args *result) {
         }
 
 
+    }
+
+
+    if (result->start_address == NULL) {
+        fprintf(stderr,
+            "must given memory start info like : \n\t \'%s -A 05279 \n",
+            PROGRAM_NAME_IN_RUNTIME
+        );
+        return -1;
     }
 
     return 0;
