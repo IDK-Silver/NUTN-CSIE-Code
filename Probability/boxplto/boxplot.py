@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import os
-
+import argparse
 
 def calculate_iqr(data):
     q1 = np.percentile(data, 25)
@@ -21,8 +21,24 @@ def find_outliers(data):
 
 
 if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "data_path",
+        help="The data path that want to boxplot"
+    )
+
+    parser.add_argument(
+        "result_image_path",
+        help="The image of boxplot"
+    )
+
+    args = parser.parse_args()
+
     # load cvs data
-    df = pd.read_csv('./datas/nuclear_capacities.csv')
+
+    df = pd.read_csv(args.data_path) 
     labels = [data for data in df.axes[1]]
     datas = [df[lab].tolist() for lab in labels]
 
@@ -36,15 +52,13 @@ if __name__ == '__main__':
     # plot boxplot
     ax.boxplot(datas, tick_labels=labels)
 
-    # save result
-    save_img_path: str = './result'
-    save_img_filename: str = 'boxplot.png'
-    if not os.path.exists(save_img_path):
-        os.makedirs(save_img_path)
+    
+
     save_img_filepath = os.path.abspath(
-        save_img_path + '/' + save_img_filename
+        args.result_image_path
     )
 
+    # save result
     plt.savefig(save_img_filepath)
     print(f'the boxplot image save to {save_img_filepath}')
 
