@@ -15,5 +15,11 @@ pip install -r requirements.txt
 - the first argument is data path that want to boxplot
 - the second argument is result path
 ```
-python boxplot.py ./datas/nuclear_capacities.csv result/idk.png
+python boxplot.py ./datas/nuclear_capacities.csv result/nuclear_capacities.png
 ```
+
+## export result
+- if you are running at Unix-like like Linux or MacOS you can easy export result
+```
+python boxplot.py ./datas/nuclear_capacities.csv result/nuclear_capacities.png >> info.txt
+```  

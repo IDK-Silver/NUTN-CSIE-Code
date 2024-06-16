@@ -20,6 +20,17 @@ def find_outliers(data):
     return [x for x in data if x < lower_bound or x > upper_bound]
 
 
+def calculate_sample_mean(data):
+    return sum(data) / len(data)
+
+def calculate_sample_variance(data: list, sample_mean : float = None):
+    if sample_mean is None:
+        sample_mean = calculate_sample_mean(data)
+
+    return sum(
+        [pow(xi - sample_mean, 2) for xi in data]
+    ) / (len(data) - 1)
+
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
@@ -52,8 +63,6 @@ if __name__ == '__main__':
     # plot boxplot
     ax.boxplot(datas, tick_labels=labels)
 
-    
-
     save_img_filepath = os.path.abspath(
         args.result_image_path
     )
@@ -61,6 +70,19 @@ if __name__ == '__main__':
     # save result
     plt.savefig(save_img_filepath)
     print(f'the boxplot image save to {save_img_filepath}')
+
+    # means  variances std_deviation
+    means = [calculate_sample_mean(data) for data in datas]
+    variances = [calculate_sample_variance(*data) for data in zip(datas, means)]
+    std_deviation = [pow(var, 0.5) for var in variances]
+
+    # print the result
+    for infos in zip(labels, means, variances, std_deviation):
+        print(f'{infos[0]} :')
+        print(f'\tSample Mean {infos[1]}')
+        print(f'\tSample Variance {infos[2]}')
+        print(f'\tStandard Deviation {infos[3]}')
+
 
     # calculate iqr for each data
     iqr_list = [calculate_iqr(data) for data in datas]
@@ -73,3 +95,5 @@ if __name__ == '__main__':
     # print the result
     for index, outliers in enumerate(outliers_list):
         print(f'Outliers {labels[index]}: {outliers}')
+
+
