@@ -3,49 +3,6 @@ USA :
 	Sample Mean 2.5542857142857147
 	Sample Variance 0.30070221978021994
 	Standard Deviation 0.548363218843332
-France :
-	Sample Mean 3.6914285714285717
-	Sample Variance 0.941259340659341
-	Standard Deviation 0.970185209462266
-Japan :
-	Sample Mean 2.775142857142857
-	Sample Variance 3.556167362637363
-	Standard Deviation 1.885780306037096
-USA :
-	Sample Mean 2.5542857142857147
-	Sample Variance 0.30070221978021994
-	Standard Deviation 0.548363218843332
-	IQR  0.2197499999999999
-	Outliers [4.214, 3.3]
-France :
-	Sample Mean 3.6914285714285717
-	Sample Variance 0.941259340659341
-	Standard Deviation 0.970185209462266
-	IQR  0.6675
-	Outliers [5.46, 5.32, 5.2]
-Japan :
-	Sample Mean 2.775142857142857
-	Sample Variance 3.556167362637363
-	Standard Deviation 1.885780306037096
-	IQR  1.777
-	Outliers [7.965]
-the boxplot image save to /home/idk/repository/NUTN-Code/Probability/boxplto/result/nuclear_capacities.png
-USA :
-	Sample Mean 2.5542857142857147
-	Sample Variance 0.30070221978021994
-	Standard Deviation 0.548363218843332
-France :
-	Sample Mean 3.6914285714285717
-	Sample Variance 0.941259340659341
-	Standard Deviation 0.970185209462266
-Japan :
-	Sample Mean 2.775142857142857
-	Sample Variance 3.556167362637363
-	Standard Deviation 1.885780306037096
-USA :
-	Sample Mean 2.5542857142857147
-	Sample Variance 0.30070221978021994
-	Standard Deviation 0.548363218843332
 	IQR  0.2197499999999999
 	Outliers [4.214, 3.3]
 France :
