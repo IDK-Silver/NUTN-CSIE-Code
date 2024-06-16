@@ -86,14 +86,14 @@ if __name__ == '__main__':
 
     # calculate iqr for each data
     iqr_list = [calculate_iqr(data) for data in datas]
-    # print the result
-    for index, iqr in enumerate(iqr_list):
-        print(f'IQR {labels[index]}: {iqr}')
-
     # calculate outliers for each data
     outliers_list = [find_outliers(data) for data in datas]
+
     # print the result
-    for index, outliers in enumerate(outliers_list):
-        print(f'Outliers {labels[index]}: {outliers}')
-
-
+    for infos in zip(labels, means, variances, std_deviation, iqr_list, outliers_list):
+        print(f'{infos[0]} :')
+        print(f'\tSample Mean {infos[1]}')
+        print(f'\tSample Variance {infos[2]}')
+        print(f'\tStandard Deviation {infos[3]}')
+        print(f'\tIQR  {infos[4]}')
+        print(f'\tOutliers {infos[5]}')

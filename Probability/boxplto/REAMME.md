@@ -21,5 +21,5 @@ python boxplot.py ./datas/nuclear_capacities.csv result/nuclear_capacities.png
 ## export result
 - if you are running at Unix-like like Linux or MacOS you can easy export result
 ```
-python boxplot.py ./datas/nuclear_capacities.csv result/nuclear_capacities.png >> result.txt
+python boxplot.py ./datas/nuclear_capacities.csv result/nuclear_capacities.png >> ./result/result.txt
 ```  
