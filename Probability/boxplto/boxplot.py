@@ -76,14 +76,6 @@ if __name__ == '__main__':
     variances = [calculate_sample_variance(*data) for data in zip(datas, means)]
     std_deviation = [pow(var, 0.5) for var in variances]
 
-    # print the result
-    for infos in zip(labels, means, variances, std_deviation):
-        print(f'{infos[0]} :')
-        print(f'\tSample Mean {infos[1]}')
-        print(f'\tSample Variance {infos[2]}')
-        print(f'\tStandard Deviation {infos[3]}')
-
-
     # calculate iqr for each data
     iqr_list = [calculate_iqr(data) for data in datas]
     # calculate outliers for each data
