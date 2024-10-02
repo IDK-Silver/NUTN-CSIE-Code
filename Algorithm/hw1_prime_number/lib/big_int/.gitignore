@@ -1,0 +1,108 @@
+# 建構目錄
+/build/
+/out/
+
+# CMake 生成的文件
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# 編譯輸出
+*.o
+*.obj
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+
+# IDE 和編輯器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系統生成的文件
+.DS_Store
+Thumbs.db
+
+# 依賴管理器生成的目錄
+/vcpkg_installed/
+
+# 測試輸出
+Testing/
+
+# 編譯器生成的文件
+compile_commands.json
+
+# 程式碼覆蓋率報告
+*.gcno
+*.gcda
+*.gcov
+
+# 文檔生成的文件
+/doc/html/
+/doc/latex/
+
+# 臨時文件
+*.tmp
+*.log
+
+# 特定於 C++ 的忽略項
+# 預編譯頭文件
+*.gch
+*.pch
+
+# 動態生成的文件
+*.dylib
+*.dll
+
+# 可執行文件
+*.exe
+*.out
+*.app
+
+# 調試文件
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# 特定於 macOS 的忽略項
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 特定於 Windows 的忽略項
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# 特定於 Linux 的忽略項
+*~
+
+# 壓縮文件
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# 日誌和數據庫
+*.log
+*.sql
+*.sqlite
+
+# 其他
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.vscode/*.*
