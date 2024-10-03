@@ -61,6 +61,13 @@ TEST(BigIntTest, Output) {
     EXPECT_EQ(ss.str(), "12345678901234567890");
 }
 
+TEST(BigIntTest, Sqrt) {
+    BigInt a("7761689070557");
+    BigInt result = a.sqrt();
+    BigInt expected("2785980");
+    EXPECT_EQ(result, expected);
+}
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

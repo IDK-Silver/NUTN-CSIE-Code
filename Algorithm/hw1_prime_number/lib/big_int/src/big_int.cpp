@@ -38,6 +38,28 @@ bool BigInt::is_bigint() {
     );
 }
 
+BigInt & BigInt::operator++() {
+    *this = *this + 1;
+    return *this;
+}
+
+BigInt BigInt::operator++(int) {
+    BigInt temp = *this;
+    ++(*this);
+    return temp;
+}
+
+BigInt & BigInt::operator--() {
+    *this = *this - 1;
+    return *this;
+}
+
+BigInt BigInt::operator--(int) {
+    BigInt temp = *this;
+    --(*this);
+    return temp;
+}
+
 // Checks if the feeded integer is valid Number or not.
 bool BigInt::is_bigint(const std::string & input_string) {
     // If the number is negative, we need to skip the first character.
@@ -107,6 +129,9 @@ bool BigInt::operator==(const BigInt& other) const {
     return this->number == other.number && this->is_negative == other.is_negative;
 }
 
+bool BigInt::operator!=(const BigInt& other) const {
+    return !(*this == other);
+}
 
 bool BigInt::add(const BigInt & other) {
     // 如果兩個數字符號相同，直接相加
@@ -146,11 +171,15 @@ bool BigInt::subtract(const BigInt & other) {
 
 
 std::ostream& operator<<(std::ostream& os, const BigInt& bigint) {
-    if (bigint.is_negative) {
-        os << "-";
-    }
-    os << bigint.number;
+    os << bigint.to_string();
     return os;
+}
+
+std::string BigInt::to_string() const {
+    if (this->is_negative) {
+        return "-" + this->number;
+    }
+    return this->number;
 }
 
 std::string BigInt::simplify_add(const std::string& num1, const std::string& num2) {
@@ -172,6 +201,33 @@ std::string BigInt::simplify_add(const std::string& num1, const std::string& num
     }
 
     std::reverse(result.begin(), result.end());
+    return result;
+}
+
+BigInt BigInt::sqrt() const {
+    if (*this < 0) {
+        throw std::invalid_argument("Cannot compute the square root of a negative number.");
+    }
+
+    BigInt low = 0;
+    BigInt high = *this;
+    BigInt mid;
+    BigInt result;
+
+    while (low <= high) {
+        mid = (low + high) / 2;
+        BigInt mid_squared = mid * mid;
+
+        if (mid_squared == *this) {
+            return mid;
+        } else if (mid_squared < *this) {
+            low = mid + 1;
+            result = mid;
+        } else {
+            high = mid - 1;
+        }
+    }
+
     return result;
 }
 

@@ -95,3 +95,8 @@ incremental_db
 *.fit*.*
 *.done
 *.sof
+Algorithm/hw1_prime_number/result/*
+Algorithm/hw1_prime_number/result
+Algorithm/hw1_prime_number/venv
+Algorithm/hw1_prime_number/.vscode
+

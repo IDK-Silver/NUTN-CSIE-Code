@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 add_library(big_int SHARED src/big_int.cpp)
+include_directories(src)
 
 target_include_directories(big_int PUBLIC 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>

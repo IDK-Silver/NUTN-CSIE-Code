@@ -1,29 +1,63 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.11)
 
-project(Unit_Fermat)
+project(prime_algorithms_test)
 
-set(
-    Unit_Fermat_SourceCode
-    fermat/src/main.cpp
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# 添加 big_int 子目錄
+add_subdirectory(lib/big_int)
+
+# 創建 prime_algorithm 庫
+add_library(prime_algorithm STATIC lib/prime/src/prime.cpp)
+
+# 為 prime_algorithm 設置包含目錄
+target_include_directories(prime_algorithm PUBLIC 
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/prime/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/big_int/src
 )
 
-add_subdirectory(lib/big_int big_int_lib_build)
+# 將 big_int 庫鏈接到 prime_algorithm
+target_link_libraries(prime_algorithm PUBLIC big_int)
 
-
-add_executable(Unit_Fermat ${Unit_Fermat_SourceCode})
-
-project(Unit_MillerRabin)
 set(
-    Unit_MillerRabin_SourceCode
-    miller_rabin/src/main.cpp
+    SourceCode
+    src/main.cpp
+    src/core/prime_runner.hpp
+    src/core/config.hpp
+    src/core/config.cpp
 )
-add_executable(Unit_MillerRabin ${Unit_MillerRabin_SourceCode})
-target_link_libraries(Unit_MillerRabin big_int_lib)
 
-project(Unit_SieveOfEratosthenes)
 set(
-    Unit_SieveOfEratosthenes_SourceCode
-    sieve_of_eratosthenes/src/main.cpp
+    CoreSourceCode
+    src/core/prime_runner.hpp
+    src/core/config.hpp
+    src/core/config.cpp
 )
-add_executable(Unit_SieveOfEratosthenes ${Unit_SieveOfEratosthenes_SourceCode})
 
+
+add_executable(prime_algorithms_test ${SourceCode})
+
+# 鏈接庫到主可執行文件
+target_link_libraries(prime_algorithms_test PRIVATE prime_algorithm)
+
+# 為主執行文件設置包含目錄
+target_include_directories(prime_algorithms_test PRIVATE 
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/prime/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/big_int/src
+)
+
+add_executable(fermat_vs_miller  src/fermat_vs_miller.cpp ${CoreSourceCode})
+target_link_libraries(fermat_vs_miller PRIVATE prime_algorithm)
+target_include_directories(fermat_vs_miller PRIVATE 
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/prime/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/big_int/src
+)
+
+
+add_executable(all_algorithm_cost_time  src/all_algorithm_cost_time.cpp ${CoreSourceCode})
+target_link_libraries(all_algorithm_cost_time PRIVATE prime_algorithm)
+target_include_directories(all_algorithm_cost_time PRIVATE 
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/prime/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/big_int/src
+)
