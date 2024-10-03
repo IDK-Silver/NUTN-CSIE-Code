@@ -34,6 +34,31 @@ then
     exit
 fi
 
+# 檢查 build 目錄是否存在
+if [ -d "build" ]; then
+    echo "build 目錄已存在，正在清理..."
+    rm -rf build
+fi
+
+# 創建 build 目錄
+echo "正在創建 build 目錄..."
+mkdir build
+cd build
+
+# 使用 CMake 生成構建文件
+echo "正在使用 CMake 生成構建文件..."
+cmake ..
+
+# 使用 make 編譯
+echo "正在使用 make 編譯..."
+cmake --build . -j 8
+
+# 返回上一級目錄
+cd ..
+
+echo "編譯完成。"
+
+
 # 檢查是否安裝了 Python
 if ! command -v python3 &> /dev/null
 then
@@ -66,4 +91,25 @@ pip install pandas matplotlib seaborn
 deactivate
 
 echo "Python 套件安裝完成。"
+
+# 下載字體檔案
+echo "正在下載字體檔案..."
+# 檢查是否安裝了 wget
+if ! command -v wget &> /dev/null
+then
+
+    echo "請手動安裝 wget 後再運行此腳本。"
+    exit 1
+
+fi
+
+echo "確認 wget 已安裝。"
+
+wget -O TaipeiSansTCBeta-Regular.ttf "https://drive.google.com/uc?id=1eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_&export=download"
+
+if [ $? -eq 0 ]; then
+    echo "字體檔案下載成功。"
+else
+    echo "字體檔案下載失敗。"
+fi
 

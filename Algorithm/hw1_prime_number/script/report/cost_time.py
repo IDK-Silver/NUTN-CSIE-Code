@@ -1,7 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-plt.rcParams['font.sans-serif'] = ['Noto Sans TC']
+import matplotlib.font_manager 
+matplotlib.font_manager.fontManager.addfont('TaipeiSansTCBeta-Regular.ttf')
+plt.rc('font', family='Taipei Sans TC Beta')
 plt.rcParams['axes.unicode_minus'] = False
 
 # 讀取 algorithm_params.txt
