@@ -27,9 +27,11 @@ print(df)
 plt.figure(figsize=(12, 8))
 sns.lineplot(data=df, x='n', y='time_ms', hue='算法')
 
-plt.title('各算法執行時間比較')
+# 在標題中添加嘗試次數信息
+plt.title(f"各算法執行時間比較\nFermat 嘗試次數: {params['fermat_try_time']}, Miller-Rabin 嘗試次數: {params['miller_rabin_try_time']}")
 plt.xlabel('n 值')
 plt.ylabel('執行時間 (毫秒)')
+
 plt.legend(title='算法')
 
 # 設置對數刻度

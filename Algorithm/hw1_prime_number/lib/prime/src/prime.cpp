@@ -23,7 +23,8 @@ namespace prime {
             R += 1;
         }
 
-        std::uniform_int_distribution<long long> dis(2, __LONG_LONG_MAX__);
+        BigInt upper_bound = std::min(input_value - 2, BigInt(__LONG_LONG_MAX__));
+        std::uniform_int_distribution<long long> dis(2, std::stoll(upper_bound.to_string()));
 
         for (int _ = 0; _ < num_of_test; _++) {
             BigInt A(std::to_string(dis(__prime_gen)));
@@ -65,7 +66,8 @@ namespace prime {
 
         std::random_device rd;
         std::mt19937 gen(rd());
-        std::uniform_int_distribution<long long> dis(2, __LONG_LONG_MAX__);
+        BigInt upper_bound = std::min(input_value - 2, BigInt(__LONG_LONG_MAX__));
+        std::uniform_int_distribution<long long> dis(2, std::stoll(upper_bound.to_string()));
 
         // 執行質數測試
         for (int _ = 0; _ < num_of_test; _++) {

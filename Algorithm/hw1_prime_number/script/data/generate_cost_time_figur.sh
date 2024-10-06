@@ -1,3 +1,4 @@
+#!/bin/bash
 # 啟動虛擬環境
 source venv/bin/activate
 

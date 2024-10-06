@@ -57,9 +57,6 @@ void sieve_of_eratosthenes(const size_t & start, const size_t & end, std::vector
         }
     }
     
-    
-    
-
     auto current_time = std::chrono::high_resolution_clock::now();
     size_t num_of_prime = 0;
     // 收集所有質數並記錄時間
@@ -71,11 +68,11 @@ void sieve_of_eratosthenes(const size_t & start, const size_t & end, std::vector
     
     std::chrono::duration<double, std::milli> elapsed = (current_time - sieve_start_time) / num_of_prime;
 
-
+    num_of_prime = 1;
     // 收集所有質數並記錄時間
     for (size_t p = (start > 2 ? start : 2); p <= end; ++p) {
         if (sieve[p]) {
-            primes_with_times.emplace_back(BigInt(p), elapsed.count());
+            primes_with_times.emplace_back(BigInt(p), elapsed.count() * num_of_prime++);
         }
     }
 }

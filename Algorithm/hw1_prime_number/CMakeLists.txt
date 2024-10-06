@@ -20,13 +20,6 @@ target_include_directories(prime_algorithm PUBLIC
 # 將 big_int 庫鏈接到 prime_algorithm
 target_link_libraries(prime_algorithm PUBLIC big_int)
 
-set(
-    SourceCode
-    src/main.cpp
-    src/core/prime_runner.hpp
-    src/core/config.hpp
-    src/core/config.cpp
-)
 
 set(
     CoreSourceCode
@@ -35,17 +28,6 @@ set(
     src/core/config.cpp
 )
 
-
-add_executable(prime_algorithms_test ${SourceCode})
-
-# 鏈接庫到主可執行文件
-target_link_libraries(prime_algorithms_test PRIVATE prime_algorithm)
-
-# 為主執行文件設置包含目錄
-target_include_directories(prime_algorithms_test PRIVATE 
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib/prime/src
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib/big_int/src
-)
 
 add_executable(fermat_vs_miller  src/fermat_vs_miller.cpp ${CoreSourceCode})
 target_link_libraries(fermat_vs_miller PRIVATE prime_algorithm)
@@ -58,6 +40,13 @@ target_include_directories(fermat_vs_miller PRIVATE
 add_executable(all_algorithm_cost_time  src/all_algorithm_cost_time.cpp ${CoreSourceCode})
 target_link_libraries(all_algorithm_cost_time PRIVATE prime_algorithm)
 target_include_directories(all_algorithm_cost_time PRIVATE 
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/prime/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/big_int/src
+)
+
+add_executable(find_mersenne_prime_number  src/find_mersenne_prime_number.cpp ${CoreSourceCode})
+target_link_libraries(find_mersenne_prime_number PRIVATE prime_algorithm)
+target_include_directories(find_mersenne_prime_number PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/prime/src
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/big_int/src
 )

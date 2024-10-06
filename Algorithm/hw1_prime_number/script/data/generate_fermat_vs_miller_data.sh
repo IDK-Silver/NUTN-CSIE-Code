@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # 設置變數
-N_LIST="10,100,1000"
-TRY_TIME_START=2
+N_LIST="10,100,1000,10000,100000,1000000"
+TRY_TIME_START=1
 TRY_TIME_END=15
 
 echo "開始執行程序..."

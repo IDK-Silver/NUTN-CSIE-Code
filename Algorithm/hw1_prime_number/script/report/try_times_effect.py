@@ -35,9 +35,9 @@ def plot_and_save(data, n, output_dir):
         algo_data = data[data['算法'] == algo]
         plt.plot(algo_data['try_time'], algo_data['accuracy(%)'], label=algo, marker='o')
     
-    plt.xlabel('try_time')
-    plt.ylabel('Accuracy (%)')
-    plt.title(f'不同 try_time 值下 Fermat 和 Miller-Rabin 算法的準確率比較 (n={n})')
+    plt.xlabel('嘗試次數')
+    plt.ylabel('正確率 (%)')
+    plt.title(f'不同嘗試次數下 Fermat 和 Miller-Rabin 算法的準確率比較 (n={n})')
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
