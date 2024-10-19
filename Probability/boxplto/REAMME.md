@@ -6,7 +6,7 @@ git clone https://github.com/IDK-Silver/NUTN-CSIE-Code.git
 cd ./NUTN-CSIE-Code/Probability/boxplto
 ```
 
-## install Python packet 
+## install Python package 
 ```
 pip install -r requirements.txt
 ```
