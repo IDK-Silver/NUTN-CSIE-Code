@@ -1,0 +1,15 @@
+Matrix A
+4 
+3 
+8 
+
+Matrix B
+4 5 3 
+
+Matrix dimensions must match for addition.
+Matrix dimensions must match for subtraction.
+Mul
+16 20 12 
+12 15 9 
+32 40 24 
+
