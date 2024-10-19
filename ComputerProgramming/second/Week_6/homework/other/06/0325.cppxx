@@ -1,0 +1,130 @@
+#include <iostream>
+#include <string>
+
+class Account {
+private:
+    std::string name;
+    int balance;
+public:
+    Account() {
+    
+        std::cin >> name >> balance;
+
+    }
+
+    std::string getname() {
+
+        return name;
+
+    }
+
+    void deposit(int a) {
+        
+        balance = balance + a;
+        std::cout << name << " deposit " << a << ".\n";
+
+    }
+
+    void withdraw(int a) {
+        if (balance >= a)
+        {
+            balance = balance - a;
+            std::cout << name << " withdraw " << a << " from his/her account.\n";
+        }
+        else
+        {
+            std::cout << name << "'s account balance is insufficient.\n" ;
+        }
+        
+    }
+
+    void transfer(int a, Account &rec) {
+        if (name == rec.getname())
+        {
+            std::cout << "You transfer to yourself.\n";
+        }
+
+        else if (balance >= a)
+        {
+
+            balance = balance - a;
+            rec.balance += a;
+            std::cout <<"Transfer successful.\n"; 
+
+        }
+        else
+        {
+            std::cout << "Transfer failed.\n";
+        }
+    }
+
+    void getaccInfo() {
+
+        std::cout << name << "\t" << balance << "\n";
+
+    }
+};
+
+int main() {
+    int amt = 0;
+    std::cin >> amt;
+
+    Account acc[amt];
+
+    // for(int i = 0; i < amt; i++)
+    // {
+    //     acc[i];
+    // }
+	
+    std::string command, who, receiver;
+    int amount, tmp_withdraw, tmp_transfer;
+
+    while (std::cin >> who >> command >>  amount) {
+         if (command == "deposit")
+         {
+            for(int i = 0; i < amt; i++)
+            {
+                if (who == acc[i].getname())
+                {
+                    acc[i].deposit(amount);
+                    break;
+                }
+            }
+         }
+         else if (command == "withdraw")
+         {
+            for(int i = 0; i < amt; i++)
+            {
+                if (who == acc[i].getname())
+                {
+                    acc[i].withdraw(amount);
+                    break;
+                }
+                
+            }
+         } 
+         else if (command == "transfer")
+         {
+            std::cin >> receiver;
+            
+            auto find_index_in_acc = [] (Account acc[], int amt, std::string name) {
+                
+                for (int i = 0; i < amt; i++)
+                    if (acc[i].getname() == name)
+                        return i;
+
+                return 0;
+            };
+
+
+            acc[find_index_in_acc(acc, amt, who)].transfer(
+                    amount, acc[find_index_in_acc(acc, amt, receiver)]
+                );
+
+         }
+    }
+    std::cout << "\nName\tBalance" << std::endl;
+    for(int i = 0; i < amt; i++) 
+    acc[i].getaccInfo();
+    return 0;
+}

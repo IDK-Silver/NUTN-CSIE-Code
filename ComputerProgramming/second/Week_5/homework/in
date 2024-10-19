@@ -1,0 +1,9 @@
+2
+Alice 1000
+Elon 5200
+Elon deposit 300
+Elon withdraw 100
+Elon withdraw 100000
+Elon transfer 10 Elon
+Elon transfer 10 Alice
+Elon transfer 1000000000 Alice
