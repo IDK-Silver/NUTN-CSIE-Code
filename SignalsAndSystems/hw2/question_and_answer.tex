@@ -1,0 +1,166 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.0cm,bottom=2.5cm}
+\usepackage[english]{babel}
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts}
+\usepackage[longend,ruled,linesnumbered]{algorithm2e}
+\usepackage{fancyhdr}
+\usepackage{ctex}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+
+% Add the following lines
+\usepackage{fontspec}
+\setmainfont{Sarasa Gothic TC}
+\setCJKmainfont{Sarasa Gothic TC}
+
+\begin{document}
+
+
+\title{
+  {
+    \heiti 信號與系統 第 2 次 Homework
+  }
+}
+
+
+\date{2024/10/20}
+\author{
+  年級：{資工三}~~~~~~
+  學號：{S11159005}~~~~~~
+  姓名：{黃毓峰}~~~~~~
+}
+
+\maketitle
+\newlength{\question}
+\settowidth{\question}{XX}
+
+\section*{\heiti \color{black}{Question - 1.12}}
+\noindent {\bf Description}
+
+\parbox[t]{\dimexpr\linewidth-\question}{
+  Consider the discrete-time signal
+  \[
+    x[n] = 1 - \sum_{k=3}^{\infty} \delta[n - 1 - k].
+  \]
+      Determine the values of the integers \(M\) and \(n_0\) so that \(x[n]\) may be expressed as
+  \[
+  x[n] = u[Mn - n_0].
+  \]
+  
+}
+
+\noindent {\bf Answer}
+
+\parbox[t]{\dimexpr\linewidth-\question} {
+  先來看 \(x[0]\)
+  \[
+    x[0] = 1 - \sum_{k=3}^{\infty} \delta[0 - 1 - k]
+  \]
+  for all \(k \geq 3\), \(0 - 1 - k < 0\), so \(\delta[0 - 1 - k] = 0\),
+  \(
+    x[0] = 1 - 0 = 1.
+  \)
+
+  所以重點在於 \(\delta[n - 1 - k]\) 這一個term。
+
+  let \(t \geq 4\),  \(\sum_{k=3}^{\infty} \delta[t - 1 - k] = 1\),  \(x[t] = 0\)
+
+  所以可以得出
+  \[
+    x[n] = 
+      \begin{cases}
+          1,              & \text{if } n\geq 4\\
+          0,              & \text{otherwise}
+      \end{cases}
+  \]
+
+  所以 \(x[n]=1- u[n-4]=u[Mn-n_0]\)\\
+  經過嘗試\footnotemark{} \(M = 1\), \(n_0 = 4\) 時會成立。
+}
+\footnotetext{猜數值代進去, 不知道有沒有比較好的方法}
+
+\newpage
+
+\section*{\heiti \color{black}{Question - 1.15}}
+\noindent {\bf Description}
+
+\parbox[t]{\dimexpr\linewidth-\question}{
+  Consider a system S with input x[n] and output y[n]. This system is obtained through a series interconnection of a system S\(_1\) followed by a system S\(_2\). The input-output relationships for S\(_1\) and S\(_2\) are
+
+  S\(_1\) : \(y_1[n] = 2x_1[n] + 4x_1[n - 1]\),
+  
+  S\(_2\) : \(y_2[n] = x_2[n - 2] + \frac{1}{2}x_2[n - 3]\),
+  
+  where x\(_1\)[n] and x\(_2\)[n] denote input signals.
+  \noindent \begin{itemize}
+    \item[(a)] Determine the input-output relationship for system S.
+    \item[(b)] Does the input-output relationship of system S change if the order in which S\(_1\) and S\(_2\) are connected in series is reversed (i.e., if S\(_2\) follows S\(_1\))?
+  \end{itemize}
+}
+
+\noindent {\bf Answer}
+
+{\bf (a)} 
+\parbox[t]{\dimexpr\linewidth-\question} {
+由於系統 S 是由系統 S\(_1\) 串聯系統 S\(_2\) 所組成的。
+這表示 S\(_2\) 的輸入信號 x\(_2\)[n]  
+與系統 S\(_1\) 的輸出信號 y\(_1\)[n] 是相同的， y\(_1\)[n] = x\(_2\)[n]。
+\\因此 y[n] 會是：
+
+\[
+y[n] = y_2[n] = x_2[n - 2] + \frac{1}{2}x_2[n - 3]
+\]
+
+將 x\(_2\)[n] 替換為 y\(_1\)[n]，我們得到：
+
+\[
+y[n] = y_1[n - 2] + \frac{1}{2}y_1[n - 3]
+\]
+
+進一步展開 y\(_1\)[n]，我們得到：
+
+\[
+y[n] = (2x[n - 2] + 4x[n - 3]) + \frac{1}{2}(2x[n - 3] + 4x[n - 4])
+\]
+
+簡化後，我們得到系統 S 的最終input-output relationship：
+
+\[
+y[n] = 2x[n - 2] + 5x[n - 3] + 2x[n - 4]
+\]
+}
+
+{\bf (b)} 
+\parbox[t]{\dimexpr\linewidth-\question} {
+改變 S\(_1\) 和 S\(_2\) 的連接順序，即讓 S\(_2\) 後接 S\(_1\)。
+表示 S\(_2\) 的輸出信號 y\(_2\)[n] 
+與系統 S\(_1\) 的輸入信號 x\(_1\)[n] 相同，即 y\(_2\)[n] = x\(_1\)[n]。
+
+因此，我們可以寫出：
+
+\[
+y_1[n] = 2x_1[n] + 4x_1[n - 1] = 2y_2[n] + 4y_2[n - 1]
+\]
+
+將 y\(_2\)[n] 代入，我們得到：
+
+\[
+y[n] = 2(x[n - 2] + \frac{1}{2}x[n - 3]) + 4(x[n - 3] + \frac{1}{2}x[n - 4])
+\]
+
+簡化後，我們得到新的系統 S 的input-output relationship：
+
+\[
+y[n] = 2x[n - 2] + 5x[n - 3] + 2x[n - 4]
+\]
+
+與 (a) 相同。因此系統 S 的input-output relationship不會因為 S\(_1\) 和 S\(_2\) 的連接順序改變而改變。
+}
+
+
+
+\end{document}
