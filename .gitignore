@@ -410,3 +410,4 @@ TSWLatexianTemp*
 *.hd
 *.pdf
 old/
+.vscode/
