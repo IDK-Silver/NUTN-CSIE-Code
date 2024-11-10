@@ -1,0 +1,8 @@
+#ifndef CORE_HPP
+#define CORE_HPP
+
+#include "core_algorithm.hpp"
+#include "core_structure.hpp"
+#include "core_process_io.hpp"  
+
+#endif // CORE_HPP
