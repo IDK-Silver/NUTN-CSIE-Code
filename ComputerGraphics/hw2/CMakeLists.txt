@@ -25,4 +25,9 @@ set(
 add_executable( ${exe_name} ${SOURCE_FILES})
 
 # Link the libraries
-target_link_libraries(${exe_name} OpenGL::GL glfw GLU)
+IF (WIN32)
+  target_link_libraries(${exe_name} OpenGL::GL glfw)
+ELSE()
+  target_link_libraries(${exe_name} OpenGL::GL glfw GLU)
+ENDIF()
+
