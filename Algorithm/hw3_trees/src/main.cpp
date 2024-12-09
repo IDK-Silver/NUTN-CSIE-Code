@@ -38,14 +38,28 @@ struct Argument
 bool decode_argument(Argument &args, int argc, char *argv[])
 {
     auto print_help = []() {
+        std::cout << "**選項說明：**\n\n";
 
+        std::cout << "- `--help`\n";
+        std::cout << "  顯示幫助訊息。\n\n";
+
+        std::cout << "- `--input <檔案路徑>`\n";
+        std::cout << "  指定建構字典的輸入檔。\n\n";
+
+        std::cout << "- `--test <檔案路徑>`\n";
+        std::cout << "  輸入到字典查詢的範例檔案\n\n";
+
+        std::cout << "- `--output <檔案路徑>`\n";
+        std::cout << "  報告檔 - csv format (可以累加)\n\n";
+
+        std::cout << "- `--target <標記>` `option`\n";
+        std::cout << "  報告檔 - 的批次標記\n";
     };
     if (argc == 1)
     {
-        // std::cerr << "錯誤：未提供任何參數\n"
-        //           << "使用 --help 查看使用說明\n";
-        // return false;
-        return true;
+        std::cerr << "錯誤：未提供任何參數\n"
+                  << "使用 --help 查看使用說明\n";
+        return false;
     }
 
     // Parse command line arguments
