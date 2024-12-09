@@ -57,8 +57,8 @@
 5. **執行腳本**
 
    ```bash
-    ./acc_fail.sh
-    ./acc_full.sh
+    ./acc_fail.bash
+    ./acc_full.bash
    ```
    這將生成 `acc_fail.csv (有查詢失敗的)` 以及 `acc_full.csv(沒有查詢失敗的)`
 
