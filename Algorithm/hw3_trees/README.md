@@ -1,5 +1,5 @@
 
-# 電動機車充電站配對系統
+# Trees
 
 ## 目錄
 - [安裝與設定](#安裝與設定)
@@ -51,8 +51,8 @@
    ```bash
     cp -r ../dataset ./
     cp -r ../script/* ./
-    chmod +x acc_fail.sh
-    chmod +x acc_full.sh
+    chmod +x acc_fail.bash
+    chmod +x acc_full.bash
    ```
 5. **執行腳本**
 
