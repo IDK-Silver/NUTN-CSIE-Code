@@ -172,6 +172,12 @@ void display() {
     else {
         glDisable(GL_LIGHT1);
     }
+
+    GLfloat light0_position[] = {-0.0f, 0.f, 0.65f, 0.0f};
+    glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+    GLfloat light1_position[] = {-0.3, -0.25f, -0.5f, 0.0f};
+    glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
+
     glutPostRedisplay();
 
 
@@ -193,10 +199,6 @@ void display() {
         glRotatef(rotationAngle, 0.0f, 0.0f, 1.0f);
     }
 
-    GLfloat light0_position[] = {-0.0f, 0.f, 0.65f, 1.0f};
-    glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
-    GLfloat light1_position[] = {-0.3, -0.25f, -0.5f, 1.0f};
-    glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
 
     tetrahedron(start_points[0], start_points[1], start_points[2], start_points[3], num_of_tetrahedron);
 
@@ -371,7 +373,7 @@ void mouseMotion(int x, int y) {
 
         if(phi <= 0.01f) phi = 0.01f;
         if(phi >= 3.13f) phi = 3.13f;
-       }
+    }
 
     if((mouseButtonPressed & (1 << GLUT_LEFT_BUTTON)) != 0 &&
        (mouseButtonPressed & (1 << GLUT_RIGHT_BUTTON)) != 0) {
