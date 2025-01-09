@@ -1,391 +1,274 @@
-// main.cpp
+#ifndef STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_IMPLEMENTATION
+#endif
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
+#include "object/floor.h"
+#include <learnopengl/shader_m.h>
+#include <learnopengl/camera.h>
+#include <learnopengl/model.h>
 #include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-#include <sstream>
+#include <random>
+#include <SFML/Audio/Music.hpp>
 
-// 定義結構來存儲頂點信息
-struct Vertex {
-    glm::vec3 Position;
-    glm::vec3 Normal;
-};
 
-// 定義結構來代表一個材質(目前僅支持基本顏色)
-struct Material {
-    glm::vec3 ambient;
-    glm::vec3 diffuse;
-    glm::vec3 specular;
-    float shininess;
-};
+#include "object/axis/axis.h"
+#include "object/bowling.h"
+#include "object/floor.h"
 
-// 網格結構
-struct Mesh {
-    std::vector<Vertex> vertices;
-    std::vector<unsigned int> indices;
-    Material material;
-
-    unsigned int VAO, VBO, EBO;
-
-    // 初始化網格的OpenGL數據
-    void setupMesh() {
-        glGenVertexArrays(1, &VAO);
-        glGenBuffers(1, &VBO);
-        glGenBuffers(1, &EBO);
-
-        glBindVertexArray(VAO);
-
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex),
-                     vertices.data(), GL_STATIC_DRAW);
-
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int),
-                     indices.data(), GL_STATIC_DRAW);
-
-        // 位置屬性
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
-                              (void*)offsetof(Vertex, Position));
-        glEnableVertexAttribArray(0);
-        // 法線屬性
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
-                              (void*)offsetof(Vertex, Normal));
-        glEnableVertexAttribArray(1);
-
-        glBindVertexArray(0);
-    }
-
-    // 繪製網格
-    void Draw(unsigned int shaderProgram) {
-        // 設置材質屬性 (如果需要在著色器中使用)
-        // glUniform3fv(glGetUniformLocation(shaderProgram, "objectColor"), 1, &material.diffuse[0]);
-
-        glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()),
-                       GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-    }
-};
-
-// 函數聲明
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow *window);
-unsigned int loadShaders(const char* vertexPath, const char* fragmentPath);
+
+// settings
+const unsigned int SCR_WIDTH = 960;
+const unsigned int SCR_HEIGHT = 800;
+
+// camera
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+float lastX = SCR_WIDTH / 2.0f;
+float lastY = SCR_HEIGHT / 2.0f;
+bool firstMouse = true;
+
+// timing
+float deltaTime = 0.0f;
+float lastFrame = 0.0f;
+
+int current_id = 0;
+
+std::random_device rd;
+std::mt19937 gen(rd());
+std::uniform_real_distribution<> dis(-1.0, 1.0);
+
+
+const int MAX_MAP_SIZE = 10;
 
 int main()
 {
-    // 初始化 GLFW
-    if (!glfwInit())
-    {
-        std::cerr << "Failed to initialize GLFW\n";
-        return -1;
-    }
 
-    // 設置 GLFW 上下文版本和配置
+    sf::Music music;
+    if (!music.openFromFile("../res/sound/tree_fly_sound.mp3"))
+        return -1; // error
+
+    glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    // 針對 macOS
+
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
+    // floor f;
+    std::vector<bowling> all_bowling(30);
 
-    // 創建窗口
-    GLFWwindow* window = glfwCreateWindow(800, 600, "3D Object Viewer with ASSIMP", NULL, NULL);
+    // glfw window creation
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Bowling is all you need", NULL, NULL);
     if (window == NULL)
     {
-        std::cerr << "Failed to create GLFW window\n";
+        std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         return -1;
     }
     glfwMakeContextCurrent(window);
-
-    // 設置回調
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetScrollCallback(window, scroll_callback);
 
-    // 初始化 GLAD
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
-        std::cerr << "Failed to initialize GLAD\n";
+        std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
 
-    // 啟用深度測試
+
     glEnable(GL_DEPTH_TEST);
 
-    // 加載並編譯著色器
-    unsigned int shaderProgram = loadShaders("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl");
-    if (!shaderProgram)
+    Shader ourShader("model_loading_vertex_shader.glsl", "model_loading_fragment_shader.glsl");
+
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glLightfv(GL_LIGHT0, GL_POSITION, glm::value_ptr(glm::vec3(0, 0, 0)));
+
+
+    object::initAxis();
+
     {
-        std::cerr << "Failed to load shaders\n";
-        return -1;
+        std::uniform_real_distribution<> dis(-static_cast<double>(MAX_MAP_SIZE), static_cast<double>(MAX_MAP_SIZE));
+        for (auto& _bowling : all_bowling) {
+            bowling_init(_bowling);
+            _bowling.x = dis(gen);
+            _bowling.z = dis(gen);
+            _bowling.scale = 0.125;
+        }
     }
 
-    // 使用 ASSIMP 載入 OBJ 文件
-    Assimp::Importer importer;
-    const aiScene* scene = importer.ReadFile("Pin.obj",
-        aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_JoinIdenticalVertices);
 
-    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
-    {
-        std::cerr << "ASSIMP Error: " << importer.GetErrorString() << "\n";
-        return -1;
-    }
 
-    // 我們僅處理第一個網格
-    std::vector<Mesh> meshes;
-    for (unsigned int m = 0; m < scene->mNumMeshes; m++)
-    {
-        aiMesh* ai_mesh = scene->mMeshes[m];
-        Mesh mesh;
 
-        // 處理頂點
-        for (unsigned int v = 0; v < ai_mesh->mNumVertices; v++)
-        {
-            Vertex vertex;
-            vertex.Position = glm::vec3(
-                ai_mesh->mVertices[v].x,
-                ai_mesh->mVertices[v].y,
-                ai_mesh->mVertices[v].z
-            );
-
-            if (ai_mesh->HasNormals())
-            {
-                vertex.Normal = glm::vec3(
-                    ai_mesh->mNormals[v].x,
-                    ai_mesh->mNormals[v].y,
-                    ai_mesh->mNormals[v].z
-                );
-            }
-            else
-            {
-                vertex.Normal = glm::vec3(0.0f, 0.0f, 0.0f);
-            }
-
-            mesh.vertices.push_back(vertex);
-        }
-
-        // 處理索引
-        for (unsigned int f = 0; f < ai_mesh->mNumFaces; f++)
-        {
-            aiFace face = ai_mesh->mFaces[f];
-            for (unsigned int i = 0; i < face.mNumIndices; i++)
-                mesh.indices.push_back(face.mIndices[i]);
-        }
-
-        // 處理材質 (如果有的話)
-        if (ai_mesh->mMaterialIndex >= 0)
-        {
-            aiMaterial* material = scene->mMaterials[ai_mesh->mMaterialIndex];
-            aiColor3D color(0.0f, 0.0f, 0.0f);
-
-            // 獲取漫反射顏色
-            material->Get(AI_MATKEY_COLOR_DIFFUSE, color);
-            mesh.material.diffuse = glm::vec3(color.r, color.g, color.b);
-
-            // 獲取鏡面反射顏色
-            material->Get(AI_MATKEY_COLOR_SPECULAR, color);
-            mesh.material.specular = glm::vec3(color.r, color.g, color.b);
-
-            // 獲取環境光顏色
-            material->Get(AI_MATKEY_COLOR_AMBIENT, color);
-            mesh.material.ambient = glm::vec3(color.r, color.g, color.b);
-
-            // 獲取材質的 shininess
-            float shininess;
-            if (material->Get(AI_MATKEY_SHININESS, shininess) == AI_SUCCESS)
-                mesh.material.shininess = shininess;
-            else
-                mesh.material.shininess = 32.0f; // 默認值
-        }
-        else
-        {
-            // 默認材質
-            mesh.material.ambient = glm::vec3(1.0f, 0.5f, 0.31f);
-            mesh.material.diffuse = glm::vec3(1.0f, 0.5f, 0.31f);
-            mesh.material.specular = glm::vec3(0.5f, 0.5f, 0.5f);
-            mesh.material.shininess = 32.0f;
-        }
-
-        // 設置網格的 OpenGL 數據
-        mesh.setupMesh();
-
-        meshes.push_back(mesh);
-    }
-
-    // 設置視圖和投影矩陣
-    glm::mat4 model = glm::mat4(1.0f);
-    // 可選：旋轉模型以改善視覺
-    model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0, 0.0, 0.0f));
-
-    glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, -5.0f));
-
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f),
-                                           800.0f / 600.0f, 0.1f, 100.0f);
-
-    // 獲取 uniform 位置
-    glUseProgram(shaderProgram);
-    unsigned int modelLoc = glGetUniformLocation(shaderProgram, "model");
-    unsigned int viewLoc  = glGetUniformLocation(shaderProgram, "view");
-    unsigned int projLoc  = glGetUniformLocation(shaderProgram, "projection");
-
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-    glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-
-    // 設置燈光和視點位置
-    unsigned int lightPosLoc = glGetUniformLocation(shaderProgram, "lightPos");
-    unsigned int viewPosLoc  = glGetUniformLocation(shaderProgram, "viewPos");
-    unsigned int objectColorLoc = glGetUniformLocation(shaderProgram, "objectColor");
-    unsigned int lightColorLoc  = glGetUniformLocation(shaderProgram, "lightColor");
-
-    glUniform3f(lightPosLoc, 5.0f, 5.0f, 5.0f);
-    glUniform3f(viewPosLoc, 0.0f, 0.0f, 5.0f);
-    glUniform3f(objectColorLoc, 1.0f, 0.5f, 0.31f);
-    glUniform3f(lightColorLoc,  1.0f, 1.0f, 1.0f);
-
-    // 渲染循環
+    map_floor floor;
+    map_floor_init(floor);
+    // draw in wireframe
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    // render loop
+    // -----------
     while (!glfwWindowShouldClose(window))
     {
-        // 處理輸入
+        camera.Position.y = 0.25f;
+
+        // per-frame time logic
+        // --------------------
+        float currentFrame = static_cast<float>(glfwGetTime());
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+
+        static float time_to_next_move = 0.0f;
+        float move_target_secound = 1.0f;
+
+        time_to_next_move -= deltaTime;
+        if (time_to_next_move <= 0.0f)
+        {
+            for (auto& _bowling : all_bowling)
+            {
+                if (_bowling.y > 0.1f) continue;
+                float randX = dis(gen);
+                float randZ = dis(gen);
+                float speed = 2.0f;
+                glm::vec3 dir = glm::normalize(glm::vec3(randX, 0, randZ));
+                _bowling.velocity = dir * speed;
+            }
+            time_to_next_move = move_target_secound;
+        }
+
+        // input
         processInput(window);
 
-        // 清除顏色和深度緩衝
-        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        // render
+        glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // 更新模型矩陣（可選：旋轉動畫）
-        model = glm::rotate(model, glm::radians(0.1f), glm::vec3(1.0, 1.0, 0.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        // don't forget to enable shader before setting uniforms
+        ourShader.use();
 
-        // 繪製所有網格
-        glUseProgram(shaderProgram);
-        for (auto &mesh : meshes)
-            mesh.Draw(shaderProgram);
+        // view/projection transformations
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 view = camera.GetViewMatrix();
+        ourShader.setMat4("projection", projection);
+        ourShader.setMat4("view", view);
 
-        // 交換緩衝和輪詢事件
+        for (auto& _bowling : all_bowling) {
+
+            if (is_bowling_fly(_bowling))
+                _bowling.angle = _bowling.angle + glm::vec3(10, 10, 10);
+            else
+                _bowling.angle = glm::vec3(0, 0, 0);
+
+            if (_bowling.x < -MAX_MAP_SIZE) { _bowling.x = -MAX_MAP_SIZE; _bowling.velocity.x *= -1; }
+            if (_bowling.x >  MAX_MAP_SIZE) { _bowling.x =  MAX_MAP_SIZE; _bowling.velocity.x *= -1; }
+            if (_bowling.z < -MAX_MAP_SIZE) { _bowling.z = -MAX_MAP_SIZE; _bowling.velocity.z *= -1; }
+            if (_bowling.z >  MAX_MAP_SIZE) { _bowling.z =  MAX_MAP_SIZE; _bowling.velocity.z *= -1; }
+
+            drawBowling(_bowling, ourShader);
+
+            auto user_box = std::pair<glm::vec3 , glm::vec3>(
+                camera.Position - glm::vec3(0.5f, 0.5f, 0.5f),
+                camera.Position + glm::vec3(0.5f, 0.5f, 0.5f)
+            );
+
+            if (
+                isColliding(getWorldPos(_bowling), user_box)
+                && !is_bowling_fly(_bowling)
+            )
+            {
+                music.play();
+                glm::vec3 push_dir = glm::normalize(glm::vec3(_bowling.x, _bowling.y, _bowling.z) - camera.Position);
+
+                push_dir += glm::vec3(0, 0.7, 0);
+                float push_strength = 20.0f;
+                _bowling.velocity += push_dir * push_strength;
+
+            }
+        }
+        floor.y = -0.5;
+        floor.scale = 0.5;
+        drawMapFloor(floor, ourShader);
+
+
+        for (auto& _bowling : all_bowling)
+        {
+            updateBowlingPhysics(_bowling, deltaTime);
+            drawBowling(_bowling, ourShader);
+        }
+
+
+        // object::drawAxis(view, projection);
+
+        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
-    // 釋放資源
-    for (auto &mesh : meshes)
-    {
-        glDeleteVertexArrays(1, &mesh.VAO);
-        glDeleteBuffers(1, &mesh.VBO);
-        glDeleteBuffers(1, &mesh.EBO);
-    }
-    glDeleteProgram(shaderProgram);
-
+    // glfw: terminate, clearing all previously allocated GLFW resources.
     glfwTerminate();
     return 0;
 }
 
-// 處理窗口尺寸變化
+// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+void processInput(GLFWwindow *window)
+{
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        camera.ProcessKeyboard(FORWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        camera.ProcessKeyboard(BACKWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        camera.ProcessKeyboard(LEFT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        camera.ProcessKeyboard(RIGHT, deltaTime);
+
+}
+
+// glfw: whenever the window size changed (by OS or user resize) this callback function executes
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
+    // make sure the viewport matches the new window dimensions; note that width and
+    // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
 }
 
-// 處理輸入
-void processInput(GLFWwindow *window)
+// glfw: whenever the mouse moves, this callback is called
+void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
 {
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
+    float xpos = static_cast<float>(xposIn);
+    float ypos = static_cast<float>(yposIn);
+
+    if (firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+
+    lastX = xpos;
+    lastY = ypos;
+
+    camera.ProcessMouseMovement(xoffset, yoffset);
 }
 
-// 加載著色器函數
-unsigned int loadShaders(const char* vertexPath, const char* fragmentPath)
+// glfw: whenever the mouse scroll wheel scrolls, this callback is called
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-    // 讀取頂點著色器源碼
-    std::string vertexCode;
-    std::ifstream vShaderFile(vertexPath);
-    if (!vShaderFile)
-    {
-        std::cerr << "Failed to open " << vertexPath << "\n";
-        return 0;
-    }
-    std::stringstream vShaderStream;
-    vShaderStream << vShaderFile.rdbuf();
-    vertexCode = vShaderStream.str();
-    vShaderFile.close();
-
-    // 讀取片段著色器源碼
-    std::string fragmentCode;
-    std::ifstream fShaderFile(fragmentPath);
-    if (!fShaderFile)
-    {
-        std::cerr << "Failed to open " << fragmentPath << "\n";
-        return 0;
-    }
-    std::stringstream fShaderStream;
-    fShaderStream << fShaderFile.rdbuf();
-    fragmentCode = fShaderStream.str();
-    fShaderFile.close();
-
-    const char* vShaderCode = vertexCode.c_str();
-    const char* fShaderCode = fragmentCode.c_str();
-
-    // 編譯頂點著色器
-    unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vShaderCode, NULL);
-    glCompileShader(vertexShader);
-
-    // 檢查編譯錯誤
-    int success;
-    char infoLog[512];
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    if(!success)
-    {
-        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        std::cerr << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << "\n";
-        return 0;
-    }
-
-    // 編譯片段著色器
-    unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fShaderCode, NULL);
-    glCompileShader(fragmentShader);
-
-    // 檢查編譯錯誤
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-    if(!success)
-    {
-        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-        std::cerr << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << "\n";
-        return 0;
-    }
-
-    // 連結著色器程序
-    unsigned int shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
-
-    // 檢查連結錯誤
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if(!success)
-    {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        std::cerr << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << "\n";
-        return 0;
-    }
-
-    // 刪除著色器對象
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
-
-    return shaderProgram;
+    camera.ProcessMouseScroll(static_cast<float>(yoffset));
 }
