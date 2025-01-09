@@ -42,7 +42,7 @@ this is the build step (Note that the CMakeLists only supports MacOS, if you wan
 6. lunche game and enjoin it
 
    ```
-   ./bowl-is-all-you-need
+   ./bowling-is-all-you-need
    ```
 
    

@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 # Set the name of the executable
-set(exe_name bowl-is-all-you-need)
+set(exe_name bowling-is-all-you-need)
 
 project(${exe_name})
 
