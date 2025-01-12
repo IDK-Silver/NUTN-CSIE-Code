@@ -2,20 +2,19 @@
 #define STB_IMAGE_IMPLEMENTATION
 #endif
 
+#include <iostream>
+#include <random>
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "object/floor.h"
+#include <SFML/Audio/Music.hpp>
+
 #include <learnopengl/shader_m.h>
 #include <learnopengl/camera.h>
 #include <learnopengl/model.h>
-#include <iostream>
-#include <random>
-#include <SFML/Audio/Music.hpp>
-
 
 #include "object/axis/axis.h"
 #include "object/bowling.h"
@@ -40,21 +39,24 @@ bool firstMouse = true;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
+// object id
 int current_id = 0;
 
+// random objecy
 std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_real_distribution<> dis(-1.0, 1.0);
 
-
-const int MAX_MAP_SIZE = 10;
+// the bowling's max move range
+constexpr float MAX_MAP_SIZE = 10;
 
 int main()
 {
 
+    // load sound that when build-tree(刻意的中式英文) is fly to sky
     sf::Music music;
     if (!music.openFromFile("../res/sound/tree_fly_sound.mp3"))
-        return -1; // error
+        return -1;
 
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -121,20 +123,20 @@ int main()
     // -----------
     while (!glfwWindowShouldClose(window))
     {
+        // fixed camera y poistion
         camera.Position.y = 0.25f;
 
         // per-frame time logic
-        // --------------------
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
+        // random move
         static float time_to_next_move = 0.0f;
-        float move_target_secound = 1.0f;
-
         time_to_next_move -= deltaTime;
         if (time_to_next_move <= 0.0f)
         {
+            constexpr float move_target_secound = 1.0f;
             for (auto& _bowling : all_bowling)
             {
                 if (_bowling.y > 0.1f) continue;
@@ -147,14 +149,14 @@ int main()
             time_to_next_move = move_target_secound;
         }
 
-        // input
+        // process input
         processInput(window);
 
         // render
         glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // don't forget to enable shader before setting uniforms
+        // enable shader before setting uniforms
         ourShader.use();
 
         // view/projection transformations
@@ -163,54 +165,62 @@ int main()
         ourShader.setMat4("projection", projection);
         ourShader.setMat4("view", view);
 
+
+        // proces bowling hit physics
         for (auto& _bowling : all_bowling) {
 
+            // check is fly
             if (is_bowling_fly(_bowling))
                 _bowling.angle = _bowling.angle + glm::vec3(10, 10, 10);
             else
                 _bowling.angle = glm::vec3(0, 0, 0);
 
+            // ensure in map that allow to move
             if (_bowling.x < -MAX_MAP_SIZE) { _bowling.x = -MAX_MAP_SIZE; _bowling.velocity.x *= -1; }
             if (_bowling.x >  MAX_MAP_SIZE) { _bowling.x =  MAX_MAP_SIZE; _bowling.velocity.x *= -1; }
             if (_bowling.z < -MAX_MAP_SIZE) { _bowling.z = -MAX_MAP_SIZE; _bowling.velocity.z *= -1; }
             if (_bowling.z >  MAX_MAP_SIZE) { _bowling.z =  MAX_MAP_SIZE; _bowling.velocity.z *= -1; }
 
-            drawBowling(_bowling, ourShader);
 
+            // get user hit box
             auto user_box = std::pair<glm::vec3 , glm::vec3>(
                 camera.Position - glm::vec3(0.5f, 0.5f, 0.5f),
                 camera.Position + glm::vec3(0.5f, 0.5f, 0.5f)
             );
 
+            // check hit user
             if (
                 isColliding(getWorldPos(_bowling), user_box)
                 && !is_bowling_fly(_bowling)
             )
             {
                 music.play();
-                glm::vec3 push_dir = glm::normalize(glm::vec3(_bowling.x, _bowling.y, _bowling.z) - camera.Position);
 
+                // set applied force
+                glm::vec3 push_dir = glm::normalize(glm::vec3(_bowling.x, _bowling.y, _bowling.z) - camera.Position);
                 push_dir += glm::vec3(0, 0.7, 0);
                 float push_strength = 20.0f;
                 _bowling.velocity += push_dir * push_strength;
-
             }
         }
-        floor.y = -0.5;
-        floor.scale = 0.5;
-        drawMapFloor(floor, ourShader);
 
-
+        // display and update physics
         for (auto& _bowling : all_bowling)
         {
             updateBowlingPhysics(_bowling, deltaTime);
             drawBowling(_bowling, ourShader);
         }
 
+        // set the map floor
+        floor.y = -0.5;
+        floor.scale = 0.5;
+        drawMapFloor(floor, ourShader);
+
+
 
         // object::drawAxis(view, projection);
 
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+        // glfw swap buffers and poll IO events
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -240,8 +250,6 @@ void processInput(GLFWwindow *window)
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-    // make sure the viewport matches the new window dimensions; note that width and
-    // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
 }
 
@@ -259,7 +267,7 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
     }
 
     float xoffset = xpos - lastX;
-    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+    float yoffset = lastY - ypos;
 
     lastX = xpos;
     lastY = ypos;
