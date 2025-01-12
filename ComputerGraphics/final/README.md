@@ -30,7 +30,7 @@ this is the build step (Note that the CMakeLists only supports MacOS, if you wan
 
    ```
    cmake ..
-   cmake ---build . 
+   cmake --build . 
    ```
 
 5. move shader to folder
