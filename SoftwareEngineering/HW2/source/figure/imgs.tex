@@ -1,0 +1,83 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.0cm,bottom=2.5cm}
+\usepackage[english]{babel}
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts}
+\usepackage[longend,ruled,linesnumbered]{algorithm2e}
+\usepackage{fancyhdr}
+\usepackage{ctex}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+% === 中文字體設定 (以 Sarasa Gothic TC 為例) ===
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\setmainfont{Sarasa Gothic TC}
+\setCJKmainfont{Sarasa Gothic TC}
+\setCJKsansfont{Sarasa Gothic TC}
+\setCJKmonofont{Sarasa Gothic TC}
+
+% === 調整行距 ===
+\linespread{5}  % 可以依需求改成 1.1, 1.3 等
+\selectfont
+
+\usepackage{tikz-uml}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    font=\normalsize,  % 可改 \small, \large 等
+    scale=1.05,        % 整體稍微放大
+    transform shape    % 讓字體跟著一起縮放
+]
+    % -- 角色 (Actors) --
+    \umlactor[x=0,   y=0]{Human}
+    \umlactor[x=0,   y=-3]{SystemAdmin}
+    \umlactor[x=10,  y=-1.5]{AIRobot}
+
+    % -- 系統範圍 (System Boundary) --
+    \begin{umlsystem}[x=4, y=-5, fill=gray!10]{TAIDE}
+        % -- 使用案例 (Use Cases)，使用 text width 讓中文換行 --
+        \umlusecase[x=3,   y=2,   text width=3cm]{切換介面語言}
+        \umlusecase[x=-2,   y=-3,   text width=3cm]{加入模型}
+        \umlusecase[x=6.5, y=0,   text width=3cm]{選擇模型}
+        \umlusecase[x=3,   y=-3,  text width=3cm]{建立聊天室}
+        \umlusecase[x=8,   y=-2,  text width=3cm]{顯示聊天紀錄}
+        \umlusecase[x=1,   y=-4,  text width=3cm]{傳送訊息}
+        \umlusecase[x=10,   y=-4,  text width=3cm]{接收訊息}
+        \umlusecase[x=4.5, y=-6,  text width=3cm]{聊天}
+        \umlusecase[x=0,   y=-7.5,text width=3cm]{多種傳送方式}
+        \umlusecase[x=8,   y=-8.5,text width=3cm]{關鍵字過濾}
+    \end{umlsystem}
+
+    % -- Actor 與 Use Case 連線 --
+    % Human
+    \umlassoc{Human}{usecase-1}  % Human -> 切換介面語言
+    \umlassoc{Human}{usecase-2}  % Human -> 加入模型
+    \umlassoc{Human}{usecase-6}  % Human -> 傳送訊息
+    \umlassoc{Human}{usecase-7}  % Human -> 接收訊息
+
+    % System Admin
+    \umlassoc{SystemAdmin}{usecase-2} % SystemAdmin -> 加入模型
+    \umlassoc{SystemAdmin}{usecase-5} % SystemAdmin -> 顯示聊天紀錄
+    \umlassoc{SystemAdmin}{usecase-3} % SystemAdmin -> 選擇模型
+
+    % AI Robot
+    \umlassoc{AIRobot}{usecase-7}  % AI Robot -> 接收訊息
+    \umlassoc{AIRobot}{usecase-8}  % AI Robot -> 聊天
+
+    % -- Use Case 之間的 (include / extend) --
+    \umlinclude{usecase-2}{usecase-3}  % 加入模型 include 選擇模型
+    \umlinclude{usecase-4}{usecase-5}  % 建立聊天室 include 顯示聊天紀錄
+    \umlinclude{usecase-8}{usecase-6}  % 聊天 include 傳送訊息
+    \umlinclude{usecase-8}{usecase-7}  % 聊天 include 接收訊息
+    \umlextend{usecase-9}{usecase-6}   % 多種傳送方式 extend 傳送訊息
+    \umlextend{usecase-10}{usecase-8}  % 關鍵字過濾 extend 聊天
+
+\end{tikzpicture}
+
+\end{document}
