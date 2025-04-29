@@ -60,6 +60,26 @@ function found_path = find_file_in_paths(base_dir, filename, search_dirs)
             return; 
         end
     end
+    % -----------------------------------------------------------
+    % Fallback search: look inside the user's default MATLAB folder
+    % (typically ~/Documents/MATLAB on Windows, macOS, and Linux).
+    % This ensures the script works across different OS setups.
+    % -----------------------------------------------------------
+    % Obtain the user‑home directory in a platform‑independent way
+    try
+        user_home = char(java.lang.System.getProperty('user.home'));
+    catch
+        user_home = char(getenv('HOME'));
+    end
+    default_matlab_dir = fullfile(user_home, 'Documents', 'MATLAB');
+
+    for j = 1:length(search_dirs)
+        try_path = fullfile(default_matlab_dir, search_dirs{j}, filename);
+        if isfile(try_path)
+            found_path = try_path;
+            return;
+        end
+    end
     error('File not found: %s in any of the specified search directories relative to %s', filename, base_dir);
 end
 
