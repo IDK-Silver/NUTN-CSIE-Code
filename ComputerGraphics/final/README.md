@@ -7,6 +7,12 @@ if you want to play this game, you need to build yourself from source code
 
 this is the build step (Note that the CMakeLists only supports MacOS, if you want to build on another OS, you will need to modify CMakeList)
 
+### Windows
+You can download the pre-built game for Windows [here](https://github.com/IDK-Silver/NUTN-CSIE-Code/releases/download/Bowling-v1.0/Windows-Bowling-is-all-you-need.zip).
+
+Or if you prefer to build from source:
+
+### MacOS
 1. clone this repo
 
    ```
