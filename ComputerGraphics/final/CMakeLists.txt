@@ -1,102 +1,163 @@
-# Specify the minimum required version of CMake
+#---------------------------------------------------------------
+#  CMakeLists.txt — cross-platform (macOS + Windows/vcpkg)
+#---------------------------------------------------------------
+
 cmake_minimum_required(VERSION 3.15)
 
-# Define the project name and set the C++ standard to C++17
-project(bowling-is-all-you-need)
+project(bowling-is-all-you-need LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Find the required packages: OpenGL and GLFW (version 3.3)
-find_package(OpenGL REQUIRED)
-find_package(glfw3 3.3 REQUIRED)
+#---------------------------#
+# Common (platform-agnostic)
+#---------------------------#
+find_package(OpenGL REQUIRED)          # macOS 走內建框架；Windows 由 vcpkg 提供
+find_package(glfw3 CONFIG REQUIRED)    # vcpkg 與 Homebrew 都帶 CONFIG
+                                       
+#------------ macOS (Homebrew) --------------------------------#
+if(APPLE)
+    message(STATUS "Building on macOS — libraries expected via Homebrew")
 
-# MacOS-specific configuration
-If (APPLE)
-    # Display messages indicating the platform and required setup
-    message("The platform is MacOS")
-    message("Ensure your are use brew to install library")
-
-    # Define a function to retrieve the prefix path of a Homebrew-installed formula
+    # 透過 brew --prefix 取得安裝路徑
     function(brew_prefix formula outVar)
         execute_process(
-                COMMAND brew --prefix ${formula}  # Get the prefix path
-                OUTPUT_VARIABLE _tmp
-                OUTPUT_STRIP_TRAILING_WHITESPACE
+            COMMAND brew --prefix ${formula}
+            OUTPUT_VARIABLE _tmp OUTPUT_STRIP_TRAILING_WHITESPACE
         )
-        # If the formula is not found, display an error message
-        if (NOT _tmp)
-            message(FATAL_ERROR "Could NOT find prefix for '${formula}' via 'brew --prefix'!
-        (請先 brew link ${formula})")
+        if(NOT _tmp)
+            message(FATAL_ERROR
+                "Could NOT find prefix for '${formula}' via 'brew --prefix'!\n"
+                "(請先 brew install / brew link ${formula})")
         endif()
-        # Set the prefix path to the specified output variable
         set(${outVar} "${_tmp}" PARENT_SCOPE)
     endfunction()
 
-    # Retrieve and store prefix paths for required libraries
-    brew_prefix(glm   GLM_PREFIX)
-    brew_prefix(glew  GLEW_PREFIX)
-    brew_prefix(sfml  SFML_PREFIX)
+    brew_prefix(glm    GLM_PREFIX)
+    brew_prefix(glew   GLEW_PREFIX)
+    brew_prefix(sfml   SFML_PREFIX)
     brew_prefix(assimp ASSIMP_PREFIX)
 
-    # Display the retrieved prefix paths
-    message(STATUS "GLM_PREFIX  = ${GLM_PREFIX}")
-    message(STATUS "GLEW_PREFIX = ${GLEW_PREFIX}")
-    message(STATUS "SFML_PREFIX = ${SFML_PREFIX}")
-    message(STATUS "ASSIMP_PREFIX = ${ASSIMP_PREFIX}")
+    message(STATUS "GLM_PREFIX   = ${GLM_PREFIX}")
+    message(STATUS "GLEW_PREFIX  = ${GLEW_PREFIX}")
+    message(STATUS "SFML_PREFIX  = ${SFML_PREFIX}")
+    message(STATUS "ASSIMP_PREFIX= ${ASSIMP_PREFIX}")
 
-    # Include directories for MacOS-specific dependencies
     include_directories(
-            ${GLM_PREFIX}/include
-            ${GLEW_PREFIX}/include
-            ${SFML_PREFIX}/include
+        ${GLM_PREFIX}/include
+        ${GLEW_PREFIX}/include
+        ${SFML_PREFIX}/include
     )
 
-    # Set the list of additional library dependencies
-    set(
-            OTHER_LIBS
-            ${ASSIMP_PREFIX}/lib/libassimp.dylib
-            ${FREETYPE_LIBRARIES}
-            ${GLEW_PREFIX}/lib/libGLEW.dylib
-            ${SFML_PREFIX}/lib/libsfml-audio.dylib
-            ${SFML_PREFIX}/lib/libsfml-graphics.dylib
-            ${SFML_PREFIX}/lib/libsfml-system.dylib
-            ${SFML_PREFIX}/lib/libsfml-window.dylib
-            ${SFML_PREFIX}/lib/libsfml-network.dylib
+    # 需手動列出 dylib
+    set(OTHER_LIBS
+        ${ASSIMP_PREFIX}/lib/libassimp.dylib
+        ${GLEW_PREFIX}/lib/libGLEW.dylib
+        ${SFML_PREFIX}/lib/libsfml-audio.dylib
+        ${SFML_PREFIX}/lib/libsfml-graphics.dylib
+        ${SFML_PREFIX}/lib/libsfml-system.dylib
+        ${SFML_PREFIX}/lib/libsfml-window.dylib
+        ${SFML_PREFIX}/lib/libsfml-network.dylib
     )
-endif ()
+endif()
 
-# Include additional directories for headers and libraries
-include_directories(
+#------------ Windows (vcpkg) ---------------------------------#
+if(WIN32)
+    message(STATUS "Building on Windows — expecting vcpkg toolchain integration")
+
+    # 這些 find_package 會由 vcpkg 的 *CONFIG* 包解析出 imported targets
+    find_package(GLEW      REQUIRED)   # GLEW::GLEW
+    find_package(glm      CONFIG REQUIRED)   # glm::glm
+    find_package(SFML CONFIG REQUIRED COMPONENTS
+        Graphics
+        Audio
+        Window
+        Network
+        System
+    )
+    find_package(assimp   CONFIG REQUIRED)   # assimp::assimp
+    find_package(Freetype  REQUIRED)   # freetype::freetype
+    find_package(glad CONFIG REQUIRED)
+    
+endif()
+
+#---------------------------#
+# Local (header-only/third-party in repo)
+#---------------------------#
+if(APPLE)
+    # macOS 下保留原路徑
+    include_directories(
         libs/
         libs/stb
         libs/glad/include
+    )
+elseif(WIN32)
+    # Windows 下切換到 libs/win/glad/include
+    include_directories(
+        libs/
+        libs/stb
+    )
+else()
+    # 其他平台（可選）
+    include_directories(
+        libs/
+        libs/stb
+        libs/glad/include
+    )
+endif()
+#---------------------------#
+#   Sources
+#---------------------------#
+# 先把通用的來源檔案列出來（不含 glad）
+set(SOURCE_FILES
+    src/main.cpp
+    libs/learnopengl/shader.h
+    libs/learnopengl/shader_m.h
+    libs/learnopengl/camera.h
+    libs/learnopengl/model.h
+    libs/learnopengl/mesh.h
+    libs/stb/stb_image.h
+    src/object/axis/axis.h
+    src/object/bowling.h
+    src/object/vector.h
+    src/object/floor.h
 )
 
-# Define the source files for the project
-set(SOURCE_FILES
-        src/main.cpp
+# macOS (Apple) 才加入 glad 的 header 和 source
+if(APPLE)
+    list(APPEND SOURCE_FILES
         libs/glad/include/glad/glad.h
         libs/glad/src/glad.c
-        libs/learnopengl/shader.h
-        libs/learnopengl/shader_m.h
-        libs/learnopengl/camera.h
-        libs/learnopengl/model.h
-        libs/learnopengl/mesh.h
-        libs/stb/stb_image.h
-        src/object/axis/axis.h
-        src/object/bowling.h
-        src/object/vector.h
-        src/object/floor.h
-)
+    )
+endif()
 
-# Create the executable using the defined source files
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
-# Link the executable with the required libraries
-target_link_libraries(
-        ${PROJECT_NAME}
-        PRIVATE
+#---------------------------#
+#   Link libraries
+#---------------------------#
+if(APPLE)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
         glfw
         OpenGL::GL
         ${OTHER_LIBS}
-)
+    )
+elseif(WIN32)
+
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        glfw
+        OpenGL::GL
+        GLEW::GLEW
+        glm::glm
+        # SFML modules must be linked via their SFML:: targets
+        SFML::Graphics
+        SFML::Audio
+        SFML::Window
+        SFML::Network
+        SFML::System
+        assimp::assimp
+        Freetype::Freetype
+         glad::glad
+    )
+
+endif()

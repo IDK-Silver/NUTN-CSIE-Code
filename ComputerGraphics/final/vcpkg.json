@@ -1,0 +1,15 @@
+{
+  "dependencies": [
+    "glfw3",
+    "glad",
+    "glew",
+    "glm",
+    {
+      "name": "sfml",
+      "default-features": false,
+      "features": [ "graphics", "audio", "window", "network" ]
+    },
+    "assimp",
+    "freetype"
+  ]
+}
