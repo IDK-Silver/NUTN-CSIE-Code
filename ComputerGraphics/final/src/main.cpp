@@ -52,13 +52,19 @@ constexpr float MAX_MAP_SIZE = 10;
 
 int main()
 {
+    glfwSetErrorCallback([](int error, const char* desc){
+    std::cerr << "GLFW Error (" << error << "): " << desc << std::endl;
+    });
 
     // load sound that when build-tree(刻意的中式英文) is fly to sky
     sf::Music music;
     if (!music.openFromFile("../res/sound/tree_fly_sound.mp3"))
         return -1;
 
-    glfwInit();
+    if (!glfwInit()) {
+    std::cerr << "glfwInit failed\n";
+    return -1;
+    }
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -212,8 +218,8 @@ int main()
         }
 
         // set the map floor
-        floor.y = -0.5;
-        floor.scale = 0.5;
+        floor.y = -1.0f;
+        floor.scale = 1;
         drawMapFloor(floor, ourShader);
 
 

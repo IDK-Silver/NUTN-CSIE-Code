@@ -38,9 +38,6 @@ struct map_floor {
 glm::mat4 map_floor_get_model_matrix(map_floor &bowling) {
     glm::mat4 model = glm::mat4(1.0f); \
     model = glm::translate(model, glm::vec3(bowling.x, bowling.y, bowling.z)); \
-    model = glm::rotate(model, glm::radians(bowling.angle[0]), glm::vec3(1.0f, 0.0f, 0.0f)); \
-    model = glm::rotate(model, glm::radians(bowling.angle[1]), glm::vec3(0.0f, 1.0f, 0.0f)); \
-    model = glm::rotate(model, glm::radians(bowling.angle[2]), glm::vec3(0.0f, 1.0f, 1.0f)); \
     model = glm::scale(model, glm::vec3(bowling.scale, bowling.scale, bowling.scale));\
     return model;
 }
