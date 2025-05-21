@@ -137,7 +137,7 @@ namespace object {
         glBindVertexArray(0);
 
         // 建立著色器程式
-        axesShaderProgram = createShaderProgram("axes_vertex_shader.glsl", "axes_fragment_shader.glsl");
+        axesShaderProgram = createShaderProgram("./res/shader/axes_vertex_shader.glsl", "./res/shader/axes_fragment_shader.glsl");
     }
 
     // 繪製坐標軸

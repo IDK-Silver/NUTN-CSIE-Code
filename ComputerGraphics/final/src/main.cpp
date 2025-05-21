@@ -58,7 +58,7 @@ int main()
 
     // load sound that when build-tree(刻意的中式英文) is fly to sky
     sf::Music music;
-    if (!music.openFromFile("../res/sound/tree_fly_sound.mp3"))
+    if (!music.openFromFile("./res/sound/tree_fly_sound.mp3"))
         return -1;
 
     if (!glfwInit()) {
