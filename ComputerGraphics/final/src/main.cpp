@@ -99,7 +99,7 @@ int main()
 
     glEnable(GL_DEPTH_TEST);
 
-    Shader ourShader("model_loading_vertex_shader.glsl", "model_loading_fragment_shader.glsl");
+    Shader ourShader("./res/shader/model_loading_vertex_shader.glsl", "./res/shader/model_loading_fragment_shader.glsl");
 
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);

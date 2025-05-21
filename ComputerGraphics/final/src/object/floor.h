@@ -26,7 +26,7 @@ struct map_floor {
     bowling.x = 0;\
     bowling.y = 0;\
     bowling.z = 0;\
-    bowling.model = new Model("../res/obj/map_floor/map_floor.obj");\
+    bowling.model = new Model("./res/obj/map_floor/map_floor.obj");\
     bowling.scale = 1;\
     bowling.visible = true;\
     bowling.velocity = glm::vec3(0.0f, 0, 0); \

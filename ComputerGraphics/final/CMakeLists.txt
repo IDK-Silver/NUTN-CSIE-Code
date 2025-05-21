@@ -161,3 +161,10 @@ elseif(WIN32)
     )
 
 endif()
+
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_SOURCE_DIR}/res"                         # 原始 res 資料夾
+        "$<TARGET_FILE_DIR:${PROJECT_NAME}>/res"          # 複製到 exe 所在資料夾下的 res
+)
