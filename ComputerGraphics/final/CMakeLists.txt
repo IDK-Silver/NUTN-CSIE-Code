@@ -4,7 +4,7 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(bowling-is-all-you-need LANGUAGES CXX)
+project(bowling-is-all-you-need)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -120,6 +120,7 @@ set(SOURCE_FILES
     src/object/bowling.h
     src/object/vector.h
     src/object/floor.h
+    libs/glad/src/glad.c
 )
 
 # macOS (Apple) 才加入 glad 的 header 和 source
@@ -157,7 +158,7 @@ elseif(WIN32)
         SFML::System
         assimp::assimp
         Freetype::Freetype
-         glad::glad
+        glad::glad
     )
 
 endif()
