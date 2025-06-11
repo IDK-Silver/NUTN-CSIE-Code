@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yu Feng AWS Upload Website</title>
+<style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            padding: 20px;
+            max-width: 100%;
+        }
+
+        .page-title-bar {
+            background: linear-gradient(135deg, #0066cc, #004c99);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .left-column {
+            flex: 1;
+            padding-right: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feature-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .right-column {
+            flex: 1;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .upload-area {
+            border: 2px dashed #ccc;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            position: relative;
+            transition: all 0.3s;
+            background-color: #fafafa;
+        }
+
+        .upload-area:hover {
+            border-color: #0066cc;
+            background-color: #f0f7ff;
+            transform: translateY(-2px);
+        }
+
+        .file-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(to right, #0066cc, #0088ff);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 102, 204, 0.3);
+        }
+
+        .upload-button:hover {
+            background: linear-gradient(to right, #0055aa, #0077dd);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 102, 204, 0.4);
+        }
+
+        .preview-area {
+            margin-top: 30px;
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .preview-area h2 {
+            margin-bottom: 15px;
+            color: #444;
+            font-weight: 500;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .image-preview {
+            width: 100%;
+            max-height: 300px;
+            display: none;
+            object-fit: contain;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .upload-status {
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 8px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #0066cc;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .left-column {
+                margin-bottom: 30px;
+                padding-right: 0;
+            }
+            
+            .feature-image {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .page-title-bar {
+                padding: 10px 15px;
+                font-size: 1.1em;
+            }
+
+            .upload-area {
+                padding: 20px 10px;
+            }
+
+            .upload-button {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+            
+            .preview-area {
+                padding: 15px;
+            }
+        }
+</style>
+</head>
+<body>
+
+<header class="page-title-bar">
+  IDK AWS Upload Website
+</header>
+
+<div class="container">
+  <div class="left-column">
+    <img src="https://truth.bahamut.com.tw/s01/202106/ad136b82ed591edc8ab357f82fdaa93d.JPG" alt="Feature Image" class="feature-image">
+  </div>
+  
+  <div class="right-column">
+    <h1>Upload Images to Yu - Feng S3</h1>
+
+    <div class="upload-area">
+      <input type="file" id="fileInput" class="file-input" accept="image/*">
+      <button class="upload-button">Select Image</button>
+      <p style="margin-top: 15px; color: #666;">Or drag and drop your image here</p>
+    </div>
+
+    <div class="loading">
+      <div class="loading-spinner"></div>
+      <p>Uploading... Please wait</p>
+    </div>
+
+    <div class="upload-status" id="uploadStatus"></div>
+
+    <div class="preview-area">
+      <h2>Image Preview</h2>
+      <img id="imagePreview" class="image-preview">
+    </div>
+  </div>
+</div>
+
+<script>
+    // JavaScript 部分保持不變...
+    document.addEventListener('DOMContentLoaded', function() {
+        const fileInput = document.getElementById('fileInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const uploadStatus = document.getElementById('uploadStatus');
+        const uploadArea = document.querySelector('.upload-area');
+        const loading = document.querySelector('.loading');
+
+        // Document processing
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                displayPreview(file);
+                uploadFile(file);
+            }
+        });
+
+        // Drag and Drop handlers
+        ['dragover', 'dragenter'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, function(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#0066cc';
+                uploadArea.style.backgroundColor = '#f0f8ff';
+            });
+        });
+
+        ['dragleave', 'dragend'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, function(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#ccc';
+                uploadArea.style.backgroundColor = '#fafafa';
+            });
+        });
+
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ccc';
+            uploadArea.style.backgroundColor = '#fafafa';
+
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                displayPreview(file);
+                uploadFile(file);
+            } else {
+                showStatus('Please select a valid image file.', 'error');
+            }
+        });
+
+        // Image Preview
+        function displayPreview(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Definition for showStatus function
+        function showStatus(message, type) {
+            uploadStatus.textContent = message;
+            uploadStatus.className = 'upload-status ' + type;
+            uploadStatus.style.display = 'block';
+        }
+
+        // Upload to S3 via API Gateway
+        function uploadFile(file) {
+            loading.style.display = 'block';
+            uploadStatus.style.display = 'none';
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // --- IMPORTANT: Replace with your actual API Gateway endpoint ---
+            const apiUrl = 'https://7yt0jlvprl.execute-api.us-east-1.amazonaws.com/default/API2Lambda0422';
+
+            fetch(apiUrl, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                loading.style.display = 'none';
+                if (response.ok) {
+                    return response.text().then(text => {
+                        try {
+                            return JSON.parse(text);
+                        } catch (e) {
+                            return text;
+                        }
+                    });
+                } else {
+                     throw new Error('Upload Failed: ' + response.statusText + ' (Status: ' + response.status + ')');
+                }
+            })
+            .then(data => {
+                showStatus('Upload Success! Image uploaded to S3!', 'success');
+                console.log('Upload successful:', data);
+            })
+            .catch(error => {
+                loading.style.display = 'none';
+                showStatus('Upload Failed: ' + error.message, 'error');
+                console.error('Upload error:', error);
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

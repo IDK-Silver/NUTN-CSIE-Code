@@ -441,3 +441,4 @@ old/
 .vscode/
 
 /ComputerGraphics/hw3/libs/*
+!/ComputerGraphics/final/res/obj/**/*.obj
