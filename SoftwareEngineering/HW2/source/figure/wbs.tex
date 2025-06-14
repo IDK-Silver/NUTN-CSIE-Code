@@ -1,0 +1,73 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\geometry{paperwidth=24in, paperheight=16in, margin=1cm}
+
+% 中文與字體
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\setmainfont{Sarasa Gothic TC}
+\setCJKmainfont{Sarasa Gothic TC}
+\setCJKsansfont{Sarasa Gothic TC}
+\setCJKmonofont{Sarasa Gothic TC}
+
+\linespread{1.2}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,positioning}
+
+\begin{document}
+
+\begin{tikzpicture}[
+  every node/.style={font=\footnotesize,align=center},
+  level 1/.style={sibling distance=90mm, level distance=28mm,
+                  rectangle,draw,fill=green!20,minimum width=3cm,minimum height=1cm},
+  level 2/.style={sibling distance=40mm, level distance=24mm,
+                  rectangle,draw,fill=yellow!20,minimum width=2.5cm,minimum height=0.8cm},
+  level 3/.style={sibling distance=25mm, level distance=20mm,
+                  rectangle,draw,fill=orange!20,minimum width=2.2cm,minimum height=0.7cm},
+  edge from parent/.style={draw,-latex},
+  wbs/.style={rectangle,draw,fill=blue!20,minimum width=3.5cm,minimum height=1.2cm}
+]
+
+\node[wbs]{TAIDE聊天系統\\開發專案\\1.0}
+  child { node {使用者介面\\子系統\\1.1}
+    child { node {語言切換\\模組\\1.1.1}
+      child { node {多語言\\支援實作\\1.1.1.1} }
+    }
+    child { node {聊天介面\\模組\\1.1.2}
+      child { node {聊天室\\建立介面\\1.1.2.1} }
+      child { node {多種傳送\\方式界面\\1.1.2.2} }
+    }
+  }
+  child { node {核心功能\\子系統\\1.2}
+    child { node {模型管理\\模組\\1.2.1}
+      child { node {模型\\新增功能\\1.2.1.1} }
+    }
+    child { node {聊天核心\\模組\\1.2.2}
+      child { node {聊天室\\建立\\1.2.2.1} }
+      child { node {基本聊天\\功能\\1.2.2.2} }
+    }
+    child { node {訊息處理\\模組\\1.2.3}
+      child { node {訊息\\傳送\\1.2.3.1} }
+      child { node {訊息\\接收\\1.2.3.2} }
+    }
+  }
+  child { node {系統管理\\子系統\\1.3}
+    child { node {模型管理\\1.3.1}
+      child { node {模型\\選擇\\1.3.1.1} }
+    }
+    child { node {聊天紀錄\\管理\\1.3.2}
+      child { node {聊天紀錄\\顯示\\1.3.2.1} }
+    }
+  }
+  child { node {AI機器人\\子系統\\1.4}
+    child { node {AI對話\\處理\\1.4.1}
+      child { node {AI回應\\生成\\1.4.1.1} }
+    }
+    child { node {內容過濾\\1.4.2}
+      child { node {關鍵字\\過濾\\1.4.2.1} }
+    }
+  };
+\end{tikzpicture}
+
+\end{document}
