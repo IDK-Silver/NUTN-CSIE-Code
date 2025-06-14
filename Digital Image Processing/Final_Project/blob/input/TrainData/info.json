@@ -1,0 +1,23 @@
+{
+    "16625.jpg": {
+      "ground_truth_text": "6607-BL"
+    },
+    "17251.jpg": {
+      "ground_truth_text": "F2-6088"
+    },
+    "aa1053.jpg": {
+      "ground_truth_text": "море"
+    },
+    "aa101.jpg": {
+      "ground_truth_text": "разработанные"
+    },
+    "779.jpg": {
+      "ground_truth_text": "Zithrin"
+    },
+    "test1.png": {
+      "ground_truth_text": "UltraContact UX7"
+    },
+    "idk.png": {
+      "ground_truth_text": "idk"
+    }
+  }
