@@ -10,5 +10,6 @@ classdef config
         SUPPORTED_IMAGE_FORMATS = {"*.png;*.jpg;*.jpeg;*.bmp;*.tif;*.tiff", '所有支援的圖片檔案 (*.png, *.jpg, etc.)'};
         OUTPUT_FOLDER_NAME = './';
 
+        APP_TITLE = 'Yu Fun 古文獻影像強化與分析系統';
     end
 end
