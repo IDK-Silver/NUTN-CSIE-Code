@@ -41,8 +41,8 @@ function binary_image = binarize_adaptive(image_data)
     
     % 最終輸出：轉換為 uint8 格式 (0 和 255)
     if islogical(binary_image)
-        binary_image = uint8(binary_image) * 255;
+        binary_image = ~uint8(binary_image) * 255;
     elseif ~isa(binary_image, 'uint8')
-        binary_image = im2uint8(binary_image);
+        binary_image = ~im2uint8(binary_image);
     end
 end
