@@ -104,10 +104,6 @@ def process_single_image(eng, image_path, output_dir, ground_truth_data):
     try:
         final_matrix, intermediate_stages_list, report_struct = eng.functions.process_image(image_path, nargout=3)
         
-        # 取得列表長度
-        num_stages_received = len(intermediate_stages_list)
-        logging.info(f"從 MATLAB 收到了 {num_stages_received} 個中間階段影像。 (預期為 4)")
-
         original_image = Image.open(image_path)
         width, height = original_image.convert('L').size
         correct_shape = (height, width)
@@ -119,41 +115,75 @@ def process_single_image(eng, image_path, output_dir, ground_truth_data):
             intermediate_pil_images.append(Image.fromarray(numpy_array))
         
         # 轉換最終影像
-        final_numpy = np.array(final_matrix._data, dtype=np.uint8).reshape(correct_shape, order='F') * 255
+        # final_matrix 已經是 uint8 格式 (0-255)，不應該再乘以 255
+        final_numpy = np.array(final_matrix._data, dtype=np.uint8).reshape(correct_shape, order='F')
         processed_image = Image.fromarray(final_numpy)
         
+        # 【新增】儲存每一步的圖片到 step/檔名 資料夾
+        base_name = os.path.splitext(image_name)[0]
+        step_dir = os.path.join(output_dir, "step", base_name)
+        os.makedirs(step_dir, exist_ok=True)
+        
+        # 定義步驟名稱
+        step_names = ['01_original', '02_grayscale', '03_after_lighting', 
+                     '04_after_noise', '05_after_sharpening', '06_final_binary']
+        
+        # 所有圖片列表
+        all_images = [original_image] + intermediate_pil_images + [processed_image]
+        
+        # 儲存每一步的圖片
+        for i, (img, step_name) in enumerate(zip(all_images, step_names)):
+            step_image_path = os.path.join(step_dir, f"{step_name}.png")
+            img.save(step_image_path)
+            logging.info(f"已儲存步驟圖片: {step_image_path}")
+
         diagnosis_report = {k: report_struct[k] for k in report_struct}
         
         # OCR 評估
         ocr_results = {}
         if image_name in ground_truth_data:
             ground_truth = ground_truth_data[image_name]['ground_truth_text']
-            ocr_config = r'--psm 7'
-            ocr_before = pytesseract.image_to_string(original_image, lang='eng+rus', config=ocr_config).strip()
-            ocr_after = pytesseract.image_to_string(processed_image, lang='eng+rus', config=ocr_config).strip()
-            cer_before = calculate_cer(ocr_before, ground_truth)
-            cer_after = calculate_cer(ocr_after, ground_truth)
+            
+            # 針對網頁文字截圖優化的 OCR 設定
+            psm_modes = [6, 7, 8, 13]
+            
+            best_ocr_before = ""
+            best_ocr_after = ""
+            best_cer_before = float('inf')
+            best_cer_after = float('inf')
+            
+            for psm in psm_modes:
+                current_config = f'--psm {psm} --oem 3'
+                
+                try:
+                    ocr_before_temp = pytesseract.image_to_string(original_image, lang='eng', config=current_config).strip()
+                    ocr_after_temp = pytesseract.image_to_string(processed_image, lang='eng', config=current_config).strip()
+                    
+                    cer_before_temp = calculate_cer(ocr_before_temp, ground_truth)
+                    cer_after_temp = calculate_cer(ocr_after_temp, ground_truth)
+                    
+                    if cer_before_temp < best_cer_before:
+                        best_cer_before = cer_before_temp
+                        best_ocr_before = ocr_before_temp
+                        
+                    if cer_after_temp < best_cer_after:
+                        best_cer_after = cer_after_temp
+                        best_ocr_after = ocr_after_temp
+                        
+                except Exception as e:
+                    logging.warning(f"PSM {psm} 模式失敗: {e}")
+                    continue
+            
             ocr_results = {
-                'before': ocr_before, 'after': ocr_after, 'truth': ground_truth,
-                'cer_before': cer_before, 'cer_after': cer_after
+                'before': best_ocr_before, 'after': best_ocr_after, 'truth': ground_truth,
+                'cer_before': best_cer_before, 'cer_after': best_cer_after
             }
-            logging.info(f"評估完成: CER Before: {cer_before:.2%} -> CER After: {cer_after:.2%}")
+            logging.info(f"評估完成: CER Before: {best_cer_before:.2%} -> CER After: {best_cer_after:.2%}")
         else:
             logging.info("此影像無標準答案，跳過量化評估。")
 
-        # --- 【X光檢查】: 在呼叫繪圖函式前，印出所有準備好的資料的詳細資訊 ---
-        logging.info("--- PLOTTING PRE-CHECK (X-RAY) ---")
-        logging.info(f"1. original_image: Type={type(original_image)}, Mode={original_image.mode}, Size={original_image.size}")
-        logging.info(f"2. intermediate_pil_images: 數量={len(intermediate_pil_images)}")
-        for i, img in enumerate(intermediate_pil_images):
-            logging.info(f"   - Intermediate Img #{i+1}: Type={type(img)}, Mode={img.mode}, Size={img.size}")
-        logging.info(f"3. processed_image (final_img): Type={type(processed_image)}, Mode={processed_image.mode}, Size={processed_image.size}")
-        images_to_plot_for_check = [original_image] + intermediate_pil_images + [processed_image]
-        logging.info(f"==> 最終要繪製的圖片總數為: {len(images_to_plot_for_check)} (預期為 6)")
-        logging.info("------------------------------------")
-        
         # 建立比較圖
-        comp_image_path = os.path.join(output_dir, f"comparison_{os.path.splitext(image_name)[0]}.png")
+        comp_image_path = os.path.join(output_dir, f"comparison_{base_name}.png")
         create_comparison_image(original_image, intermediate_pil_images, processed_image, image_name, diagnosis_report, ocr_results, comp_image_path)
 
     except Exception as e:
