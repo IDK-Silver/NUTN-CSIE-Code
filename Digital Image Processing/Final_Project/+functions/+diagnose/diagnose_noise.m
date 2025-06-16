@@ -34,12 +34,6 @@ function report = diagnose_noise(image_path_or_data)
     total_noise = salt_count + pepper_count;
     noise_ratio = total_noise / numel(img);
     
-    % 除錯輸出
-    fprintf('Min: %.0f, Max: %.0f\n', min(img(:)), max(img(:)));
-    fprintf('Salt pixels: %d, Pepper pixels: %d, Total noise: %d\n', ...
-        salt_count, pepper_count, total_noise);
-    fprintf('Noise ratio: %.6f\n', noise_ratio);
-    
     % 更合理的閾值：真正的椒鹽雜訊比例通常很小
     if noise_ratio > 0.0004  % 0.01% 的雜訊像素
         report = 'salt-and-pepper';
