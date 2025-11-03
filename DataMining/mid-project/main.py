@@ -2,6 +2,7 @@
 import click
 from src.preprocess import preprocess_train, preprocess_test
 from src.train import train_model
+from src.train_poly import train_polynomial_model
 from src.predict import predict
 from src.registry import mark_best
 
@@ -30,10 +31,36 @@ def preprocess(mode, drop_holiday):
 
 
 @cli.command()
-def train():
+@click.option('--full/--split', default=True,
+              help='使用完整訓練集（--full）或分割驗證集（--split）（預設：--full）')
+def train(full):
     """訓練 LinearRegression 模型並儲存"""
     click.echo("=== 訓練 LinearRegression 模型 ===")
-    model_path = train_model()
+    model_path = train_model(use_full_train=full)
+    click.echo(f"\n✓ 完成！模型路徑: {model_path}")
+
+
+@cli.command(name='train-poly')
+@click.option('--degree', default=2, type=int,
+              help='多項式次數（預設：2）')
+@click.option('--interaction-only/--all-terms', default=False,
+              help='是否只產生交互作用項（預設：包含所有項）')
+@click.option('--feature-selection/--all-features', default=True,
+              help='是否選擇重要特徵（預設：選擇）')
+@click.option('--top-k', default=15, type=int,
+              help='選擇前 k 個重要特徵（預設：15）')
+@click.option('--full/--split', default=True,
+              help='使用完整訓練集（--full）或分割驗證集（--split）（預設：--full）')
+def train_poly(degree, interaction_only, feature_selection, top_k, full):
+    """訓練 Polynomial Regression 模型並儲存"""
+    click.echo("=== 訓練 Polynomial Regression 模型 ===")
+    model_path = train_polynomial_model(
+        degree=degree,
+        interaction_only=interaction_only,
+        use_feature_selection=feature_selection,
+        top_k_features=top_k,
+        use_full_train=full
+    )
     click.echo(f"\n✓ 完成！模型路徑: {model_path}")
 
 

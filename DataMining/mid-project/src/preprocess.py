@@ -109,6 +109,98 @@ def convert_numeric_columns(df: pd.DataFrame, columns: list[str]) -> pd.DataFram
     return df
 
 
+def add_feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
+    """加入特徵工程：時間循環、溫度分段、天氣分組、交互作用
+
+    包含 52 個特徵：
+    - 時間循環特徵（hour_sin, hour_cos）
+    - 溫度分段（5 個區間）
+    - 天氣分組（高流量/低流量）
+    - 多項式特徵（temp², temp³）
+    - 二階交互作用（Rush Hour × 其他特徵）
+
+    Args:
+        df: 包含基本特徵的 DataFrame
+
+    Returns:
+        pd.DataFrame: 加入工程特徵的 DataFrame
+    """
+    # ========== 1. 從 ID 提取循環時間特徵 ==========
+    # ID % 24 可能代表小時循環
+    df['hour_cycle'] = df['ID'] % 24
+    # 將小時編碼為 sin/cos（保持循環性）
+    df['hour_sin'] = np.sin(2 * np.pi * df['hour_cycle'] / 24)
+    df['hour_cos'] = np.cos(2 * np.pi * df['hour_cycle'] / 24)
+
+    # ========== 2. 溫度分段特徵（捕捉非線性）==========
+    # 根據分析：極熱(300+)流量最高，極冷(<260)流量最低
+    df['temp_extreme_cold'] = (df['temp'] < 260).astype(int)  # <260K
+    df['temp_cold'] = ((df['temp'] >= 260) & (df['temp'] < 270)).astype(int)  # 260-270K
+    df['temp_moderate'] = ((df['temp'] >= 270) & (df['temp'] < 290)).astype(int)  # 270-290K
+    df['temp_warm'] = ((df['temp'] >= 290) & (df['temp'] < 300)).astype(int)  # 290-300K
+    df['temp_extreme_hot'] = (df['temp'] >= 300).astype(int)  # >=300K
+
+    # ========== 3. 天氣分組特徵 ==========
+    # 高流量天氣：Smoke, Clouds, Haze, Rain, Drizzle
+    df['weather_high_traffic'] = (
+        df.get('weather_Smoke', 0) +
+        df.get('weather_Clouds', 0) +
+        df.get('weather_Haze', 0) +
+        df.get('weather_Rain', 0) +
+        df.get('weather_Drizzle', 0)
+    ).astype(int)
+
+    # 低流量天氣：Mist, Fog, Squall
+    df['weather_low_traffic'] = (
+        df.get('weather_Mist', 0) +
+        df.get('weather_Fog', 0) +
+        df.get('weather_Squall', 0)
+    ).astype(int)
+
+    # ========== 4. 多項式特徵（溫度）==========
+    df['temp_squared'] = df['temp'] ** 2
+    df['temp_cubed'] = df['temp'] ** 3
+
+    # ========== 5. 二階交互作用 ==========
+    # Rush Hour × temp
+    df['rush_temp'] = df['Rush Hour'] * df['temp']
+
+    # Rush Hour × 溫度分段
+    df['rush_extreme_hot'] = df['Rush Hour'] * df['temp_extreme_hot']
+    df['rush_extreme_cold'] = df['Rush Hour'] * df['temp_extreme_cold']
+
+    # Rush Hour × 天氣分組
+    df['rush_weather_high'] = df['Rush Hour'] * df['weather_high_traffic']
+    df['rush_weather_low'] = df['Rush Hour'] * df['weather_low_traffic']
+
+    # Rush Hour × hour_cycle
+    df['rush_hour_cycle'] = df['Rush Hour'] * df['hour_cycle']
+
+    # 溫度分段 × 天氣分組
+    df['hot_high_weather'] = df['temp_extreme_hot'] * df['weather_high_traffic']
+    df['cold_low_weather'] = df['temp_extreme_cold'] * df['weather_low_traffic']
+
+    # ========== 6. 原有交互作用（保留重要的）==========
+    # Rush Hour × weather（所有天氣欄位）
+    weather_cols = [col for col in df.columns if col.startswith('weather_')
+                   and not col.endswith('_traffic')]
+    for weather_col in weather_cols:
+        df[f'rush_{weather_col}'] = df['Rush Hour'] * df[weather_col]
+
+    # temp × 重要天氣
+    important_weather = ['weather_Clouds', 'weather_Clear', 'weather_Mist',
+                        'weather_Rain', 'weather_Fog']
+    for weather_col in important_weather:
+        if weather_col in df.columns:
+            df[f'temp_{weather_col}'] = df['temp'] * df[weather_col]
+
+    # ========== 7. 移除無用特徵 ==========
+    useless_features = ['rain_1h', 'snow_1h', 'hour_cycle']  # hour_cycle 已轉為 sin/cos
+    df = df.drop(columns=useless_features, errors='ignore')
+
+    return df
+
+
 def preprocess_train(raw_path: str = "blob/raw/traffic_train.csv",
                     output_path: str = "blob/process/train_processed.csv",
                     meta_path: str = "blob/process/meta/weather_categories.json",
@@ -148,18 +240,26 @@ def preprocess_train(raw_path: str = "blob/raw/traffic_train.csv",
     df_after = len(df)
     print(f"移除缺失值: {df_before} → {df_after} (移除 {df_before - df_after} 筆)")
 
+    # ⭐ 特徵工程：加入多項式與交互作用（在正規化前）
+    df = add_feature_engineering(df)
+    print(f"✓ 特徵工程完成")
+
     # 正規化數值特徵（不包含 traffic_volume 和 ID）
-    feature_cols = ['temp', 'rain_1h', 'snow_1h', 'clouds_all', 'Rush Hour']
+    # 包含連續數值特徵，不包含 0/1 的分類特徵
+    feature_cols = ['temp', 'clouds_all', 'Rush Hour',
+                   'hour_sin', 'hour_cos',
+                   'temp_squared', 'temp_cubed', 'rush_temp',
+                   'rush_hour_cycle']
     scaler = StandardScaler()
     df[feature_cols] = scaler.fit_transform(df[feature_cols])
-    print(f"✓ 數值特徵已正規化: {feature_cols}")
+    print(f"✓ 數值特徵已正規化（共 {len(feature_cols)} 個）")
 
-    # 調整欄位順序：ID, 數值欄位, is_holiday, weather_*..., traffic_volume
-    weather_cols = [col for col in df.columns if col.startswith('weather_')]
-    base_cols = ['ID', 'temp', 'rain_1h', 'snow_1h', 'clouds_all', 'Rush Hour', 'is_holiday']
-    target_col = ['traffic_volume']
-
-    final_cols = base_cols + weather_cols + target_col
+    # 調整欄位順序（簡化：按原有順序，只確保 ID 和 traffic_volume 在首尾）
+    # 將 ID 移到最前，traffic_volume 移到最後
+    cols = df.columns.tolist()
+    cols.remove('ID')
+    cols.remove('traffic_volume')
+    final_cols = ['ID'] + cols + ['traffic_volume']
     df = df[final_cols]
 
     # 確保輸出目錄存在
@@ -227,19 +327,26 @@ def preprocess_test(raw_path: str = "blob/raw/traffic_test.csv",
     df = convert_numeric_columns(df, numeric_cols)
 
     # 處理測試集的缺失值（用 0 填充以避免資料遺失）
-    feature_cols = ['temp', 'rain_1h', 'snow_1h', 'clouds_all', 'Rush Hour']
-    df[feature_cols] = df[feature_cols].fillna(0)
+    feature_cols_before = ['temp', 'rain_1h', 'snow_1h', 'clouds_all', 'Rush Hour']
+    df[feature_cols_before] = df[feature_cols_before].fillna(0)
     print(f"✓ 缺失值已填充為 0")
 
-    # 使用訓練時的 Scaler 正規化
+    # ⭐ 特徵工程：加入多項式與交互作用（與訓練集相同）
+    df = add_feature_engineering(df)
+    print(f"✓ 特徵工程完成")
+
+    # 使用訓練時的 Scaler 正規化（與訓練集相同的特徵）
+    feature_cols = ['temp', 'clouds_all', 'Rush Hour',
+                   'hour_sin', 'hour_cos',
+                   'temp_squared', 'temp_cubed', 'rush_temp',
+                   'rush_hour_cycle']
     df[feature_cols] = scaler.transform(df[feature_cols])
-    print(f"✓ 數值特徵已正規化: {feature_cols}")
+    print(f"✓ 數值特徵已正規化（共 {len(feature_cols)} 個）")
 
-    # 調整欄位順序：ID, 數值欄位, is_holiday, weather_*...
-    weather_cols = [col for col in df.columns if col.startswith('weather_')]
-    base_cols = ['ID', 'temp', 'rain_1h', 'snow_1h', 'clouds_all', 'Rush Hour', 'is_holiday']
-
-    final_cols = base_cols + weather_cols
+    # 調整欄位順序（ID 在最前）
+    cols = df.columns.tolist()
+    cols.remove('ID')
+    final_cols = ['ID'] + cols
     df = df[final_cols]
 
     # 確保輸出目錄存在

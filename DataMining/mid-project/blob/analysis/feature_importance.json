@@ -1,0 +1,335 @@
+{
+  "total_features": 49,
+  "analysis_date": "2025-11-02T16:36:52.784939",
+  "correlations": [
+    {
+      "feature": "rush_temp",
+      "correlation": 0.34468068948939207,
+      "abs_correlation": 0.34468068948939207
+    },
+    {
+      "feature": "Rush Hour",
+      "correlation": 0.3433029896448953,
+      "abs_correlation": 0.3433029896448953
+    },
+    {
+      "feature": "rush_hour_cycle",
+      "correlation": 0.2849016743780297,
+      "abs_correlation": 0.2849016743780297
+    },
+    {
+      "feature": "rush_weather_high",
+      "correlation": 0.24476041800409432,
+      "abs_correlation": 0.24476041800409432
+    },
+    {
+      "feature": "rush_weather_Clouds",
+      "correlation": 0.19310359217581832,
+      "abs_correlation": 0.19310359217581832
+    },
+    {
+      "feature": "rush_weather_Clear",
+      "correlation": 0.14456292969700002,
+      "abs_correlation": 0.14456292969700002
+    },
+    {
+      "feature": "temp_cubed",
+      "correlation": 0.1370105252713685,
+      "abs_correlation": 0.1370105252713685
+    },
+    {
+      "feature": "temp_extreme_hot",
+      "correlation": 0.13562240103615142,
+      "abs_correlation": 0.13562240103615142
+    },
+    {
+      "feature": "temp_squared",
+      "correlation": 0.1354065783040082,
+      "abs_correlation": 0.1354065783040082
+    },
+    {
+      "feature": "temp",
+      "correlation": 0.13122421869453746,
+      "abs_correlation": 0.13122421869453746
+    },
+    {
+      "feature": "temp_weather_Clouds",
+      "correlation": 0.13083634155176546,
+      "abs_correlation": 0.13083634155176546
+    },
+    {
+      "feature": "weather_high_traffic",
+      "correlation": 0.12998981276465066,
+      "abs_correlation": 0.12998981276465066
+    },
+    {
+      "feature": "weather_Clouds",
+      "correlation": 0.12576070680780146,
+      "abs_correlation": 0.12576070680780146
+    },
+    {
+      "feature": "rush_weather_low",
+      "correlation": 0.1184861710395264,
+      "abs_correlation": 0.1184861710395264
+    },
+    {
+      "feature": "rush_weather_Rain",
+      "correlation": 0.11282979227772628,
+      "abs_correlation": 0.11282979227772628
+    },
+    {
+      "feature": "rush_weather_Mist",
+      "correlation": 0.11141606418887441,
+      "abs_correlation": 0.11141606418887441
+    },
+    {
+      "feature": "hot_high_weather",
+      "correlation": 0.10386390047603056,
+      "abs_correlation": 0.10386390047603056
+    },
+    {
+      "feature": "weather_low_traffic",
+      "correlation": -0.0763552326545669,
+      "abs_correlation": 0.0763552326545669
+    },
+    {
+      "feature": "rush_extreme_hot",
+      "correlation": 0.07195234179639368,
+      "abs_correlation": 0.07195234179639368
+    },
+    {
+      "feature": "clouds_all",
+      "correlation": 0.0688800586266453,
+      "abs_correlation": 0.0688800586266453
+    },
+    {
+      "feature": "rush_weather_Drizzle",
+      "correlation": 0.06409393290143268,
+      "abs_correlation": 0.06409393290143268
+    },
+    {
+      "feature": "weather_Clear",
+      "correlation": -0.06353972160899911,
+      "abs_correlation": 0.06353972160899911
+    },
+    {
+      "feature": "weather_Mist",
+      "correlation": -0.06352956543374387,
+      "abs_correlation": 0.06352956543374387
+    },
+    {
+      "feature": "temp_weather_Mist",
+      "correlation": -0.06255365853556437,
+      "abs_correlation": 0.06255365853556437
+    },
+    {
+      "feature": "temp_extreme_cold",
+      "correlation": -0.06039450794004141,
+      "abs_correlation": 0.06039450794004141
+    },
+    {
+      "feature": "temp_weather_Clear",
+      "correlation": -0.057527926756322414,
+      "abs_correlation": 0.057527926756322414
+    },
+    {
+      "feature": "temp_warm",
+      "correlation": 0.05306924241006289,
+      "abs_correlation": 0.05306924241006289
+    },
+    {
+      "feature": "rush_extreme_cold",
+      "correlation": 0.049638303982809384,
+      "abs_correlation": 0.049638303982809384
+    },
+    {
+      "feature": "rush_weather_Snow",
+      "correlation": 0.04748907396730972,
+      "abs_correlation": 0.04748907396730972
+    },
+    {
+      "feature": "temp_cold",
+      "correlation": -0.04553551674179728,
+      "abs_correlation": 0.04553551674179728
+    },
+    {
+      "feature": "is_holiday",
+      "correlation": -0.04488867254288867,
+      "abs_correlation": 0.04488867254288867
+    },
+    {
+      "feature": "rush_weather_Thunderstorm",
+      "correlation": 0.043170979095322026,
+      "abs_correlation": 0.043170979095322026
+    },
+    {
+      "feature": "hour_cos",
+      "correlation": 0.04225247238960369,
+      "abs_correlation": 0.04225247238960369
+    },
+    {
+      "feature": "temp_weather_Fog",
+      "correlation": -0.04185484315126899,
+      "abs_correlation": 0.04185484315126899
+    },
+    {
+      "feature": "weather_Fog",
+      "correlation": -0.04173300536357794,
+      "abs_correlation": 0.04173300536357794
+    },
+    {
+      "feature": "rush_weather_Haze",
+      "correlation": 0.040173516306695106,
+      "abs_correlation": 0.040173516306695106
+    },
+    {
+      "feature": "temp_moderate",
+      "correlation": -0.03949451668087487,
+      "abs_correlation": 0.03949451668087487
+    },
+    {
+      "feature": "rush_weather_Fog",
+      "correlation": 0.03925838399202604,
+      "abs_correlation": 0.03925838399202604
+    },
+    {
+      "feature": "weather_Snow",
+      "correlation": -0.02960901754368552,
+      "abs_correlation": 0.02960901754368552
+    },
+    {
+      "feature": "cold_low_weather",
+      "correlation": -0.026040184787822263,
+      "abs_correlation": 0.026040184787822263
+    },
+    {
+      "feature": "weather_Thunderstorm",
+      "correlation": -0.019887181926935886,
+      "abs_correlation": 0.019887181926935886
+    },
+    {
+      "feature": "weather_Haze",
+      "correlation": 0.014604559497617194,
+      "abs_correlation": 0.014604559497617194
+    },
+    {
+      "feature": "temp_weather_Rain",
+      "correlation": 0.011366731956053207,
+      "abs_correlation": 0.011366731956053207
+    },
+    {
+      "feature": "weather_Rain",
+      "correlation": 0.010969730738435043,
+      "abs_correlation": 0.010969730738435043
+    },
+    {
+      "feature": "hour_sin",
+      "correlation": 0.00825618873568708,
+      "abs_correlation": 0.00825618873568708
+    },
+    {
+      "feature": "weather_Squall",
+      "correlation": -0.007746518168550373,
+      "abs_correlation": 0.007746518168550373
+    },
+    {
+      "feature": "weather_Smoke",
+      "correlation": 0.005999304793070655,
+      "abs_correlation": 0.005999304793070655
+    },
+    {
+      "feature": "weather_Drizzle",
+      "correlation": 0.0026330602067134107,
+      "abs_correlation": 0.0026330602067134107
+    },
+    {
+      "feature": "rush_weather_Smoke",
+      "correlation": 0.0025317349893003026,
+      "abs_correlation": 0.0025317349893003026
+    }
+  ],
+  "recommendations": {
+    "top_5": [
+      "rush_temp",
+      "Rush Hour",
+      "rush_hour_cycle",
+      "rush_weather_high",
+      "rush_weather_Clouds"
+    ],
+    "top_10": [
+      "rush_temp",
+      "Rush Hour",
+      "rush_hour_cycle",
+      "rush_weather_high",
+      "rush_weather_Clouds",
+      "rush_weather_Clear",
+      "temp_cubed",
+      "temp_extreme_hot",
+      "temp_squared",
+      "temp"
+    ],
+    "top_15": [
+      "rush_temp",
+      "Rush Hour",
+      "rush_hour_cycle",
+      "rush_weather_high",
+      "rush_weather_Clouds",
+      "rush_weather_Clear",
+      "temp_cubed",
+      "temp_extreme_hot",
+      "temp_squared",
+      "temp",
+      "temp_weather_Clouds",
+      "weather_high_traffic",
+      "weather_Clouds",
+      "rush_weather_low",
+      "rush_weather_Rain"
+    ],
+    "top_20": [
+      "rush_temp",
+      "Rush Hour",
+      "rush_hour_cycle",
+      "rush_weather_high",
+      "rush_weather_Clouds",
+      "rush_weather_Clear",
+      "temp_cubed",
+      "temp_extreme_hot",
+      "temp_squared",
+      "temp",
+      "temp_weather_Clouds",
+      "weather_high_traffic",
+      "weather_Clouds",
+      "rush_weather_low",
+      "rush_weather_Rain",
+      "rush_weather_Mist",
+      "hot_high_weather",
+      "weather_low_traffic",
+      "rush_extreme_hot",
+      "clouds_all"
+    ],
+    "smart_15": [
+      "hour_sin",
+      "hour_cos",
+      "is_holiday",
+      "clouds_all",
+      "temp",
+      "Rush Hour",
+      "rush_temp",
+      "rush_hour_cycle",
+      "rush_weather_high",
+      "rush_weather_Clouds",
+      "rush_weather_Clear",
+      "temp_cubed",
+      "temp_extreme_hot",
+      "temp_weather_Clouds",
+      "weather_high_traffic"
+    ]
+  },
+  "low_correlation": [
+    "hour_sin",
+    "weather_Squall",
+    "weather_Smoke",
+    "weather_Drizzle",
+    "rush_weather_Smoke"
+  ]
+}

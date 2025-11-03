@@ -68,13 +68,26 @@ blob/
   - 訓練多 `traffic_volume` 於最後。
   - `weather_*` 欄位順序以 `weather_categories.json` 為準，穩定一致。
 
-## 模型訓練（Regression Only）
-- 模型：僅使用 `LinearRegression`（最簡單的線性迴歸模型）。
+## 模型訓練（Regression Models）
+支援模型：
+1. **LinearRegression** - 基本線性回歸模型
+2. **Polynomial Regression** - 多項式回歸（使用 PolynomialFeatures + LinearRegression）
+
+### LinearRegression
 - 資料已於前處理階段完成正規化，直接訓練即可。
-- 輸入：`blob/process/train_processed.csv`。
+- 輸入：`blob/process/train_processed.csv`
 - 輸出：
-  - `blob/models/runs/<YYYYMMDD-HHMMSS>-linear/model.joblib`（僅此單一檔）。
-  - 複製一份至 `blob/models/latest/model.joblib` 方便下游使用。
+  - `blob/models/runs/<YYYYMMDD-HHMMSS>-linear[-full]/model.joblib`
+  - 複製至 `blob/models/latest/model.joblib`
+
+### Polynomial Regression
+- 參數：degree（次數）、interaction_only（僅交互作用）、特徵選擇
+- 輸出：
+  - `blob/models/runs/<YYYYMMDD-HHMMSS>-polynomial-d<degree>[-interact][-full]/`
+    - `model.joblib` - 模型本體
+    - `polynomial.joblib` - 多項式轉換器
+    - `features.json` - 選中的特徵列表
+    - `metrics.json` - 訓練指標
 
 ## registry.json（最小索引）
 - 位置：`blob/models/registry.json`
@@ -105,11 +118,20 @@ blob/
 - `preprocess --mode {train,test} --drop-holiday`：
   - train：產出 `train_processed.csv`、`meta/weather_categories.json` 與 `meta/scaler.joblib`。
   - test：讀取 `meta/weather_categories.json` 與 `meta/scaler.joblib` 產出 `test_processed.csv`。
-- `train`：
+- `train [--full|--split]`：
   - 使用 LinearRegression 訓練模型，保存 `model.joblib`，更新 `latest` 與 `registry.json`。
+  - `--full`：使用完整訓練集（預設）
+  - `--split`：80/20 分割驗證集
+- `train-poly [--degree N] [--interaction-only] [--feature-selection] [--top-k N] [--full|--split]`：
+  - 使用 Polynomial Regression 訓練模型
+  - `--degree`：多項式次數（預設 2）
+  - `--interaction-only`：只產生交互作用項
+  - `--feature-selection`：選擇重要特徵（預設啟用）
+  - `--top-k`：選擇前 k 個特徵（預設 15）
 - `mark-best --run <path-to-model.joblib>`：
   - 將指定 run 設為 `best`，並複製至 `blob/models/best/model.joblib`、更新 `registry.json`。
 - `predict --run {latest|best|<run-path>}`：
+  - 自動偵測模型類型（Linear 或 Polynomial）
   - 依時間戳建立輸出資料夾並寫出 `submission.csv`；可選更新 `submit/latest` 拷貝。
 
 > 現階段不引入 Snakemake。若未來流程擴張（多資料源、特徵版本、CV、上傳），再補簡易 Snakefile。
@@ -125,8 +147,11 @@ blob/
   - `weather_main` one-hot（未知→`Unknown`，類別由 train 決定並固化，轉為整數 0/1）
   - 移除包含缺失值的資料列
   - **數值特徵正規化（StandardScaler）**，scaler 儲存供測試集使用
-- 模型：僅使用 `LinearRegression`，run 僅保存 `model.joblib`。
+  - **進階特徵工程**：時間循環、溫度分段、天氣分組、交互作用（52 個特徵）
+- 模型：
+  - **LinearRegression** - 基本線性回歸（R² = 0.177）
+  - **Polynomial Regression** - 多項式回歸，degree=2（R² = 0.190，最佳）
 - 版本：所有產出以時間戳管理；保留 `latest` 快捷；`best` 需顯式 `mark-best` 才會更新。
 - 提交：每次生成一個時間戳版本，可選維護 `submit/latest` 以便使用。
 
-以上規劃符合 KISS 原則，使用最簡單的線性迴歸模型搭配標準資料前處理流程。
+以上規劃在 KISS 原則下加入了 Polynomial Regression，提供更好的預測效能。

@@ -16,16 +16,18 @@ def train_model(input_path: str = 'blob/process/train_processed.csv',
                 runs_dir: str = 'blob/models/runs',
                 latest_dir: str = 'blob/models/latest',
                 registry_path: str = 'blob/models/registry.json',
+                use_full_train: bool = True,
                 test_size: float = 0.2,
                 random_state: int = 42) -> str:
-    """訓練 LinearRegression 模型並儲存（含指標評估）
+    """訓練 LinearRegression 模型並儲存（支援完整訓練或分割驗證）
 
     Args:
         input_path: 前處理後的訓練資料路徑
         runs_dir: 時間戳模型儲存目錄
         latest_dir: 最新模型儲存目錄
         registry_path: 模型註冊檔路徑
-        test_size: 驗證集比例（預設 0.2 = 20%）
+        use_full_train: 是否使用完整訓練集（不分割驗證集）
+        test_size: 驗證集比例（當 use_full_train=False 時使用）
         random_state: 隨機種子（確保可重現）
 
     Returns:
@@ -40,15 +42,22 @@ def train_model(input_path: str = 'blob/process/train_processed.csv',
 
     print(f"原始資料形狀: X={X.shape}, y={y.shape}")
 
-    # 分割訓練集和驗證集
-    X_train, X_val, y_train, y_val = train_test_split(
-        X, y, test_size=test_size, random_state=random_state
-    )
-    print(f"訓練集: {X_train.shape}, 驗證集: {X_val.shape}")
-
     # 建立 LinearRegression 模型
     model = LinearRegression()
     print("使用模型: LinearRegression")
+
+    if use_full_train:
+        # 使用完整訓練集
+        print("使用完整訓練集（不分割驗證集）")
+        X_train, y_train = X, y
+        X_val, y_val = None, None
+        print(f"訓練集: {X_train.shape}")
+    else:
+        # 分割訓練集和驗證集
+        X_train, X_val, y_train, y_val = train_test_split(
+            X, y, test_size=test_size, random_state=random_state
+        )
+        print(f"訓練集: {X_train.shape}, 驗證集: {X_val.shape}")
 
     # 訓練模型
     print("開始訓練...")
@@ -62,13 +71,6 @@ def train_model(input_path: str = 'blob/process/train_processed.csv',
     train_rmse = np.sqrt(train_mse)
     train_mae = mean_absolute_error(y_train, y_train_pred)
 
-    # 計算驗證集指標
-    y_val_pred = model.predict(X_val)
-    val_r2 = r2_score(y_val, y_val_pred)
-    val_mse = mean_squared_error(y_val, y_val_pred)
-    val_rmse = np.sqrt(val_mse)
-    val_mae = mean_absolute_error(y_val, y_val_pred)
-
     # 顯示指標
     print("\n=== 訓練集指標 ===")
     print(f"  R² Score:  {train_r2:.6f}")
@@ -76,15 +78,51 @@ def train_model(input_path: str = 'blob/process/train_processed.csv',
     print(f"  MAE:       {train_mae:.2f}")
     print(f"  MSE:       {train_mse:.2f}")
 
-    print("\n=== 驗證集指標 ===")
-    print(f"  R² Score:  {val_r2:.6f}")
-    print(f"  RMSE:      {val_rmse:.2f}")
-    print(f"  MAE:       {val_mae:.2f}")
-    print(f"  MSE:       {val_mse:.2f}")
+    # 準備指標字典
+    metrics = {
+        'train': {
+            'r2': float(train_r2),
+            'rmse': float(train_rmse),
+            'mae': float(train_mae),
+            'mse': float(train_mse),
+            'samples': int(len(X_train))
+        },
+        'config': {
+            'use_full_train': use_full_train,
+            'test_size': test_size if not use_full_train else None,
+            'random_state': random_state
+        }
+    }
+
+    # 如果有驗證集，計算驗證集指標
+    if not use_full_train:
+        y_val_pred = model.predict(X_val)
+        val_r2 = r2_score(y_val, y_val_pred)
+        val_mse = mean_squared_error(y_val, y_val_pred)
+        val_rmse = np.sqrt(val_mse)
+        val_mae = mean_absolute_error(y_val, y_val_pred)
+
+        print("\n=== 驗證集指標 ===")
+        print(f"  R² Score:  {val_r2:.6f}")
+        print(f"  RMSE:      {val_rmse:.2f}")
+        print(f"  MAE:       {val_mae:.2f}")
+        print(f"  MSE:       {val_mse:.2f}")
+
+        metrics['validation'] = {
+            'r2': float(val_r2),
+            'rmse': float(val_rmse),
+            'mae': float(val_mae),
+            'mse': float(val_mse),
+            'samples': int(len(X_val))
+        }
+    else:
+        print("\n（使用完整訓練集，無驗證集指標）")
 
     # 準備儲存路徑
     timestamp = get_timestamp()
     run_name = f"{timestamp}-linear"
+    if use_full_train:
+        run_name += "-full"
     run_dir = Path(runs_dir) / run_name
     ensure_dir(run_dir)
 
@@ -96,27 +134,6 @@ def train_model(input_path: str = 'blob/process/train_processed.csv',
     print(f"\n✓ 模型已儲存: {model_path}")
 
     # 儲存指標
-    metrics = {
-        'train': {
-            'r2': float(train_r2),
-            'rmse': float(train_rmse),
-            'mae': float(train_mae),
-            'mse': float(train_mse),
-            'samples': int(len(X_train))
-        },
-        'validation': {
-            'r2': float(val_r2),
-            'rmse': float(val_rmse),
-            'mae': float(val_mae),
-            'mse': float(val_mse),
-            'samples': int(len(X_val))
-        },
-        'config': {
-            'test_size': test_size,
-            'random_state': random_state
-        }
-    }
-
     with open(metrics_path, 'w', encoding='utf-8') as f:
         json.dump(metrics, f, ensure_ascii=False, indent=2)
     print(f"✓ 指標已儲存: {metrics_path}")
