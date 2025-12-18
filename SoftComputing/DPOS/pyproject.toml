@@ -1,0 +1,25 @@
+[project]
+name = "dpos"
+version = "0.1.0"
+description = "Dynamic Priority Ordering System with HDPSO algorithm"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pytest>=9.0.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0.2",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dpos"]
