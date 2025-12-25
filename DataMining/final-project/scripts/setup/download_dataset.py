@@ -9,15 +9,15 @@ FILENAME = "114-1-dm-final-project.zip"
 
 # Directory paths
 BLOB_DIR = Path("blobs")
-UNZIP_DIR = BLOB_DIR / "unzip"
+DOWNLOAD_DIR = BLOB_DIR / "downloads"
 RAW_DIR = BLOB_DIR / "raw"
 
 # Create necessary directories if they don't exist
-UNZIP_DIR.mkdir(parents=True, exist_ok=True)
+DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
 RAW_DIR.mkdir(parents=True, exist_ok=True)
 
 # Full path for the downloaded zip file
-zip_path = UNZIP_DIR / FILENAME
+zip_path = DOWNLOAD_DIR / FILENAME
 
 # Download the dataset with progress bar
 print(f"Downloading dataset from {URL}...")
