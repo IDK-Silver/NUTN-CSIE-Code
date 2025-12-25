@@ -122,8 +122,41 @@ uv run python scripts/setup/download_dataset.py
 ### 執行模型
 
 ```bash
-uv run python main.py
+# TabularNet
+uv run python scripts/train/tabular_net.py
 
+# LightGBM
+uv run python scripts/train/train_lightgbm.py
+
+# Ensemble (TabularNet + LightGBM)
+uv run python scripts/train/ensemble_tabular_lightgbm.py
+
+# AutoGluon
+uv run python scripts/train/train_autogluon.py
+
+# AutoGluon predict
+uv run python scripts/predict/predict_autogluon.py
+
+# Ensemble (Optuna + TabularNet)
+uv run python scripts/train/ensemble_optuna_tabular.py
+
+# Postprocess Optuna (nested threshold + calibration)
+uv run python scripts/train/postprocess_optuna_threshold.py
+```
+
+### 其他訓練腳本 (Optional)
+
+```bash
+# Multi-seed TabularNet
+uv run python scripts/train/train_tabular_net_multi_seed.py
+
+# Optuna search for TabularNet
+uv add optuna
+uv run python scripts/train/train_tabular_net_optuna.py
+
+# CatBoost (requires catboost)
+uv add catboost
+uv run python scripts/train/train_catboost.py
 ```
 
 ### 執行測試
@@ -150,16 +183,43 @@ ID,TARGET
 * `ID`：測試集中的病患 ID
 * `TARGET`：預測機率 (0 或 1)
 
+### 提交檔輸出位置
+
+* TabularNet：`blobs/submit/tabular/submission_tabular_net.csv`
+* LightGBM：`blobs/submit/lightgbm/submission_lightgbm.csv`
+* Ensemble：`blobs/submit/ensemble/submission_ensemble_tabular_lightgbm.csv`
+* TabularNet Multi-Seed：`blobs/submit/tabular_multi_seed/submission_tabular_net_multi_seed.csv`
+* TabularNet Optuna：`blobs/submit/tabular_optuna/submission_tabular_net_optuna.csv`
+* CatBoost：`blobs/submit/catboost/submission_catboost.csv`
+* AutoGluon：`blobs/submit/autogluon/submission_autogluon.csv` (from `scripts/predict/predict_autogluon.py`)
+* Ensemble Optuna + TabularNet：`blobs/submit/ensemble_optuna_tabular/submission_ensemble_optuna_tabular.csv`
+* Optuna Postprocess (nested): `blobs/submit/tabular_optuna_post/submission_tabular_net_optuna_nested.csv`
+* Optuna Postprocess (calibrated): `blobs/submit/tabular_optuna_post/submission_tabular_net_optuna_calibrated.csv`
+
 ## 專案結構 (Project Structure)
 
 ```
 .
 ├── blobs/
 │   ├── unzip/          # 下載的 zip 檔案
-│   └── raw/            # 解壓縮後的資料集檔案
+│   ├── raw/            # 解壓縮後的資料集檔案
+│   └── submit/         # 提交檔案輸出
 ├── scripts/
-│   └── setup/
-│       └── download_dataset.py
+│   ├── setup/
+│   │   └── download_dataset.py
+│   ├── predict/
+│   │   └── predict_autogluon.py
+│   └── train/
+│       ├── base_line.py
+│       ├── tabular_net.py
+│       ├── train_tabular_net_multi_seed.py
+│       ├── train_tabular_net_optuna.py
+│       ├── train_lightgbm.py
+│       ├── train_catboost.py
+│       └── ensemble_tabular_lightgbm.py
+│       └── ensemble_optuna_tabular.py
+│       └── postprocess_optuna_threshold.py
+│       └── train_autogluon.py
 ├── src/
 ├── tests/
 ├── main.py

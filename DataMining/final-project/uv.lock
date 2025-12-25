@@ -886,6 +886,9 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "autogluon" },
+    { name = "catboost" },
+    { name = "lightgbm" },
+    { name = "optuna" },
     { name = "pytest" },
     { name = "requests" },
     { name = "tqdm" },
@@ -894,6 +897,9 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "autogluon", specifier = ">=1.5.0" },
+    { name = "catboost", specifier = ">=1.2.8" },
+    { name = "lightgbm", specifier = ">=4.6.0" },
+    { name = "optuna", specifier = ">=4.6.0" },
     { name = "pytest", specifier = ">=9.0.2" },
     { name = "requests", specifier = ">=2.32.5" },
     { name = "tqdm", specifier = ">=4.67.1" },
