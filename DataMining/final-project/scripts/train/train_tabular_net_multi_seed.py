@@ -12,7 +12,12 @@ from torch.utils.data import DataLoader, TensorDataset
 
 from diabetes_binary_classifier.features import add_features
 
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+if torch.cuda.is_available():
+    DEVICE = torch.device("cuda")
+elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+    DEVICE = torch.device("mps")
+else:
+    DEVICE = torch.device("cpu")
 DATA_DIR = Path("blobs/raw")
 MODEL_DIR = Path("blobs/models/tabular_multi_seed")
 MODEL_DIR.mkdir(parents=True, exist_ok=True)

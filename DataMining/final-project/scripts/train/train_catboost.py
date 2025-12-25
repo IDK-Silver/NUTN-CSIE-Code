@@ -42,11 +42,20 @@ cat_features = [
     "bmi_cat",
 ]
 
+
+def get_catboost_task_type():
+    try:
+        gpu_count = cb.utils.get_gpu_device_count()
+    except Exception:
+        return "CPU"
+    return "GPU" if gpu_count > 0 else "CPU"
+
 N_FOLDS = 5
 skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True)
 
 oof_preds = np.zeros(len(X))
 f1_scores = []
+task_type = get_catboost_task_type()
 
 for fold, (train_idx, val_idx) in enumerate(skf.split(X, y)):
     print(f"\n{'=' * 50}\nFold {fold + 1}/{N_FOLDS}\n{'=' * 50}")
@@ -66,7 +75,7 @@ for fold, (train_idx, val_idx) in enumerate(skf.split(X, y)):
         cat_features=cat_features,
         early_stopping_rounds=100,
         verbose=200,
-        task_type="GPU",
+        task_type=task_type,
         train_dir=str(CATBOOST_INFO_DIR),
     )
 

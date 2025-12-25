@@ -3,9 +3,9 @@
 糖尿病二元分類模型，用於預測是否患有糖尿病（含糖尿病前期）。
 
 ## 環境需求
-
-- Python 3.10+
-- CUDA 11.8+（GPU 訓練需要）
+- 平台：Linux[CPU, GPU]、macOS[CPU, GPU(部分模型支援)]
+- Python 3.12+
+- CUDA 11.8+（NVIDIA GPU 訓練需要，非必須）
 - [uv](https://docs.astral.sh/uv/) 套件管理工具
 
     uv 安裝方式請參考[官方文件](https://docs.astral.sh/uv/getting-started/installation/)。
