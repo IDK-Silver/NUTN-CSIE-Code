@@ -54,6 +54,16 @@ cd NUTN-CSIE-Code
 └── WirelessCommunicationNetworks/  # 無線通訊網路
 ```
 
+## 支持這個專案
+
+如果這個專案對你有幫助，歡迎透過以下方式支持：
+
+[<img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" width="150">](https://www.buymeacoffee.com/yuuf.25)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=IDK-Silver/NUTN-CSIE-Code&type=Date)](https://star-history.com/#IDK-Silver/NUTN-CSIE-Code&Date)
+
 ## 授權
 
 作者：黃毓峰 (IDK-Silver)
