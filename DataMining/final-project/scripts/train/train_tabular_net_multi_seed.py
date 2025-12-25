@@ -124,8 +124,10 @@ with open(MODEL_DIR / "scaler.pkl", "wb") as f:
 
 print(f"Features: {X.shape[1]}")
 
-SEEDS = [42, 123, 456, 789, 1024]
+N_SEEDS = 5
 N_FOLDS = 5
+SEEDS = [np.random.randint(0, 10000) for _ in range(N_SEEDS)]
+print(f"Random seeds: {SEEDS}")
 all_oof = []
 all_f1_scores = []
 

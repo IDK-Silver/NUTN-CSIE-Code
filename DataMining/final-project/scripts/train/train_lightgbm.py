@@ -38,14 +38,13 @@ params = {
     "reg_lambda": 0.1,
     "min_child_samples": 50,
     "scale_pos_weight": (y == 0).sum() / (y == 1).sum(),
-    "random_state": 42,
     "verbose": -1,
     "n_jobs": -1,
 }
 
 # K-Fold
 N_FOLDS = 5
-skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=42)
+skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True)
 
 oof_preds = np.zeros(len(X))
 f1_scores = []

@@ -16,7 +16,6 @@ sub_one = pd.DataFrame({'ID': test['ID'], 'TARGET': 1})
 sub_one.to_csv('blobs/submit/base_line/submission_all_one.csv', index=False)
 
 # Random generation based on class distribution (13.9% positive class)
-np.random.seed(42)
 sub_random = pd.DataFrame({
     'ID': test['ID'], 
     'TARGET': np.random.choice([0, 1], size=len(test), p=[0.861, 0.139])

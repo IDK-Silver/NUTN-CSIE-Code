@@ -29,8 +29,6 @@ if NUM_WORKERS > 0:
         "prefetch_factor": 2,
     }
 
-SEED = 42
-
 if DEVICE.type == "cuda":
     torch.backends.cudnn.benchmark = True
     torch.backends.cuda.matmul.allow_tf32 = True
@@ -61,14 +59,6 @@ y_tensor = y_tensor_cpu.to(DEVICE)
 torch.cuda.empty_cache() if DEVICE.type == "cuda" else None
 
 print(f"Features: {X.shape[1]}")
-
-
-def set_seed(seed):
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed(seed)
-        torch.cuda.manual_seed_all(seed)
 
 
 def max_f1_for_thresholds(preds, targets, thresholds):
@@ -131,7 +121,7 @@ class TabularNet(nn.Module):
 
 
 def train_and_evaluate(params, n_folds=5):
-    skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=SEED)
+    skf = StratifiedKFold(n_splits=n_folds, shuffle=True)
     oof_preds = torch.zeros(X_tensor_cpu.size(0), device=DEVICE, dtype=torch.float32)
 
     use_amp = DEVICE.type == "cuda"
@@ -215,8 +205,6 @@ def train_and_evaluate(params, n_folds=5):
 
 
 def objective(trial):
-    set_seed(SEED)
-
     n_layers = trial.suggest_int("n_layers", 3, 5)
     first_dim = trial.suggest_categorical("first_dim", [256, 384, 512, 768])
     hidden_dims = [first_dim // (2**i) for i in range(n_layers)]
@@ -263,7 +251,7 @@ final_params = {
     "epochs": 150,
 }
 
-skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=SEED)
+skf = StratifiedKFold(n_splits=5, shuffle=True)
 oof_preds = torch.zeros(X_tensor_cpu.size(0), device=DEVICE, dtype=torch.float32)
 
 use_amp = DEVICE.type == "cuda"

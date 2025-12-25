@@ -149,7 +149,7 @@ print(f"Features: {X.shape[1]}")
 
 # K-Fold training
 N_FOLDS = 5
-skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=42)
+skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True)
 
 oof_preds = np.zeros(len(X))
 thresholds = []

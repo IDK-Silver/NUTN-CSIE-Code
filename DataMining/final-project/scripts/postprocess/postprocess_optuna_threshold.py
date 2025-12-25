@@ -10,7 +10,6 @@ OUTPUT_DIR = Path("blobs/submit/tabular_optuna_post")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 N_FOLDS = 5
-SEED = 42
 THRESHOLDS = np.arange(0.15, 0.55, 0.005)
 
 required_files = [
@@ -57,7 +56,7 @@ def f1_at_threshold(preds, targets, threshold):
 
 
 # Nested threshold (fold-wise, then average)
-skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=SEED)
+skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True)
 fold_thresholds = []
 
 for _, val_idx in skf.split(np.zeros(len(y)), y):

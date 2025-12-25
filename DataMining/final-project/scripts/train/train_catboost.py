@@ -43,7 +43,7 @@ cat_features = [
 ]
 
 N_FOLDS = 5
-skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=42)
+skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True)
 
 oof_preds = np.zeros(len(X))
 f1_scores = []
@@ -66,7 +66,6 @@ for fold, (train_idx, val_idx) in enumerate(skf.split(X, y)):
         cat_features=cat_features,
         early_stopping_rounds=100,
         verbose=200,
-        random_seed=42,
         task_type="GPU",
         train_dir=str(CATBOOST_INFO_DIR),
     )
