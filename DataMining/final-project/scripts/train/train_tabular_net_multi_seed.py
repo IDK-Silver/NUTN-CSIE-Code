@@ -1,35 +1,21 @@
+import json
+import pickle
+
+import numpy as np
+import pandas as pd
 import torch
 import torch.nn as nn
-import pandas as pd
-import numpy as np
+from pathlib import Path
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
 from torch.utils.data import DataLoader, TensorDataset
-from pathlib import Path
 
-DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+from diabetes_binary_classifier.features import add_features
+
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 DATA_DIR = Path("blobs/raw")
-OUTPUT_DIR = Path("blobs/submit/tabular_multi_seed")
 MODEL_DIR = Path("blobs/models/tabular_multi_seed")
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
-
-
-def add_features(df):
-    df = df.copy()
-    df['metabolic_risk'] = df['HighBP'] + df['HighChol'] + (df['BMI'] > 30).astype(int)
-    df['cardio_risk'] = df['Stroke'] + df['HeartDiseaseorAttack'] + df['HighBP'] + df['HighChol']
-    df['lifestyle'] = df['PhysActivity'] + df['Fruits'] + df['Veggies'] - df['Smoker'] - df['HvyAlcoholConsump']
-    df['health_gap'] = df['GenHlth'] - (df['PhysHlth'] + df['MentHlth']) / 30
-    df['bmi_cat'] = pd.cut(
-        df['BMI'],
-        bins=[0, 18.5, 25, 30, 35, 100],
-        labels=[0, 1, 2, 3, 4]
-    ).astype(int)
-    df['age_bmi'] = df['Age'] * df['BMI']
-    df['age_health'] = df['Age'] * df['GenHlth']
-    df['age_cardio'] = df['Age'] * df['cardio_risk']
-    return df
 
 
 class FocalLoss(nn.Module):
@@ -40,7 +26,7 @@ class FocalLoss(nn.Module):
 
     def forward(self, logits, targets):
         bce = nn.functional.binary_cross_entropy_with_logits(
-            logits, targets, reduction='none'
+            logits, targets, reduction="none"
         )
         pt = torch.exp(-bce)
         return (self.alpha * (1 - pt) ** self.gamma * bce).mean()
@@ -123,27 +109,25 @@ def train_fold(X_train, y_train, X_val, y_val, epochs=150, batch_size=1024, lr=1
 
 # Load and preprocess
 train_df = pd.read_csv(DATA_DIR / "train.csv")
-test_df = pd.read_csv(DATA_DIR / "test.csv")
-test_ids = test_df["ID"].copy()
 train_df = train_df.drop(columns=["ID"])
-test_df = test_df.drop(columns=["ID"])
 train_df = add_features(train_df)
-test_df = add_features(test_df)
 
 X = train_df.drop(columns=["target"]).values.astype(np.float32)
 y = train_df["target"].values.astype(np.float32)
-X_test = test_df.values.astype(np.float32)
 
 scaler = StandardScaler()
 X = scaler.fit_transform(X)
-X_test = scaler.transform(X_test)
+
+# Save scaler
+with open(MODEL_DIR / "scaler.pkl", "wb") as f:
+    pickle.dump(scaler, f)
 
 print(f"Features: {X.shape[1]}")
 
 SEEDS = [42, 123, 456, 789, 1024]
 N_FOLDS = 5
 all_oof = []
-all_test = []
+all_f1_scores = []
 
 for seed in SEEDS:
     print(f"\n{'#' * 60}\nSeed {seed}\n{'#' * 60}")
@@ -156,36 +140,29 @@ for seed in SEEDS:
 
     skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=seed)
     oof_preds = np.zeros(len(X))
-    test_preds = np.zeros(len(X_test))
+    seed_f1_scores = []
 
     for fold, (train_idx, val_idx) in enumerate(skf.split(X, y)):
         print(f"Seed {seed} Fold {fold + 1}/{N_FOLDS}", end=" ")
 
-        model, f1 = train_fold(
-            X[train_idx], y[train_idx],
-            X[val_idx], y[val_idx]
-        )
+        model, f1 = train_fold(X[train_idx], y[train_idx], X[val_idx], y[val_idx])
         print(f"F1: {f1:.4f}")
+        seed_f1_scores.append(f1)
 
         model.eval()
         with torch.no_grad():
-            oof_preds[val_idx] = torch.sigmoid(
-                model(torch.tensor(X[val_idx]).to(DEVICE))
-            ).cpu().numpy()
-            test_preds += torch.sigmoid(
-                model(torch.tensor(X_test).to(DEVICE))
-            ).cpu().numpy() / N_FOLDS
+            oof_preds[val_idx] = (
+                torch.sigmoid(model(torch.tensor(X[val_idx]).to(DEVICE))).cpu().numpy()
+            )
 
         torch.save(
-            model.state_dict(),
-            MODEL_DIR / f"tabular_net_seed{seed}_fold{fold}.pt"
+            model.state_dict(), MODEL_DIR / f"tabular_net_seed{seed}_fold{fold}.pt"
         )
 
     all_oof.append(oof_preds)
-    all_test.append(test_preds)
+    all_f1_scores.extend(seed_f1_scores)
 
 final_oof = np.mean(all_oof, axis=0)
-final_test = np.mean(all_test, axis=0)
 
 best_th, best_f1 = 0.5, 0.0
 for th in np.arange(0.15, 0.55, 0.005):
@@ -200,8 +177,19 @@ for th in np.arange(0.15, 0.55, 0.005):
 print(f"\n{'=' * 60}")
 print(f"Final OOF F1: {best_f1:.4f} (threshold: {best_th:.3f})")
 
-submission = pd.DataFrame({"ID": test_ids, "TARGET": (final_test > best_th).astype(int)})
-submission.to_csv(OUTPUT_DIR / "submission_tabular_net_multi_seed.csv", index=False)
-np.save(OUTPUT_DIR / "tabular_net_multi_seed_test_proba.npy", final_test)
-np.save(OUTPUT_DIR / "tabular_net_multi_seed_oof_proba.npy", final_oof)
-print(f"Saved to {OUTPUT_DIR / 'submission_tabular_net_multi_seed.csv'}")
+# Save info.json
+info = {
+    "threshold": float(best_th),
+    "n_folds": N_FOLDS,
+    "seeds": SEEDS,
+    "cv_score": float(np.mean(all_f1_scores)),
+    "cv_std": float(np.std(all_f1_scores)),
+    "oof_f1": float(best_f1),
+    "in_features": int(X.shape[1]),
+}
+with open(MODEL_DIR / "info.json", "w") as f:
+    json.dump(info, f, indent=2)
+
+# Save OOF for ensemble
+np.save(MODEL_DIR / "oof_proba.npy", final_oof)
+print(f"\nSaved model and info to {MODEL_DIR}")

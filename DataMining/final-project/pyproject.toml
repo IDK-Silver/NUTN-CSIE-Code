@@ -23,4 +23,4 @@ testpaths = ["tests"]
 pythonpath = ["."]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/diabetes-binary-classifier"]
+packages = ["src/diabetes_binary_classifier"]

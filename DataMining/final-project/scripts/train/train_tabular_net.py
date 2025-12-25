@@ -1,66 +1,22 @@
+import json
+import pickle
+
+import numpy as np
+import pandas as pd
 import torch
 import torch.nn as nn
-import pandas as pd
-import numpy as np
+from pathlib import Path
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
 from torch.utils.data import DataLoader, TensorDataset
-from pathlib import Path
+
+from diabetes_binary_classifier.features import add_features
 
 # Config
-DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 DATA_DIR = Path("blobs/raw")
-OUTPUT_DIR = Path("blobs/submit/tabular")
 MODEL_DIR = Path("blobs/models/tabular")
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
-
-
-def add_features(df):
-    df = df.copy()
-    # Metabolic risk
-    df['metabolic_risk'] = df['HighBP'] + df['HighChol'] + (df['BMI'] > 30).astype(int)
-    # Cardiovascular risk
-    df['cardio_risk'] = df['Stroke'] + df['HeartDiseaseorAttack'] + df['HighBP'] + df['HighChol']
-    # Lifestyle score
-    df['lifestyle'] = df['PhysActivity'] + df['Fruits'] + df['Veggies'] - df['Smoker'] - df['HvyAlcoholConsump']
-    # Health gap
-    df['health_gap'] = df['GenHlth'] - (df['PhysHlth'] + df['MentHlth']) / 30
-    # BMI category
-    df['bmi_cat'] = pd.cut(
-        df['BMI'],
-        bins=[0, 18.5, 25, 30, 35, 100],
-        labels=[0, 1, 2, 3, 4]
-    ).astype(int)
-    # Interactions
-    df['age_bmi'] = df['Age'] * df['BMI']
-    df['age_health'] = df['Age'] * df['GenHlth']
-    df['age_cardio'] = df['Age'] * df['cardio_risk']
-    return df
-
-
-# Load data
-train_df = pd.read_csv(DATA_DIR / "train.csv")
-test_df = pd.read_csv(DATA_DIR / "test.csv")
-
-test_ids = test_df["ID"].copy()
-train_df = train_df.drop(columns=["ID"])
-test_df = test_df.drop(columns=["ID"])
-
-# Feature engineering
-train_df = add_features(train_df)
-test_df = add_features(test_df)
-
-X = train_df.drop(columns=["target"]).values.astype(np.float32)
-y = train_df["target"].values.astype(np.float32)
-X_test = test_df.values.astype(np.float32)
-
-# Normalize
-scaler = StandardScaler()
-X = scaler.fit_transform(X)
-X_test = scaler.transform(X_test)
-
-print(f"Features: {X.shape[1]}")
 
 
 class FocalLoss(nn.Module):
@@ -71,7 +27,7 @@ class FocalLoss(nn.Module):
 
     def forward(self, logits, targets):
         bce = nn.functional.binary_cross_entropy_with_logits(
-            logits, targets, reduction='none'
+            logits, targets, reduction="none"
         )
         pt = torch.exp(-bce)
         focal = self.alpha * (1 - pt) ** self.gamma * bce
@@ -173,12 +129,29 @@ def train_fold(X_train, y_train, X_val, y_val, fold_idx, epochs=150, batch_size=
     return model, best_threshold, best_f1
 
 
+# Load data
+train_df = pd.read_csv(DATA_DIR / "train.csv")
+train_df = train_df.drop(columns=["ID"])
+train_df = add_features(train_df)
+
+X = train_df.drop(columns=["target"]).values.astype(np.float32)
+y = train_df["target"].values.astype(np.float32)
+
+# Normalize
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+# Save scaler
+with open(MODEL_DIR / "scaler.pkl", "wb") as f:
+    pickle.dump(scaler, f)
+
+print(f"Features: {X.shape[1]}")
+
 # K-Fold training
 N_FOLDS = 5
 skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=42)
 
 oof_preds = np.zeros(len(X))
-test_preds = np.zeros(len(X_test))
 thresholds = []
 f1_scores = []
 
@@ -186,25 +159,23 @@ for fold, (train_idx, val_idx) in enumerate(skf.split(X, y)):
     print(f"\n{'='*50}\nFold {fold+1}/{N_FOLDS}\n{'='*50}")
 
     model, threshold, f1 = train_fold(
-        X[train_idx], y[train_idx],
-        X[val_idx], y[val_idx],
+        X[train_idx],
+        y[train_idx],
+        X[val_idx],
+        y[val_idx],
         fold_idx=fold,
         epochs=150,
         batch_size=1024,
-        lr=1e-3
+        lr=1e-3,
     )
     thresholds.append(threshold)
     f1_scores.append(f1)
 
     model.eval()
     with torch.no_grad():
-        oof_preds[val_idx] = torch.sigmoid(
-            model(torch.tensor(X[val_idx]).to(DEVICE))
-        ).cpu().numpy()
-
-        test_preds += torch.sigmoid(
-            model(torch.tensor(X_test).to(DEVICE))
-        ).cpu().numpy() / N_FOLDS
+        oof_preds[val_idx] = (
+            torch.sigmoid(model(torch.tensor(X[val_idx]).to(DEVICE))).cpu().numpy()
+        )
 
 print(f"\n{'='*50}")
 print(f"Fold F1 scores: {[f'{f:.4f}' for f in f1_scores]}")
@@ -226,13 +197,18 @@ for th in np.arange(0.15, 0.55, 0.005):
 print(f"\nOptimal threshold (OOF): {best_final_th:.3f}")
 print(f"OOF F1: {best_final_f1:.4f}")
 
-# Save submission
-test_binary = (test_preds > best_final_th).astype(int)
-submission = pd.DataFrame({"ID": test_ids, "TARGET": test_binary})
-submission.to_csv(OUTPUT_DIR / "submission_tabular_net.csv", index=False)
-print(f"\nSaved to {OUTPUT_DIR / 'submission_tabular_net.csv'}")
+# Save info.json
+info = {
+    "threshold": float(best_final_th),
+    "n_folds": N_FOLDS,
+    "cv_score": float(np.mean(f1_scores)),
+    "cv_std": float(np.std(f1_scores)),
+    "oof_f1": float(best_final_f1),
+    "in_features": int(X.shape[1]),
+}
+with open(MODEL_DIR / "info.json", "w") as f:
+    json.dump(info, f, indent=2)
 
-# Save probabilities for ensemble
-np.save(OUTPUT_DIR / "tabular_net_test_proba.npy", test_preds)
-np.save(OUTPUT_DIR / "tabular_net_oof_proba.npy", oof_preds)
-print("Saved probabilities for ensemble")
+# Save OOF for ensemble
+np.save(MODEL_DIR / "oof_proba.npy", oof_preds)
+print(f"\nSaved model and info to {MODEL_DIR}")
