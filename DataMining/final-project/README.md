@@ -103,6 +103,15 @@ uv run python scripts/ensemble/ensemble_tabular_lightgbm.py
 uv run python scripts/ensemble/ensemble_optuna_tabular.py
 ```
 
+### 後處理
+
+對預測結果進行 calibration 和 nested threshold 優化。
+
+```bash
+# 需先執行 TabularNet Optuna 的訓練與預測
+uv run python scripts/postprocess/postprocess_optuna_threshold.py
+```
+
 ## 專案結構
 
 ```
@@ -134,6 +143,20 @@ uv run python scripts/ensemble/ensemble_optuna_tabular.py
 | TabularNet | PyTorch 神經網路 |
 | TabularNet Optuna | TabularNet + 超參數搜索 |
 | TabularNet Multi-Seed | TabularNet + 多種子集成 |
+
+## Public Score (F1)
+
+| 方法 | 分數 |
+|------|------|
+| Ensemble (Optuna + TabularNet) | 0.46886 |
+| TabularNet Optuna (Nested Threshold) | 0.46833 |
+| TabularNet Multi-Seed | 0.46811 |
+| TabularNet | 0.46797 |
+| TabularNet Optuna | 0.46796 |
+| TabularNet Optuna (Calibrated) | 0.46734 |
+| Ensemble (TabularNet + LightGBM) | 0.46723 |
+| CatBoost | 0.45895 |
+| LightGBM | 0.45814 |
 
 ## 文件
 

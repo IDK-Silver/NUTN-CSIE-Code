@@ -5,7 +5,8 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.linear_model import LogisticRegression
 
 DATA_DIR = Path("blobs/raw")
-OPTUNA_DIR = Path("blobs/submit/tabular_optuna")
+OPTUNA_MODEL_DIR = Path("blobs/models/tabular_optuna")
+OPTUNA_SUBMIT_DIR = Path("blobs/submit/tabular_optuna")
 OUTPUT_DIR = Path("blobs/submit/tabular_optuna_post")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -13,8 +14,8 @@ N_FOLDS = 5
 THRESHOLDS = np.arange(0.15, 0.55, 0.005)
 
 required_files = [
-    OPTUNA_DIR / "tabular_net_optuna_oof_proba.npy",
-    OPTUNA_DIR / "tabular_net_optuna_test_proba.npy",
+    OPTUNA_MODEL_DIR / "oof_proba.npy",
+    OPTUNA_SUBMIT_DIR / "test_proba.npy",
     DATA_DIR / "train.csv",
     DATA_DIR / "test.csv",
 ]
@@ -23,6 +24,9 @@ if missing:
     print("Missing required files. Cannot run postprocess:")
     for path in missing:
         print(f"- {path}")
+    print("\nRun these first:")
+    print("uv run python scripts/train/train_tabular_net_optuna.py")
+    print("uv run python scripts/predict/predict_tabular_net_optuna.py")
     raise SystemExit(1)
 
 train_df = pd.read_csv(DATA_DIR / "train.csv")
@@ -30,8 +34,8 @@ test_df = pd.read_csv(DATA_DIR / "test.csv")
 y = train_df["target"].values.astype(int)
 test_ids = test_df["ID"].values
 
-oof_preds = np.load(OPTUNA_DIR / "tabular_net_optuna_oof_proba.npy")
-test_preds = np.load(OPTUNA_DIR / "tabular_net_optuna_test_proba.npy")
+oof_preds = np.load(OPTUNA_MODEL_DIR / "oof_proba.npy")
+test_preds = np.load(OPTUNA_SUBMIT_DIR / "test_proba.npy")
 
 
 def best_threshold(preds, targets, thresholds):

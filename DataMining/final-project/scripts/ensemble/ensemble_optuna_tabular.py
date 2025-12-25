@@ -2,17 +2,19 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-TABULAR_DIR = Path("blobs/submit/tabular")
-OPTUNA_DIR = Path("blobs/submit/tabular_optuna")
+TABULAR_MODEL_DIR = Path("blobs/models/tabular")
+TABULAR_SUBMIT_DIR = Path("blobs/submit/tabular")
+OPTUNA_MODEL_DIR = Path("blobs/models/tabular_optuna")
+OPTUNA_SUBMIT_DIR = Path("blobs/submit/tabular_optuna")
 OUTPUT_DIR = Path("blobs/submit/ensemble_optuna_tabular")
 DATA_DIR = Path("blobs/raw")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 required_files = [
-    TABULAR_DIR / "tabular_net_test_proba.npy",
-    TABULAR_DIR / "tabular_net_oof_proba.npy",
-    OPTUNA_DIR / "tabular_net_optuna_test_proba.npy",
-    OPTUNA_DIR / "tabular_net_optuna_oof_proba.npy",
+    TABULAR_SUBMIT_DIR / "test_proba.npy",
+    TABULAR_MODEL_DIR / "oof_proba.npy",
+    OPTUNA_SUBMIT_DIR / "test_proba.npy",
+    OPTUNA_MODEL_DIR / "oof_proba.npy",
     DATA_DIR / "train.csv",
     DATA_DIR / "test.csv",
 ]
@@ -22,14 +24,16 @@ if missing:
     for path in missing:
         print(f"- {path}")
     print("\nRun these first:")
-    print("uv run python scripts/train/tabular_net.py")
+    print("uv run python scripts/train/train_tabular_net.py")
+    print("uv run python scripts/predict/predict_tabular_net.py")
     print("uv run python scripts/train/train_tabular_net_optuna.py")
+    print("uv run python scripts/predict/predict_tabular_net_optuna.py")
     raise SystemExit(1)
 
-v2_test = np.load(TABULAR_DIR / "tabular_net_test_proba.npy")
-v2_oof = np.load(TABULAR_DIR / "tabular_net_oof_proba.npy")
-optuna_test = np.load(OPTUNA_DIR / "tabular_net_optuna_test_proba.npy")
-optuna_oof = np.load(OPTUNA_DIR / "tabular_net_optuna_oof_proba.npy")
+v2_test = np.load(TABULAR_SUBMIT_DIR / "test_proba.npy")
+v2_oof = np.load(TABULAR_MODEL_DIR / "oof_proba.npy")
+optuna_test = np.load(OPTUNA_SUBMIT_DIR / "test_proba.npy")
+optuna_oof = np.load(OPTUNA_MODEL_DIR / "oof_proba.npy")
 
 train_df = pd.read_csv(DATA_DIR / "train.csv")
 test_df = pd.read_csv(DATA_DIR / "test.csv")

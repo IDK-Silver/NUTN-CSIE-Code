@@ -4,17 +4,19 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-TABULAR_DIR = Path("blobs/submit/tabular")
-LGB_DIR = Path("blobs/submit/lightgbm")
+TABULAR_MODEL_DIR = Path("blobs/models/tabular")
+TABULAR_SUBMIT_DIR = Path("blobs/submit/tabular")
+LGB_MODEL_DIR = Path("blobs/models/lightgbm")
+LGB_SUBMIT_DIR = Path("blobs/submit/lightgbm")
 OUTPUT_DIR = Path("blobs/submit/ensemble")
 DATA_DIR = Path("blobs/raw")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 required_files = [
-    TABULAR_DIR / "tabular_net_test_proba.npy",
-    TABULAR_DIR / "tabular_net_oof_proba.npy",
-    LGB_DIR / "lightgbm_test_proba.npy",
-    LGB_DIR / "lightgbm_oof_proba.npy",
+    TABULAR_SUBMIT_DIR / "test_proba.npy",
+    TABULAR_MODEL_DIR / "oof_proba.npy",
+    LGB_SUBMIT_DIR / "test_proba.npy",
+    LGB_MODEL_DIR / "oof_proba.npy",
     DATA_DIR / "train.csv",
     DATA_DIR / "test.csv",
 ]
@@ -24,15 +26,17 @@ if missing:
     for path in missing:
         print(f"- {path}")
     print("\nRun these first:")
-    print("uv run python scripts/train/tabular_net.py")
+    print("uv run python scripts/train/train_tabular_net.py")
+    print("uv run python scripts/predict/predict_tabular_net.py")
     print("uv run python scripts/train/train_lightgbm.py")
+    print("uv run python scripts/predict/predict_lightgbm.py")
     sys.exit(1)
 
 # Load predictions
-nn_test = np.load(TABULAR_DIR / "tabular_net_test_proba.npy")
-nn_oof = np.load(TABULAR_DIR / "tabular_net_oof_proba.npy")
-lgb_test = np.load(LGB_DIR / "lightgbm_test_proba.npy")
-lgb_oof = np.load(LGB_DIR / "lightgbm_oof_proba.npy")
+nn_test = np.load(TABULAR_SUBMIT_DIR / "test_proba.npy")
+nn_oof = np.load(TABULAR_MODEL_DIR / "oof_proba.npy")
+lgb_test = np.load(LGB_SUBMIT_DIR / "test_proba.npy")
+lgb_oof = np.load(LGB_MODEL_DIR / "oof_proba.npy")
 
 # Load labels
 train_df = pd.read_csv(DATA_DIR / "train.csv")
