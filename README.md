@@ -33,27 +33,6 @@ cd NUTN-CSIE-Code
 
 各科目的詳細說明請參考各資料夾內的 README。
 
-## 專案結構
-
-```
-.
-├── Algorithm/                      # 演算法
-├── CloudComputing/                 # 雲端運算
-├── ComputerGraphics/               # 電腦圖學
-├── ComputerProgramming/            # 計算機程式設計
-├── DataMining/                     # 資料探勘
-├── DataStructure/                  # 資料結構
-├── Digital Image Processing/       # 數位影像處理
-├── DigitalSystem/                  # 數位系統
-├── ObjectOrientedProgramming/      # 物件導向程式設計
-├── Probability/                    # 機率論
-├── SignalsAndSystems/              # 訊號與系統
-├── SoftComputing/                  # 軟性計算
-├── SoftwareEngineering/            # 軟體工程
-├── SystemSoftware/                 # 系統軟體
-└── WirelessCommunicationNetworks/  # 無線通訊網路
-```
-
 ## 支持這個專案
 
 如果這個專案對你有幫助，歡迎透過以下方式支持：
