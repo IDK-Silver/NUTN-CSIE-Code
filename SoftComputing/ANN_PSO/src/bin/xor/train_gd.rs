@@ -69,7 +69,7 @@ fn train_sgd() {
         final_iter = iter + 1;
         final_loss = loss;
 
-        if iter % 1000 == 0 || iter == config.max_iter - 1 {
+        if iter % 100 == 0 || iter == config.max_iter - 1 {
             println!("{:9} | {:.6}", iter + 1, loss);
         }
 

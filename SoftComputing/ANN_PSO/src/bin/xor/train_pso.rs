@@ -73,7 +73,7 @@ fn main() {
         loss_history.push(best_loss);
         final_iter = iter + 1;
 
-        if iter % 500 == 0 || iter == config.max_iter - 1 {
+        if iter % 100 == 0 || iter == config.max_iter - 1 {
             println!("{:9} | {:.6}", iter + 1, best_loss);
         }
 
