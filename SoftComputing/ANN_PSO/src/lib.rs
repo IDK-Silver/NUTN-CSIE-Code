@@ -11,7 +11,11 @@ pub use mat::Mat;
 pub use layer::{Layer, Linear, Sigmoid, ReLU, Softmax};
 pub use loss::{mse, mse_grad, cross_entropy, cross_entropy_softmax_grad};
 pub use optimizer::{Pso, PsoConfig, Sgd};
-pub use utils::{save_loss_history, plot_loss_curve, plot_accuracy_curve, plot_confusion_matrix};
+pub use utils::{
+    save_loss_history, save_accuracy_history, save_confusion_matrix,
+    load_loss_history, load_accuracy_history, load_confusion_matrix,
+    plot_loss_curve, plot_accuracy_curve, plot_confusion_matrix,
+};
 pub use config::{
     PsoYamlConfig, SgdYamlConfig, SavedModel, ModelWeights,
     MnistPsoYamlConfig, MnistSgdYamlConfig, MnistSavedModel, MnistModelWeights,

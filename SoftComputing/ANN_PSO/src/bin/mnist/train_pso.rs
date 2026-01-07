@@ -1,7 +1,7 @@
 use ann_pso::{
     Pso, PsoConfig, MnistPsoYamlConfig,
     Dataset, MnistDataset, Model, MnistNetwork,
-    cross_entropy, save_loss_history, plot_loss_curve, plot_accuracy_curve,
+    cross_entropy, save_loss_history, save_accuracy_history,
 };
 use rand::seq::SliceRandom;
 
@@ -23,7 +23,6 @@ fn main() {
     println!("  Position range: [{}, {}]", config.pos_min, config.pos_max);
     println!("  Max velocity: {}", config.vel_max);
     println!("  Max iterations: {}", config.max_iter);
-    println!("  Target loss: {}", config.target_loss);
     println!("  Batch size: {}", config.batch_size);
     println!();
 
@@ -40,9 +39,6 @@ fn main() {
     println!("Network: {} ({} parameters)", network.name(), network.param_count());
     println!("Activation: ReLU (hidden), Softmax (output)");
     println!("Loss: Cross-Entropy\n");
-
-    println!("WARNING: PSO with {} parameters is slow. Consider using SGD.\n",
-             network.param_count());
 
     // Create PSO
     let pso_config = PsoConfig {
@@ -77,8 +73,8 @@ fn main() {
         fitness_fn(params, &indices, config.batch_size, &mut network, &dataset)
     });
 
-    println!("Iteration | Loss     | Train Acc | Test Acc");
-    println!("----------|----------|-----------|----------");
+    println!("Iteration | Loss       | Train Acc | Test Acc");
+    println!("----------|------------|-----------|----------");
 
     let mut loss_history = Vec::new();
     let mut train_acc_history = Vec::new();
@@ -127,7 +123,7 @@ fn main() {
 
             // Print every 50 iterations
             if iter % 50 == 0 || iter == config.max_iter - 1 {
-                println!("{:9} | {:.6} | {:8.2}% | {:7.2}%", iter + 1, best_loss, train_acc, test_acc);
+                println!("{:9} | {:10.6} | {:8.2}% | {:7.2}%", iter + 1, best_loss, train_acc, test_acc);
             }
         }
     }
@@ -145,17 +141,11 @@ fn main() {
         .expect("Failed to save loss history");
     println!("\nLoss history saved to: {}", csv_path);
 
-    // Plot loss curve
-    let png_path = format!("{}/loss.png", OUTPUT_DIR);
-    plot_loss_curve(&loss_history, &png_path, "MNIST PSO Loss Curve")
-        .expect("Failed to plot loss curve");
-    println!("Loss curve saved to: {}", png_path);
-
-    // Plot accuracy curve
-    let acc_path = format!("{}/accuracy.png", OUTPUT_DIR);
-    plot_accuracy_curve(&train_acc_history, &test_acc_history, &acc_path, "MNIST PSO Accuracy Curve")
-        .expect("Failed to plot accuracy curve");
-    println!("Accuracy curve saved to: {}", acc_path);
+    // Save accuracy history
+    let acc_csv_path = format!("{}/accuracy.csv", OUTPUT_DIR);
+    save_accuracy_history(&train_acc_history, &test_acc_history, &acc_csv_path)
+        .expect("Failed to save accuracy history");
+    println!("Accuracy history saved to: {}", acc_csv_path);
 
     // Save model
     let model = network.to_saved_model("pso", final_loss, final_iter);

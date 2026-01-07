@@ -1,8 +1,7 @@
 use ann_pso::{
     MnistSgdYamlConfig,
     Dataset, MnistDataset, Model, GradientModel, MnistNetwork,
-    cross_entropy, cross_entropy_softmax_grad, save_loss_history, plot_loss_curve,
-    plot_accuracy_curve,
+    cross_entropy, cross_entropy_softmax_grad, save_loss_history, save_accuracy_history,
 };
 use rand::seq::SliceRandom;
 use std::env;
@@ -44,7 +43,6 @@ fn train_sgd() {
     println!("  Hidden size: {}", config.hidden_size);
     println!("  Learning rate: {}", config.lr);
     println!("  Epochs: {}", config.max_iter);
-    println!("  Target loss: {}", config.target_loss);
     println!("  Batch size: {}", config.batch_size);
     println!();
 
@@ -144,17 +142,11 @@ fn train_sgd() {
         .expect("Failed to save loss history");
     println!("\nLoss history saved to: {}", csv_path);
 
-    // Plot loss curve
-    let png_path = format!("{}/loss.png", output_dir);
-    plot_loss_curve(&loss_history, &png_path, "MNIST SGD Loss Curve")
-        .expect("Failed to plot loss curve");
-    println!("Loss curve saved to: {}", png_path);
-
-    // Plot accuracy curve
-    let acc_path = format!("{}/accuracy.png", output_dir);
-    plot_accuracy_curve(&train_acc_history, &test_acc_history, &acc_path, "MNIST SGD Accuracy Curve")
-        .expect("Failed to plot accuracy curve");
-    println!("Accuracy curve saved to: {}", acc_path);
+    // Save accuracy history
+    let acc_csv_path = format!("{}/accuracy.csv", output_dir);
+    save_accuracy_history(&train_acc_history, &test_acc_history, &acc_csv_path)
+        .expect("Failed to save accuracy history");
+    println!("Accuracy history saved to: {}", acc_csv_path);
 
     // Save model
     let model = network.to_saved_model("sgd", final_loss, final_epoch);

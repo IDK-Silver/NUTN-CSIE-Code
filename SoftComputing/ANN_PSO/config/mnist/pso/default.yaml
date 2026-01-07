@@ -1,5 +1,5 @@
 # MNIST PSO Configuration
-hidden_size: 64
+hidden_size: 128
 num_particles: 30
 w: 0.729
 c1: 1.49445

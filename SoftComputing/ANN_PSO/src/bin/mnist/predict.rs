@@ -1,6 +1,6 @@
 use ann_pso::{
     Dataset, MnistDataset, Model, MnistNetwork, MnistSavedModel,
-    plot_confusion_matrix,
+    save_confusion_matrix,
 };
 use std::env;
 use std::fs::{self, File};
@@ -153,10 +153,9 @@ fn main() {
     writeln!(file, "Accuracy: {:.2}% ({}/{})", accuracy, correct, test.x.rows).unwrap();
     println!("Summary saved to: {}", summary_path);
 
-    // Plot confusion matrix
-    let cm_path = format!("{}/confusion_matrix.png", output_dir);
-    let cm_title = format!("MNIST {} Confusion Matrix", optimizer.to_uppercase());
-    plot_confusion_matrix(&confusion_matrix, &cm_path, &cm_title)
-        .expect("Failed to plot confusion matrix");
-    println!("Confusion matrix saved to: {}", cm_path);
+    // Save confusion matrix
+    let cm_csv_path = format!("{}/confusion_matrix.csv", output_dir);
+    save_confusion_matrix(&confusion_matrix, &cm_csv_path)
+        .expect("Failed to save confusion matrix");
+    println!("Confusion matrix saved to: {}", cm_csv_path);
 }

@@ -42,3 +42,7 @@ path = "src/bin/mnist/train_gd.rs"
 [[bin]]
 name = "mnist-predict"
 path = "src/bin/mnist/predict.rs"
+
+[[bin]]
+name = "mnist-plot"
+path = "src/bin/mnist/plot.rs"
