@@ -21,6 +21,27 @@ pub fn mse_grad(pred: &Mat, target: &Mat) -> Mat {
     pred.sub(target)
 }
 
+/// Cross-entropy loss for multi-class classification
+/// L = -mean(sum(target * log(pred + epsilon)))
+pub fn cross_entropy(pred: &Mat, target: &Mat) -> f64 {
+    assert_eq!(pred.rows, target.rows);
+    assert_eq!(pred.cols, target.cols);
+
+    let epsilon = 1e-15;
+    let mut sum = 0.0;
+    for i in 0..pred.data.len() {
+        sum -= target.data[i] * (pred.data[i] + epsilon).ln();
+    }
+    sum / pred.rows as f64
+}
+
+/// Gradient of cross-entropy loss combined with softmax
+/// When softmax output is used with cross-entropy, the gradient simplifies to:
+/// dL/dz = softmax(z) - target = pred - target
+pub fn cross_entropy_softmax_grad(pred: &Mat, target: &Mat) -> Mat {
+    pred.sub(target).scale(1.0 / pred.rows as f64)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

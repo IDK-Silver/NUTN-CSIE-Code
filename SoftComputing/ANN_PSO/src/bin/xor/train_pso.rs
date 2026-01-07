@@ -1,19 +1,19 @@
 use ann_pso::{
-    Mat, Pso, PsoConfig, XorNetwork,
-    PsoYamlConfig, mse, xor_data,
-    save_loss_history, plot_loss_curve,
+    Pso, PsoConfig, PsoYamlConfig,
+    Dataset, XorDataset, Model, XorNetwork,
+    mse, save_loss_history, plot_loss_curve,
 };
 
-const OUTPUT_DIR: &str = "blob/train/pso";
+const OUTPUT_DIR: &str = "blob/xor/train/pso";
 
 fn main() {
-    println!("=== PSO Training for XOR Problem ===\n");
+    println!("=== XOR: PSO Training ===\n");
 
     // Load config
-    let config = PsoYamlConfig::load_default()
-        .expect("Failed to load config/pso/default.yaml");
+    let config = PsoYamlConfig::load_xor_default()
+        .expect("Failed to load config/xor/pso/default.yaml");
 
-    println!("Configuration loaded from: config/pso/default.yaml");
+    println!("Configuration loaded from: config/xor/pso/default.yaml");
     println!("  Particles: {}", config.num_particles);
     println!("  Inertia (w): {}", config.w);
     println!("  Cognitive (c1): {}", config.c1);
@@ -24,12 +24,14 @@ fn main() {
     println!("  Target loss: {}", config.target_loss);
     println!();
 
-    // XOR data
-    let (x, y) = xor_data();
+    // Load dataset
+    let dataset = XorDataset::new();
+    let train = dataset.train_data();
+    println!("Dataset: {} ({} samples)", dataset.name(), train.len());
 
     // Create network
     let mut network = XorNetwork::new();
-    println!("Network: 2-2-1 ({} parameters)", network.param_count());
+    println!("Network: {} ({} parameters)", network.name(), network.param_count());
     println!("Activation: Sigmoid");
     println!("Loss: MSE = 0.5 * sum((y - y_hat)^2)\n");
 
@@ -50,8 +52,8 @@ fn main() {
     // Initialize PSO
     pso.init(|params| {
         network.set_params(params);
-        let pred = network.forward(&x);
-        mse(&pred, &y)
+        let pred = network.forward(&train.x);
+        mse(&pred, &train.y)
     });
 
     println!("Iteration | Loss");
@@ -63,8 +65,8 @@ fn main() {
     for iter in 0..config.max_iter {
         pso.step(|params| {
             network.set_params(params);
-            let pred = network.forward(&x);
-            mse(&pred, &y)
+            let pred = network.forward(&train.x);
+            mse(&pred, &train.y)
         });
 
         let best_loss = pso.best_fitness();
@@ -96,7 +98,7 @@ fn main() {
 
     // Plot loss curve
     let png_path = format!("{}/loss.png", OUTPUT_DIR);
-    plot_loss_curve(&loss_history, &png_path, "PSO Loss Curve")
+    plot_loss_curve(&loss_history, &png_path, "XOR PSO Loss Curve")
         .expect("Failed to plot loss curve");
     println!("Loss curve saved to: {}", png_path);
 
@@ -119,14 +121,13 @@ fn main() {
     println!("  linear2.bias: [{:.4}]", params[8]);
 
     // Verify on training data
-    println!("\n--- Predictions on Training Data ---");
+    println!("\n--- Training Data Predictions ---");
     println!("Input     | Target | Prediction");
     println!("----------|--------|------------");
-    for i in 0..4 {
-        let input = Mat::from_slice(&[&[x.get(i, 0), x.get(i, 1)]]);
-        let pred = network.forward(&input);
+    for i in 0..train.len() {
+        let pred = network.forward(&train.x);
         println!("({}, {})   | {}      | {:.4}",
-                 x.get(i, 0) as i32, x.get(i, 1) as i32,
-                 y.get(i, 0) as i32, pred.get(0, 0));
+                 train.x.get(i, 0) as i32, train.x.get(i, 1) as i32,
+                 train.y.get(i, 0) as i32, pred.get(i, 0));
     }
 }

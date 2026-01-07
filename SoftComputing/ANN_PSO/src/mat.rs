@@ -195,6 +195,37 @@ impl Mat {
         let data: Vec<f64> = self.data.iter().map(|&x| f(x)).collect();
         Mat::new(self.rows, self.cols, data)
     }
+
+    /// Extract rows [start, end) as a new matrix
+    pub fn slice_rows(&self, start: usize, end: usize) -> Mat {
+        assert!(start < end && end <= self.rows, "Invalid row slice range");
+        let data: Vec<f64> = self.data[start * self.cols..end * self.cols].to_vec();
+        Mat::new(end - start, self.cols, data)
+    }
+
+    /// Get max value in each row, returns (rows, 1) matrix
+    pub fn row_max(&self) -> Mat {
+        let mut result = Mat::zeros(self.rows, 1);
+        for i in 0..self.rows {
+            let max_val = self.row(i).iter().cloned().fold(f64::NEG_INFINITY, f64::max);
+            result.set(i, 0, max_val);
+        }
+        result
+    }
+
+    /// Argmax for each row, returns vector of indices
+    pub fn argmax_rows(&self) -> Vec<usize> {
+        (0..self.rows)
+            .map(|i| {
+                self.row(i)
+                    .iter()
+                    .enumerate()
+                    .max_by(|(_, a), (_, b)| a.partial_cmp(b).unwrap())
+                    .map(|(idx, _)| idx)
+                    .unwrap()
+            })
+            .collect()
+    }
 }
 
 #[cfg(test)]

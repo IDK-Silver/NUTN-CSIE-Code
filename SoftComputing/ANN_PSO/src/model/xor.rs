@@ -1,5 +1,6 @@
 use crate::{Layer, Linear, Mat, Sigmoid};
 use crate::config::{ModelWeights, SavedModel};
+use super::{Model, GradientModel};
 
 /// XOR Network: 2-2-1 architecture
 /// 2 inputs -> 2 hidden neurons -> 1 output
@@ -28,56 +29,6 @@ impl XorNetwork {
         }
     }
 
-    pub fn forward(&self, x: &Mat) -> Mat {
-        let x = self.linear1.forward(x);
-        let x = self.sigmoid1.forward(&x);
-        let x = self.linear2.forward(&x);
-        self.sigmoid2.forward(&x)
-    }
-
-    pub fn forward_with_cache(&self, x: &Mat) -> (Mat, XorCache) {
-        let z1 = self.linear1.forward(x);
-        let h1 = self.sigmoid1.forward(&z1);
-        let z2 = self.linear2.forward(&h1);
-        let y = self.sigmoid2.forward(&z2);
-
-        let cache = XorCache {
-            x: x.clone(),
-            z1,
-            h1,
-            z2,
-        };
-        (y, cache)
-    }
-
-    pub fn backward(&mut self, cache: &XorCache, grad_output: &Mat) {
-        let grad = self.sigmoid2.backward(&cache.z2, grad_output);
-        let grad = self.linear2.backward(&cache.h1, &grad);
-        let grad = self.sigmoid1.backward(&cache.z1, &grad);
-        let _ = self.linear1.backward(&cache.x, &grad);
-    }
-
-    pub fn apply_grads(&mut self, lr: f64) {
-        self.linear1.apply_grads(lr);
-        self.linear2.apply_grads(lr);
-    }
-
-    pub fn param_count(&self) -> usize {
-        self.linear1.param_count() + self.linear2.param_count()
-        // sigmoid has 0 parameters
-    }
-
-    pub fn get_params(&self) -> Vec<f64> {
-        let mut params = self.linear1.get_params();
-        params.extend(self.linear2.get_params());
-        params
-    }
-
-    pub fn set_params(&mut self, params: &[f64]) {
-        let consumed = self.linear1.set_params(params);
-        self.linear2.set_params(&params[consumed..]);
-    }
-
     /// Get weights as ModelWeights struct for saving
     pub fn get_model_weights(&self) -> ModelWeights {
         let params = self.get_params();
@@ -102,7 +53,7 @@ impl XorNetwork {
     /// Create SavedModel for serialization
     pub fn to_saved_model(&self, optimizer: &str, final_loss: f64, iterations: usize) -> SavedModel {
         SavedModel {
-            architecture: "2-2-1".to_string(),
+            architecture: self.name().to_string(),
             optimizer: optimizer.to_string(),
             final_loss,
             iterations,
@@ -124,23 +75,61 @@ impl Default for XorNetwork {
     }
 }
 
-/// XOR training data
-pub fn xor_data() -> (Mat, Mat) {
-    let x = Mat::from_slice(&[
-        &[0.0, 0.0],
-        &[0.0, 1.0],
-        &[1.0, 0.0],
-        &[1.0, 1.0],
-    ]);
-    let y = Mat::from_slice(&[&[0.0], &[1.0], &[1.0], &[0.0]]);
-    (x, y)
+impl Model for XorNetwork {
+    fn forward(&self, x: &Mat) -> Mat {
+        let x = self.linear1.forward(x);
+        let x = self.sigmoid1.forward(&x);
+        let x = self.linear2.forward(&x);
+        self.sigmoid2.forward(&x)
+    }
+
+    fn param_count(&self) -> usize {
+        self.linear1.param_count() + self.linear2.param_count()
+    }
+
+    fn get_params(&self) -> Vec<f64> {
+        let mut params = self.linear1.get_params();
+        params.extend(self.linear2.get_params());
+        params
+    }
+
+    fn set_params(&mut self, params: &[f64]) {
+        let consumed = self.linear1.set_params(params);
+        self.linear2.set_params(&params[consumed..]);
+    }
+
+    fn name(&self) -> &str {
+        "2-2-1"
+    }
 }
 
-/// Test cases from assignment
-pub fn test_cases() -> Vec<(f64, f64)> {
-    vec![
-        (0.7, 0.3),
-        (0.6, 0.4),
-        (0.5, 0.5),
-    ]
+impl GradientModel for XorNetwork {
+    type Cache = XorCache;
+
+    fn forward_with_cache(&self, x: &Mat) -> (Mat, XorCache) {
+        let z1 = self.linear1.forward(x);
+        let h1 = self.sigmoid1.forward(&z1);
+        let z2 = self.linear2.forward(&h1);
+        let y = self.sigmoid2.forward(&z2);
+
+        let cache = XorCache {
+            x: x.clone(),
+            z1,
+            h1,
+            z2,
+        };
+        (y, cache)
+    }
+
+    fn backward(&mut self, cache: &XorCache, grad_output: &Mat) {
+        let grad = self.sigmoid2.backward(&cache.z2, grad_output);
+        let grad = self.linear2.backward(&cache.h1, &grad);
+        let grad = self.sigmoid1.backward(&cache.z1, &grad);
+        let _ = self.linear1.backward(&cache.x, &grad);
+    }
+
+    fn apply_grads(&mut self, lr: f64) {
+        self.linear1.apply_grads(lr);
+        self.linear2.apply_grads(lr);
+    }
 }

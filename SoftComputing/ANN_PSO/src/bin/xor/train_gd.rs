@@ -1,16 +1,16 @@
 use ann_pso::{
-    Mat, XorNetwork, SgdYamlConfig,
-    mse, mse_grad, xor_data,
-    save_loss_history, plot_loss_curve,
+    SgdYamlConfig,
+    Dataset, XorDataset, Model, GradientModel, XorNetwork,
+    mse, mse_grad, save_loss_history, plot_loss_curve,
 };
 use std::env;
 
 fn get_output_dir(optimizer: &str) -> String {
-    format!("blob/train/gradient-descent/{}", optimizer)
+    format!("blob/xor/train/gradient-descent/{}", optimizer)
 }
 
 fn get_config_path(optimizer: &str) -> String {
-    format!("config/gradient-descent/{}/default.yaml", optimizer)
+    format!("config/xor/gradient-descent/{}/default.yaml", optimizer)
 }
 
 fn main() {
@@ -21,7 +21,7 @@ fn main() {
         "sgd" => train_sgd(),
         _ => {
             eprintln!("Unknown optimizer: {}", optimizer);
-            eprintln!("Usage: cargo run --example train_gd -- <optimizer>");
+            eprintln!("Usage: cargo run --bin xor-train-gd -- <optimizer>");
             eprintln!("Available optimizers: sgd");
             std::process::exit(1);
         }
@@ -29,7 +29,7 @@ fn main() {
 }
 
 fn train_sgd() {
-    println!("=== SGD Training for XOR Problem ===\n");
+    println!("=== XOR: SGD Training ===\n");
 
     let config_path = get_config_path("sgd");
     let output_dir = get_output_dir("sgd");
@@ -44,12 +44,14 @@ fn train_sgd() {
     println!("  Target loss: {}", config.target_loss);
     println!();
 
-    // XOR data
-    let (x, y) = xor_data();
+    // Load dataset
+    let dataset = XorDataset::new();
+    let train = dataset.train_data();
+    println!("Dataset: {} ({} samples)", dataset.name(), train.len());
 
     // Create network
     let mut network = XorNetwork::new();
-    println!("Network: 2-2-1 ({} parameters)", network.param_count());
+    println!("Network: {} ({} parameters)", network.name(), network.param_count());
     println!("Activation: Sigmoid");
     println!("Loss: MSE = 0.5 * sum((y - y_hat)^2)\n");
 
@@ -61,8 +63,8 @@ fn train_sgd() {
     let mut final_loss = 0.0;
 
     for iter in 0..config.max_iter {
-        let (pred, cache) = network.forward_with_cache(&x);
-        let loss = mse(&pred, &y);
+        let (pred, cache) = network.forward_with_cache(&train.x);
+        let loss = mse(&pred, &train.y);
         loss_history.push(loss);
         final_iter = iter + 1;
         final_loss = loss;
@@ -76,7 +78,7 @@ fn train_sgd() {
             break;
         }
 
-        let grad = mse_grad(&pred, &y);
+        let grad = mse_grad(&pred, &train.y);
         network.backward(&cache, &grad);
         network.apply_grads(config.lr);
     }
@@ -92,7 +94,7 @@ fn train_sgd() {
 
     // Plot loss curve
     let png_path = format!("{}/loss.png", output_dir);
-    plot_loss_curve(&loss_history, &png_path, "SGD Loss Curve")
+    plot_loss_curve(&loss_history, &png_path, "XOR SGD Loss Curve")
         .expect("Failed to plot loss curve");
     println!("Loss curve saved to: {}", png_path);
 
@@ -115,14 +117,13 @@ fn train_sgd() {
     println!("  linear2.bias: [{:.4}]", params[8]);
 
     // Verify on training data
-    println!("\n--- Predictions on Training Data ---");
+    println!("\n--- Training Data Predictions ---");
     println!("Input     | Target | Prediction");
     println!("----------|--------|------------");
-    for i in 0..4 {
-        let input = Mat::from_slice(&[&[x.get(i, 0), x.get(i, 1)]]);
-        let pred = network.forward(&input);
+    for i in 0..train.len() {
+        let pred = network.forward(&train.x);
         println!("({}, {})   | {}      | {:.4}",
-                 x.get(i, 0) as i32, x.get(i, 1) as i32,
-                 y.get(i, 0) as i32, pred.get(0, 0));
+                 train.x.get(i, 0) as i32, train.x.get(i, 1) as i32,
+                 train.y.get(i, 0) as i32, pred.get(i, 0));
     }
 }

@@ -1,8 +1,12 @@
 mod linear;
+mod relu;
 mod sigmoid;
+mod softmax;
 
 pub use linear::Linear;
+pub use relu::ReLU;
 pub use sigmoid::Sigmoid;
+pub use softmax::Softmax;
 
 use crate::mat::Mat;
 

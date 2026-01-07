@@ -1,0 +1,6 @@
+# MNIST SGD Configuration
+hidden_size: 128
+lr: 0.1
+max_iter: 50
+target_loss: 0.1
+batch_size: 64
