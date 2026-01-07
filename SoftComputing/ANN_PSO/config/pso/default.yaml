@@ -1,0 +1,12 @@
+# PSO (Particle Swarm Optimization) Configuration
+# Clerc & Kennedy constriction coefficients
+
+num_particles: 100
+w: 0.729              # Inertia weight
+c1: 1.49445           # Cognitive coefficient
+c2: 1.49445           # Social coefficient
+pos_min: -10.0
+pos_max: 10.0
+vel_max: 4.0
+max_iter: 5000
+target_loss: 0.01

@@ -1,0 +1,24 @@
+[package]
+name = "ann_pso"
+version = "0.1.0"
+edition = "2021"
+description = "Neural Network with PSO optimization for XOR problem"
+
+[dependencies]
+rand = "0.8"
+plotters = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9"
+serde_json = "1.0"
+
+[[example]]
+name = "train_pso"
+path = "examples/train_pso.rs"
+
+[[example]]
+name = "train_gd"
+path = "examples/train_gd.rs"
+
+[[example]]
+name = "predict"
+path = "examples/predict.rs"

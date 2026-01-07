@@ -1,0 +1,5 @@
+# SGD (Stochastic Gradient Descent) Configuration
+
+lr: 0.5               # Learning rate
+max_iter: 10000
+target_loss: 0.01
