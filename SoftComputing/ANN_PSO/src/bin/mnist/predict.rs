@@ -1,5 +1,6 @@
 use ann_pso::{
     Dataset, MnistDataset, Model, MnistNetwork, MnistSavedModel,
+    plot_confusion_matrix,
 };
 use std::env;
 use std::fs::{self, File};
@@ -100,21 +101,20 @@ fn main() {
                  digit, class_correct[digit], class_total[digit], acc);
     }
 
+    // Build confusion matrix
+    let mut confusion_matrix = [[0usize; 10]; 10];
+    for (pred, true_label) in pred_labels.iter().zip(true_labels.iter()) {
+        confusion_matrix[*true_label][*pred] += 1;
+    }
+
     // Confusion matrix summary (errors)
     println!("\n--- Common Errors (Top 10) ---");
     let mut errors: Vec<(usize, usize, usize)> = Vec::new(); // (true, pred, count)
-    let mut error_counts = [[0usize; 10]; 10];
-
-    for (pred, true_label) in pred_labels.iter().zip(true_labels.iter()) {
-        if pred != true_label {
-            error_counts[*true_label][*pred] += 1;
-        }
-    }
 
     for true_label in 0..10 {
         for pred_label in 0..10 {
-            if error_counts[true_label][pred_label] > 0 {
-                errors.push((true_label, pred_label, error_counts[true_label][pred_label]));
+            if true_label != pred_label && confusion_matrix[true_label][pred_label] > 0 {
+                errors.push((true_label, pred_label, confusion_matrix[true_label][pred_label]));
             }
         }
     }
@@ -152,4 +152,11 @@ fn main() {
     writeln!(file, "------------").unwrap();
     writeln!(file, "Accuracy: {:.2}% ({}/{})", accuracy, correct, test.x.rows).unwrap();
     println!("Summary saved to: {}", summary_path);
+
+    // Plot confusion matrix
+    let cm_path = format!("{}/confusion_matrix.png", output_dir);
+    let cm_title = format!("MNIST {} Confusion Matrix", optimizer.to_uppercase());
+    plot_confusion_matrix(&confusion_matrix, &cm_path, &cm_title)
+        .expect("Failed to plot confusion matrix");
+    println!("Confusion matrix saved to: {}", cm_path);
 }

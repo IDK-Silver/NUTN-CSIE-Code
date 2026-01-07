@@ -1,7 +1,7 @@
 use ann_pso::{
     Pso, PsoConfig, MnistPsoYamlConfig,
     Dataset, MnistDataset, Model, MnistNetwork,
-    cross_entropy, save_loss_history, plot_loss_curve,
+    cross_entropy, save_loss_history, plot_loss_curve, plot_accuracy_curve,
 };
 use rand::seq::SliceRandom;
 
@@ -77,10 +77,12 @@ fn main() {
         fitness_fn(params, &indices, config.batch_size, &mut network, &dataset)
     });
 
-    println!("Iteration | Loss     | Accuracy");
-    println!("----------|----------|----------");
+    println!("Iteration | Loss     | Train Acc | Test Acc");
+    println!("----------|----------|-----------|----------");
 
     let mut loss_history = Vec::new();
+    let mut train_acc_history = Vec::new();
+    let mut test_acc_history = Vec::new();
     let mut final_iter = 0;
 
     for iter in 0..config.max_iter {
@@ -99,23 +101,34 @@ fn main() {
         loss_history.push(best_loss);
         final_iter = iter + 1;
 
-        if iter % 50 == 0 || iter == config.max_iter - 1 {
-            // Evaluate accuracy on a subset
+        // Evaluate accuracy every 10 iterations for history (every 50 for printing)
+        if iter % 10 == 0 || iter == config.max_iter - 1 {
             network.set_params(pso.best_position());
+
+            // Train accuracy on subset
             let eval_batch = dataset.train_subset(0, 1000.min(dataset.train_len()));
             let pred = network.forward(&eval_batch.x);
             let pred_labels = pred.argmax_rows();
             let true_labels = eval_batch.y.argmax_rows();
-            let correct: usize = pred_labels.iter().zip(true_labels.iter())
+            let train_correct: usize = pred_labels.iter().zip(true_labels.iter())
                 .filter(|(p, t)| p == t).count();
-            let accuracy = 100.0 * correct as f64 / pred_labels.len() as f64;
+            let train_acc = 100.0 * train_correct as f64 / pred_labels.len() as f64;
+            train_acc_history.push(train_acc);
 
-            println!("{:9} | {:.6} | {:5.2}%", iter + 1, best_loss, accuracy);
-        }
+            // Test accuracy
+            let test = dataset.test_data().unwrap();
+            let pred = network.forward(&test.x);
+            let pred_labels = pred.argmax_rows();
+            let true_labels = test.y.argmax_rows();
+            let test_correct: usize = pred_labels.iter().zip(true_labels.iter())
+                .filter(|(p, t)| p == t).count();
+            let test_acc = 100.0 * test_correct as f64 / test.x.rows as f64;
+            test_acc_history.push(test_acc);
 
-        if best_loss < config.target_loss {
-            println!("{:9} | {:.6} (converged!)", iter + 1, best_loss);
-            break;
+            // Print every 50 iterations
+            if iter % 50 == 0 || iter == config.max_iter - 1 {
+                println!("{:9} | {:.6} | {:8.2}% | {:7.2}%", iter + 1, best_loss, train_acc, test_acc);
+            }
         }
     }
 
@@ -137,6 +150,12 @@ fn main() {
     plot_loss_curve(&loss_history, &png_path, "MNIST PSO Loss Curve")
         .expect("Failed to plot loss curve");
     println!("Loss curve saved to: {}", png_path);
+
+    // Plot accuracy curve
+    let acc_path = format!("{}/accuracy.png", OUTPUT_DIR);
+    plot_accuracy_curve(&train_acc_history, &test_acc_history, &acc_path, "MNIST PSO Accuracy Curve")
+        .expect("Failed to plot accuracy curve");
+    println!("Accuracy curve saved to: {}", acc_path);
 
     // Save model
     let model = network.to_saved_model("pso", final_loss, final_iter);

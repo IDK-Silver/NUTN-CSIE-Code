@@ -2,6 +2,7 @@ use ann_pso::{
     MnistSgdYamlConfig,
     Dataset, MnistDataset, Model, GradientModel, MnistNetwork,
     cross_entropy, cross_entropy_softmax_grad, save_loss_history, plot_loss_curve,
+    plot_accuracy_curve,
 };
 use rand::seq::SliceRandom;
 use std::env;
@@ -66,6 +67,8 @@ fn train_sgd() {
     println!("------|------------|-----------|----------");
 
     let mut loss_history = Vec::new();
+    let mut train_acc_history = Vec::new();
+    let mut test_acc_history = Vec::new();
     let mut final_epoch = 0;
     let mut final_loss = 0.0;
 
@@ -113,24 +116,22 @@ fn train_sgd() {
         final_loss = avg_loss;
 
         let train_acc = 100.0 * epoch_correct as f64 / epoch_samples as f64;
+        train_acc_history.push(train_acc);
 
-        // Evaluate on test set every 5 epochs
+        // Evaluate on test set
+        let test = dataset.test_data().unwrap();
+        let pred = network.forward(&test.x);
+        let pred_labels = pred.argmax_rows();
+        let true_labels = test.y.argmax_rows();
+        let test_correct: usize = pred_labels.iter().zip(true_labels.iter())
+            .filter(|(p, t)| p == t).count();
+        let test_acc = 100.0 * test_correct as f64 / test.x.rows as f64;
+        test_acc_history.push(test_acc);
+
+        // Print every 5 epochs
         if epoch % 5 == 0 || epoch == config.max_iter - 1 {
-            let test = dataset.test_data().unwrap();
-            let pred = network.forward(&test.x);
-            let pred_labels = pred.argmax_rows();
-            let true_labels = test.y.argmax_rows();
-            let test_correct: usize = pred_labels.iter().zip(true_labels.iter())
-                .filter(|(p, t)| p == t).count();
-            let test_acc = 100.0 * test_correct as f64 / test.x.rows as f64;
-
             println!("{:5} | {:10.6} | {:8.2}% | {:7.2}%",
                      epoch + 1, avg_loss, train_acc, test_acc);
-        }
-
-        if avg_loss < config.target_loss {
-            println!("{:5} | {:10.6} (converged!)", epoch + 1, avg_loss);
-            break;
         }
     }
 
@@ -148,6 +149,12 @@ fn train_sgd() {
     plot_loss_curve(&loss_history, &png_path, "MNIST SGD Loss Curve")
         .expect("Failed to plot loss curve");
     println!("Loss curve saved to: {}", png_path);
+
+    // Plot accuracy curve
+    let acc_path = format!("{}/accuracy.png", output_dir);
+    plot_accuracy_curve(&train_acc_history, &test_acc_history, &acc_path, "MNIST SGD Accuracy Curve")
+        .expect("Failed to plot accuracy curve");
+    println!("Accuracy curve saved to: {}", acc_path);
 
     // Save model
     let model = network.to_saved_model("sgd", final_loss, final_epoch);
