@@ -58,11 +58,11 @@ fn main() {
 
     // Verify on training data
     println!("--- Training Data Verification ---");
-    println!("Input     | Target | Prediction");
-    println!("----------|--------|------------");
+    println!("Input  | Target | Prediction");
+    println!("-------|--------|------------");
     for i in 0..train.len() {
         let pred = network.forward(&train.x);
-        println!("({}, {})   | {}      | {:.4}",
+        println!("({}, {}) | {:6} | {:.4}",
                  train.x.get(i, 0) as i32, train.x.get(i, 1) as i32,
                  train.y.get(i, 0) as i32, pred.get(i, 0));
     }
@@ -70,8 +70,8 @@ fn main() {
     // Test data from assignment
     if let Some(test) = dataset.test_data() {
         println!("\n--- Test Results ---");
-        println!("Input         | Prediction");
-        println!("--------------|------------");
+        println!("Input      | Prediction");
+        println!("-----------|------------");
 
         let pred = network.forward(&test.x);
         let mut results = Vec::new();
@@ -80,7 +80,7 @@ fn main() {
             let x1 = test.x.get(i, 0);
             let x2 = test.x.get(i, 1);
             let prediction = pred.get(i, 0);
-            println!("({}, {})    | {:.4}", x1, x2, prediction);
+            println!("({}, {}) | {:.4}", x1, x2, prediction);
             results.push((x1, x2, prediction));
         }
 

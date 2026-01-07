@@ -122,11 +122,11 @@ fn main() {
 
     // Verify on training data
     println!("\n--- Training Data Predictions ---");
-    println!("Input     | Target | Prediction");
-    println!("----------|--------|------------");
+    println!("Input  | Target | Prediction");
+    println!("-------|--------|------------");
     for i in 0..train.len() {
         let pred = network.forward(&train.x);
-        println!("({}, {})   | {}      | {:.4}",
+        println!("({}, {}) | {:6} | {:.4}",
                  train.x.get(i, 0) as i32, train.x.get(i, 1) as i32,
                  train.y.get(i, 0) as i32, pred.get(i, 0));
     }
