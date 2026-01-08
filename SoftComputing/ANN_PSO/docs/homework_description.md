@@ -33,7 +33,7 @@ XOR 真值表：
 - 隱藏層：2 個節點（需要兩個決策平面）
 - 輸出層：1 個節點 (Y)
 
-![Network Architecture](images/network_architecture.svg)
+![Network Architecture](images/network_architecture.jpeg)
 
 ### 神經元特性
 
