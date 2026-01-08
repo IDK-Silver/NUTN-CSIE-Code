@@ -2,6 +2,18 @@
 
 通用深度學習框架，支援 PSO (粒子群最佳化) 和 SGD (梯度下降) 訓練方法。
 
+## 環境需求
+
+本專案使用 Rust 開發，請先安裝 Rust：
+
+- **Windows**: 下載並執行 [rustup-init.exe](https://win.rustup.rs/)
+- **Linux/macOS**:
+  ```bash
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  ```
+
+詳細請參考 [Rust 官方安裝指南](https://www.rust-lang.org/tools/install)。
+
 ## XOR 問題
 
 ### PSO
