@@ -1,0 +1,91 @@
+{
+  "region": {
+    "id": "table-01",
+    "kind": "table",
+    "label": "TABLE 4",
+    "reason": "Classification metrics for Alzheimer + frontotemporal disease and healthy classes.",
+    "x1": 511,
+    "y1": 279,
+    "x2": 917,
+    "y2": 420
+  },
+  "original_region": {
+    "id": "table-01",
+    "kind": "table",
+    "label": "TABLE 4",
+    "reason": "Classification metrics for Alzheimer + frontotemporal disease and healthy classes.",
+    "x1": 511,
+    "y1": 278,
+    "x2": 917,
+    "y2": 421
+  },
+  "padded_region": {
+    "id": "table-01",
+    "kind": "table",
+    "label": "TABLE 4",
+    "reason": "Classification metrics for Alzheimer + frontotemporal disease and healthy classes.",
+    "x1": 499,
+    "y1": 266,
+    "x2": 929,
+    "y2": 433
+  },
+  "caption_probe_region": {
+    "id": "table-01",
+    "kind": "table",
+    "label": "TABLE 4",
+    "reason": "Classification metrics for Alzheimer + frontotemporal disease and healthy classes.",
+    "x1": 499,
+    "y1": 214,
+    "x2": 929,
+    "y2": 485
+  },
+  "verified_caption": "",
+  "crop_refinement": {
+    "inner_box": {
+      "x1": 29,
+      "y1": 75,
+      "x2": 971,
+      "y2": 925,
+      "reason": "The crop is tightened to the table boundaries, excluding the partial sentence text at the top."
+    },
+    "final_region": {
+      "id": "table-01",
+      "kind": "table",
+      "label": "TABLE 4",
+      "reason": "Classification metrics for Alzheimer + frontotemporal disease and healthy classes.",
+      "x1": 511,
+      "y1": 279,
+      "x2": 917,
+      "y2": 420
+    }
+  },
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "table",
+    "short_title": "Performance metrics for Alzheimer + frontotemporal disease and Healthy groups",
+    "caption_guess": "",
+    "markdown": "| Metric | Alzheimer + frontotemporal disease | Healthy |\n| :--- | :--- | :--- |\n| Precision | 0.9977 | 0.9987 |\n| Recall | 0.9993 | 0.9956 |\n| F1 score | 0.9985 | 0.9972 |\n| Support | 2,983 | 1,596 |\n| Sensitivity | 1.00 | |\n| Specificity | 1.00 | |",
+    "visible_text": [
+      "Metric",
+      "Alzheimer + frontotemporal disease",
+      "Healthy",
+      "Precision",
+      "0.9977",
+      "0.9987",
+      "Recall",
+      "0.9993",
+      "0.9956",
+      "F1 score",
+      "0.9985",
+      "0.9972",
+      "Support",
+      "2,983",
+      "1,596",
+      "Sensitivity",
+      "1.00",
+      "Specificity",
+      "1.00"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0007/fig-01.png"
+}

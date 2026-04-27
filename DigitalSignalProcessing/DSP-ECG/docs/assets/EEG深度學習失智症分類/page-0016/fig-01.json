@@ -1,0 +1,72 @@
+{
+  "region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 14",
+    "reason": "SHAP heatmap visualization for the frontotemporal disease class.",
+    "x1": 103,
+    "y1": 91,
+    "x2": 897,
+    "y2": 437
+  },
+  "original_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 14",
+    "reason": "SHAP heatmap visualization for the frontotemporal disease class.",
+    "x1": 115,
+    "y1": 103,
+    "x2": 885,
+    "y2": 425
+  },
+  "padded_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 14",
+    "reason": "SHAP heatmap visualization for the frontotemporal disease class.",
+    "x1": 103,
+    "y1": 91,
+    "x2": 897,
+    "y2": 437
+  },
+  "caption_probe_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 14",
+    "reason": "SHAP heatmap visualization for the frontotemporal disease class.",
+    "x1": 103,
+    "y1": 39,
+    "x2": 897,
+    "y2": 489
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "SHAP Heatmap for Frontotemporal Class",
+    "caption_guess": "FIGURE 14",
+    "markdown": "The image displays a SHAP (SHapley Additive exPlanations) summary heatmap for the 'Frontotemporal' class. \n\n- **Top Panel:** A line graph representing the model output $f(x)$ across instances. It shows a step-like function that rises, stays high, drops, and then spikes at the end.\n- **Main Heatmap:** A grid showing the impact of different frequency bands (Beta, Zaeta, Delta, Alpha, Theta, Gamma) on the model output across 4500+ instances. \n    - The color scale ranges from blue (negative impact) to red (positive impact).\n    - **Beta:** Shows strong positive impact (red) in the middle range of instances and negative impact (blue) at the beginning.\n    - **Zaeta:** Shows strong positive impact (red) in the middle range and negative impact (blue) towards the end.\n    - **Delta, Alpha, Theta, Gamma:** Show relatively low impact (mostly white/neutral) across the instances.\n- **Right Sidebar:** A color bar indicating the SHAP value range from -0.583 (blue) to 0.583 (red), labeled 'SHAP value (impact on model output)'.",
+    "visible_text": [
+      "Heatmap for Class: Frontotemporal",
+      "f(x)",
+      "Beta",
+      "Zaeta",
+      "Delta",
+      "Alpha",
+      "Theta",
+      "Gamma",
+      "0",
+      "1000",
+      "2000",
+      "3000",
+      "4000",
+      "Instances",
+      "0.583",
+      "SHAP value (impact on model output)",
+      "-0.583",
+      "FIGURE 14"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0016/fig-01.png"
+}

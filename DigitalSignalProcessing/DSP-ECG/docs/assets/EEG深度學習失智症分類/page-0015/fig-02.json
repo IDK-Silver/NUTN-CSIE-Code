@@ -1,0 +1,71 @@
+{
+  "region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 13",
+    "reason": "SHAP heatmap for Alzheimer Disease class",
+    "x1": 223,
+    "y1": 508,
+    "x2": 792,
+    "y2": 842
+  },
+  "original_region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 13",
+    "reason": "SHAP heatmap for Alzheimer Disease class",
+    "x1": 235,
+    "y1": 520,
+    "x2": 780,
+    "y2": 830
+  },
+  "padded_region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 13",
+    "reason": "SHAP heatmap for Alzheimer Disease class",
+    "x1": 223,
+    "y1": 508,
+    "x2": 792,
+    "y2": 842
+  },
+  "caption_probe_region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 13",
+    "reason": "SHAP heatmap for Alzheimer Disease class",
+    "x1": 223,
+    "y1": 456,
+    "x2": 792,
+    "y2": 894
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "SHAP Heatmap for Alzheimer Disease",
+    "caption_guess": "",
+    "markdown": "The image displays a SHAP (SHapley Additive exPlanations) summary heatmap for the 'Alzheimer Disease' class. \n\n- **Top Panel**: A line plot representing the model output $f(x)$ across instances. The x-axis represents instances (0 to 4000+), and the y-axis represents the model output value.\n- **Main Heatmap**: A grid showing the impact of different features (Beta, Zaeta, Theta, Alpha, Delta, Gamma) on the model output for each instance. \n    - The color scale ranges from blue (negative impact) to red (positive impact), with a range of -0.4073 to 0.4073.\n    - The x-axis represents 'Instances'.\n    - The y-axis lists the features: Beta, Zaeta, Theta, Alpha, Delta, and Gamma.\n- **Right Panel**: A vertical bar chart showing the aggregate impact of each feature on the model output, with black bars indicating the magnitude of influence.",
+    "visible_text": [
+      "Heatmap for Class: Alzheimer Disease",
+      "f(x)",
+      "Beta",
+      "Zaeta",
+      "Theta",
+      "Alpha",
+      "Delta",
+      "Gamma",
+      "0",
+      "1000",
+      "2000",
+      "3000",
+      "4000",
+      "Instances",
+      "0.4073",
+      "-0.4073",
+      "SHAP value (impact on model output)"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0015/fig-02.png"
+}

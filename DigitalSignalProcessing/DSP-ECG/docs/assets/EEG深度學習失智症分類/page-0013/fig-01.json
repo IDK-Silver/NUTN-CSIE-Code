@@ -1,0 +1,74 @@
+{
+  "region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 8",
+    "reason": "Bar chart showing global feature importance for the Frontotemporal class.",
+    "x1": 203,
+    "y1": 103,
+    "x2": 797,
+    "y2": 352
+  },
+  "original_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 8",
+    "reason": "Bar chart showing global feature importance for the Frontotemporal class.",
+    "x1": 215,
+    "y1": 115,
+    "x2": 785,
+    "y2": 340
+  },
+  "padded_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 8",
+    "reason": "Bar chart showing global feature importance for the Frontotemporal class.",
+    "x1": 203,
+    "y1": 103,
+    "x2": 797,
+    "y2": 352
+  },
+  "caption_probe_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 8",
+    "reason": "Bar chart showing global feature importance for the Frontotemporal class.",
+    "x1": 203,
+    "y1": 51,
+    "x2": 797,
+    "y2": 404
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "Global Feature Importance for Frontotemporal Class",
+    "caption_guess": "",
+    "markdown": "This horizontal bar chart displays the global feature importance for the 'Frontotemporal' class, measured by the mean absolute SHAP value. The features are listed on the y-axis, and the corresponding SHAP values are represented by the length of the red bars and numerical labels at the end of each bar.\n\n| Feature | Mean(|SHAP value|) |\n| :--- | :--- |\n| Beta | +0.26 |\n| Zaeta | +0.2 |\n| Delta | +0.01 |\n| Alpha | +0.01 |\n| Theta | +0.01 |\n| Gamma | +0 |\n\nThe x-axis represents the 'mean(|SHAP value|)' ranging from 0.00 to 0.25+.",
+    "visible_text": [
+      "Global Feature Importance for Class: Frontotemporal",
+      "Beta",
+      "+0.26",
+      "Zaeta",
+      "+0.2",
+      "Delta",
+      "+0.01",
+      "Alpha",
+      "+0.01",
+      "Theta",
+      "+0.01",
+      "Gamma",
+      "+0",
+      "0.00",
+      "0.05",
+      "0.10",
+      "0.15",
+      "0.20",
+      "0.25",
+      "mean(|SHAP value|)"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0013/fig-01.png"
+}

@@ -1,0 +1,77 @@
+{
+  "region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 7",
+    "reason": "Bar chart showing global feature importance for the Alzheimer Disease class.",
+    "x1": 173,
+    "y1": 398,
+    "x2": 797,
+    "y2": 642
+  },
+  "original_region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 7",
+    "reason": "Bar chart showing global feature importance for the Alzheimer Disease class.",
+    "x1": 185,
+    "y1": 410,
+    "x2": 785,
+    "y2": 630
+  },
+  "padded_region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 7",
+    "reason": "Bar chart showing global feature importance for the Alzheimer Disease class.",
+    "x1": 173,
+    "y1": 398,
+    "x2": 797,
+    "y2": 642
+  },
+  "caption_probe_region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 7",
+    "reason": "Bar chart showing global feature importance for the Alzheimer Disease class.",
+    "x1": 173,
+    "y1": 346,
+    "x2": 797,
+    "y2": 694
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "Global Feature Importance for Alzheimer Disease",
+    "caption_guess": "",
+    "markdown": "This horizontal bar chart displays the global feature importance for the 'Alzheimer Disease' class, measured by the mean absolute SHAP value. The features are listed on the y-axis, and their corresponding SHAP values are represented by the length of the red bars and numerical labels at the end of each bar.\n\n| Feature | Mean(|SHAP value|) |\n| :--- | :--- |\n| Beta | +0.19 |\n| Zaeta | +0.12 |\n| Theta | +0.06 |\n| Alpha | +0.04 |\n| Delta | +0.02 |\n| Gamma | +0.02 |",
+    "visible_text": [
+      "Global Feature Importance for Class: Alzheimer Disease",
+      "Beta",
+      "+0.19",
+      "Zaeta",
+      "+0.12",
+      "Theta",
+      "+0.06",
+      "Alpha",
+      "+0.04",
+      "Delta",
+      "+0.02",
+      "Gamma",
+      "+0.02",
+      "0.000",
+      "0.025",
+      "0.050",
+      "0.075",
+      "0.100",
+      "0.125",
+      "0.150",
+      "0.175",
+      "0.200",
+      "mean(|SHAP value|)"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0012/fig-02.png"
+}

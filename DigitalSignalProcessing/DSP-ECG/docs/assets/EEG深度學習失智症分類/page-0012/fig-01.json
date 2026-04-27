@@ -1,0 +1,74 @@
+{
+  "region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 6",
+    "reason": "Bar chart showing global feature importance for the Healthy class.",
+    "x1": 173,
+    "y1": 103,
+    "x2": 797,
+    "y2": 347
+  },
+  "original_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 6",
+    "reason": "Bar chart showing global feature importance for the Healthy class.",
+    "x1": 185,
+    "y1": 115,
+    "x2": 785,
+    "y2": 335
+  },
+  "padded_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 6",
+    "reason": "Bar chart showing global feature importance for the Healthy class.",
+    "x1": 173,
+    "y1": 103,
+    "x2": 797,
+    "y2": 347
+  },
+  "caption_probe_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 6",
+    "reason": "Bar chart showing global feature importance for the Healthy class.",
+    "x1": 173,
+    "y1": 51,
+    "x2": 797,
+    "y2": 399
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "Global Feature Importance for Class: Healthy",
+    "caption_guess": "",
+    "markdown": "This is a horizontal bar chart titled \"Global Feature Importance for Class: Healthy\". The x-axis represents the \"mean(|SHAP value|)\" ranging from 0.00 to 0.10. The y-axis lists six features: Zaeta, Beta, Theta, Alpha, Gamma, and Delta. Each bar corresponds to a feature and is labeled with its specific SHAP value at the end of the bar.\n\n| Feature | SHAP Value |\n| :--- | :--- |\n| Zaeta | +0.1 |\n| Beta | +0.07 |\n| Theta | +0.05 |\n| Alpha | +0.04 |\n| Gamma | +0.02 |\n| Delta | +0.01 |",
+    "visible_text": [
+      "Global Feature Importance for Class: Healthy",
+      "Zaeta",
+      "Beta",
+      "Theta",
+      "Alpha",
+      "Gamma",
+      "Delta",
+      "+0.1",
+      "+0.07",
+      "+0.05",
+      "+0.04",
+      "+0.02",
+      "+0.01",
+      "0.00",
+      "0.02",
+      "0.04",
+      "0.06",
+      "0.08",
+      "0.10",
+      "mean(|SHAP value|)"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0012/fig-01.png"
+}

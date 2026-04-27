@@ -1,0 +1,84 @@
+{
+  "region": {
+    "id": "table-04",
+    "kind": "table",
+    "label": "TABLE 2",
+    "reason": "Model parameter summary.",
+    "x1": 83,
+    "y1": 715,
+    "x2": 489,
+    "y2": 789
+  },
+  "original_region": {
+    "id": "table-04",
+    "kind": "table",
+    "label": "TABLE 2",
+    "reason": "Model parameter summary.",
+    "x1": 83,
+    "y1": 713,
+    "x2": 489,
+    "y2": 791
+  },
+  "padded_region": {
+    "id": "table-04",
+    "kind": "table",
+    "label": "TABLE 2",
+    "reason": "Model parameter summary.",
+    "x1": 71,
+    "y1": 701,
+    "x2": 501,
+    "y2": 803
+  },
+  "caption_probe_region": {
+    "id": "table-04",
+    "kind": "table",
+    "label": "TABLE 2",
+    "reason": "Model parameter summary.",
+    "x1": 71,
+    "y1": 649,
+    "x2": 501,
+    "y2": 855
+  },
+  "verified_caption": "",
+  "crop_refinement": {
+    "inner_box": {
+      "x1": 28,
+      "y1": 141,
+      "x2": 972,
+      "y2": 859,
+      "reason": "The crop is tightened to exclude the table caption 'TABLE 2 Model parameter summary.' while retaining the entire table structure."
+    },
+    "final_region": {
+      "id": "table-04",
+      "kind": "table",
+      "label": "TABLE 2",
+      "reason": "Model parameter summary.",
+      "x1": 83,
+      "y1": 715,
+      "x2": 489,
+      "y2": 789
+    }
+  },
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "table",
+    "short_title": "Parameter count and size",
+    "caption_guess": "",
+    "markdown": "| Parameter type | Count | Size |\n| :--- | :--- | :--- |\n| Total parameters | 131,587 | 514.01 KB |\n| Trainable parameters | 131,331 | 513.01 KB |\n| Non-trainable parameters | 256 | 1 KB |",
+    "visible_text": [
+      "Parameter type",
+      "Count",
+      "Size",
+      "Total parameters",
+      "131,587",
+      "514.01 KB",
+      "Trainable parameters",
+      "131,331",
+      "513.01 KB",
+      "Non-trainable parameters",
+      "256",
+      "1 KB"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0007/fig-04.png"
+}

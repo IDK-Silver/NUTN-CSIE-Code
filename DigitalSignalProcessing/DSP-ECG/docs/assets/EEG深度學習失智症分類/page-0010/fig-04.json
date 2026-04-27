@@ -1,0 +1,100 @@
+{
+  "region": {
+    "id": "table-04",
+    "kind": "table",
+    "label": "Table 8",
+    "reason": "Classification metrics for Alzheimer, frontotemporal, and healthy classes with data balancing.",
+    "x1": 83,
+    "y1": 845,
+    "x2": 917,
+    "y2": 919
+  },
+  "original_region": {
+    "id": "table-04",
+    "kind": "table",
+    "label": "Table 8",
+    "reason": "Classification metrics for Alzheimer, frontotemporal, and healthy classes with data balancing.",
+    "x1": 83,
+    "y1": 844,
+    "x2": 917,
+    "y2": 921
+  },
+  "padded_region": {
+    "id": "table-04",
+    "kind": "table",
+    "label": "Table 8",
+    "reason": "Classification metrics for Alzheimer, frontotemporal, and healthy classes with data balancing.",
+    "x1": 71,
+    "y1": 832,
+    "x2": 929,
+    "y2": 933
+  },
+  "caption_probe_region": {
+    "id": "table-04",
+    "kind": "table",
+    "label": "Table 8",
+    "reason": "Classification metrics for Alzheimer, frontotemporal, and healthy classes with data balancing.",
+    "x1": 71,
+    "y1": 780,
+    "x2": 929,
+    "y2": 985
+  },
+  "verified_caption": "",
+  "crop_refinement": {
+    "inner_box": {
+      "x1": 14,
+      "y1": 125,
+      "x2": 986,
+      "y2": 860,
+      "reason": "The crop is tightened to exclude the table caption text at the top, focusing only on the table structure and its content."
+    },
+    "final_region": {
+      "id": "table-04",
+      "kind": "table",
+      "label": "Table 8",
+      "reason": "Classification metrics for Alzheimer, frontotemporal, and healthy classes with data balancing.",
+      "x1": 83,
+      "y1": 845,
+      "x2": 917,
+      "y2": 919
+    }
+  },
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "table",
+    "short_title": "Classification metrics by class",
+    "caption_guess": "",
+    "markdown": "| Class | Precision | Recall | F1-score | Sensitivity | Specificity | Support |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| Alzheimer | 0.63 | 0.71 | 0.67 | 0.71 | 0.79 | 1,876 |\n| Frontotemporal | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1,876 |\n| Healthy | 0.67 | 0.58 | 0.62 | 0.58 | 0.86 | 1,876 |",
+    "visible_text": [
+      "Class",
+      "Precision",
+      "Recall",
+      "F1-score",
+      "Sensitivity",
+      "Specificity",
+      "Support",
+      "Alzheimer",
+      "0.63",
+      "0.71",
+      "0.67",
+      "0.71",
+      "0.79",
+      "1,876",
+      "Frontotemporal",
+      "1.00",
+      "1.00",
+      "1.00",
+      "1.00",
+      "1.00",
+      "1,876",
+      "Healthy",
+      "0.67",
+      "0.58",
+      "0.62",
+      "0.58",
+      "0.86",
+      "1,876"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0010/fig-04.png"
+}

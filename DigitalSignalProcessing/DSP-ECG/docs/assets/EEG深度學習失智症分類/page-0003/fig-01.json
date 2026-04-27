@@ -1,0 +1,82 @@
+{
+  "region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 1",
+    "reason": "A collection of four histograms showing the distribution of Age, Gender, Group, and MMSE score.",
+    "x1": 113,
+    "y1": 103,
+    "x2": 887,
+    "y2": 457
+  },
+  "original_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 1",
+    "reason": "A collection of four histograms showing the distribution of Age, Gender, Group, and MMSE score.",
+    "x1": 125,
+    "y1": 115,
+    "x2": 875,
+    "y2": 445
+  },
+  "padded_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 1",
+    "reason": "A collection of four histograms showing the distribution of Age, Gender, Group, and MMSE score.",
+    "x1": 113,
+    "y1": 103,
+    "x2": 887,
+    "y2": 457
+  },
+  "caption_probe_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 1",
+    "reason": "A collection of four histograms showing the distribution of Age, Gender, Group, and MMSE score.",
+    "x1": 113,
+    "y1": 51,
+    "x2": 887,
+    "y2": 509
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "Demographic and Clinical Histograms",
+    "caption_guess": "FIGURE 1",
+    "markdown": "The image displays four histograms representing demographic and clinical data:\n\n1. **Histogram of Age**: Shows the distribution of age (x-axis: 45 to 80) with frequencies (y-axis: 0 to 16). The distribution is roughly bell-shaped, peaking between 60 and 70.\n2. **Histogram of Gender**: A bar chart showing the frequency of gender categories (x-axis: F, M) with frequencies (y-axis: 0 to 40). Both categories have equal frequency (approximately 44).\n3. **Histogram of Group**: A bar chart showing the frequency of groups (x-axis: A, C, F) with frequencies (y-axis: 0 to 35). Group A has the highest frequency, followed by C and F.\n4. **Histogram of MMSE**: Shows the distribution of MMSE scores (x-axis: 5 to 30) with frequencies (y-axis: 0 to 30). The distribution is skewed, with a significant peak near 20 and another near 30.",
+    "visible_text": [
+      "Histogram of Age",
+      "Histogram of Gender",
+      "Histogram of Group",
+      "Histogram of MMSE",
+      "Frequency",
+      "Age",
+      "Gender",
+      "Group",
+      "MMSE Score",
+      "45",
+      "50",
+      "55",
+      "60",
+      "65",
+      "70",
+      "75",
+      "80",
+      "F",
+      "M",
+      "A",
+      "C",
+      "5",
+      "10",
+      "15",
+      "20",
+      "25",
+      "30",
+      "FIGURE 1"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0003/fig-01.png"
+}

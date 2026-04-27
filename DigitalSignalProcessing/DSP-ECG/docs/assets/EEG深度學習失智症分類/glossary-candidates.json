@@ -1,0 +1,470 @@
+[
+  {
+    "normalized_term": "Alpha",
+    "source_terms": [
+      "Alpha"
+    ],
+    "pages": [
+      3,
+      15
+    ],
+    "notes": [
+      "EEG frequency band.",
+      "Frequency band defined as 8 ≤ f < 16 Hz"
+    ]
+  },
+  {
+    "normalized_term": "Alzheimer's disease",
+    "source_terms": [
+      "AD"
+    ],
+    "pages": [
+      1,
+      2
+    ],
+    "notes": [
+      "Primary condition being studied.",
+      "Specific condition being studied"
+    ]
+  },
+  {
+    "normalized_term": "Alzheimer's Disease",
+    "source_terms": [
+      "AD"
+    ],
+    "pages": [
+      14
+    ],
+    "notes": [
+      "Neurodegenerative condition mentioned in context of EEG patterns."
+    ]
+  },
+  {
+    "normalized_term": "Area Under the Curve",
+    "source_terms": [
+      "AUC"
+    ],
+    "pages": [
+      10
+    ],
+    "notes": [
+      "Metric used to evaluate the performance of the classification model."
+    ]
+  },
+  {
+    "normalized_term": "Beta",
+    "source_terms": [
+      "Beta"
+    ],
+    "pages": [
+      3,
+      15
+    ],
+    "notes": [
+      "EEG frequency band.",
+      "Frequency band defined as 24 ≤ f < 30 Hz"
+    ]
+  },
+  {
+    "normalized_term": "Delta",
+    "source_terms": [
+      "Delta"
+    ],
+    "pages": [
+      3,
+      15
+    ],
+    "notes": [
+      "EEG frequency band.",
+      "Frequency band defined as 0.5 ≤ f < 4 Hz"
+    ]
+  },
+  {
+    "normalized_term": "electroencephalogram",
+    "source_terms": [
+      "EEG"
+    ],
+    "pages": [
+      1
+    ],
+    "notes": [
+      "Key diagnostic modality mentioned in the abstract and introduction."
+    ]
+  },
+  {
+    "normalized_term": "Electroencephalogram",
+    "source_terms": [
+      "EEG"
+    ],
+    "pages": [
+      2
+    ],
+    "notes": [
+      "Primary diagnostic tool discussed"
+    ]
+  },
+  {
+    "normalized_term": "Explainable Artificial Intelligence",
+    "source_terms": [
+      "XAI"
+    ],
+    "pages": [
+      2,
+      11,
+      12
+    ],
+    "notes": [
+      "Field focused on making AI decision-making processes transparent.",
+      "Methodology for model interpretability",
+      "Refers to methods and techniques in the application of artificial intelligence technology such that the results of the solution can be understood by human experts."
+    ]
+  },
+  {
+    "normalized_term": "F1-score",
+    "source_terms": [
+      "F1-score"
+    ],
+    "pages": [
+      8
+    ],
+    "notes": [
+      "Harmonic mean of precision and recall."
+    ]
+  },
+  {
+    "normalized_term": "False Negatives",
+    "source_terms": [
+      "FN"
+    ],
+    "pages": [
+      9
+    ],
+    "notes": [
+      "Defined in text as incorrectly classified as negative"
+    ]
+  },
+  {
+    "normalized_term": "False Positives",
+    "source_terms": [
+      "FP"
+    ],
+    "pages": [
+      9
+    ],
+    "notes": [
+      "Defined in text as incorrectly classified as positive"
+    ]
+  },
+  {
+    "normalized_term": "frontotemporal dementia",
+    "source_terms": [
+      "FTD"
+    ],
+    "pages": [
+      1
+    ],
+    "notes": [
+      "Primary condition being studied."
+    ]
+  },
+  {
+    "normalized_term": "Frontotemporal dementia",
+    "source_terms": [
+      "FTD"
+    ],
+    "pages": [
+      2
+    ],
+    "notes": [
+      "Specific condition being studied"
+    ]
+  },
+  {
+    "normalized_term": "Frontotemporal Dementia",
+    "source_terms": [
+      "FTD"
+    ],
+    "pages": [
+      14
+    ],
+    "notes": [
+      "Neurodegenerative condition mentioned in context of EEG patterns."
+    ]
+  },
+  {
+    "normalized_term": "Frontotemporal disease",
+    "source_terms": [
+      "Frontotemporal"
+    ],
+    "pages": [
+      13
+    ],
+    "notes": [
+      "A specific class of disease analyzed in the feature importance plots."
+    ]
+  },
+  {
+    "normalized_term": "Gamma",
+    "source_terms": [
+      "Gamma"
+    ],
+    "pages": [
+      3,
+      15
+    ],
+    "notes": [
+      "EEG frequency band.",
+      "Frequency band defined as 30 ≤ f ≤ 45 Hz"
+    ]
+  },
+  {
+    "normalized_term": "Independent Component Analysis",
+    "source_terms": [
+      "ICA"
+    ],
+    "pages": [
+      4
+    ],
+    "notes": [
+      "Method used to extract components from EEG signal."
+    ]
+  },
+  {
+    "normalized_term": "K-fold cross-validation",
+    "source_terms": [
+      "K-fold cross-validation"
+    ],
+    "pages": [
+      11
+    ],
+    "notes": [
+      "Methodology used to validate the proposed model by splitting data into subsets."
+    ]
+  },
+  {
+    "normalized_term": "Long Short-Term Memory",
+    "source_terms": [
+      "LSTM",
+      "Long Short-Term Memory"
+    ],
+    "pages": [
+      5,
+      6,
+      7
+    ],
+    "notes": [
+      "Core model architecture component",
+      "Mentioned as a core component for temporal feature extraction.",
+      "Recurrent neural network architecture used to capture sequential dependencies."
+    ]
+  },
+  {
+    "normalized_term": "Power Spectral Density",
+    "source_terms": [
+      "PSD"
+    ],
+    "pages": [
+      4
+    ],
+    "notes": [
+      "Used in the calculation of RBP."
+    ]
+  },
+  {
+    "normalized_term": "Precision",
+    "source_terms": [
+      "Precision"
+    ],
+    "pages": [
+      8
+    ],
+    "notes": [
+      "Metric defined as ratio of correctly predicted positive cases to total predicted positive cases."
+    ]
+  },
+  {
+    "normalized_term": "Recall",
+    "source_terms": [
+      "Recall"
+    ],
+    "pages": [
+      8
+    ],
+    "notes": [
+      "Metric defined as ratio of correctly identified positive cases to total actual positive cases."
+    ]
+  },
+  {
+    "normalized_term": "Receiver Operating Characteristic",
+    "source_terms": [
+      "ROC"
+    ],
+    "pages": [
+      10
+    ],
+    "notes": [
+      "Curve used to visualize the performance of a classification model."
+    ]
+  },
+  {
+    "normalized_term": "Relative Band Power",
+    "source_terms": [
+      "RBP"
+    ],
+    "pages": [
+      2,
+      4,
+      5,
+      11,
+      14,
+      16
+    ],
+    "notes": [
+      "Feature extraction method",
+      "Feature extraction method mentioned in the context of EEG data analysis.",
+      "Feature extraction method used for EEG analysis.",
+      "Method of EEG analysis mentioned in the text.",
+      "Metric calculated by dividing power within a band by overall power.",
+      "Used as a primary feature for EEG classification."
+    ]
+  },
+  {
+    "normalized_term": "SHAP",
+    "source_terms": [
+      "SHAP"
+    ],
+    "pages": [
+      13,
+      14,
+      15
+    ],
+    "notes": [
+      "SHapley Additive exPlanations, used for interpreting machine learning model predictions.",
+      "SHapley Additive exPlanations, used for model interpretability.",
+      "SHapley Additive exPlanations, used here to visualize model feature impact."
+    ]
+  },
+  {
+    "normalized_term": "SHapley Additive exPlanations",
+    "source_terms": [
+      "SHAP"
+    ],
+    "pages": [
+      1,
+      2,
+      12,
+      16
+    ],
+    "notes": [
+      "Explainable AI technique used in the framework.",
+      "Method used for interpreting machine learning model predictions.",
+      "Method used for model explainability and feature dominance analysis.",
+      "Specific XAI technique used"
+    ]
+  },
+  {
+    "normalized_term": "Specificity",
+    "source_terms": [
+      "Specificity"
+    ],
+    "pages": [
+      8
+    ],
+    "notes": [
+      "Metric defined as ratio of correctly identified negative cases to total actual negative cases."
+    ]
+  },
+  {
+    "normalized_term": "Synthetic Minority Over-sampling Technique",
+    "source_terms": [
+      "SMOTE"
+    ],
+    "pages": [
+      10
+    ],
+    "notes": [
+      "Mentioned as a data balancing technique used to address imbalanced datasets."
+    ]
+  },
+  {
+    "normalized_term": "Temporal Convolutional Network",
+    "source_terms": [
+      "TCN",
+      "Temporal Convolutional Network"
+    ],
+    "pages": [
+      5,
+      6,
+      7
+    ],
+    "notes": [
+      "Core model architecture mentioned",
+      "Deep learning component used for extracting high-level features from EEG sequences.",
+      "Mentioned as part of the model architecture blocks."
+    ]
+  },
+  {
+    "normalized_term": "Temporal Convolutional Network - Long Short-Term Memory",
+    "source_terms": [
+      "TCN-LSTM"
+    ],
+    "pages": [
+      16
+    ],
+    "notes": [
+      "The hybrid model architecture proposed in the paper."
+    ]
+  },
+  {
+    "normalized_term": "Theta",
+    "source_terms": [
+      "Theta"
+    ],
+    "pages": [
+      3,
+      15
+    ],
+    "notes": [
+      "EEG frequency band.",
+      "Frequency band defined as 4 ≤ f < 8 Hz"
+    ]
+  },
+  {
+    "normalized_term": "True Negatives",
+    "source_terms": [
+      "TN"
+    ],
+    "pages": [
+      8
+    ],
+    "notes": [
+      "Correctly identified negative cases."
+    ]
+  },
+  {
+    "normalized_term": "True Positives",
+    "source_terms": [
+      "TP"
+    ],
+    "pages": [
+      8
+    ],
+    "notes": [
+      "Correctly identified positive cases."
+    ]
+  },
+  {
+    "normalized_term": "Zaeta",
+    "source_terms": [
+      "Zaeta"
+    ],
+    "pages": [
+      3,
+      15
+    ],
+    "notes": [
+      "Frequency band defined as 16 ≤ f < 24 Hz",
+      "Likely a specific EEG frequency band or feature category."
+    ]
+  }
+]

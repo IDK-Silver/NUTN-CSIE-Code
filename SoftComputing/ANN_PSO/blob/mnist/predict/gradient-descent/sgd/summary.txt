@@ -1,0 +1,10 @@
+MNIST Prediction Summary
+========================
+Model: blob/mnist/train/gradient-descent/sgd/model.json
+Architecture: 784-128-10
+Optimizer: sgd
+Training loss: 0.032511
+
+Test Results
+------------
+Accuracy: 95.90% (9590/10000)

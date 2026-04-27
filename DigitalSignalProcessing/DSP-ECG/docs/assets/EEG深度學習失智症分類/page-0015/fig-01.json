@@ -1,0 +1,71 @@
+{
+  "region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 12",
+    "reason": "SHAP heatmap for healthy class",
+    "x1": 223,
+    "y1": 103,
+    "x2": 792,
+    "y2": 437
+  },
+  "original_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 12",
+    "reason": "SHAP heatmap for healthy class",
+    "x1": 235,
+    "y1": 115,
+    "x2": 780,
+    "y2": 425
+  },
+  "padded_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 12",
+    "reason": "SHAP heatmap for healthy class",
+    "x1": 223,
+    "y1": 103,
+    "x2": 792,
+    "y2": 437
+  },
+  "caption_probe_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 12",
+    "reason": "SHAP heatmap for healthy class",
+    "x1": 223,
+    "y1": 51,
+    "x2": 792,
+    "y2": 489
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "SHAP Heatmap for Healthy Class",
+    "caption_guess": "Heatmap for Class: Healthy",
+    "markdown": "The image displays a SHAP (SHapley Additive exPlanations) summary heatmap for the 'Healthy' class. \n\n- **Top Panel**: A line graph representing the model output $f(x)$ over approximately 4,500 instances. The line fluctuates and shows distinct drops to a lower baseline at certain intervals.\n- **Main Heatmap**: A grid showing the impact of different frequency bands (Zaeta, Beta, Theta, Alpha, Gamma, Delta) on the model output across the instances. \n    - The color scale ranges from blue (negative impact) to red (positive impact), with a range of -0.2427 to 0.2427.\n    - Each row corresponds to a frequency band.\n    - The x-axis represents 'Instances' from 0 to 4000+.\n- **Right Sidebar**: A vertical color bar legend indicating the SHAP value magnitude. There are also small black bars to the right of each row, likely representing the mean absolute SHAP value for that feature.",
+    "visible_text": [
+      "Heatmap for Class: Healthy",
+      "f(x)",
+      "Zaeta",
+      "Beta",
+      "Theta",
+      "Alpha",
+      "Gamma",
+      "Delta",
+      "0",
+      "1000",
+      "2000",
+      "3000",
+      "4000",
+      "Instances",
+      "SHAP value (impact on model output)",
+      "0.2427",
+      "-0.2427"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0015/fig-01.png"
+}

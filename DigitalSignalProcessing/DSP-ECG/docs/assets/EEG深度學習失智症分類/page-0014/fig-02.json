@@ -1,0 +1,73 @@
+{
+  "region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 11",
+    "reason": "SHAP summary plot for Frontotemporal disease class.",
+    "x1": 193,
+    "y1": 378,
+    "x2": 787,
+    "y2": 607
+  },
+  "original_region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 11",
+    "reason": "SHAP summary plot for Frontotemporal disease class.",
+    "x1": 205,
+    "y1": 390,
+    "x2": 775,
+    "y2": 595
+  },
+  "padded_region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 11",
+    "reason": "SHAP summary plot for Frontotemporal disease class.",
+    "x1": 193,
+    "y1": 378,
+    "x2": 787,
+    "y2": 607
+  },
+  "caption_probe_region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 11",
+    "reason": "SHAP summary plot for Frontotemporal disease class.",
+    "x1": 193,
+    "y1": 326,
+    "x2": 787,
+    "y2": 659
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "SHAP Summary Plot for Frontotemporal Class",
+    "caption_guess": "",
+    "markdown": "This is a SHAP summary plot showing the impact of various features (Beta, Zaeta, Delta, Alpha, Theta, Gamma) on the model output for the 'Frontotemporal' class. \n\n- The x-axis represents the 'SHAP value (impact on model output)', with a vertical line at 0 indicating no impact.\n- The y-axis lists the features.\n- Each point represents an observation, colored by its 'Feature value' (blue for low, red for high).\n- Beta and Zaeta show the widest distribution of SHAP values, indicating they have the most significant impact on the model's prediction for this class. \n- Features like Gamma, Theta, and Alpha are clustered tightly around the 0 SHAP value, suggesting they have a smaller impact on the model output for this specific class.",
+    "visible_text": [
+      "SHAP Summary Plot for Class: Frontotemporal",
+      "Beta",
+      "Zaeta",
+      "Delta",
+      "Alpha",
+      "Theta",
+      "Gamma",
+      "High",
+      "Low",
+      "Feature value",
+      "SHAP value (impact on model output)",
+      "-0.6",
+      "-0.4",
+      "-0.2",
+      "0.0",
+      "0.2",
+      "0.4",
+      "0.6",
+      "0.8"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0014/fig-02.png"
+}

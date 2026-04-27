@@ -1,0 +1,98 @@
+{
+  "region": {
+    "id": "table-14",
+    "kind": "table",
+    "label": "TABLE 14",
+    "reason": "Model accuracy comparison with existing papers",
+    "x1": 511,
+    "y1": 214,
+    "x2": 917,
+    "y2": 416
+  },
+  "original_region": {
+    "id": "table-14",
+    "kind": "table",
+    "label": "TABLE 14",
+    "reason": "Model accuracy comparison with existing papers",
+    "x1": 511,
+    "y1": 217,
+    "x2": 917,
+    "y2": 413
+  },
+  "padded_region": {
+    "id": "table-14",
+    "kind": "table",
+    "label": "TABLE 14",
+    "reason": "Model accuracy comparison with existing papers",
+    "x1": 499,
+    "y1": 205,
+    "x2": 929,
+    "y2": 425
+  },
+  "caption_probe_region": {
+    "id": "table-14",
+    "kind": "table",
+    "label": "TABLE 14",
+    "reason": "Model accuracy comparison with existing papers",
+    "x1": 499,
+    "y1": 153,
+    "x2": 929,
+    "y2": 477
+  },
+  "verified_caption": "",
+  "crop_refinement": {
+    "inner_box": {
+      "x1": 29,
+      "y1": 41,
+      "x2": 971,
+      "y2": 958,
+      "reason": "The crop is already tight around the table boundaries, including the header and all rows."
+    },
+    "final_region": {
+      "id": "table-14",
+      "kind": "table",
+      "label": "TABLE 14",
+      "reason": "Model accuracy comparison with existing papers",
+      "x1": 511,
+      "y1": 214,
+      "x2": 917,
+      "y2": 416
+    }
+  },
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "table",
+    "short_title": "Comparison of models",
+    "caption_guess": "",
+    "markdown": "| Paper | Model | Accuracy | Feature engineering | XAI |\n| :--- | :--- | :--- | :--- | :--- |\n| Ma et al. (20) | Support vector machine | 91.5% | PHI | ✗ |\n| Miltiadous et al. (18) | Dual-Input Convolution Encoder Network (DICE-net) | 83.28% | Band power and coherence | ✗ |\n| Kachare et al. (16) | STEADYNet | 97.59% | ✗ | ✗ |\n| Chen et al. (19) | Vision transformer + CNN | 80.23% | frequency channels | ✗ |\n| This work | Proposed model | 80.34%, 99.7% | Modified RBP | ✓ |",
+    "visible_text": [
+      "Paper",
+      "Model",
+      "Accuracy",
+      "Feature engineering",
+      "XAI",
+      "Ma et al. (20)",
+      "Support vector machine",
+      "91.5%",
+      "PHI",
+      "✗",
+      "Miltiadous et al. (18)",
+      "Dual-Input Convolution Encoder Network (DICE-net)",
+      "83.28%",
+      "Band power and coherence",
+      "Kachare et al. (16)",
+      "STEADYNet",
+      "97.59%",
+      "Chen et al. (19)",
+      "Vision transformer + CNN",
+      "80.23%",
+      "frequency channels",
+      "This work",
+      "Proposed model",
+      "80.34%, 99.7%",
+      "Modified RBP",
+      "✓"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0011/fig-04.png"
+}

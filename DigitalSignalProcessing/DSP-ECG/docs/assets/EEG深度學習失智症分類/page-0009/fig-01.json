@@ -1,0 +1,66 @@
+{
+  "region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 5",
+    "reason": "A composite figure containing four ROC curve charts (a, b, c, d) representing different classification scenarios.",
+    "x1": 83,
+    "y1": 93,
+    "x2": 917,
+    "y2": 612
+  },
+  "original_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 5",
+    "reason": "A composite figure containing four ROC curve charts (a, b, c, d) representing different classification scenarios.",
+    "x1": 95,
+    "y1": 105,
+    "x2": 905,
+    "y2": 600
+  },
+  "padded_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 5",
+    "reason": "A composite figure containing four ROC curve charts (a, b, c, d) representing different classification scenarios.",
+    "x1": 83,
+    "y1": 93,
+    "x2": 917,
+    "y2": 612
+  },
+  "caption_probe_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 5",
+    "reason": "A composite figure containing four ROC curve charts (a, b, c, d) representing different classification scenarios.",
+    "x1": 83,
+    "y1": 41,
+    "x2": 917,
+    "y2": 664
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "ROC Curves for Classification Models",
+    "caption_guess": "FIGURE 5",
+    "markdown": "The image displays four Receiver Operating Characteristic (ROC) curves labeled (a), (b), (c), and (d). Each plot shows the True Positive Rate (Sensitivity) on the y-axis against the False Positive Rate on the x-axis, with a dashed diagonal line representing a random classifier.\n\n- **Plot (a)**: Shows three distinct curves for different conditions: \n  - Alzheimer (blue, AUC = 0.88)\n  - Frontotemporal (orange, AUC = 1.00)\n  - Healthy (green, AUC = 0.85)\n- **Plots (b), (c), and (d)**: Each show a single blue ROC curve with an AUC of 1.00, indicating perfect classification performance for those specific models or conditions.",
+    "visible_text": [
+      "Receiver Operating Characteristic (ROC)",
+      "True Positive Rate (Sensitivity)",
+      "False Positive Rate",
+      "Alzheimer (AUC = 0.88)",
+      "Frontotemporal (AUC = 1.00)",
+      "Healthy (AUC = 0.85)",
+      "ROC Curve (AUC = 1.00)",
+      "(a)",
+      "(b)",
+      "(c)",
+      "(d)",
+      "FIGURE 5"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0009/fig-01.png"
+}

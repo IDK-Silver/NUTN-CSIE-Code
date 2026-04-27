@@ -1,0 +1,72 @@
+{
+  "region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 10",
+    "reason": "SHAP summary plot for Alzheimer's Disease class.",
+    "x1": 193,
+    "y1": 103,
+    "x2": 787,
+    "y2": 332
+  },
+  "original_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 10",
+    "reason": "SHAP summary plot for Alzheimer's Disease class.",
+    "x1": 205,
+    "y1": 115,
+    "x2": 775,
+    "y2": 320
+  },
+  "padded_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 10",
+    "reason": "SHAP summary plot for Alzheimer's Disease class.",
+    "x1": 193,
+    "y1": 103,
+    "x2": 787,
+    "y2": 332
+  },
+  "caption_probe_region": {
+    "id": "fig-01",
+    "kind": "chart",
+    "label": "Figure 10",
+    "reason": "SHAP summary plot for Alzheimer's Disease class.",
+    "x1": 193,
+    "y1": 51,
+    "x2": 787,
+    "y2": 384
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "SHAP Summary Plot for Alzheimer Disease",
+    "caption_guess": "",
+    "markdown": "This is a SHAP summary plot showing the impact of various brain wave frequency bands (Beta, Zaeta, Theta, Alpha, Delta, Gamma) on the model output for the 'Alzheimer Disease' class. \n\n- The x-axis represents the 'SHAP value (impact on model output)', ranging from -0.6 to 0.6.\n- The y-axis lists the features: Beta, Zaeta, Theta, Alpha, Delta, and Gamma.\n- Each point represents an individual observation. The color of the points indicates the 'Feature value', where blue represents 'Low' and red represents 'High'.\n- Beta shows a strong negative impact (left side) for high feature values (red) and a positive impact for low feature values (blue).\n- Zaeta shows a wide distribution with high feature values (red) tending towards positive SHAP values.\n- The other features (Theta, Alpha, Delta, Gamma) show more concentrated distributions around the zero SHAP value line.",
+    "visible_text": [
+      "SHAP Summary Plot for Class: Alzheimer Disease",
+      "Beta",
+      "Zaeta",
+      "Theta",
+      "Alpha",
+      "Delta",
+      "Gamma",
+      "-0.6",
+      "-0.4",
+      "-0.2",
+      "0.0",
+      "0.2",
+      "0.4",
+      "0.6",
+      "SHAP value (impact on model output)",
+      "High",
+      "Feature value",
+      "Low"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0014/fig-01.png"
+}

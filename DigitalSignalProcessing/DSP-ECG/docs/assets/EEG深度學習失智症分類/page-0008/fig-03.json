@@ -1,0 +1,64 @@
+{
+  "region": {
+    "id": "fig-01c",
+    "kind": "chart",
+    "label": "Confusion Matrix (c)",
+    "reason": "Confusion matrix for Alzheimer vs. Healthy classification.",
+    "x1": 93,
+    "y1": 303,
+    "x2": 467,
+    "y2": 512
+  },
+  "original_region": {
+    "id": "fig-01c",
+    "kind": "chart",
+    "label": "Confusion Matrix (c)",
+    "reason": "Confusion matrix for Alzheimer vs. Healthy classification.",
+    "x1": 105,
+    "y1": 315,
+    "x2": 455,
+    "y2": 500
+  },
+  "padded_region": {
+    "id": "fig-01c",
+    "kind": "chart",
+    "label": "Confusion Matrix (c)",
+    "reason": "Confusion matrix for Alzheimer vs. Healthy classification.",
+    "x1": 93,
+    "y1": 303,
+    "x2": 467,
+    "y2": 512
+  },
+  "caption_probe_region": {
+    "id": "fig-01c",
+    "kind": "chart",
+    "label": "Confusion Matrix (c)",
+    "reason": "Confusion matrix for Alzheimer vs. Healthy classification.",
+    "x1": 93,
+    "y1": 251,
+    "x2": 467,
+    "y2": 564
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "Confusion Matrix",
+    "caption_guess": "(c)",
+    "markdown": "The image displays a confusion matrix for a binary classification task between 'Alzheimer's Disease' and 'Healthy' classes. \n\n| | Predicted: Alzheimer's Disease | Predicted: Healthy |\n|---|---|---|\n| **True: Alzheimer's Disease** | 1874 | 2 |\n| **True: Healthy** | 7 | 1590 |\n\nThe matrix uses a blue color scale to represent the frequency of predictions, with darker shades indicating higher counts. The color bar on the right ranges from 250 to 1750. The labels 'True label' and 'Predicted label' are positioned on the y-axis and x-axis, respectively. The figure is labeled as (c).",
+    "visible_text": [
+      "Confusion Matrix",
+      "Alzheimer's Disease",
+      "Healthy",
+      "True label",
+      "Predicted label",
+      "1874",
+      "2",
+      "7",
+      "1590",
+      "(c)"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0008/fig-03.png"
+}

@@ -1,0 +1,82 @@
+{
+  "region": {
+    "id": "table-02",
+    "kind": "table",
+    "label": "Table 7",
+    "reason": "Classification accuracy for different dementia classification tasks.",
+    "x1": 83,
+    "y1": 706,
+    "x2": 489,
+    "y2": 799
+  },
+  "original_region": {
+    "id": "table-02",
+    "kind": "table",
+    "label": "Table 7",
+    "reason": "Classification accuracy for different dementia classification tasks.",
+    "x1": 83,
+    "y1": 705,
+    "x2": 489,
+    "y2": 800
+  },
+  "padded_region": {
+    "id": "table-02",
+    "kind": "table",
+    "label": "Table 7",
+    "reason": "Classification accuracy for different dementia classification tasks.",
+    "x1": 71,
+    "y1": 693,
+    "x2": 501,
+    "y2": 812
+  },
+  "caption_probe_region": {
+    "id": "table-02",
+    "kind": "table",
+    "label": "Table 7",
+    "reason": "Classification accuracy for different dementia classification tasks.",
+    "x1": 71,
+    "y1": 641,
+    "x2": 501,
+    "y2": 864
+  },
+  "verified_caption": "",
+  "crop_refinement": {
+    "inner_box": {
+      "x1": 28,
+      "y1": 110,
+      "x2": 972,
+      "y2": 888,
+      "reason": "The crop is tightened to exclude the partial text 'tasks:' at the top, focusing strictly on the table boundaries."
+    },
+    "final_region": {
+      "id": "table-02",
+      "kind": "table",
+      "label": "Table 7",
+      "reason": "Classification accuracy for different dementia classification tasks.",
+      "x1": 83,
+      "y1": 706,
+      "x2": 489,
+      "y2": 799
+    }
+  },
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "table",
+    "short_title": "Classification task accuracy",
+    "caption_guess": "",
+    "markdown": "| Classification task | Accuracy |\n| :--- | :--- |\n| Frontotemporal disease vs. healthy | 0.9970 |\n| Alzheimer’s disease vs. healthy | 0.9974 |\n| Alzheimer + frontotemporal disease vs. healthy | 0.9980 |\n| Alzheimer vs. frontotemporal vs. healthy | 0.8034 |",
+    "visible_text": [
+      "Classification task",
+      "Accuracy",
+      "Frontotemporal disease vs. healthy",
+      "0.9970",
+      "Alzheimer’s disease vs. healthy",
+      "0.9974",
+      "Alzheimer + frontotemporal disease vs. healthy",
+      "0.9980",
+      "Alzheimer vs. frontotemporal vs. healthy",
+      "0.8034"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0010/fig-02.png"
+}

@@ -1,0 +1,91 @@
+{
+  "region": {
+    "id": "table-03",
+    "kind": "table",
+    "label": "TABLE 6",
+    "reason": "Classification metrics for frontotemporal disease and healthy classes.",
+    "x1": 511,
+    "y1": 659,
+    "x2": 917,
+    "y2": 791
+  },
+  "original_region": {
+    "id": "table-03",
+    "kind": "table",
+    "label": "TABLE 6",
+    "reason": "Classification metrics for frontotemporal disease and healthy classes.",
+    "x1": 511,
+    "y1": 659,
+    "x2": 917,
+    "y2": 791
+  },
+  "padded_region": {
+    "id": "table-03",
+    "kind": "table",
+    "label": "TABLE 6",
+    "reason": "Classification metrics for frontotemporal disease and healthy classes.",
+    "x1": 499,
+    "y1": 647,
+    "x2": 929,
+    "y2": 803
+  },
+  "caption_probe_region": {
+    "id": "table-03",
+    "kind": "table",
+    "label": "TABLE 6",
+    "reason": "Classification metrics for frontotemporal disease and healthy classes.",
+    "x1": 499,
+    "y1": 595,
+    "x2": 929,
+    "y2": 855
+  },
+  "verified_caption": "",
+  "crop_refinement": {
+    "inner_box": {
+      "x1": 29,
+      "y1": 78,
+      "x2": 971,
+      "y2": 922,
+      "reason": "The crop is tightened to the table boundaries, excluding the text 'classes:' above the table."
+    },
+    "final_region": {
+      "id": "table-03",
+      "kind": "table",
+      "label": "TABLE 6",
+      "reason": "Classification metrics for frontotemporal disease and healthy classes.",
+      "x1": 511,
+      "y1": 659,
+      "x2": 917,
+      "y2": 791
+    }
+  },
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "table",
+    "short_title": "Performance metrics for Frontotemporal disease and Healthy groups",
+    "caption_guess": "",
+    "markdown": "| Metric | Frontotemporal disease | Healthy |\n| :--- | :--- | :--- |\n| F1 score | 0.9975 | 0.9964 |\n| Recall | 0.9956 | 0.9991 |\n| Precision | 0.9994 | 0.9937 |\n| Support | 1597 | 1596 |\n| Sensitivity | 1.00 | |\n| Specificity | 1.00 | |",
+    "visible_text": [
+      "Metric",
+      "Frontotemporal disease",
+      "Healthy",
+      "F1 score",
+      "0.9975",
+      "0.9964",
+      "Recall",
+      "0.9956",
+      "0.9991",
+      "Precision",
+      "0.9994",
+      "0.9937",
+      "Support",
+      "1597",
+      "1596",
+      "Sensitivity",
+      "1.00",
+      "Specificity",
+      "1.00"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0007/fig-03.png"
+}

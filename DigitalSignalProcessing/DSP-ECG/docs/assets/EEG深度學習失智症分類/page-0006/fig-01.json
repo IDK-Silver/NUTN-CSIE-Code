@@ -1,0 +1,85 @@
+{
+  "region": {
+    "id": "table-01",
+    "kind": "table",
+    "label": "Table 1",
+    "reason": "Model architecture summary table",
+    "x1": 511,
+    "y1": 112,
+    "x2": 917,
+    "y2": 918
+  },
+  "original_region": {
+    "id": "table-01",
+    "kind": "table",
+    "label": "Table 1",
+    "reason": "Model architecture summary table",
+    "x1": 511,
+    "y1": 115,
+    "x2": 917,
+    "y2": 915
+  },
+  "padded_region": {
+    "id": "table-01",
+    "kind": "table",
+    "label": "Table 1",
+    "reason": "Model architecture summary table",
+    "x1": 499,
+    "y1": 103,
+    "x2": 929,
+    "y2": 927
+  },
+  "caption_probe_region": {
+    "id": "table-01",
+    "kind": "table",
+    "label": "Table 1",
+    "reason": "Model architecture summary table",
+    "x1": 499,
+    "y1": 51,
+    "x2": 929,
+    "y2": 979
+  },
+  "verified_caption": "",
+  "crop_refinement": {
+    "inner_box": {
+      "x1": 28,
+      "y1": 11,
+      "x2": 972,
+      "y2": 989,
+      "reason": "The current crop is already tight around the table, including the header and all rows."
+    },
+    "final_region": {
+      "id": "table-01",
+      "kind": "table",
+      "label": "Table 1",
+      "reason": "Model architecture summary table",
+      "x1": 511,
+      "y1": 112,
+      "x2": 917,
+      "y2": 918
+    }
+  },
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "table",
+    "short_title": "Neural network architecture table",
+    "caption_guess": "",
+    "markdown": "| Layer (type) | Output shape | Parameters | Connected to |\n| :--- | :--- | :--- | :--- |\n| Input layer | (None, 6, 1) | 0 | - |\n| Conv 1D | (None, 6, 32) | 256 | Input layer [0][0] |\n| Batch normalization | (None, 6, 32) | 128 | Conv1D [0][0] |\n| Activation | (None, 6, 32) | 0 | Batch normalization [0][0] |\n| Spatial dropout 1D | (None, 6, 32) | 0 | Activation [0][0] |\n| Conv1D | (None, 6, 32) | 7,200 | Spatial dropout 1D [0][0] |\n| Batch normalization | (None, 6, 32) | 128 | Conv1D [1][0] |\n| Activation | (None, 6, 32) | 0 | Batch normalization [1][0] |\n| Conv 1D | (None, 6, 32) | 64 | Input layer [0][0] |\n| Spatial dropout 1D | (None, 6, 32) | 0 | Activation [1][0] |\n| Add | (None, 6, 32) | 0 | Conv1D[2][0], Spatial dropout 1D [1][0] |\n| Conv 1D | (None, 6, 32) | 7,200 | Add[0][0] |\n| Batch normalization | (None, 6, 32) | 128 | Conv1D [3][0] |\n| Activation | (None, 6, 32) | 0 | Batch normalization [2][0] |\n| Spatial dropout 1D | (None, 6, 32) | 0 | Activation [2][0] |\n| Conv 1D | (None, 6, 32) | 7,200 | Spatial dropout 1D [2][0] |\n| Batch normalization | (None, 6, 32) | 128 | Conv 1D [4][0] |\n| Activation | (None, 6, 32) | 0 | Batch normalization [3][0] |\n| Conv 1D | (None, 6, 32) | 1,056 | Add[0][0] |\n| Spatial dropout 1D | (None, 6, 32) | 0 | Activation [3][0] |\n| Add | (None, 6, 32) | 0 | Conv1D[5][0], Spatial dropout 1D [3][0] |\n| LSTM | (None, 64) | 24,832 | Add [1][0] |\n| Dense | (None, 128) | 8,320 | LSTM [0][0] |\n| Dropout | (None, 128) | 0 | Dense [0][0] |\n| Dense | (None, 192) | 24,768 | Dropout [0][0] |\n| Dropout | (None, 192) | 0 | Dense [1][0] |\n| Dense | (None, 256) | 49,408 | Dropout [1][0] |\n| Dropout | (None, 256) | 0 | Dense [2][0] |\n| Dense | (None, 3) | 771 | Dropout [2][0] |",
+    "visible_text": [
+      "Layer (type)",
+      "Output shape",
+      "Parameters",
+      "Connected to",
+      "Input layer",
+      "Conv 1D",
+      "Batch normalization",
+      "Activation",
+      "Spatial dropout 1D",
+      "Add",
+      "LSTM",
+      "Dense",
+      "Dropout"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0006/fig-01.png"
+}

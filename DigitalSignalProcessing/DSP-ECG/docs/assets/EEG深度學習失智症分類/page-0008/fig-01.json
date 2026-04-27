@@ -1,0 +1,70 @@
+{
+  "region": {
+    "id": "fig-01a",
+    "kind": "chart",
+    "label": "Confusion Matrix (a)",
+    "reason": "Confusion matrix for Alzheimer vs. Frontotemporal vs. Healthy classification.",
+    "x1": 93,
+    "y1": 103,
+    "x2": 467,
+    "y2": 312
+  },
+  "original_region": {
+    "id": "fig-01a",
+    "kind": "chart",
+    "label": "Confusion Matrix (a)",
+    "reason": "Confusion matrix for Alzheimer vs. Frontotemporal vs. Healthy classification.",
+    "x1": 105,
+    "y1": 115,
+    "x2": 455,
+    "y2": 300
+  },
+  "padded_region": {
+    "id": "fig-01a",
+    "kind": "chart",
+    "label": "Confusion Matrix (a)",
+    "reason": "Confusion matrix for Alzheimer vs. Frontotemporal vs. Healthy classification.",
+    "x1": 93,
+    "y1": 103,
+    "x2": 467,
+    "y2": 312
+  },
+  "caption_probe_region": {
+    "id": "fig-01a",
+    "kind": "chart",
+    "label": "Confusion Matrix (a)",
+    "reason": "Confusion matrix for Alzheimer vs. Frontotemporal vs. Healthy classification.",
+    "x1": 93,
+    "y1": 51,
+    "x2": 467,
+    "y2": 364
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "Confusion Matrix",
+    "caption_guess": "(a)",
+    "markdown": "The image displays a confusion matrix for a classification task involving three categories: Alzheimer, Frontotemporal, and Healthy. The matrix is represented as a heatmap with a color scale ranging from light blue (low values) to dark blue (high values).\n\n| True \\ Predicted | Alzheimer | Frontotemporal | Healthy |\n| :--- | :---: | :---: | :---: |\n| **Alzheimer** | 1693 | 4 | 179 |\n| **Frontotemporal** | 1 | 1594 | 2 |\n| **Healthy** | 712 | 2 | 392 |\n\nThe matrix shows high diagonal values, indicating strong classification performance for Alzheimer and Frontotemporal, while the Healthy category shows a significant number of misclassifications as Alzheimer (712).",
+    "visible_text": [
+      "Confusion Matrix",
+      "Alzheimer",
+      "Frontotemporal",
+      "Healthy",
+      "True label",
+      "Predicted label",
+      "1693",
+      "4",
+      "179",
+      "1",
+      "1594",
+      "2",
+      "712",
+      "2",
+      "392",
+      "(a)"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0008/fig-01.png"
+}

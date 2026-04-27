@@ -1,0 +1,91 @@
+{
+  "region": {
+    "id": "table-02",
+    "kind": "table",
+    "label": "TABLE 5",
+    "reason": "Classification metrics for Alzheimer's disease and healthy classes.",
+    "x1": 511,
+    "y1": 474,
+    "x2": 917,
+    "y2": 606
+  },
+  "original_region": {
+    "id": "table-02",
+    "kind": "table",
+    "label": "TABLE 5",
+    "reason": "Classification metrics for Alzheimer's disease and healthy classes.",
+    "x1": 511,
+    "y1": 474,
+    "x2": 917,
+    "y2": 606
+  },
+  "padded_region": {
+    "id": "table-02",
+    "kind": "table",
+    "label": "TABLE 5",
+    "reason": "Classification metrics for Alzheimer's disease and healthy classes.",
+    "x1": 499,
+    "y1": 462,
+    "x2": 929,
+    "y2": 618
+  },
+  "caption_probe_region": {
+    "id": "table-02",
+    "kind": "table",
+    "label": "TABLE 5",
+    "reason": "Classification metrics for Alzheimer's disease and healthy classes.",
+    "x1": 499,
+    "y1": 410,
+    "x2": 929,
+    "y2": 670
+  },
+  "verified_caption": "",
+  "crop_refinement": {
+    "inner_box": {
+      "x1": 29,
+      "y1": 75,
+      "x2": 971,
+      "y2": 924,
+      "reason": "The crop is tightened to remove the text 'classes:' above the table, while keeping the entire table structure including headers and all rows."
+    },
+    "final_region": {
+      "id": "table-02",
+      "kind": "table",
+      "label": "TABLE 5",
+      "reason": "Classification metrics for Alzheimer's disease and healthy classes.",
+      "x1": 511,
+      "y1": 474,
+      "x2": 917,
+      "y2": 606
+    }
+  },
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "table",
+    "short_title": "Performance metrics for Alzheimer's disease and Healthy groups",
+    "caption_guess": "",
+    "markdown": "| Metric | Alzheimer's disease | Healthy |\n| :--- | :--- | :--- |\n| Precision | 0.9963 | 0.9987 |\n| F1 Score | 0.9976 | 0.9972 |\n| Recall | 0.9989 | 0.9956 |\n| Support | 1876 | 1596 |\n| Sensitivity | 1.00 | |\n| Specificity | 1.00 | |",
+    "visible_text": [
+      "Metric",
+      "Alzheimer's disease",
+      "Healthy",
+      "Precision",
+      "0.9963",
+      "0.9987",
+      "F1 Score",
+      "0.9976",
+      "0.9972",
+      "Recall",
+      "0.9989",
+      "0.9956",
+      "Support",
+      "1876",
+      "1596",
+      "Sensitivity",
+      "1.00",
+      "Specificity",
+      "1.00"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0007/fig-02.png"
+}

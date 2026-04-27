@@ -1,0 +1,90 @@
+{
+  "region": {
+    "id": "table-03",
+    "kind": "table",
+    "label": "Table 10",
+    "reason": "K-fold validation accuracy for Alzheimer, frontotemporal, and healthy classes.",
+    "x1": 511,
+    "y1": 687,
+    "x2": 917,
+    "y2": 800
+  },
+  "original_region": {
+    "id": "table-03",
+    "kind": "table",
+    "label": "Table 10",
+    "reason": "K-fold validation accuracy for Alzheimer, frontotemporal, and healthy classes.",
+    "x1": 511,
+    "y1": 687,
+    "x2": 917,
+    "y2": 800
+  },
+  "padded_region": {
+    "id": "table-03",
+    "kind": "table",
+    "label": "Table 10",
+    "reason": "K-fold validation accuracy for Alzheimer, frontotemporal, and healthy classes.",
+    "x1": 499,
+    "y1": 675,
+    "x2": 929,
+    "y2": 812
+  },
+  "caption_probe_region": {
+    "id": "table-03",
+    "kind": "table",
+    "label": "Table 10",
+    "reason": "K-fold validation accuracy for Alzheimer, frontotemporal, and healthy classes.",
+    "x1": 499,
+    "y1": 623,
+    "x2": 929,
+    "y2": 864
+  },
+  "verified_caption": "",
+  "crop_refinement": {
+    "inner_box": {
+      "x1": 29,
+      "y1": 88,
+      "x2": 971,
+      "y2": 912,
+      "reason": "The crop is tightened to exclude the partial text at the top while keeping the entire table structure."
+    },
+    "final_region": {
+      "id": "table-03",
+      "kind": "table",
+      "label": "Table 10",
+      "reason": "K-fold validation accuracy for Alzheimer, frontotemporal, and healthy classes.",
+      "x1": 511,
+      "y1": 687,
+      "x2": 917,
+      "y2": 800
+    }
+  },
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "table",
+    "short_title": "K-value accuracy comparison",
+    "caption_guess": "",
+    "markdown": "| K-value | Training accuracy (%) | Test accuracy (%) |\n| :--- | :--- | :--- |\n| 1 | 79.89 | 80.15 |\n| 2 | 80.00 | 80.00 |\n| 3 | 79.58 | 80.06 |\n| 4 | 79.43 | 80.02 |\n| 5 | 81.27 | 80.13 |",
+    "visible_text": [
+      "K-value",
+      "Training accuracy (%)",
+      "Test accuracy (%)",
+      "1",
+      "79.89",
+      "80.15",
+      "2",
+      "80.00",
+      "80.00",
+      "3",
+      "79.58",
+      "80.06",
+      "4",
+      "79.43",
+      "80.02",
+      "5",
+      "81.27",
+      "80.13"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0010/fig-03.png"
+}

@@ -1,0 +1,70 @@
+{
+  "region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 9",
+    "reason": "SHAP summary plot showing feature impact for the Healthy class.",
+    "x1": 203,
+    "y1": 398,
+    "x2": 797,
+    "y2": 627
+  },
+  "original_region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 9",
+    "reason": "SHAP summary plot showing feature impact for the Healthy class.",
+    "x1": 215,
+    "y1": 410,
+    "x2": 785,
+    "y2": 615
+  },
+  "padded_region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 9",
+    "reason": "SHAP summary plot showing feature impact for the Healthy class.",
+    "x1": 203,
+    "y1": 398,
+    "x2": 797,
+    "y2": 627
+  },
+  "caption_probe_region": {
+    "id": "fig-02",
+    "kind": "chart",
+    "label": "Figure 9",
+    "reason": "SHAP summary plot showing feature impact for the Healthy class.",
+    "x1": 203,
+    "y1": 346,
+    "x2": 797,
+    "y2": 679
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "SHAP Summary Plot for Class: Healthy",
+    "caption_guess": "",
+    "markdown": "This is a SHAP (SHapley Additive exPlanations) summary plot for the 'Healthy' class. The x-axis represents the 'SHAP value (impact on model output)', with a vertical line at 0 indicating no impact. The y-axis lists six features: 'Zaeta', 'Beta', 'Theta', 'Alpha', 'Gamma', and 'Delta'. \n\nEach feature row contains a swarm of points representing individual observations. The color of each point indicates the 'Feature value', ranging from blue (Low) to red (High), as shown in the color bar on the right. \n\n- **Zaeta**: Shows a wide distribution, with higher feature values (red) generally pushing the SHAP value to the right (positive impact).\n- **Beta**: Shows a significant cluster of low feature values (blue) on the right side of the zero line, and high feature values (red) on the left.\n- **Theta**: Displays a broad distribution with a mix of high and low values.\n- **Alpha**: Shows a concentration of points near the zero line.\n- **Gamma**: Shows a dense cluster near zero with some outliers extending in both directions.\n- **Delta**: Shows a very tight cluster near zero with some spread.",
+    "visible_text": [
+      "SHAP Summary Plot for Class: Healthy",
+      "Zaeta",
+      "Beta",
+      "Theta",
+      "Alpha",
+      "Gamma",
+      "Delta",
+      "-0.4",
+      "-0.2",
+      "0.0",
+      "0.2",
+      "0.4",
+      "SHAP value (impact on model output)",
+      "High",
+      "Feature value",
+      "Low"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0013/fig-02.png"
+}

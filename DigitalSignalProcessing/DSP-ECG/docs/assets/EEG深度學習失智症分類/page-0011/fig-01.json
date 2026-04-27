@@ -1,0 +1,90 @@
+{
+  "region": {
+    "id": "table-11",
+    "kind": "table",
+    "label": "TABLE 11",
+    "reason": "K-fold validation accuracy table",
+    "x1": 83,
+    "y1": 112,
+    "x2": 489,
+    "y2": 226
+  },
+  "original_region": {
+    "id": "table-11",
+    "kind": "table",
+    "label": "TABLE 11",
+    "reason": "K-fold validation accuracy table",
+    "x1": 83,
+    "y1": 113,
+    "x2": 489,
+    "y2": 225
+  },
+  "padded_region": {
+    "id": "table-11",
+    "kind": "table",
+    "label": "TABLE 11",
+    "reason": "K-fold validation accuracy table",
+    "x1": 71,
+    "y1": 101,
+    "x2": 501,
+    "y2": 237
+  },
+  "caption_probe_region": {
+    "id": "table-11",
+    "kind": "table",
+    "label": "TABLE 11",
+    "reason": "K-fold validation accuracy table",
+    "x1": 71,
+    "y1": 49,
+    "x2": 501,
+    "y2": 289
+  },
+  "verified_caption": "",
+  "crop_refinement": {
+    "inner_box": {
+      "x1": 29,
+      "y1": 81,
+      "x2": 971,
+      "y2": 919,
+      "reason": "The crop is already tight around the table, including the header and all data rows."
+    },
+    "final_region": {
+      "id": "table-11",
+      "kind": "table",
+      "label": "TABLE 11",
+      "reason": "K-fold validation accuracy table",
+      "x1": 83,
+      "y1": 112,
+      "x2": 489,
+      "y2": 226
+    }
+  },
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "table",
+    "short_title": "K-value accuracy table",
+    "caption_guess": "",
+    "markdown": "This table displays the training and test accuracy percentages for different K-values.\n\n| K-value | Training accuracy (%) | Test accuracy (%) |\n| :--- | :--- | :--- |\n| 1 | 99.82 | 99.86 |\n| 2 | 99.80 | 99.82 |\n| 3 | 99.73 | 99.92 |\n| 4 | 99.61 | 99.86 |\n| 5 | 99.78 | 99.82 |",
+    "visible_text": [
+      "K-value",
+      "Training accuracy (%)",
+      "Test accuracy (%)",
+      "1",
+      "99.82",
+      "99.86",
+      "2",
+      "99.80",
+      "99.82",
+      "3",
+      "99.73",
+      "99.92",
+      "4",
+      "99.61",
+      "99.86",
+      "5",
+      "99.78",
+      "99.82"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0011/fig-01.png"
+}

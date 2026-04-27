@@ -1,0 +1,87 @@
+{
+  "region": {
+    "id": "table-13",
+    "kind": "table",
+    "label": "TABLE 13",
+    "reason": "Classification metrics for Alzheimer and healthy classes",
+    "x1": 511,
+    "y1": 112,
+    "x2": 917,
+    "y2": 179
+  },
+  "original_region": {
+    "id": "table-13",
+    "kind": "table",
+    "label": "TABLE 13",
+    "reason": "Classification metrics for Alzheimer and healthy classes",
+    "x1": 511,
+    "y1": 113,
+    "x2": 917,
+    "y2": 181
+  },
+  "padded_region": {
+    "id": "table-13",
+    "kind": "table",
+    "label": "TABLE 13",
+    "reason": "Classification metrics for Alzheimer and healthy classes",
+    "x1": 499,
+    "y1": 101,
+    "x2": 929,
+    "y2": 193
+  },
+  "caption_probe_region": {
+    "id": "table-13",
+    "kind": "table",
+    "label": "TABLE 13",
+    "reason": "Classification metrics for Alzheimer and healthy classes",
+    "x1": 499,
+    "y1": 49,
+    "x2": 929,
+    "y2": 245
+  },
+  "verified_caption": "",
+  "crop_refinement": {
+    "inner_box": {
+      "x1": 28,
+      "y1": 115,
+      "x2": 972,
+      "y2": 852,
+      "reason": "The crop is already tight around the table, including the header and data rows, while excluding the caption text at the top."
+    },
+    "final_region": {
+      "id": "table-13",
+      "kind": "table",
+      "label": "TABLE 13",
+      "reason": "Classification metrics for Alzheimer and healthy classes",
+      "x1": 511,
+      "y1": 112,
+      "x2": 917,
+      "y2": 179
+    }
+  },
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "table",
+    "short_title": "Classification metrics",
+    "caption_guess": "",
+    "markdown": "This table presents classification performance metrics for two classes: Alzheimer and Healthy. The columns include Precision, Recall, F1-score, and Support.\n\n| Class | Precision | Recall | F1-score | Support |\n| :--- | :--- | :--- | :--- | :--- |\n| Alzheimer | 0.76 | 0.81 | 0.79 | 1,876 |\n| Healthy | 0.76 | 0.71 | 0.73 | 1,597 |",
+    "visible_text": [
+      "Class",
+      "Precision",
+      "Recall",
+      "F1-score",
+      "Support",
+      "Alzheimer",
+      "0.76",
+      "0.81",
+      "0.79",
+      "1,876",
+      "Healthy",
+      "0.76",
+      "0.71",
+      "0.73",
+      "1,597"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0011/fig-03.png"
+}

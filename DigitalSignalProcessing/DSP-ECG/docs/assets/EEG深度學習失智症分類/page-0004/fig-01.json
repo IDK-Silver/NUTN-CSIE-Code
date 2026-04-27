@@ -1,0 +1,75 @@
+{
+  "region": {
+    "id": "fig-01",
+    "kind": "figure",
+    "label": "Figure 2",
+    "reason": "A grid of ICA component brain topography maps.",
+    "x1": 83,
+    "y1": 103,
+    "x2": 917,
+    "y2": 687
+  },
+  "original_region": {
+    "id": "fig-01",
+    "kind": "figure",
+    "label": "Figure 2",
+    "reason": "A grid of ICA component brain topography maps.",
+    "x1": 95,
+    "y1": 115,
+    "x2": 905,
+    "y2": 675
+  },
+  "padded_region": {
+    "id": "fig-01",
+    "kind": "figure",
+    "label": "Figure 2",
+    "reason": "A grid of ICA component brain topography maps.",
+    "x1": 83,
+    "y1": 103,
+    "x2": 917,
+    "y2": 687
+  },
+  "caption_probe_region": {
+    "id": "fig-01",
+    "kind": "figure",
+    "label": "Figure 2",
+    "reason": "A grid of ICA component brain topography maps.",
+    "x1": 83,
+    "y1": 51,
+    "x2": 917,
+    "y2": 739
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "figure",
+    "short_title": "ICA components",
+    "caption_guess": "FIGURE 2",
+    "markdown": "The figure displays a grid of 19 topographic maps representing Independent Component Analysis (ICA) components, labeled ICA000 through ICA018. Each map shows the spatial distribution of electrical activity on a scalp, with color gradients representing intensity (red for positive, blue for negative) and contour lines indicating potential levels. The maps are arranged in a 5x4 grid (with the last row containing 4 items).",
+    "visible_text": [
+      "ICA components",
+      "ICA000",
+      "ICA001",
+      "ICA002",
+      "ICA003",
+      "ICA004",
+      "ICA005",
+      "ICA006",
+      "ICA007",
+      "ICA008",
+      "ICA009",
+      "ICA010",
+      "ICA011",
+      "ICA012",
+      "ICA013",
+      "ICA014",
+      "ICA015",
+      "ICA016",
+      "ICA017",
+      "ICA018",
+      "FIGURE 2"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0004/fig-01.png"
+}

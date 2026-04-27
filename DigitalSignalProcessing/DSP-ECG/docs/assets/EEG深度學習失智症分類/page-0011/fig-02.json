@@ -1,0 +1,92 @@
+{
+  "region": {
+    "id": "table-12",
+    "kind": "table",
+    "label": "TABLE 12",
+    "reason": "Classification metrics for Alzheimer, frontotemporal, and healthy classes",
+    "x1": 83,
+    "y1": 273,
+    "x2": 489,
+    "y2": 357
+  },
+  "original_region": {
+    "id": "table-12",
+    "kind": "table",
+    "label": "TABLE 12",
+    "reason": "Classification metrics for Alzheimer, frontotemporal, and healthy classes",
+    "x1": 83,
+    "y1": 273,
+    "x2": 489,
+    "y2": 360
+  },
+  "padded_region": {
+    "id": "table-12",
+    "kind": "table",
+    "label": "TABLE 12",
+    "reason": "Classification metrics for Alzheimer, frontotemporal, and healthy classes",
+    "x1": 71,
+    "y1": 261,
+    "x2": 501,
+    "y2": 372
+  },
+  "caption_probe_region": {
+    "id": "table-12",
+    "kind": "table",
+    "label": "TABLE 12",
+    "reason": "Classification metrics for Alzheimer, frontotemporal, and healthy classes",
+    "x1": 71,
+    "y1": 209,
+    "x2": 501,
+    "y2": 424
+  },
+  "verified_caption": "",
+  "crop_refinement": {
+    "inner_box": {
+      "x1": 28,
+      "y1": 105,
+      "x2": 972,
+      "y2": 865,
+      "reason": "The crop is tightened to exclude the partial text at the top while keeping the entire table structure."
+    },
+    "final_region": {
+      "id": "table-12",
+      "kind": "table",
+      "label": "TABLE 12",
+      "reason": "Classification metrics for Alzheimer, frontotemporal, and healthy classes",
+      "x1": 83,
+      "y1": 273,
+      "x2": 489,
+      "y2": 357
+    }
+  },
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "table",
+    "short_title": "Classification metrics by class",
+    "caption_guess": "",
+    "markdown": "| Class | Precision | Recall | F1-score | Support |\n| :--- | :--- | :--- | :--- | :--- |\n| Alzheimer | 0.60 | 0.77 | 0.67 | 1,876 |\n| Frontotemporal | 0.68 | 0.68 | 0.68 | 1,597 |\n| Healthy | 0.60 | 0.33 | 0.43 | 1,106 |",
+    "visible_text": [
+      "Class",
+      "Precision",
+      "Recall",
+      "F1-score",
+      "Support",
+      "Alzheimer",
+      "0.60",
+      "0.77",
+      "0.67",
+      "1,876",
+      "Frontotemporal",
+      "0.68",
+      "0.68",
+      "0.68",
+      "1,597",
+      "Healthy",
+      "0.60",
+      "0.33",
+      "0.43",
+      "1,106"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0011/fig-02.png"
+}

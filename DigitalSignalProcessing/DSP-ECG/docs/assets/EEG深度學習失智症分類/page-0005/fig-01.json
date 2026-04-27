@@ -1,0 +1,92 @@
+{
+  "region": {
+    "id": "fig-01",
+    "kind": "diagram",
+    "label": "Figure 3",
+    "reason": "The main architectural diagram of the proposed deep learning model.",
+    "x1": 83,
+    "y1": 103,
+    "x2": 917,
+    "y2": 400
+  },
+  "original_region": {
+    "id": "fig-01",
+    "kind": "diagram",
+    "label": "Figure 3",
+    "reason": "The main architectural diagram of the proposed deep learning model.",
+    "x1": 95,
+    "y1": 115,
+    "x2": 905,
+    "y2": 405
+  },
+  "padded_region": {
+    "id": "fig-01",
+    "kind": "diagram",
+    "label": "Figure 3",
+    "reason": "The main architectural diagram of the proposed deep learning model.",
+    "x1": 83,
+    "y1": 103,
+    "x2": 917,
+    "y2": 417
+  },
+  "caption_probe_region": {
+    "id": "fig-01",
+    "kind": "diagram",
+    "label": "Figure 3",
+    "reason": "The main architectural diagram of the proposed deep learning model.",
+    "x1": 83,
+    "y1": 51,
+    "x2": 917,
+    "y2": 469
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": {
+    "inner_box": {
+      "x1": 0,
+      "y1": 0,
+      "x2": 1000,
+      "y2": 945,
+      "reason": "The caption 'FIGURE 7. Proposed Temporal Convolutional Network and Long Short-Term Memory Model' is visible at the bottom of the image and has been excluded."
+    },
+    "final_region": {
+      "id": "fig-01",
+      "kind": "diagram",
+      "label": "Figure 3",
+      "reason": "The main architectural diagram of the proposed deep learning model.",
+      "x1": 83,
+      "y1": 103,
+      "x2": 917,
+      "y2": 400
+    }
+  },
+  "analysis": {
+    "kind": "diagram",
+    "short_title": "Proposed TCN-LSTM Model Architecture",
+    "caption_guess": "Proposed Temporal Convolutional Network and Long Short-Term Memory Model",
+    "markdown": "The diagram illustrates a deep learning pipeline for EEG signal processing. \n\n1. **Data Pipeline**: Starts with 'Raw EEG' signals, which undergo 'Preprocessing EEG'. The signals are then decomposed into frequency bands: 'Gamma', 'Beta', 'Zaeta', 'Alpha', 'Theta', and 'Delta'.\n2. **Processing**: The features pass through 'Label Encoding' and 'Data Normalization & Splitting'.\n3. **Model Architecture**: The data enters a 'Proposed Temporal Convolutional Network' (highlighted in light green) consisting of two main blocks. Each block contains sequences of 'D Convolution', 'Batch Normalization', 'Relu Activation', and 'Spatial Dropout1D', with skip connections involving additional 'D Convolution' layers. \n4. **Final Layers**: The output of the TCN feeds into a sequence of 'LSTM Layer', 'Denser Layer', 'Dropout Layer', and an 'OUTPUT layer'.",
+    "visible_text": [
+      "Raw EEG",
+      "Preprocessing EEG",
+      "Features Extraction",
+      "Gamma",
+      "Beta",
+      "Zaeta",
+      "Alpha",
+      "Theta",
+      "Delta",
+      "Label Encoding",
+      "Data Normalization & Splitting",
+      "D Convolution",
+      "Batch Normalization",
+      "Relu Activation",
+      "Spatial Dropout1D",
+      "LSTM Layer",
+      "Denser Layer",
+      "Dropout Layer",
+      "OUTPUT layer",
+      "Proposed Temporal Convolutional Network and Long Short-Term Memory Model"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0005/fig-01.png"
+}

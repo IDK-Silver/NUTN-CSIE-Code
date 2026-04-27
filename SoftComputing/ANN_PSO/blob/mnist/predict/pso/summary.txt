@@ -1,0 +1,10 @@
+MNIST Prediction Summary
+========================
+Model: blob/mnist/train/pso/model.json
+Architecture: 784-128-10
+Optimizer: pso
+Training loss: 4.056608
+
+Test Results
+------------
+Accuracy: 24.20% (2420/10000)

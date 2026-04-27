@@ -1,0 +1,64 @@
+{
+  "region": {
+    "id": "fig-01d",
+    "kind": "chart",
+    "label": "Confusion Matrix (d)",
+    "reason": "Confusion matrix for Frontotemporal vs. Healthy classification.",
+    "x1": 493,
+    "y1": 303,
+    "x2": 867,
+    "y2": 512
+  },
+  "original_region": {
+    "id": "fig-01d",
+    "kind": "chart",
+    "label": "Confusion Matrix (d)",
+    "reason": "Confusion matrix for Frontotemporal vs. Healthy classification.",
+    "x1": 505,
+    "y1": 315,
+    "x2": 855,
+    "y2": 500
+  },
+  "padded_region": {
+    "id": "fig-01d",
+    "kind": "chart",
+    "label": "Confusion Matrix (d)",
+    "reason": "Confusion matrix for Frontotemporal vs. Healthy classification.",
+    "x1": 493,
+    "y1": 303,
+    "x2": 867,
+    "y2": 512
+  },
+  "caption_probe_region": {
+    "id": "fig-01d",
+    "kind": "chart",
+    "label": "Confusion Matrix (d)",
+    "reason": "Confusion matrix for Frontotemporal vs. Healthy classification.",
+    "x1": 493,
+    "y1": 251,
+    "x2": 867,
+    "y2": 564
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "Confusion Matrix",
+    "caption_guess": "(d)",
+    "markdown": "The image displays a confusion matrix for a binary classification task between 'Frontotemporal Disease' and 'Healthy' classes. \n\n| | Predicted: Frontotemporal Disease | Predicted: Healthy |\n|---|---|---|\n| **True: Frontotemporal Disease** | 1590 | 7 |\n| **True: Healthy** | 1 | 1105 |\n\nThe matrix uses a blue color scale to represent the magnitude of the values, with darker blue indicating higher counts. The axes are labeled 'True label' and 'Predicted label'. The figure is labeled with '(d)' at the bottom.",
+    "visible_text": [
+      "Confusion Matrix",
+      "Frontotemporal Disease",
+      "Healthy",
+      "True label",
+      "Predicted label",
+      "1590",
+      "7",
+      "1",
+      "1105",
+      "(d)"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0008/fig-04.png"
+}

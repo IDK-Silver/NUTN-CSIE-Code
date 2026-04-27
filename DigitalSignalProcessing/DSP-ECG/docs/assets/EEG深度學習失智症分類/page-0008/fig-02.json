@@ -1,0 +1,64 @@
+{
+  "region": {
+    "id": "fig-01b",
+    "kind": "chart",
+    "label": "Confusion Matrix (b)",
+    "reason": "Confusion matrix for Alzheimer + Frontotemporal vs. Healthy classification.",
+    "x1": 493,
+    "y1": 103,
+    "x2": 867,
+    "y2": 312
+  },
+  "original_region": {
+    "id": "fig-01b",
+    "kind": "chart",
+    "label": "Confusion Matrix (b)",
+    "reason": "Confusion matrix for Alzheimer + Frontotemporal vs. Healthy classification.",
+    "x1": 505,
+    "y1": 115,
+    "x2": 855,
+    "y2": 300
+  },
+  "padded_region": {
+    "id": "fig-01b",
+    "kind": "chart",
+    "label": "Confusion Matrix (b)",
+    "reason": "Confusion matrix for Alzheimer + Frontotemporal vs. Healthy classification.",
+    "x1": 493,
+    "y1": 103,
+    "x2": 867,
+    "y2": 312
+  },
+  "caption_probe_region": {
+    "id": "fig-01b",
+    "kind": "chart",
+    "label": "Confusion Matrix (b)",
+    "reason": "Confusion matrix for Alzheimer + Frontotemporal vs. Healthy classification.",
+    "x1": 493,
+    "y1": 51,
+    "x2": 867,
+    "y2": 364
+  },
+  "verified_caption": "",
+  "crop_refinement": null,
+  "caption_strip_refinement": null,
+  "analysis": {
+    "kind": "chart",
+    "short_title": "Confusion Matrix",
+    "caption_guess": "(b)",
+    "markdown": "The image displays a confusion matrix evaluating a classification model. The matrix compares 'True label' (rows) against 'Predicted label' (columns) for two classes: 'Alzheimer + Frontotemporal Disease' and 'Healthy'.\n\n| | Predicted: Alzheimer + Frontotemporal Disease | Predicted: Healthy |\n| :--- | :---: | :---: |\n| **True: Alzheimer + Frontotemporal Disease** | 2981 | 2 |\n| **True: Healthy** | 7 | 1589 |\n\nThe matrix uses a color-coded heatmap where darker blue indicates higher values. The diagonal elements (2981 and 1589) represent correct classifications, while the off-diagonal elements (2 and 7) represent misclassifications.",
+    "visible_text": [
+      "Confusion Matrix",
+      "True label",
+      "Alzheimer + Frontotemporal Disease",
+      "Healthy",
+      "Predicted label",
+      "2981",
+      "2",
+      "7",
+      "1589",
+      "(b)"
+    ]
+  },
+  "image_path": "/private/tmp/paper-to-markdown-20260328211013/figures/page-0008/fig-02.png"
+}
