@@ -1,0 +1,28 @@
+[
+  {
+    "label": "Debug parallel_for_cpu_demo",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/parallel_for_cpu_demo",
+    "args": [
+      "4",
+      "8"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug linear_search_compare",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/linear_search_compare",
+    "args": [
+      "4",
+      "1000000",
+      "999999",
+      "10"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  }
+]

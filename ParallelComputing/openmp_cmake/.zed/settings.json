@@ -1,0 +1,21 @@
+{
+  "auto_install_extensions": {
+    "neocmake": true
+  },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/.cache"
+  ],
+  "file_scan_inclusions": [
+    ".env*",
+    "build/compile_commands.json"
+  ]
+}
