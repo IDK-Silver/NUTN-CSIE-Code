@@ -1,0 +1,33 @@
+# DSP-ECG 專案規則
+
+## Python 執行規則
+
+- 不准直接使用系統 `python`、`python3`、`pip` 或 `pip3`。
+- 所有 Python 指令都必須透過 `uv` 執行，例如：`uv run python ...`。
+- 所有套件安裝與 lockfile 更新都必須透過 `uv`，例如：`uv add ...`、`uv add --dev ...`、`uv sync`。
+- 如果需要執行專案 command，使用 `uv run <command>`，例如：`uv run process_raw_dataset`。
+
+## 驗證規則
+
+- 修改 Python 程式後，至少執行：`uv run python -m py_compile <changed-python-files>`。
+- 修改 Python 程式後，必須執行：`uv run basedpyright`。
+- 如果 `basedpyright` 報錯，應先修正型別問題；不要用忽略註解壓掉錯誤，除非已確認是第三方型別定義限制並在程式旁留下明確原因。
+- 涉及資料處理流程時，至少執行：`uv run process_raw_dataset --dry-run --limit 2`。
+
+## Config 規則
+
+- `cfgs/project.yaml` 必須透過 `src/ecg/config.py` 的 Pydantic model 載入與驗證。
+- 不要在 command 裡直接操作 `yaml.safe_load()` 回傳的巢狀 dict。
+- 新增或改名 config 欄位時，要同步更新 Pydantic schema、使用端程式，以及相關文件。
+- Pydantic 只負責專案 config validation，不用來驗證大型 EEG/H5 數值資料。
+
+## 英文與命名規則
+
+- 如果使用者提出的英文命名、註解、文件文字不自然、有語法錯誤，或容易造成誤解，必須主動提醒。
+- 提醒時要直接給出較自然的英文替代寫法，並簡短說明原因。
+- 不要為了迎合使用者而保留明顯錯誤或不自然的英文命名。
+
+## 文件維護
+
+- 文件入口放在 `docs/index.md`。
+- `.rule` 只放 agent 操作規則，不放長篇資料格式筆記。

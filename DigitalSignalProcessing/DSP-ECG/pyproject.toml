@@ -4,4 +4,44 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "h5py>=3.15.1",
+    "mne>=1.10.2",
+    "numpy>=2.3.4",
+    "pydantic>=2.13.3",
+    "pyyaml>=6.0.3",
+    "scipy>=1.16.2",
+]
+
+[project.scripts]
+download_raw_dataset = "ecg.download_raw_dataset:main"
+process_raw_dataset = "ecg.process_raw_dataset:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ecg"]
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.39.3",
+]
+
+[tool.basedpyright]
+include = ["src"]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+reportMissingTypeStubs = false
+reportUnusedCallResult = false
+
+# The current data-processing code talks to scientific Python libraries whose
+# public stubs are incomplete or very broad. Keep basedpyright useful for
+# project-level mistakes without failing on unavoidable third-party Any/Unknown
+# noise from MNE, SciPy, and h5py.
+reportAny = false
+reportExplicitAny = false
+reportUnknownArgumentType = false
+reportUnknownMemberType = false
+reportUnknownVariableType = false

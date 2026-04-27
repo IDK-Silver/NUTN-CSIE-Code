@@ -1,1 +1,6 @@
-assets/raw/
+/.venv/
+__pycache__/
+*.py[cod]
+
+data/raw/
+data/processed_raw_dataset/
