@@ -5,21 +5,33 @@
 - 不准直接使用系統 `python`、`python3`、`pip` 或 `pip3`。
 - 所有 Python 指令都必須透過 `uv` 執行，例如：`uv run python ...`。
 - 所有套件安裝與 lockfile 更新都必須透過 `uv`，例如：`uv add ...`、`uv add --dev ...`、`uv sync`。
-- 如果需要執行專案 command，使用 `uv run <command>`，例如：`uv run process_raw_dataset`。
+- 如果需要執行專案 command，使用 `uv run <command>`，例如：`uv run process_raw_dataset --dataset ds004504_rbp_paper --raw-dir data/raw/ds004504 --output data/processed_raw_dataset/ds004504_rbp_paper.h5 --manifest data/processed_raw_dataset/ds004504_rbp_paper_manifest.json`。
 
 ## 驗證規則
 
 - 修改 Python 程式後，至少執行：`uv run python -m py_compile <changed-python-files>`。
+- 修改 Python 程式後，必須執行：`uv run ruff check .`。
 - 修改 Python 程式後，必須執行：`uv run basedpyright`。
+- 修改 Python 行為、PyTorch model、Dataset 或測試後，必須執行：`uv run pytest`。
 - 如果 `basedpyright` 報錯，應先修正型別問題；不要用忽略註解壓掉錯誤，除非已確認是第三方型別定義限制並在程式旁留下明確原因。
-- 涉及資料處理流程時，至少執行：`uv run process_raw_dataset --dry-run --limit 2`。
+- 涉及資料處理流程時，至少執行：`uv run process_raw_dataset --dataset ds004504_rbp_paper --raw-dir data/raw/ds004504 --output data/processed_raw_dataset/ds004504_rbp_paper.h5 --manifest data/processed_raw_dataset/ds004504_rbp_paper_manifest.json --dry-run --limit 2`。
 
-## Config 規則
+## Recipe 與 Config 規則
 
-- `cfgs/project.yaml` 必須透過 `src/ecg/config.py` 的 Pydantic model 載入與驗證。
-- 不要在 command 裡直接操作 `yaml.safe_load()` 回傳的巢狀 dict。
-- 新增或改名 config 欄位時，要同步更新 Pydantic schema、使用端程式，以及相關文件。
-- Pydantic 只負責專案 config validation，不用來驗證大型 EEG/H5 數值資料。
+- Dataset processing commands 不准依賴 YAML。Generic command 只接收 processed dataset id、raw input path、output artifact path、manifest path，以及通用操作參數。
+- 特定處理方法的細節，例如 participants path、glob pattern、頻帶、取樣視窗、label mapping，應由對應的 dataset handler 負責。
+- `cfgs/recipes/` 只保存可重現的 command 參數組合；recipe 不是隱性 default，commands 不會自動讀取 recipe。
+- Processed dataset id、recipe 名稱、輸出 H5 名稱、manifest 名稱要保持一致，例如 `ds004504_rbp_paper`、`ds004504_rbp_paper.yaml`、`ds004504_rbp_paper.h5`、`ds004504_rbp_paper_manifest.json`。
+- 後續 training config 可以引用 command 產生的 H5 與 manifest，但不能反過來成為 dataset processing command 的依賴。
+
+## API 與模型設計規則
+
+- 新增可重用 Python API、PyTorch model、Dataset、training config 時，不要替關鍵參數提供隱性 default。關鍵參數包含 input/output 維度、特徵數、類別數、hidden size、kernel size、dropout、learning rate、batch size、split ratio 等。
+- 如果使用者沒有明確提供關鍵參數，程式應 early fail，丟出清楚錯誤訊息，不要猜測或套用看似合理的預設值。
+- 簡單 validation 優先 inline 寫清楚，例如 `if value <= 0: raise ValueError(...)`。不要為了一次性檢查新增 helper function，也不要把 `lambda` 指派給變數；這會觸發 Ruff E731，且可讀性較差。
+- 共用模型與 Dataset 程式要避免寫死 `ds004504`、6 bands、3 classes、固定 input length 等特定資料假設。這些假設只能放在 dataset-specific handler、config、文件範例或測試資料中。
+- CLI 若需要保留既有預設值，必須是使用者已明確要求或相容性需要；新增 CLI 參數預設值前要先確認它不是會影響結果的關鍵設定。
+- 命名要反映適用範圍：只能處理特定 dataset 的程式必須在 module、class、function 或文件中標明 dataset id；真正共用的程式不可依賴特定 dataset schema。
 
 ## 英文與命名規則
 

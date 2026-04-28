@@ -11,11 +11,12 @@ dependencies = [
     "pydantic>=2.13.3",
     "pyyaml>=6.0.3",
     "scipy>=1.16.2",
+    "torch>=2.11.0",
 ]
 
 [project.scripts]
-download_raw_dataset = "ecg.download_raw_dataset:main"
-process_raw_dataset = "ecg.process_raw_dataset:main"
+download_raw_dataset = "ecg.commands.download_raw_dataset:main"
+process_raw_dataset = "ecg.commands.process_raw_dataset:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -27,6 +28,8 @@ packages = ["src/ecg"]
 [dependency-groups]
 dev = [
     "basedpyright>=1.39.3",
+    "pytest>=9.0.3",
+    "ruff>=0.15.12",
 ]
 
 [tool.basedpyright]

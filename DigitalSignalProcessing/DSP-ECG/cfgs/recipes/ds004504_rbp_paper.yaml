@@ -1,0 +1,15 @@
+# Command recipe for reproducing the paper-style RBP feature cache.
+# Commands do not read this file automatically; pass these values explicitly.
+recipe_id: ds004504_rbp_paper
+
+commands:
+  download_raw_dataset:
+    dataset: ds004504
+    tag: 1.0.8
+    target_dir: data/raw/ds004504
+
+  process_raw_dataset:
+    dataset: ds004504_rbp_paper
+    raw_dir: data/raw/ds004504
+    output: data/processed_raw_dataset/ds004504_rbp_paper.h5
+    manifest: data/processed_raw_dataset/ds004504_rbp_paper_manifest.json
