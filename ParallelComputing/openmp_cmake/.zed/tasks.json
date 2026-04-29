@@ -7,6 +7,13 @@
     "use_new_terminal": false
   },
   {
+    "label": "cmake: reset cache (Debug)",
+    "command": "rm -rf build/CMakeCache.txt build/CMakeFiles && cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "use_new_terminal": false
+  },
+  {
     "label": "cmake: build (Debug)",
     "command": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && cmake --build build",
     "cwd": "$ZED_WORKTREE_ROOT",
@@ -23,6 +30,20 @@
   {
     "label": "cmake: run linear_search_compare",
     "command": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && cmake --build build && ./build/linear_search_compare 4 1000000 999999 10",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "use_new_terminal": false
+  },
+  {
+    "label": "cmake: run prime_schedule_benchmark",
+    "command": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && cmake --build build && ./build/prime_schedule_benchmark 4 1000000 8 5",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "use_new_terminal": false
+  },
+  {
+    "label": "cmake: run matrix_multiply_compare",
+    "command": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && cmake --build build && ./build/matrix_multiply_compare 4 256 3",
     "cwd": "$ZED_WORKTREE_ROOT",
     "reveal": "always",
     "use_new_terminal": false

@@ -24,5 +24,32 @@
     ],
     "cwd": "$ZED_WORKTREE_ROOT",
     "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug prime_schedule_benchmark",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/prime_schedule_benchmark",
+    "args": [
+      "4",
+      "1000000",
+      "8",
+      "5"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug matrix_multiply_compare",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/matrix_multiply_compare",
+    "args": [
+      "4",
+      "256",
+      "3"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
   }
 ]
