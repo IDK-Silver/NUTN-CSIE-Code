@@ -1,0 +1,8 @@
+extends:
+  - ../multiclass.yaml
+  - scenario.yaml
+
+experiment_id: ds004504_rbp_paper_val_as_test_80_20_multiclass
+
+output:
+  dir: data/runs/ds004504_rbp_paper/val_as_test_80_20/multiclass

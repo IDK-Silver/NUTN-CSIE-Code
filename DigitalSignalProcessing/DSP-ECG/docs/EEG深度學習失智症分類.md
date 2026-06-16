@@ -120,11 +120,25 @@ $$h_t = o_t \odot \tanh(c_t) \quad (14)$$
 | Batch normalization | （ None， 6， 32 ） | 128 | Conv1D |
 | Activation | （ None， 6， 32 ） | 0 | Batch normalization |
 | Conv 1D （ residual ） | （ None， 6， 32 ） | 64 | Input layer |
+| Spatial dropout 1D | （ None， 6， 32 ） | 0 | Activation |
+| Add | （ None， 6， 32 ） | 0 | Conv1D + Spatial dropout |
+| Conv 1D | （ None， 6， 32 ） | 7,200 | Add |
+| Batch normalization | （ None， 6， 32 ） | 128 | Conv1D |
+| Activation | （ None， 6， 32 ） | 0 | Batch normalization |
+| Spatial dropout 1D | （ None， 6， 32 ） | 0 | Activation |
+| Conv 1D | （ None， 6， 32 ） | 7,200 | Spatial dropout 1D |
+| Batch normalization | （ None， 6， 32 ） | 128 | Conv 1D |
+| Activation | （ None， 6， 32 ） | 0 | Batch normalization |
+| Conv 1D （ residual ） | （ None， 6， 32 ） | 1,056 | Add |
+| Spatial dropout 1D | （ None， 6， 32 ） | 0 | Activation |
 | Add | （ None， 6， 32 ） | 0 | Conv1D + Spatial dropout |
 | LSTM | （ None， 64 ） | 24,832 | Add |
 | Dense | （ None， 128 ） | 8,320 | LSTM |
+| Dropout | （ None， 128 ） | 0 | Dense |
 | Dense | （ None， 192 ） | 24,768 | Dropout |
+| Dropout | （ None， 192 ） | 0 | Dense |
 | Dense | （ None， 256 ） | 49,408 | Dropout |
+| Dropout | （ None， 256 ） | 0 | Dense |
 | Dense （ output ） | （ None， 3 ） | 771 | Dropout |
 
 ### 3.6 超參數調整（ Hyperparameter Tuning ）
@@ -162,6 +176,41 @@ $$h_t = o_t \odot \tanh(c_t) \quad (14)$$
 | Frontotemporal | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1,597 |
 | Healthy | 0.68 | 0.35 | 0.47 | 0.35 | 0.95 | 1,106 |
 
+**表 4** 阿茲海默症 + 額顳葉失智症 vs. 健康的分類指標。
+
+| 指標 | 阿茲海默症 + 額顳葉失智症 | 健康 |
+| :--- | :--- | :--- |
+| Precision | 0.9977 | 0.9987 |
+| Recall | 0.9993 | 0.9956 |
+| F1 score | 0.9985 | 0.9972 |
+| Support | 2,983 | 1,596 |
+| Sensitivity | 1.00 | |
+| Specificity | 1.00 | |
+
+**表 5** 阿茲海默症 vs. 健康的分類指標。
+
+| 指標 | 阿茲海默症 | 健康 |
+| :--- | :--- | :--- |
+| Precision | 0.9963 | 0.9987 |
+| F1 score | 0.9976 | 0.9972 |
+| Recall | 0.9989 | 0.9956 |
+| Support | 1,876 | 1,596 |
+| Sensitivity | 1.00 | |
+| Specificity | 1.00 | |
+
+**表 6** 額顳葉失智症 vs. 健康的分類指標。
+
+| 指標 | 額顳葉失智症 | 健康 |
+| :--- | :--- | :--- |
+| F1 score | 0.9975 | 0.9964 |
+| Recall | 0.9956 | 0.9991 |
+| Precision | 0.9994 | 0.9937 |
+| Support | 1,597 | 1,596 |
+| Sensitivity | 1.00 | |
+| Specificity | 1.00 | |
+
+> 註：表 6 的 Healthy support 是 PDF 表格原文數值，但它與圖 4d 的混淆矩陣不一致；圖 4d 顯示 Healthy support 為 1,106。相關疑點整理在 [論文 PDF、Markdown 與復現稽核](論文復現稽核.md)。
+
 **表 7** 不同失智症分類任務的分類準確率。
 
 | 分類任務 | 準確率 |
@@ -186,25 +235,77 @@ $$h_t = o_t \odot \tanh(c_t) \quad (14)$$
 
 使用 SMOTE（ Synthetic Minority Over-sampling Technique ）資料平衡技術後，平衡後模型的整體準確率為 77.45%，略低於原始不平衡資料集的 80.34%。額顳葉失智症類別在所有指標上仍達到完美分數（ 1.00 ）。
 
+**表 8** 使用資料平衡後，阿茲海默症、額顳葉失智症與健康類別的分類指標。
+
+| 類別 | 精確率 | 召回率 | F1 分數 | 敏感度 | 特異度 | 支持數 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Alzheimer | 0.63 | 0.71 | 0.67 | 0.71 | 0.79 | 1,876 |
+| Frontotemporal | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1,876 |
+| Healthy | 0.67 | 0.58 | 0.62 | 0.58 | 0.86 | 1,876 |
+
+**表 9** 使用資料平衡後，阿茲海默症 vs. 健康的分類指標。
+
+| 指標 | 阿茲海默症 | 健康 |
+| :--- | :--- | :--- |
+| Precision | 99.73 | 99.70 |
+| F1 score | 99.71 | 99.73 |
+| Recall | 99.70 | 99.71 |
+| Support | 1,876 | 1,876 |
+
 ### 4.4 使用 K 折交叉驗證的模型準確率評估
 
 採用 5 折交叉驗證方法驗證模型。多類別分類測試準確率穩定維持在 80% 附近，二元分類（ AD vs. 健康 ）測試準確率均超過 99.8%，證明模型具有穩健且可靠的區分能力。
 
+**表 10** 阿茲海默症、額顳葉失智症與健康類別的 K 折驗證準確率。
+
+| K 值 | 訓練準確率（ % ） | 測試準確率（ % ） |
+| :--- | :--- | :--- |
+| 1 | 79.89 | 80.15 |
+| 2 | 80.00 | 80.00 |
+| 3 | 79.58 | 80.06 |
+| 4 | 79.43 | 80.02 |
+| 5 | 81.27 | 80.13 |
+
+**表 11** 阿茲海默症 vs. 健康的 K 折驗證準確率。
+
+| K 值 | 訓練準確率（ % ） | 測試準確率（ % ） |
+| :--- | :--- | :--- |
+| 1 | 99.82 | 99.86 |
+| 2 | 99.80 | 99.82 |
+| 3 | 99.73 | 99.92 |
+| 4 | 99.61 | 99.86 |
+| 5 | 99.78 | 99.82 |
+
 ### 4.5 特徵萃取方法的比較分析
 
-標準 RBP 方法在多類別分類任務中僅達到 63.03% 的準確率，而改良 RBP 達到 80.34%。二元分類中，標準方法準確率為 76.36%，改良方法達到 99.71%。
+標準 RBP 方法使用 Delta（ 0.5-4 Hz ）、Theta（ 4-8 Hz ）、Alpha（ 8-13 Hz ）、Beta（ 13-25 Hz ）與 Gamma（ 25-45 Hz ）五個頻帶。標準 RBP 在多類別分類任務中僅達到 63.03% 的準確率，而改良 RBP 達到 80.34%。二元分類中，標準方法準確率為 76.36%，改良方法達到 99.71%。
+
+**表 12** 使用標準 RBP 時，阿茲海默症、額顳葉失智症與健康類別的分類指標。
+
+| 類別 | 精確率 | 召回率 | F1 分數 | 支持數 |
+| :--- | :--- | :--- | :--- | :--- |
+| Alzheimer | 0.60 | 0.77 | 0.67 | 1,876 |
+| Frontotemporal | 0.68 | 0.68 | 0.68 | 1,597 |
+| Healthy | 0.60 | 0.33 | 0.43 | 1,106 |
+
+**表 13** 使用標準 RBP 時，阿茲海默症 vs. 健康的分類指標。
+
+| 類別 | 精確率 | 召回率 | F1 分數 | 支持數 |
+| :--- | :--- | :--- | :--- | :--- |
+| Alzheimer | 0.76 | 0.81 | 0.79 | 1,876 |
+| Healthy | 0.76 | 0.71 | 0.73 | 1,597 |
 
 ### 4.6 與現有 ML 和 DL 模型的比較
 
 **表 14** 使用相同資料集的模型準確率比較。
 
-| 論文 | 模型 | 準確率 | XAI |
-| :--- | :--- | :--- | :--- |
-| Ma et al. | SVM | 91.5% | 否 |
-| Miltiadous et al. | DICE-net | 83.28% | 否 |
-| Kachare et al. | STEADYNet | 97.59% | 否 |
-| Chen et al. | Vision Transformer + CNN | 80.23% | 否 |
-| 本研究 | TCN-LSTM | 80.34%， 99.7% | 是 |
+| 論文 | 模型 | 準確率 | 特徵工程 | XAI |
+| :--- | :--- | :--- | :--- | :--- |
+| Ma et al. | SVM | 91.5% | PHI | 否 |
+| Miltiadous et al. | DICE-net | 83.28% | Band power and coherence | 否 |
+| Kachare et al. | STEADYNet | 97.59% | 未列出 | 否 |
+| Chen et al. | Vision Transformer + CNN | 80.23% | Frequency channels | 否 |
+| 本研究 | TCN-LSTM | 80.34%， 99.7% | Modified RBP | 是 |
 
 ---
 

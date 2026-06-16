@@ -1,0 +1,12 @@
+# Scenario for checking whether the paper reported validation metrics as test metrics.
+# This uses an 80/20 train/validation split and no independent test split.
+extends:
+  - ../base.yaml
+
+split:
+  train_fraction: 0.8
+  val_fraction: 0.2
+  test_fraction: 0.0
+
+evaluation:
+  test_source: val

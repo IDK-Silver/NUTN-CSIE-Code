@@ -1,0 +1,10 @@
+extends:
+  - base.yaml
+
+experiment_id: ds004504_rbp_paper_ad_vs_healthy
+
+task:
+  id: ad_vs_healthy
+
+output:
+  dir: data/runs/ds004504_rbp_paper/ad_vs_healthy

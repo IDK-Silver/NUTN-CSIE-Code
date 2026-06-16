@@ -1,0 +1,50 @@
+# Base reproduction config for ds004504_rbp_paper.
+# Scripts read this YAML; src/ library code does not.
+experiment_group: ds004504_rbp_paper
+
+dataset:
+  raw_dataset_id: ds004504
+  processed_dataset_id: ds004504_rbp_paper
+  raw_dir: data/raw/ds004504
+  h5_path: data/processed_raw_dataset/ds004504_rbp_paper.h5
+  manifest_path: data/processed_raw_dataset/ds004504_rbp_paper_manifest.json
+
+processing:
+  download_raw_dataset:
+    dataset: ds004504
+    tag: 1.0.8
+    target_dir: data/raw/ds004504
+  process_raw_dataset:
+    dataset: ds004504_rbp_paper
+    raw_dir: data/raw/ds004504
+    output: data/processed_raw_dataset/ds004504_rbp_paper.h5
+    manifest: data/processed_raw_dataset/ds004504_rbp_paper_manifest.json
+
+training:
+  epochs: 100
+  # null 表示 train.py 會在 runtime 隨機產生實際 seed，並把 resolved_seed
+  # 寫入 run.json。若需要完全重跑同一組結果，請改成整數 seed。
+  seed: null
+  num_workers: 4
+
+split:
+  # 這裡定義實際切出的資料分割比例。
+  # train 與 val 是訓練流程需要的分割；test 可以是 0.0，但只有在
+  # evaluation.test_source 設為 val 或 none 時才允許。
+  train_fraction: 0.8
+  val_fraction: 0.1
+  test_fraction: 0.1
+
+evaluation:
+  # 這裡控制 final reported test_metrics.json 從哪一份資料計算。
+  # split: 使用獨立 test split；要求 split.test_fraction > 0。
+  # val: 沒有獨立 test split，最後用 validation split 當 reported metrics；
+  #      要求 split.test_fraction == 0.0，對應 80/20 train/validation 設定。
+  # none: 不寫 test_metrics.json；要求 split.test_fraction == 0.0。
+  test_source: split
+
+runtime:
+  device: cuda
+
+output:
+  overwrite: false

@@ -1,0 +1,129 @@
+[
+  {
+    "label": "Debug vector_add",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/vector_add",
+    "args": [
+      "1000000",
+      "20"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug add_by_block",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/add_by_block",
+    "args": [
+      "1024",
+      "1000"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug add_by_thread",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/add_by_thread",
+    "args": [
+      "1024",
+      "1000"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug add_block_size_benchmark",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/add_block_size_benchmark",
+    "args": [
+      "655350",
+      "100"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug add_arbitrary_size",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/add_arbitrary_size",
+    "args": [
+      "4194305",
+      "100"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug parallel_kernels",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/parallel_kernels",
+    "args": [
+      "4194304",
+      "256",
+      "100"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug stencil_serial",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/stencil_serial",
+    "args": [
+      "16777216",
+      "1"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug stencil_global",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/stencil_global",
+    "args": [
+      "16777216",
+      "3"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug stencil_shared",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/stencil_shared",
+    "args": [
+      "16777216",
+      "3"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug device_query",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/device_query",
+    "args": [],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  },
+  {
+    "label": "Debug hello_world_magic",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/build/hello_world_magic",
+    "args": [],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": "cmake: build (Debug)"
+  }
+]

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://json.schemastore.org/clangd.json
+CompileFlags:
+  CompilationDatabase: build
+  Remove:
+    - -forward-unknown-to-host-compiler
+    - --generate-code=*
+    - --options-file
+    - CMakeFiles/*
+  Add:
+    - -I/usr/local/cuda-12.5/targets/x86_64-linux/include
+    - --cuda-path=/usr/local/cuda-12.5
+    - --cuda-gpu-arch=sm_52
