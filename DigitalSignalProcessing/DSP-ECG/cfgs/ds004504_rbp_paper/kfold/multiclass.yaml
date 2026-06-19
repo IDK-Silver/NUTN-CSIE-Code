@@ -1,0 +1,8 @@
+extends:
+  - ../multiclass.yaml
+  - scenario.yaml
+
+experiment_id: ds004504_rbp_paper_kfold_multiclass
+
+output:
+  dir: data/runs/ds004504_rbp_paper/kfold/multiclass

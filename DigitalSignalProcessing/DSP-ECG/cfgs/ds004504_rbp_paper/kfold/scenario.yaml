@@ -1,0 +1,6 @@
+# Scenario for reproducing the paper's 5-fold validation tables.
+extends:
+  - ../base.yaml
+
+kfold:
+  n_splits: 5

@@ -22,6 +22,20 @@ class PaperSplitIndices:
         }
 
 
+@dataclass(frozen=True)
+class PaperKFoldSplit:
+    fold_index: int
+    train: npt.NDArray[np.int64]
+    test: npt.NDArray[np.int64]
+
+    def to_json_dict(self) -> dict[str, object]:
+        return {
+            "fold_index": self.fold_index,
+            "train": self.train.tolist(),
+            "test": self.test.tolist(),
+        }
+
+
 def make_stratified_epoch_split(
     *,
     labels: npt.NDArray[np.integer],
@@ -76,3 +90,48 @@ def make_stratified_epoch_split(
         val=np.asarray(rng.permutation(val_indices), dtype=np.int64),
         test=np.asarray(rng.permutation(test_indices), dtype=np.int64),
     )
+
+
+def make_stratified_epoch_kfolds(
+    *,
+    labels: npt.NDArray[np.integer],
+    n_splits: int,
+    seed: int,
+) -> tuple[PaperKFoldSplit, ...]:
+    if labels.ndim != 1:
+        raise ValueError(f"labels must be 1D, got shape {labels.shape}.")
+    if labels.shape[0] <= 0:
+        raise ValueError("labels must contain at least one sample.")
+    if n_splits <= 1:
+        raise ValueError(f"n_splits must be greater than 1, got {n_splits}.")
+
+    rng = np.random.default_rng(seed)
+    class_fold_indices: dict[int, list[npt.NDArray[np.int64]]] = {}
+    for label in sorted(int(value) for value in np.unique(labels)):
+        class_indices = np.flatnonzero(labels == label).astype(np.int64)
+        if class_indices.shape[0] < n_splits:
+            raise ValueError(f"Class {label} has fewer than n_splits={n_splits} samples.")
+        shuffled = rng.permutation(class_indices)
+        class_fold_indices[label] = [np.asarray(part, dtype=np.int64) for part in np.array_split(shuffled, n_splits)]
+
+    all_indices = np.arange(labels.shape[0], dtype=np.int64)
+    folds: list[PaperKFoldSplit] = []
+    for fold_index in range(n_splits):
+        test_indices = np.concatenate(
+            [class_fold_indices[label][fold_index] for label in sorted(class_fold_indices)],
+            axis=0,
+        )
+        test_mask = np.zeros(labels.shape[0], dtype=bool)
+        test_mask[test_indices] = True
+        train_indices = all_indices[~test_mask]
+        if train_indices.shape[0] <= 0 or test_indices.shape[0] <= 0:
+            raise ValueError(f"Fold {fold_index + 1} produced an empty train or test partition.")
+        folds.append(
+            PaperKFoldSplit(
+                fold_index=fold_index + 1,
+                train=np.asarray(rng.permutation(train_indices), dtype=np.int64),
+                test=np.asarray(rng.permutation(test_indices), dtype=np.int64),
+            )
+        )
+
+    return tuple(folds)

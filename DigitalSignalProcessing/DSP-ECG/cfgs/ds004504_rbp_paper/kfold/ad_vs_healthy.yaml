@@ -1,0 +1,8 @@
+extends:
+  - ../ad_vs_healthy.yaml
+  - scenario.yaml
+
+experiment_id: ds004504_rbp_paper_kfold_ad_vs_healthy
+
+output:
+  dir: data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy

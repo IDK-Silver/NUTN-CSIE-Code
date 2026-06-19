@@ -1,0 +1,10 @@
+extends:
+  - scenario.yaml
+
+experiment_id: ds004504_rbp_paper_label_swap_80_20_ftd_vs_healthy
+
+task:
+  id: ftd_vs_healthy_fc_swapped
+
+output:
+  dir: data/runs/ds004504_rbp_paper/label_swap_80_20/ftd_vs_healthy

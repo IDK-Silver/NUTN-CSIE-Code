@@ -11,7 +11,7 @@ import numpy as np
 from torch import Tensor
 from torch.utils.data import Dataset
 
-from ecg.data.ds004504_rbp_paper import PROCESSED_DATASET_ID
+from ecg.data.ds004504_rbp_paper import PROCESSED_DATASET_ID, STANDARD_RBP_PROCESSED_DATASET_ID
 from ecg.datasets.h5 import H5FeatureLabelReader
 
 
@@ -33,8 +33,10 @@ class Ds004504RbpPaperDataset(Dataset[tuple[Tensor, Tensor]]):
         if not isinstance(dataset_record, dict):
             raise ValueError("Manifest JSON is missing dataset metadata.")
         dataset_id = dataset_record.get("id")
-        if dataset_id != PROCESSED_DATASET_ID:
-            raise ValueError(f"Expected manifest dataset id {PROCESSED_DATASET_ID!r}, got {dataset_id!r}.")
+        supported_dataset_ids = {PROCESSED_DATASET_ID, STANDARD_RBP_PROCESSED_DATASET_ID}
+        if dataset_id not in supported_dataset_ids:
+            supported = ", ".join(sorted(supported_dataset_ids))
+            raise ValueError(f"Expected manifest dataset id in {{{supported}}}, got {dataset_id!r}.")
 
         h5_datasets = manifest.get("h5_datasets")
         if not isinstance(h5_datasets, dict):

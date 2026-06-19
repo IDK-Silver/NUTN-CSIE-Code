@@ -1,0 +1,8 @@
+extends:
+  - ../ad_vs_healthy.yaml
+  - scenario.yaml
+
+experiment_id: ds004504_rbp_paper_val_as_test_80_20_smote_ad_vs_healthy
+
+output:
+  dir: data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/ad_vs_healthy

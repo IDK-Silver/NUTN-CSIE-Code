@@ -1,0 +1,17 @@
+# Scenario for reproducing the paper's standard RBP comparison tables.
+# This keeps the same training protocol as the base reproduction config, but
+# points the experiment at a five-band standard RBP artifact.
+extends:
+  - ../base.yaml
+
+dataset:
+  processed_dataset_id: ds004504_standard_rbp_paper
+  h5_path: data/processed_raw_dataset/ds004504_standard_rbp_paper.h5
+  manifest_path: data/processed_raw_dataset/ds004504_standard_rbp_paper_manifest.json
+
+processing:
+  process_raw_dataset:
+    dataset: ds004504_standard_rbp_paper
+    raw_dir: data/raw/ds004504
+    output: data/processed_raw_dataset/ds004504_standard_rbp_paper.h5
+    manifest: data/processed_raw_dataset/ds004504_standard_rbp_paper_manifest.json

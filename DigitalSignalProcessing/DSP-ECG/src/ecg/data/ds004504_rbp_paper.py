@@ -25,11 +25,12 @@ from ecg.data.rbp import compute_rbp_for_epoch
 
 
 PROCESSED_DATASET_ID = "ds004504_rbp_paper"
+STANDARD_RBP_PROCESSED_DATASET_ID = "ds004504_standard_rbp_paper"
 PARTICIPANTS_TSV = "participants.tsv"
 EEG_SOURCE = "derivatives"
 EEG_GLOB = "derivatives/sub-*/eeg/*_task-eyesclosed_eeg.set"
 TOTAL_POWER_RANGE_HZ = (0.5, 45.0)
-BANDS = {
+MODIFIED_RBP_BANDS = {
     "delta": (0.5, 4.0),
     "theta": (4.0, 8.0),
     "alpha": (8.0, 16.0),
@@ -37,6 +38,14 @@ BANDS = {
     "beta": (24.0, 30.0),
     "gamma": (30.0, 45.0),
 }
+STANDARD_RBP_BANDS = {
+    "delta": (0.5, 4.0),
+    "theta": (4.0, 8.0),
+    "alpha": (8.0, 13.0),
+    "beta": (13.0, 25.0),
+    "gamma": (25.0, 45.0),
+}
+BANDS = MODIFIED_RBP_BANDS
 EPOCH_SEC = 6.0
 OVERLAP = 0.5
 WELCH_WINDOW_SEC = 2.0
@@ -237,6 +246,37 @@ def rbp_h5_dataset_schema() -> dict[str, dict[str, Any]]:
 
 
 def process_raw_dataset(options: ProcessRawDatasetOptions) -> None:
+    process_ds004504_rbp_dataset(
+        options,
+        processed_dataset_id=PROCESSED_DATASET_ID,
+        processing_method="modified_rbp_paper",
+        bands=MODIFIED_RBP_BANDS,
+    )
+
+
+def process_standard_rbp_raw_dataset(options: ProcessRawDatasetOptions) -> None:
+    process_ds004504_rbp_dataset(
+        options,
+        processed_dataset_id=STANDARD_RBP_PROCESSED_DATASET_ID,
+        processing_method="standard_rbp_paper",
+        bands=STANDARD_RBP_BANDS,
+    )
+
+
+def process_ds004504_rbp_dataset(
+    options: ProcessRawDatasetOptions,
+    *,
+    processed_dataset_id: str,
+    processing_method: str,
+    bands: dict[str, tuple[float, float]],
+) -> None:
+    if not processed_dataset_id:
+        raise ValueError("processed_dataset_id must be non-empty.")
+    if not processing_method:
+        raise ValueError("processing_method must be non-empty.")
+    if not bands:
+        raise ValueError("bands must contain at least one band.")
+
     raw_dataset_path = options.raw_dir
     if not raw_dataset_path.exists():
         fail_missing_ds004504(f"raw dataset path does not exist: {raw_dataset_path}", raw_dataset_path)
@@ -280,7 +320,7 @@ def process_raw_dataset(options: ProcessRawDatasetOptions) -> None:
         rbp_channel, channel_names, labels, epoch_start_sec, file_record = process_one_ds004504_eeg_file(
             eeg_path,
             participants=participants,
-            bands=BANDS,
+            bands=bands,
             total_power_range_hz=TOTAL_POWER_RANGE_HZ,
             epoch_sec=EPOCH_SEC,
             overlap=OVERLAP,
@@ -304,7 +344,7 @@ def process_raw_dataset(options: ProcessRawDatasetOptions) -> None:
     x_rbp_channel = np.concatenate(all_rbp_channel, axis=0)
     labels = np.concatenate(all_labels, axis=0)
     epoch_start_sec = np.asarray(all_epoch_start_sec, dtype=np.float32)
-    band_names = list(BANDS.keys())
+    band_names = list(bands.keys())
 
     write_ds004504_rbp_h5(
         output_path,
@@ -321,7 +361,7 @@ def process_raw_dataset(options: ProcessRawDatasetOptions) -> None:
         "generated_at_utc": datetime.now(UTC).isoformat(),
         "output_h5": str(output_path),
         "dataset": {
-            "id": PROCESSED_DATASET_ID,
+            "id": processed_dataset_id,
             "raw_dataset_id": OPENNEURO_DATASET_ID,
             "path": str(options.raw_dir),
             "participants_tsv": str(participants_path),
@@ -329,13 +369,13 @@ def process_raw_dataset(options: ProcessRawDatasetOptions) -> None:
             "eeg_glob": str(raw_dataset_path / EEG_GLOB),
         },
         "processing": {
-            "method": "rbp_paper",
+            "method": processing_method,
             "epoch_sec": EPOCH_SEC,
             "overlap": OVERLAP,
             "welch_window_sec": WELCH_WINDOW_SEC,
             "welch_overlap": WELCH_OVERLAP,
             "rbp_total_power_range_hz": TOTAL_POWER_RANGE_HZ,
-            "rbp_bands": BANDS,
+            "rbp_bands": bands,
         },
         "h5_datasets": rbp_h5_dataset_schema(),
         "label_map": LABEL_MAP,
@@ -355,4 +395,3 @@ def process_raw_dataset(options: ProcessRawDatasetOptions) -> None:
     print(f"Wrote {output_path}")
     print(f"Wrote {manifest_path}")
     print(f"Shape X_rbp_channel: {tuple(x_rbp_channel.shape)}")
-

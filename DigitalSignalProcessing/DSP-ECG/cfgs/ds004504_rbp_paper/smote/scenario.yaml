@@ -1,0 +1,15 @@
+# SMOTE scenario for the paper-literal 80/10/10 protocol.
+# The paper does not specify whether SMOTE was applied before or after the
+# train/validation/test split. To reproduce balanced Table 8-9 style outputs
+# under the literal split, this config applies SMOTE to train, val, and test
+# partitions explicitly.
+extends:
+  - ../base.yaml
+
+smote:
+  target_strategy: max_class_count
+  k_neighbors: 5
+  apply_to_partitions:
+    - train
+    - val
+    - test

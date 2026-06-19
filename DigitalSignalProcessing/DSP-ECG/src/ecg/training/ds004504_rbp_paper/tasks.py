@@ -55,6 +55,23 @@ PAPER_CLASSIFICATION_TASKS: tuple[PaperClassificationTask, ...] = (
             DS004504_LABEL_C: 1,
         },
     ),
+    PaperClassificationTask(
+        task_id="multiclass_fc_swapped",
+        class_names=("alzheimer", "frontotemporal_dementia", "healthy_control"),
+        source_label_to_target_label={
+            DS004504_LABEL_A: 0,
+            DS004504_LABEL_F: 2,
+            DS004504_LABEL_C: 1,
+        },
+    ),
+    PaperClassificationTask(
+        task_id="ftd_vs_healthy_fc_swapped",
+        class_names=("frontotemporal_dementia", "healthy_control"),
+        source_label_to_target_label={
+            DS004504_LABEL_C: 0,
+            DS004504_LABEL_F: 1,
+        },
+    ),
 )
 
 

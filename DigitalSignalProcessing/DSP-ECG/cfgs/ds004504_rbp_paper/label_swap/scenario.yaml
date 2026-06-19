@@ -1,0 +1,4 @@
+# Audit scenario for the paper's apparent FTD/Healthy label swap under the
+# paper-literal 80/10/10 split. This is not the corrected dataset protocol.
+extends:
+  - ../base.yaml

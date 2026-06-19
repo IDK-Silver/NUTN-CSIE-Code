@@ -12,7 +12,7 @@ dataset:
 processing:
   download_raw_dataset:
     dataset: ds004504
-    tag: 1.0.8
+    tag: 1.0.5
     target_dir: data/raw/ds004504
   process_raw_dataset:
     dataset: ds004504_rbp_paper

@@ -1,0 +1,6 @@
+# Audit scenario for the paper's apparent FTD/Healthy label swap.
+# This is not the corrected dataset protocol. It intentionally swaps F and C
+# target labels for the affected tasks to test whether Table 3 and Table 6
+# support values align with the paper.
+extends:
+  - ../val_as_test_80_20/scenario.yaml

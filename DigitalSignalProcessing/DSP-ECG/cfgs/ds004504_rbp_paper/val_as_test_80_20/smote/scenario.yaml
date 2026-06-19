@@ -1,0 +1,12 @@
+# SMOTE scenario for the paper-inferred 80/20 validation-as-reported-test protocol.
+# The paper's balanced Table 8-9 supports imply balancing the reported evaluation
+# partition, so this config applies SMOTE to train and val partitions explicitly.
+extends:
+  - ../scenario.yaml
+
+smote:
+  target_strategy: max_class_count
+  k_neighbors: 5
+  apply_to_partitions:
+    - train
+    - val

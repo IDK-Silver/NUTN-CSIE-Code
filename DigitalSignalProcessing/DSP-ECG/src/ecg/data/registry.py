@@ -18,6 +18,10 @@ SUPPORTED_PROCESSED_DATASETS: dict[str, ProcessedDatasetPipeline] = {
         dataset_id=ds004504_rbp_paper.PROCESSED_DATASET_ID,
         process_raw_dataset=ds004504_rbp_paper.process_raw_dataset,
     ),
+    ds004504_rbp_paper.STANDARD_RBP_PROCESSED_DATASET_ID: ProcessedDatasetPipeline(
+        dataset_id=ds004504_rbp_paper.STANDARD_RBP_PROCESSED_DATASET_ID,
+        process_raw_dataset=ds004504_rbp_paper.process_standard_rbp_raw_dataset,
+    ),
 }
 
 
