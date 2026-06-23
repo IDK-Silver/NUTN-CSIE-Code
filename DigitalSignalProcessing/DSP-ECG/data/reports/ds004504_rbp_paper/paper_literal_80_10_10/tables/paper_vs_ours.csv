@@ -1,0 +1,128 @@
+scenario,paper_table,experiment_kind,task_id,class_name,metric,paper_value,paper_value_scale,ours_value,ours_value_scale,difference,ours_available,notes
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,alzheimer,precision,0.7,decimal,0.5398729710656316,decimal,-0.16012702893436837,true,
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,alzheimer,recall,0.9,decimal,0.7911065149948294,decimal,-0.1088934850051706,true,
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,alzheimer,f1,0.79,decimal,0.6417785234899329,decimal,-0.14822147651006712,true,
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,alzheimer,sensitivity,0.9,decimal,0.7911065149948294,decimal,-0.1088934850051706,true,
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,alzheimer,specificity,0.74,decimal,0.5173945225758697,decimal,-0.22260547742413028,true,
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,alzheimer,support,1876,decimal,967,decimal,-909.0,true,
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,frontotemporal_dementia,precision,1.0,decimal,0.66,decimal,-0.33999999999999997,true,Support is inconsistent with ds004504 FTD duration and matches healthy duration.
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,frontotemporal_dementia,recall,1.0,decimal,0.17967332123411978,decimal,-0.8203266787658803,true,Support is inconsistent with ds004504 FTD duration and matches healthy duration.
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,frontotemporal_dementia,f1,1.0,decimal,0.28245363766048504,decimal,-0.717546362339515,true,Support is inconsistent with ds004504 FTD duration and matches healthy duration.
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,frontotemporal_dementia,sensitivity,1.0,decimal,0.17967332123411978,decimal,-0.8203266787658803,true,Support is inconsistent with ds004504 FTD duration and matches healthy duration.
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,frontotemporal_dementia,specificity,1.0,decimal,0.9711375212224108,decimal,-0.028862478777589184,true,Support is inconsistent with ds004504 FTD duration and matches healthy duration.
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,frontotemporal_dementia,support,1597,decimal,551,decimal,-1046.0,true,Support is inconsistent with ds004504 FTD duration and matches healthy duration.
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,healthy_control,precision,0.68,decimal,0.6151797603195739,decimal,-0.06482023968042616,true,Support is inconsistent with ds004504 healthy duration and matches FTD duration.
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,healthy_control,recall,0.35,decimal,0.5775,decimal,0.22750000000000004,true,Support is inconsistent with ds004504 healthy duration and matches FTD duration.
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,healthy_control,f1,0.47,decimal,0.5957446808510637,decimal,0.12574468085106372,true,Support is inconsistent with ds004504 healthy duration and matches FTD duration.
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,healthy_control,sensitivity,0.35,decimal,0.5775,decimal,0.22750000000000004,true,Support is inconsistent with ds004504 healthy duration and matches FTD duration.
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,healthy_control,specificity,0.95,decimal,0.8096179183135704,decimal,-0.14038208168642952,true,Support is inconsistent with ds004504 healthy duration and matches FTD duration.
+paper_literal_80_10_10,Table 3,modified_rbp,multiclass,healthy_control,support,1106,decimal,800,decimal,-306.0,true,Support is inconsistent with ds004504 healthy duration and matches FTD duration.
+paper_literal_80_10_10,Table 4,modified_rbp,ad_ftd_vs_healthy,alzheimer_or_frontotemporal_dementia,precision,0.9977,decimal,0.7895392278953923,decimal,-0.2081607721046077,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 4,modified_rbp,ad_ftd_vs_healthy,alzheimer_or_frontotemporal_dementia,recall,0.9993,decimal,0.8358602504943968,decimal,-0.16343974950560314,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 4,modified_rbp,ad_ftd_vs_healthy,alzheimer_or_frontotemporal_dementia,f1,0.9985,decimal,0.8120397054114634,decimal,-0.18646029458853663,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 4,modified_rbp,ad_ftd_vs_healthy,alzheimer_or_frontotemporal_dementia,sensitivity,1.0,decimal,0.8358602504943968,decimal,-0.16413974950560317,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 4,modified_rbp,ad_ftd_vs_healthy,alzheimer_or_frontotemporal_dementia,specificity,1.0,decimal,0.5775,decimal,-0.4225,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 4,modified_rbp,ad_ftd_vs_healthy,alzheimer_or_frontotemporal_dementia,support,2983,decimal,1517,decimal,-1466.0,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 4,modified_rbp,ad_ftd_vs_healthy,healthy_control,precision,0.9987,decimal,0.6497890295358649,decimal,-0.3489109704641351,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 4,modified_rbp,ad_ftd_vs_healthy,healthy_control,recall,0.9956,decimal,0.5775,decimal,-0.4181,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 4,modified_rbp,ad_ftd_vs_healthy,healthy_control,f1,0.9972,decimal,0.6115155526141628,decimal,-0.3856844473858372,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 4,modified_rbp,ad_ftd_vs_healthy,healthy_control,sensitivity,1.0,decimal,0.5775,decimal,-0.4225,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 4,modified_rbp,ad_ftd_vs_healthy,healthy_control,specificity,1.0,decimal,0.8358602504943968,decimal,-0.16413974950560317,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 4,modified_rbp,ad_ftd_vs_healthy,healthy_control,support,1596,decimal,800,decimal,-796.0,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 5,modified_rbp,ad_vs_healthy,alzheimer,precision,0.9963,decimal,0.7446393762183235,decimal,-0.2516606237816764,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 5,modified_rbp,ad_vs_healthy,alzheimer,recall,0.9989,decimal,0.7900723888314375,decimal,-0.20882761116856252,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 5,modified_rbp,ad_vs_healthy,alzheimer,f1,0.9976,decimal,0.7666833918715504,decimal,-0.2309166081284496,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 5,modified_rbp,ad_vs_healthy,alzheimer,sensitivity,1.0,decimal,0.7900723888314375,decimal,-0.2099276111685625,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 5,modified_rbp,ad_vs_healthy,alzheimer,specificity,1.0,decimal,0.6725,decimal,-0.3275,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 5,modified_rbp,ad_vs_healthy,alzheimer,support,1876,decimal,967,decimal,-909.0,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 5,modified_rbp,ad_vs_healthy,healthy_control,precision,0.9987,decimal,0.7260458839406208,decimal,-0.2726541160593793,true,Paper table support is 1596; Figure 4c row sum is 1597.
+paper_literal_80_10_10,Table 5,modified_rbp,ad_vs_healthy,healthy_control,recall,0.9956,decimal,0.6725,decimal,-0.32310000000000005,true,Paper table support is 1596; Figure 4c row sum is 1597.
+paper_literal_80_10_10,Table 5,modified_rbp,ad_vs_healthy,healthy_control,f1,0.9972,decimal,0.6982478909798833,decimal,-0.2989521090201167,true,Paper table support is 1596; Figure 4c row sum is 1597.
+paper_literal_80_10_10,Table 5,modified_rbp,ad_vs_healthy,healthy_control,sensitivity,1.0,decimal,0.6725,decimal,-0.3275,true,Paper table support is 1596; Figure 4c row sum is 1597.
+paper_literal_80_10_10,Table 5,modified_rbp,ad_vs_healthy,healthy_control,specificity,1.0,decimal,0.7900723888314375,decimal,-0.2099276111685625,true,Paper table support is 1596; Figure 4c row sum is 1597.
+paper_literal_80_10_10,Table 5,modified_rbp,ad_vs_healthy,healthy_control,support,1596,decimal,800,decimal,-796.0,true,Paper table support is 1596; Figure 4c row sum is 1597.
+paper_literal_80_10_10,Table 6,modified_rbp,ftd_vs_healthy,frontotemporal_dementia,precision,0.9994,decimal,0.6994106090373281,decimal,-0.29998939096267185,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 6,modified_rbp,ftd_vs_healthy,frontotemporal_dementia,recall,0.9956,decimal,0.6460980036297641,decimal,-0.34950199637023593,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 6,modified_rbp,ftd_vs_healthy,frontotemporal_dementia,f1,0.9975,decimal,0.6716981132075471,decimal,-0.3258018867924529,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 6,modified_rbp,ftd_vs_healthy,frontotemporal_dementia,sensitivity,1.0,decimal,0.6460980036297641,decimal,-0.3539019963702359,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 6,modified_rbp,ftd_vs_healthy,frontotemporal_dementia,specificity,1.0,decimal,0.80875,decimal,-0.19125000000000003,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 6,modified_rbp,ftd_vs_healthy,frontotemporal_dementia,support,1597,decimal,551,decimal,-1046.0,true,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_literal_80_10_10,Table 6,modified_rbp,ftd_vs_healthy,healthy_control,precision,0.9937,decimal,0.7684085510688836,decimal,-0.2252914489311164,true,Paper table support is 1596; Figure 4d row sum and text are 1106.
+paper_literal_80_10_10,Table 6,modified_rbp,ftd_vs_healthy,healthy_control,recall,0.9991,decimal,0.80875,decimal,-0.19035000000000002,true,Paper table support is 1596; Figure 4d row sum and text are 1106.
+paper_literal_80_10_10,Table 6,modified_rbp,ftd_vs_healthy,healthy_control,f1,0.9964,decimal,0.7880633373934226,decimal,-0.20833666260657735,true,Paper table support is 1596; Figure 4d row sum and text are 1106.
+paper_literal_80_10_10,Table 6,modified_rbp,ftd_vs_healthy,healthy_control,sensitivity,1.0,decimal,0.80875,decimal,-0.19125000000000003,true,Paper table support is 1596; Figure 4d row sum and text are 1106.
+paper_literal_80_10_10,Table 6,modified_rbp,ftd_vs_healthy,healthy_control,specificity,1.0,decimal,0.6460980036297641,decimal,-0.3539019963702359,true,Paper table support is 1596; Figure 4d row sum and text are 1106.
+paper_literal_80_10_10,Table 6,modified_rbp,ftd_vs_healthy,healthy_control,support,1596,decimal,800,decimal,-796.0,true,Paper table support is 1596; Figure 4d row sum and text are 1106.
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,alzheimer,precision,0.63,decimal,0.5439560439560439,decimal,-0.0860439560439561,true,
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,alzheimer,recall,0.71,decimal,0.4095139607032058,decimal,-0.3004860392967942,true,
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,alzheimer,f1,0.67,decimal,0.4672566371681416,decimal,-0.20274336283185845,true,
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,alzheimer,sensitivity,0.71,decimal,0.4095139607032058,decimal,-0.3004860392967942,true,
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,alzheimer,specificity,0.79,decimal,0.828335056876939,decimal,0.038335056876938944,true,
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,alzheimer,support,1876,decimal,967,decimal,-909.0,true,
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,frontotemporal_dementia,precision,1.0,decimal,0.4912621359223301,decimal,-0.5087378640776699,true,Table 8 supports are balanced to 1876 for every class.
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,frontotemporal_dementia,recall,1.0,decimal,0.5232678386763185,decimal,-0.47673216132368146,true,Table 8 supports are balanced to 1876 for every class.
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,frontotemporal_dementia,f1,1.0,decimal,0.5067601402103155,decimal,-0.49323985978968454,true,Table 8 supports are balanced to 1876 for every class.
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,frontotemporal_dementia,sensitivity,1.0,decimal,0.5232678386763185,decimal,-0.47673216132368146,true,Table 8 supports are balanced to 1876 for every class.
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,frontotemporal_dementia,specificity,1.0,decimal,0.7290589451913133,decimal,-0.2709410548086867,true,Table 8 supports are balanced to 1876 for every class.
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,frontotemporal_dementia,support,1876,decimal,967,decimal,-909.0,true,Table 8 supports are balanced to 1876 for every class.
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,healthy_control,precision,0.67,decimal,0.5853018372703412,decimal,-0.0846981627296588,true,"The paper text reports 77.45% accuracy, but these equal supports and recalls imply 76.33%."
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,healthy_control,recall,0.58,decimal,0.6918304033092038,decimal,0.1118304033092038,true,"The paper text reports 77.45% accuracy, but these equal supports and recalls imply 76.33%."
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,healthy_control,f1,0.62,decimal,0.6341232227488152,decimal,0.014123222748815167,true,"The paper text reports 77.45% accuracy, but these equal supports and recalls imply 76.33%."
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,healthy_control,sensitivity,0.58,decimal,0.6918304033092038,decimal,0.1118304033092038,true,"The paper text reports 77.45% accuracy, but these equal supports and recalls imply 76.33%."
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,healthy_control,specificity,0.86,decimal,0.7549120992761117,decimal,-0.1050879007238883,true,"The paper text reports 77.45% accuracy, but these equal supports and recalls imply 76.33%."
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,healthy_control,support,1876,decimal,967,decimal,-909.0,true,"The paper text reports 77.45% accuracy, but these equal supports and recalls imply 76.33%."
+paper_literal_80_10_10,Table 9,smote_modified_rbp,ad_vs_healthy,alzheimer,precision,99.73,percent,0.6986027944111777,decimal,-29.869720558882236,true,"Paper table reports precision/recall/F1 as percentages, unlike Tables 3-8."
+paper_literal_80_10_10,Table 9,smote_modified_rbp,ad_vs_healthy,alzheimer,recall,99.7,percent,0.7238883143743536,decimal,-27.311168562564646,true,"Paper table reports precision/recall/F1 as percentages, unlike Tables 3-8."
+paper_literal_80_10_10,Table 9,smote_modified_rbp,ad_vs_healthy,alzheimer,f1,99.71,percent,0.7110208227526664,decimal,-28.607917724733355,true,"Paper table reports precision/recall/F1 as percentages, unlike Tables 3-8."
+paper_literal_80_10_10,Table 9,smote_modified_rbp,ad_vs_healthy,alzheimer,support,1876,percent,967,decimal,94824.0,true,"Paper table reports precision/recall/F1 as percentages, unlike Tables 3-8."
+paper_literal_80_10_10,Table 9,smote_modified_rbp,ad_vs_healthy,healthy_control,precision,99.7,percent,0.7135193133047211,decimal,-28.34806866952789,true,"Paper table reports precision/recall/F1 as percentages, unlike Tables 3-8."
+paper_literal_80_10_10,Table 9,smote_modified_rbp,ad_vs_healthy,healthy_control,recall,99.71,percent,0.687693898655636,decimal,-30.940610134436398,true,"Paper table reports precision/recall/F1 as percentages, unlike Tables 3-8."
+paper_literal_80_10_10,Table 9,smote_modified_rbp,ad_vs_healthy,healthy_control,f1,99.73,percent,0.7003686150605583,decimal,-29.693138493944176,true,"Paper table reports precision/recall/F1 as percentages, unlike Tables 3-8."
+paper_literal_80_10_10,Table 9,smote_modified_rbp,ad_vs_healthy,healthy_control,support,1876,percent,967,decimal,94824.0,true,"Paper table reports precision/recall/F1 as percentages, unlike Tables 3-8."
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,alzheimer,precision,0.6,decimal,0.5328125,decimal,-0.06718749999999996,true,
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,alzheimer,recall,0.77,decimal,0.7052740434332989,decimal,-0.0647259565667011,true,
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,alzheimer,f1,0.67,decimal,0.6070315976858034,decimal,-0.06296840231419665,true,
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,alzheimer,support,1876,decimal,967,decimal,-909.0,true,
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,frontotemporal_dementia,precision,0.68,decimal,0.5656565656565656,decimal,-0.11434343434343441,true,
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,frontotemporal_dementia,recall,0.68,decimal,0.20326678765880218,decimal,-0.47673321234119787,true,
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,frontotemporal_dementia,f1,0.68,decimal,0.29906542056074764,decimal,-0.3809345794392524,true,
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,frontotemporal_dementia,support,1597,decimal,551,decimal,-1046.0,true,
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,healthy_control,precision,0.6,decimal,0.6059523809523809,decimal,0.005952380952380931,true,
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,healthy_control,recall,0.33,decimal,0.63625,decimal,0.30624999999999997,true,
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,healthy_control,f1,0.43,decimal,0.6207317073170731,decimal,0.19073170731707306,true,
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,healthy_control,support,1106,decimal,800,decimal,-306.0,true,
+paper_literal_80_10_10,Table 13,standard_rbp,ad_vs_healthy,alzheimer,precision,0.76,decimal,0.7174721189591078,decimal,-0.042527881040892224,true,
+paper_literal_80_10_10,Table 13,standard_rbp,ad_vs_healthy,alzheimer,recall,0.81,decimal,0.7983453981385729,decimal,-0.011654601861427194,true,
+paper_literal_80_10_10,Table 13,standard_rbp,ad_vs_healthy,alzheimer,f1,0.79,decimal,0.7557513460597161,decimal,-0.03424865394028398,true,
+paper_literal_80_10_10,Table 13,standard_rbp,ad_vs_healthy,alzheimer,support,1876,decimal,967,decimal,-909.0,true,
+paper_literal_80_10_10,Table 13,standard_rbp,ad_vs_healthy,healthy_control,precision,0.76,decimal,0.7178002894356006,decimal,-0.04219971056439942,true,
+paper_literal_80_10_10,Table 13,standard_rbp,ad_vs_healthy,healthy_control,recall,0.71,decimal,0.62,decimal,-0.08999999999999997,true,
+paper_literal_80_10_10,Table 13,standard_rbp,ad_vs_healthy,healthy_control,f1,0.73,decimal,0.6653252850435949,decimal,-0.06467471495640509,true,
+paper_literal_80_10_10,Table 13,standard_rbp,ad_vs_healthy,healthy_control,support,1597,decimal,800,decimal,-797.0,true,
+paper_literal_80_10_10,Table 7,modified_rbp,ftd_vs_healthy,,accuracy,0.997,decimal,0.7424130273871207,decimal,-0.2545869726128793,true,
+paper_literal_80_10_10,Table 7,modified_rbp,ad_vs_healthy,,accuracy,0.9974,decimal,0.7368421052631579,decimal,-0.2605578947368421,true,
+paper_literal_80_10_10,Table 7,modified_rbp,ad_ftd_vs_healthy,,accuracy,0.998,decimal,0.7466551575312904,decimal,-0.2513448424687096,true,
+paper_literal_80_10_10,Table 7,modified_rbp,multiclass,,accuracy,0.8034,decimal,0.5720448662640207,decimal,-0.23135513373597927,true,
+paper_literal_80_10_10,Table 8,smote_modified_rbp,multiclass,,accuracy,77.45,percent,0.5415374008962427,decimal,-23.29625991037573,true,Paper text reports this value; Table 8 row metrics imply a different accuracy.
+paper_literal_80_10_10,Table 12,standard_rbp,multiclass,,accuracy,63.03,percent,0.5621225194132873,decimal,-6.81774805867127,true,Reported in Section 4.5 text.
+paper_literal_80_10_10,Table 13,standard_rbp,ad_vs_healthy,,accuracy,76.36,percent,0.7176004527447651,decimal,-4.599954725523489,true,Reported in Section 4.5 text.
+paper_literal_80_10_10,Table 10,kfold_modified_rbp,multiclass,,fold_1_train_accuracy_percent,79.89,percent,56.92764578833693,percent,-22.96235421166307,true,
+paper_literal_80_10_10,Table 10,kfold_modified_rbp,multiclass,,fold_1_test_accuracy_percent,80.15,percent,58.30274238825308,percent,-21.847257611746926,true,
+paper_literal_80_10_10,Table 10,kfold_modified_rbp,multiclass,,fold_2_train_accuracy_percent,80.0,percent,57.44060475161987,percent,-22.559395248380127,true,
+paper_literal_80_10_10,Table 10,kfold_modified_rbp,multiclass,,fold_2_test_accuracy_percent,80.0,percent,57.24465558194775,percent,-22.755344418052253,true,
+paper_literal_80_10_10,Table 10,kfold_modified_rbp,multiclass,,fold_3_train_accuracy_percent,79.58,percent,57.5670860104746,percent,-22.0129139895254,true,
+paper_literal_80_10_10,Table 10,kfold_modified_rbp,multiclass,,fold_3_test_accuracy_percent,80.06,percent,57.170626349892004,percent,-22.889373650108,true,
+paper_literal_80_10_10,Table 10,kfold_modified_rbp,multiclass,,fold_4_train_accuracy_percent,79.43,percent,57.334917121105775,percent,-22.09508287889423,true,
+paper_literal_80_10_10,Table 10,kfold_modified_rbp,multiclass,,fold_4_test_accuracy_percent,80.02,percent,57.66738660907127,percent,-22.352613390928724,true,
+paper_literal_80_10_10,Table 10,kfold_modified_rbp,multiclass,,fold_5_train_accuracy_percent,81.27,percent,56.97548860814167,percent,-24.29451139185833,true,
+paper_literal_80_10_10,Table 10,kfold_modified_rbp,multiclass,,fold_5_test_accuracy_percent,80.13,percent,58.2847267228343,percent,-21.845273277165695,true,
+paper_literal_80_10_10,Table 11,kfold_modified_rbp,ad_vs_healthy,,fold_1_train_accuracy_percent,99.82,percent,71.5570346243716,percent,-28.262965375628397,true,
+paper_literal_80_10_10,Table 11,kfold_modified_rbp,ad_vs_healthy,,fold_1_test_accuracy_percent,99.86,percent,71.76437269895214,percent,-28.095627301047855,true,
+paper_literal_80_10_10,Table 11,kfold_modified_rbp,ad_vs_healthy,,fold_2_train_accuracy_percent,99.8,percent,71.42250230121078,percent,-28.377497698789213,true,
+paper_literal_80_10_10,Table 11,kfold_modified_rbp,ad_vs_healthy,,fold_2_test_accuracy_percent,99.82,percent,72.61399037099972,percent,-27.206009629000278,true,
+paper_literal_80_10_10,Table 11,kfold_modified_rbp,ad_vs_healthy,,fold_3_train_accuracy_percent,99.73,percent,71.59951851589605,percent,-28.130481484103953,true,
+paper_literal_80_10_10,Table 11,kfold_modified_rbp,ad_vs_healthy,,fold_3_test_accuracy_percent,99.92,percent,72.89719626168224,percent,-27.022803738317762,true,
+paper_literal_80_10_10,Table 11,kfold_modified_rbp,ad_vs_healthy,,fold_4_train_accuracy_percent,99.61,percent,71.81193797351837,percent,-27.79806202648163,true,
+paper_literal_80_10_10,Table 11,kfold_modified_rbp,ad_vs_healthy,,fold_4_test_accuracy_percent,99.86,percent,69.95185499858397,percent,-29.90814500141603,true,
+paper_literal_80_10_10,Table 11,kfold_modified_rbp,ad_vs_healthy,,fold_5_train_accuracy_percent,99.78,percent,71.5024072500708,percent,-28.277592749929198,true,
+paper_literal_80_10_10,Table 11,kfold_modified_rbp,ad_vs_healthy,,fold_5_test_accuracy_percent,99.82,percent,72.1813031161473,percent,-27.63869688385269,true,

@@ -381,7 +381,7 @@ def roc_points(y_true: list[int], scores: list[float], positive_label: int) -> t
     points.append((fp / negatives, tp / positives))
     points.append((1.0, 1.0))
     auc = 0.0
-    for (x0, y0), (x1, y1) in zip(points, points[1:], strict=True):
+    for (x0, y0), (x1, y1) in zip(points, points[1:]):
         auc += (x1 - x0) * (y0 + y1) / 2.0
     return points, auc
 

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="542" height="452" viewBox="0 0 542 452">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24.0" y="34.0" font-family="monospace" font-size="18" font-weight="700" text-anchor="start" fill="#111827">ours:val_as_test_80_20 multiclass</text>
+<text x="252.0" y="74.0" font-family="monospace" font-size="10" font-weight="400" text-anchor="middle" fill="#111827">alzheimer</text>
+<text x="336.0" y="74.0" font-family="monospace" font-size="10" font-weight="400" text-anchor="middle" fill="#111827">frontotemporal_dementia</text>
+<text x="420.0" y="74.0" font-family="monospace" font-size="10" font-weight="400" text-anchor="middle" fill="#111827">healthy_control</text>
+<text x="198.0" y="136.0" font-family="monospace" font-size="10" font-weight="400" text-anchor="end" fill="#111827">alzheimer</text>
+<rect x="210" y="90" width="84" height="84" fill="rgb(55,63,255)" stroke="#ffffff"/>
+<text x="252.0" y="136.0" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111827">1525</text>
+<rect x="294" y="90" width="84" height="84" fill="rgb(239,247,255)" stroke="#ffffff"/>
+<text x="336.0" y="136.0" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111827">44</text>
+<rect x="378" y="90" width="84" height="84" fill="rgb(199,207,255)" stroke="#ffffff"/>
+<text x="420.0" y="136.0" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111827">363</text>
+<text x="198.0" y="220.0" font-family="monospace" font-size="10" font-weight="400" text-anchor="end" fill="#111827">frontotemporal_dementia</text>
+<rect x="210" y="174" width="84" height="84" fill="rgb(152,160,255)" stroke="#ffffff"/>
+<text x="252.0" y="220.0" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111827">743</text>
+<rect x="294" y="174" width="84" height="84" fill="rgb(226,234,255)" stroke="#ffffff"/>
+<text x="336.0" y="220.0" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111827">147</text>
+<rect x="378" y="174" width="84" height="84" fill="rgb(218,226,255)" stroke="#ffffff"/>
+<text x="420.0" y="220.0" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111827">210</text>
+<text x="198.0" y="304.0" font-family="monospace" font-size="10" font-weight="400" text-anchor="end" fill="#111827">healthy_control</text>
+<rect x="210" y="258" width="84" height="84" fill="rgb(175,183,255)" stroke="#ffffff"/>
+<text x="252.0" y="304.0" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111827">558</text>
+<rect x="294" y="258" width="84" height="84" fill="rgb(241,249,255)" stroke="#ffffff"/>
+<text x="336.0" y="304.0" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111827">32</text>
+<rect x="378" y="258" width="84" height="84" fill="rgb(119,127,255)" stroke="#ffffff"/>
+<text x="420.0" y="304.0" font-family="monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111827">1009</text>
+<text x="336.0" y="422.0" font-family="monospace" font-size="12" font-weight="400" text-anchor="middle" fill="#111827">Predicted label</text>
+<text x="24.0" y="216.0" font-family="monospace" font-size="12" font-weight="400" text-anchor="start" fill="#111827">True label</text>
+</svg>

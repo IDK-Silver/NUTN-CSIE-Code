@@ -1,0 +1,16 @@
+prediction_csv,class_index,class_name,auc
+data/runs/ds004504_rbp_paper/label_swap/multiclass/test_predictions.csv,0,alzheimer,0.6897238783634924
+data/runs/ds004504_rbp_paper/label_swap/multiclass/test_predictions.csv,1,frontotemporal_dementia,0.7719754611330715
+data/runs/ds004504_rbp_paper/label_swap/multiclass/test_predictions.csv,2,healthy_control,0.6662517191051609
+data/runs/ds004504_rbp_paper/label_swap/ftd_vs_healthy/test_predictions.csv,0,frontotemporal_dementia,0.7788770417422872
+data/runs/ds004504_rbp_paper/label_swap/ftd_vs_healthy/test_predictions.csv,1,healthy_control,0.7788770417422866
+data/runs/ds004504_rbp_paper/standard_rbp/multiclass/test_predictions.csv,0,alzheimer,0.7034285377486643
+data/runs/ds004504_rbp_paper/standard_rbp/multiclass/test_predictions.csv,1,frontotemporal_dementia,0.7053307409381798
+data/runs/ds004504_rbp_paper/standard_rbp/multiclass/test_predictions.csv,2,healthy_control,0.7749942358366286
+data/runs/ds004504_rbp_paper/standard_rbp/ad_vs_healthy/test_predictions.csv,0,alzheimer,0.7989051189245104
+data/runs/ds004504_rbp_paper/standard_rbp/ad_vs_healthy/test_predictions.csv,1,healthy_control,0.7989051189245082
+data/runs/ds004504_rbp_paper/smote/multiclass/test_predictions.csv,0,alzheimer,0.7118659293393449
+data/runs/ds004504_rbp_paper/smote/multiclass/test_predictions.csv,1,frontotemporal_dementia,0.7063931882419746
+data/runs/ds004504_rbp_paper/smote/multiclass/test_predictions.csv,2,healthy_control,0.7946142024983718
+data/runs/ds004504_rbp_paper/smote/ad_vs_healthy/test_predictions.csv,0,alzheimer,0.7678777100361576
+data/runs/ds004504_rbp_paper/smote/ad_vs_healthy/test_predictions.csv,1,healthy_control,0.767877710036158

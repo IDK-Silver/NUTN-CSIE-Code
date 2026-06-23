@@ -1,0 +1,16 @@
+source,paper_table,experiment_kind,scenario,task_id,metric,value,value_scale,notes
+paper_reported,Table 7,modified_rbp,,ftd_vs_healthy,accuracy,0.997,decimal,
+paper_reported,Table 7,modified_rbp,,ad_vs_healthy,accuracy,0.9974,decimal,
+paper_reported,Table 7,modified_rbp,,ad_ftd_vs_healthy,accuracy,0.998,decimal,
+paper_reported,Table 7,modified_rbp,,multiclass,accuracy,0.8034,decimal,
+paper_text,Table 8,smote_modified_rbp,,multiclass,accuracy,77.45,percent,Paper text reports this value; Table 8 row metrics imply a different accuracy.
+paper_text,Table 12,standard_rbp,,multiclass,accuracy,63.03,percent,Reported in Section 4.5 text.
+paper_text,Table 13,standard_rbp,,ad_vs_healthy,accuracy,76.36,percent,Reported in Section 4.5 text.
+ours,Table 7,modified_rbp,paper_literal_80_10_10,multiclass,accuracy,0.5720448662640207,decimal,
+ours,Table 7,modified_rbp,paper_literal_80_10_10,ad_ftd_vs_healthy,accuracy,0.7466551575312904,decimal,
+ours,Table 7,modified_rbp,paper_literal_80_10_10,ad_vs_healthy,accuracy,0.7368421052631579,decimal,
+ours,Table 7,modified_rbp,paper_literal_80_10_10,ftd_vs_healthy,accuracy,0.7424130273871207,decimal,
+ours,Table 12,standard_rbp,paper_literal_80_10_10,multiclass,accuracy,0.5621225194132873,decimal,
+ours,Table 13,standard_rbp,paper_literal_80_10_10,ad_vs_healthy,accuracy,0.7176004527447651,decimal,
+ours,Table 8,smote_modified_rbp,paper_literal_80_10_10,multiclass,accuracy,0.5415374008962427,decimal,
+ours,Table 9,smote_modified_rbp,paper_literal_80_10_10,ad_vs_healthy,accuracy,0.7057911065149949,decimal,

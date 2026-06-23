@@ -1,0 +1,20 @@
+# Protocol manifest
+
+| Scenario | Component | Value | Evidence | Notes |
+| --- | --- | --- | --- | --- |
+| paper_literal_80_10_10 | raw_dataset | OpenNeuro ds004504 v1.0.5 | cfgs/ds004504_rbp_paper/base.yaml processing.download_raw_dataset.tag | Paper data availability statement points to openneuro.ds004504.v1.0.5. |
+| paper_literal_80_10_10 | preprocessing_source | derivatives/sub-*/eeg/*_task-eyesclosed_eeg.set | src/ecg/data/ds004504_rbp_paper.py EEG_GLOB | Uses preprocessed derivative EEGLAB .set files. |
+| paper_literal_80_10_10 | epoching | 6 seconds with 50% overlap | src/ecg/data/ds004504_rbp_paper.py EPOCH_SEC and OVERLAP |  |
+| paper_literal_80_10_10 | modified_rbp_bands | delta 0.5-4, theta 4-8, alpha 8-16, zaeta 16-24, beta 24-30, gamma 30-45 | src/ecg/data/ds004504_rbp_paper.py MODIFIED_RBP_BANDS | Used for Tables 3-11. |
+| paper_literal_80_10_10 | standard_rbp_bands | delta 0.5-4, theta 4-8, alpha 8-13, beta 13-25, gamma 25-45 | src/ecg/data/ds004504_rbp_paper.py STANDARD_RBP_BANDS | Used for Tables 12-13. |
+| paper_literal_80_10_10 | normalization | paper-style full-task min-max normalization before split | src/ecg/training/ds004504_rbp_paper/factory.py build_paper_experiment | This follows the paper wording but leaks evaluation distribution statistics. |
+| paper_literal_80_10_10 | split | 80/10/10 epoch-level stratified split | cfgs/ds004504_rbp_paper/* and run.json split_fractions |  |
+| paper_literal_80_10_10 | evaluation | reported metrics use independent split.test partition | run.json evaluation.test_source and test_metrics.json source |  |
+| paper_literal_80_10_10 | model | TCN-LSTM, two TCN blocks, 32 channels, kernel 7, LSTM 64, Dense 128/192/256 | src/ecg/training/ds004504_rbp_paper/factory.py paper hyperparameters |  |
+| paper_literal_80_10_10 | model_hyperparameters | input_dim=1, num_classes=task-dependent, tcn_channels=32, tcn_kernel_size=7, tcn_dilations=[1, 1], tcn_dropout=0.3, lstm_hidden_dim=64, dense_hidden_dims=[128, 192, 256], dense_dropout=0.2 | src/ecg/training/ds004504_rbp_paper/factory.py build_paper_hyperparameters | num_classes is 3 for multiclass tasks and 2 for binary tasks. |
+| paper_literal_80_10_10 | optimizer | Adam learning_rate=0.0001 batch_size=32 | src/ecg/training/ds004504_rbp_paper/factory.py PAPER_LEARNING_RATE and PAPER_BATCH_SIZE |  |
+| paper_literal_80_10_10 | training_runtime | epochs=100, seed=randomly resolved at runtime unless configured, num_workers=4, device=cuda | cfgs/ds004504_rbp_paper/base.yaml training/runtime and run.json resolved_seed | run.json records the actual resolved seed for each run. |
+| paper_literal_80_10_10 | smote | simple SMOTE applied to train, val, and test partitions for Table 8-9 shape | scripts/ds004504_rbp_paper/train_smote.py and cfgs/*/smote/*.yaml | Paper does not provide source code or exact SMOTE placement. |
+| paper_literal_80_10_10 | kfold | 5-fold epoch-level stratified k-fold | scripts/ds004504_rbp_paper/train_kfold.py | Paper does not specify subject-wise folds. |
+| paper_literal_80_10_10 | label_swap_audit | FTD/Healthy target-label swap audit for Table 3 and Table 6 | cfgs/ds004504_rbp_paper/label_swap/*.yaml | Audit-only protocol, not the corrected dataset protocol. |
+| paper_literal_80_10_10 | runs_dir | data/runs/ds004504_rbp_paper | make_report_csv.py --runs-dir/default_runs_dir |  |

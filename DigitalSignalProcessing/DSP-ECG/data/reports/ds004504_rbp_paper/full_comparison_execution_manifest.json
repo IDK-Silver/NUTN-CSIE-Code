@@ -1,0 +1,137 @@
+{
+  "generated_at": "2026-06-19T14:58:47.746332+00:00",
+  "mode": "EXECUTE",
+  "scope": "paper-literal reproduction, 80/20 support-audit scenario, final scenario comparison gate, and final verifier",
+  "overall_status": "completed",
+  "workflow_status": "completed",
+  "execute": true,
+  "include_download": false,
+  "no_skip_existing": false,
+  "allow_partial_outputs": false,
+  "skip_val_as_test": false,
+  "scenarios": [
+    "paper_literal_80_10_10",
+    "val_as_test_80_20"
+  ],
+  "coverage": "data/reports/ds004504_rbp_paper/scenario_comparison/scenario_coverage.csv",
+  "pipeline_script": "scripts/ds004504_rbp_paper/run_reproduction_pipeline.py",
+  "comparison_script": "scripts/ds004504_rbp_paper/compare_report_scenarios.py",
+  "verifier_script": "scripts/ds004504_rbp_paper/verify_full_reproduction.py",
+  "verifier_allow_verifying": true,
+  "commands": [
+    {
+      "index": 1,
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/ds004504_rbp_paper/run_reproduction_pipeline.py",
+        "--scenario",
+        "paper_literal_80_10_10",
+        "--execute"
+      ],
+      "command_text": "uv run python scripts/ds004504_rbp_paper/run_reproduction_pipeline.py --scenario paper_literal_80_10_10 --execute"
+    },
+    {
+      "index": 2,
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/ds004504_rbp_paper/run_reproduction_pipeline.py",
+        "--scenario",
+        "val_as_test_80_20",
+        "--execute"
+      ],
+      "command_text": "uv run python scripts/ds004504_rbp_paper/run_reproduction_pipeline.py --scenario val_as_test_80_20 --execute"
+    },
+    {
+      "index": 3,
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/ds004504_rbp_paper/compare_report_scenarios.py",
+        "--fail-on-missing"
+      ],
+      "command_text": "uv run python scripts/ds004504_rbp_paper/compare_report_scenarios.py --fail-on-missing"
+    },
+    {
+      "index": 4,
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/ds004504_rbp_paper/verify_full_reproduction.py",
+        "--manifest",
+        "data/reports/ds004504_rbp_paper/full_comparison_execution_manifest.json",
+        "--coverage",
+        "data/reports/ds004504_rbp_paper/scenario_comparison/scenario_coverage.csv",
+        "--allow-verifying"
+      ],
+      "command_text": "uv run python scripts/ds004504_rbp_paper/verify_full_reproduction.py --manifest data/reports/ds004504_rbp_paper/full_comparison_execution_manifest.json --coverage data/reports/ds004504_rbp_paper/scenario_comparison/scenario_coverage.csv --allow-verifying"
+    }
+  ],
+  "execution_results": [
+    {
+      "index": 1,
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/ds004504_rbp_paper/run_reproduction_pipeline.py",
+        "--scenario",
+        "paper_literal_80_10_10",
+        "--execute"
+      ],
+      "command_text": "uv run python scripts/ds004504_rbp_paper/run_reproduction_pipeline.py --scenario paper_literal_80_10_10 --execute",
+      "status": "completed",
+      "returncode": 0
+    },
+    {
+      "index": 2,
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/ds004504_rbp_paper/run_reproduction_pipeline.py",
+        "--scenario",
+        "val_as_test_80_20",
+        "--execute"
+      ],
+      "command_text": "uv run python scripts/ds004504_rbp_paper/run_reproduction_pipeline.py --scenario val_as_test_80_20 --execute",
+      "status": "completed",
+      "returncode": 0
+    },
+    {
+      "index": 3,
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/ds004504_rbp_paper/compare_report_scenarios.py",
+        "--fail-on-missing"
+      ],
+      "command_text": "uv run python scripts/ds004504_rbp_paper/compare_report_scenarios.py --fail-on-missing",
+      "status": "completed",
+      "returncode": 0
+    },
+    {
+      "index": 4,
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/ds004504_rbp_paper/verify_full_reproduction.py",
+        "--manifest",
+        "data/reports/ds004504_rbp_paper/full_comparison_execution_manifest.json",
+        "--coverage",
+        "data/reports/ds004504_rbp_paper/scenario_comparison/scenario_coverage.csv",
+        "--allow-verifying"
+      ],
+      "command_text": "uv run python scripts/ds004504_rbp_paper/verify_full_reproduction.py --manifest data/reports/ds004504_rbp_paper/full_comparison_execution_manifest.json --coverage data/reports/ds004504_rbp_paper/scenario_comparison/scenario_coverage.csv --allow-verifying",
+      "status": "completed",
+      "returncode": 0
+    }
+  ]
+}

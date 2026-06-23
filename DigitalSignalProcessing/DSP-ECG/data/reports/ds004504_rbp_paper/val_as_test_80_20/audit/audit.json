@@ -1,0 +1,1080 @@
+{
+  "scenario": "val_as_test_80_20",
+  "summary": {
+    "ok": 149,
+    "stale": 4
+  },
+  "items": [
+    {
+      "category": "processed_dataset",
+      "name": "modified_rbp_h5",
+      "path": "data/processed_raw_dataset/ds004504_rbp_paper.h5",
+      "status": "ok",
+      "detail": "exists; size=10104675"
+    },
+    {
+      "category": "processed_dataset",
+      "name": "modified_rbp_manifest",
+      "path": "data/processed_raw_dataset/ds004504_rbp_paper_manifest.json",
+      "status": "ok",
+      "detail": "exists; size=31712"
+    },
+    {
+      "category": "processed_dataset",
+      "name": "standard_rbp_h5",
+      "path": "data/processed_raw_dataset/ds004504_standard_rbp_paper.h5",
+      "status": "ok",
+      "detail": "exists; size=8559803"
+    },
+    {
+      "category": "processed_dataset",
+      "name": "standard_rbp_manifest",
+      "path": "data/processed_raw_dataset/ds004504_standard_rbp_paper_manifest.json",
+      "status": "ok",
+      "detail": "exists; size=31686"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:multiclass:run_json",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/multiclass/run.json",
+      "status": "ok",
+      "detail": "exists; size=536427"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:multiclass:history",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/multiclass/history.json",
+      "status": "ok",
+      "detail": "exists; size=299027"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:multiclass:metrics",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/multiclass/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1392"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:multiclass:model",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/multiclass/model.pt",
+      "status": "ok",
+      "detail": "exists; size=540234"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:multiclass:predictions",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/multiclass/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=45221"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:multiclass:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/multiclass/test_predictions.csv",
+      "status": "stale",
+      "detail": "missing prob_* columns; rerun training to enable ROC/AUC plots"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ad_ftd_vs_healthy:run_json",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ad_ftd_vs_healthy/run.json",
+      "status": "ok",
+      "detail": "exists; size=536465"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ad_ftd_vs_healthy:history",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ad_ftd_vs_healthy/history.json",
+      "status": "ok",
+      "detail": "exists; size=220674"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ad_ftd_vs_healthy:metrics",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ad_ftd_vs_healthy/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1023"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ad_ftd_vs_healthy:model",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ad_ftd_vs_healthy/model.pt",
+      "status": "ok",
+      "detail": "exists; size=539210"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ad_ftd_vs_healthy:predictions",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ad_ftd_vs_healthy/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=45221"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ad_ftd_vs_healthy:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ad_ftd_vs_healthy/test_predictions.csv",
+      "status": "stale",
+      "detail": "missing prob_* columns; rerun training to enable ROC/AUC plots"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ad_vs_healthy:run_json",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ad_vs_healthy/run.json",
+      "status": "ok",
+      "detail": "exists; size=404486"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ad_vs_healthy:history",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ad_vs_healthy/history.json",
+      "status": "ok",
+      "detail": "exists; size=215471"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ad_vs_healthy:metrics",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ad_vs_healthy/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=998"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ad_vs_healthy:model",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ad_vs_healthy/model.pt",
+      "status": "ok",
+      "detail": "exists; size=539146"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ad_vs_healthy:predictions",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ad_vs_healthy/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=34221"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ad_vs_healthy:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ad_vs_healthy/test_predictions.csv",
+      "status": "stale",
+      "detail": "missing prob_* columns; rerun training to enable ROC/AUC plots"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ftd_vs_healthy:run_json",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ftd_vs_healthy/run.json",
+      "status": "ok",
+      "detail": "exists; size=315388"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ftd_vs_healthy:history",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ftd_vs_healthy/history.json",
+      "status": "ok",
+      "detail": "exists; size=216997"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ftd_vs_healthy:metrics",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ftd_vs_healthy/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1011"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ftd_vs_healthy:model",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ftd_vs_healthy/model.pt",
+      "status": "ok",
+      "detail": "exists; size=539210"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ftd_vs_healthy:predictions",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ftd_vs_healthy/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=25901"
+    },
+    {
+      "category": "training_run",
+      "name": "val_as_test_80_20:ftd_vs_healthy:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/ftd_vs_healthy/test_predictions.csv",
+      "status": "stale",
+      "detail": "missing prob_* columns; rerun training to enable ROC/AUC plots"
+    },
+    {
+      "category": "smote_run",
+      "name": "smote:multiclass:run_json",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/multiclass/run.json",
+      "status": "ok",
+      "detail": "exists; size=537340"
+    },
+    {
+      "category": "smote_run",
+      "name": "smote:multiclass:history",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/multiclass/history.json",
+      "status": "ok",
+      "detail": "exists; size=302468"
+    },
+    {
+      "category": "smote_run",
+      "name": "smote:multiclass:metrics",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/multiclass/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1398"
+    },
+    {
+      "category": "smote_run",
+      "name": "smote:multiclass:model",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/multiclass/model.pt",
+      "status": "ok",
+      "detail": "exists; size=540234"
+    },
+    {
+      "category": "smote_run",
+      "name": "smote:multiclass:predictions",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/multiclass/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=854475"
+    },
+    {
+      "category": "smote_run",
+      "name": "smote:multiclass:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/multiclass/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "smote_run",
+      "name": "smote:ad_vs_healthy:run_json",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/ad_vs_healthy/run.json",
+      "status": "ok",
+      "detail": "exists; size=405356"
+    },
+    {
+      "category": "smote_run",
+      "name": "smote:ad_vs_healthy:history",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/ad_vs_healthy/history.json",
+      "status": "ok",
+      "detail": "exists; size=215628"
+    },
+    {
+      "category": "smote_run",
+      "name": "smote:ad_vs_healthy:metrics",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/ad_vs_healthy/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1003"
+    },
+    {
+      "category": "smote_run",
+      "name": "smote:ad_vs_healthy:model",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/ad_vs_healthy/model.pt",
+      "status": "ok",
+      "detail": "exists; size=539146"
+    },
+    {
+      "category": "smote_run",
+      "name": "smote:ad_vs_healthy:predictions",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/ad_vs_healthy/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=413325"
+    },
+    {
+      "category": "smote_run",
+      "name": "smote:ad_vs_healthy:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/val_as_test_80_20/smote/ad_vs_healthy/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "label_swap_run",
+      "name": "label_swap:multiclass:run_json",
+      "path": "data/runs/ds004504_rbp_paper/label_swap_80_20/multiclass/run.json",
+      "status": "ok",
+      "detail": "exists; size=536445"
+    },
+    {
+      "category": "label_swap_run",
+      "name": "label_swap:multiclass:history",
+      "path": "data/runs/ds004504_rbp_paper/label_swap_80_20/multiclass/history.json",
+      "status": "ok",
+      "detail": "exists; size=297430"
+    },
+    {
+      "category": "label_swap_run",
+      "name": "label_swap:multiclass:metrics",
+      "path": "data/runs/ds004504_rbp_paper/label_swap_80_20/multiclass/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1395"
+    },
+    {
+      "category": "label_swap_run",
+      "name": "label_swap:multiclass:model",
+      "path": "data/runs/ds004504_rbp_paper/label_swap_80_20/multiclass/model.pt",
+      "status": "ok",
+      "detail": "exists; size=540234"
+    },
+    {
+      "category": "label_swap_run",
+      "name": "label_swap:multiclass:predictions",
+      "path": "data/runs/ds004504_rbp_paper/label_swap_80_20/multiclass/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=681943"
+    },
+    {
+      "category": "label_swap_run",
+      "name": "label_swap:multiclass:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/label_swap_80_20/multiclass/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "label_swap_run",
+      "name": "label_swap:ftd_vs_healthy:run_json",
+      "path": "data/runs/ds004504_rbp_paper/label_swap_80_20/ftd_vs_healthy/run.json",
+      "status": "ok",
+      "detail": "exists; size=315404"
+    },
+    {
+      "category": "label_swap_run",
+      "name": "label_swap:ftd_vs_healthy:history",
+      "path": "data/runs/ds004504_rbp_paper/label_swap_80_20/ftd_vs_healthy/history.json",
+      "status": "ok",
+      "detail": "exists; size=216635"
+    },
+    {
+      "category": "label_swap_run",
+      "name": "label_swap:ftd_vs_healthy:metrics",
+      "path": "data/runs/ds004504_rbp_paper/label_swap_80_20/ftd_vs_healthy/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1010"
+    },
+    {
+      "category": "label_swap_run",
+      "name": "label_swap:ftd_vs_healthy:model",
+      "path": "data/runs/ds004504_rbp_paper/label_swap_80_20/ftd_vs_healthy/model.pt",
+      "status": "ok",
+      "detail": "exists; size=539210"
+    },
+    {
+      "category": "label_swap_run",
+      "name": "label_swap:ftd_vs_healthy:predictions",
+      "path": "data/runs/ds004504_rbp_paper/label_swap_80_20/ftd_vs_healthy/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=290391"
+    },
+    {
+      "category": "label_swap_run",
+      "name": "label_swap:ftd_vs_healthy:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/label_swap_80_20/ftd_vs_healthy/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "standard_rbp_run",
+      "name": "standard_rbp:multiclass:run_json",
+      "path": "data/runs/ds004504_rbp_paper/standard_rbp/multiclass/run.json",
+      "status": "ok",
+      "detail": "exists; size=536424"
+    },
+    {
+      "category": "standard_rbp_run",
+      "name": "standard_rbp:multiclass:history",
+      "path": "data/runs/ds004504_rbp_paper/standard_rbp/multiclass/history.json",
+      "status": "ok",
+      "detail": "exists; size=298896"
+    },
+    {
+      "category": "standard_rbp_run",
+      "name": "standard_rbp:multiclass:metrics",
+      "path": "data/runs/ds004504_rbp_paper/standard_rbp/multiclass/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1360"
+    },
+    {
+      "category": "standard_rbp_run",
+      "name": "standard_rbp:multiclass:model",
+      "path": "data/runs/ds004504_rbp_paper/standard_rbp/multiclass/model.pt",
+      "status": "ok",
+      "detail": "exists; size=540234"
+    },
+    {
+      "category": "standard_rbp_run",
+      "name": "standard_rbp:multiclass:predictions",
+      "path": "data/runs/ds004504_rbp_paper/standard_rbp/multiclass/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=340609"
+    },
+    {
+      "category": "standard_rbp_run",
+      "name": "standard_rbp:multiclass:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/standard_rbp/multiclass/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "standard_rbp_run",
+      "name": "standard_rbp:ad_vs_healthy:run_json",
+      "path": "data/runs/ds004504_rbp_paper/standard_rbp/ad_vs_healthy/run.json",
+      "status": "ok",
+      "detail": "exists; size=404480"
+    },
+    {
+      "category": "standard_rbp_run",
+      "name": "standard_rbp:ad_vs_healthy:history",
+      "path": "data/runs/ds004504_rbp_paper/standard_rbp/ad_vs_healthy/history.json",
+      "status": "ok",
+      "detail": "exists; size=215010"
+    },
+    {
+      "category": "standard_rbp_run",
+      "name": "standard_rbp:ad_vs_healthy:metrics",
+      "path": "data/runs/ds004504_rbp_paper/standard_rbp/ad_vs_healthy/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=954"
+    },
+    {
+      "category": "standard_rbp_run",
+      "name": "standard_rbp:ad_vs_healthy:model",
+      "path": "data/runs/ds004504_rbp_paper/standard_rbp/ad_vs_healthy/model.pt",
+      "status": "ok",
+      "detail": "exists; size=539146"
+    },
+    {
+      "category": "standard_rbp_run",
+      "name": "standard_rbp:ad_vs_healthy:predictions",
+      "path": "data/runs/ds004504_rbp_paper/standard_rbp/ad_vs_healthy/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=188181"
+    },
+    {
+      "category": "standard_rbp_run",
+      "name": "standard_rbp:ad_vs_healthy:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/standard_rbp/ad_vs_healthy/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:run_json",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/run.json",
+      "status": "ok",
+      "detail": "exists; size=2159228"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_summary",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_summary.csv",
+      "status": "ok",
+      "detail": "exists; size=741"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_1:history",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_1/history.json",
+      "status": "ok",
+      "detail": "exists; size=298348"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_1:metrics",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_1/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1400"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_1:predictions",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_1/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=681981"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_1:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_1/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_2:history",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_2/history.json",
+      "status": "ok",
+      "detail": "exists; size=299016"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_2:metrics",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_2/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1399"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_2:predictions",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_2/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=681630"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_2:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_2/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_3:history",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_3/history.json",
+      "status": "ok",
+      "detail": "exists; size=299705"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_3:metrics",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_3/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1367"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_3:predictions",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_3/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=681275"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_3:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_3/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_4:history",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_4/history.json",
+      "status": "ok",
+      "detail": "exists; size=298792"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_4:metrics",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_4/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1397"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_4:predictions",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_4/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=681194"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_4:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_4/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_5:history",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_5/history.json",
+      "status": "ok",
+      "detail": "exists; size=300167"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_5:metrics",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_5/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1398"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_5:predictions",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_5/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=681892"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:multiclass:fold_5:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/kfold/multiclass/fold_5/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:run_json",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/run.json",
+      "status": "ok",
+      "detail": "exists; size=1631503"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_summary",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_summary.csv",
+      "status": "ok",
+      "detail": "exists; size=749"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_1:history",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_1/history.json",
+      "status": "ok",
+      "detail": "exists; size=215536"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_1:metrics",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_1/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1005"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_1:predictions",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_1/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=377940"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_1:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_1/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_2:history",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_2/history.json",
+      "status": "ok",
+      "detail": "exists; size=215673"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_2:metrics",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_2/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1005"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_2:predictions",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_2/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=377700"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_2:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_2/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_3:history",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_3/history.json",
+      "status": "ok",
+      "detail": "exists; size=215452"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_3:metrics",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_3/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1005"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_3:predictions",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_3/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=377446"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_3:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_3/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_4:history",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_4/history.json",
+      "status": "ok",
+      "detail": "exists; size=215594"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_4:metrics",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_4/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1001"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_4:predictions",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_4/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=377301"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_4:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_4/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_5:history",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_5/history.json",
+      "status": "ok",
+      "detail": "exists; size=215646"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_5:metrics",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_5/test_metrics.json",
+      "status": "ok",
+      "detail": "exists; size=1000"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_5:predictions",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_5/test_predictions.csv",
+      "status": "ok",
+      "detail": "exists; size=377599"
+    },
+    {
+      "category": "kfold_run",
+      "name": "kfold:ad_vs_healthy:fold_5:predictions:probability_columns",
+      "path": "data/runs/ds004504_rbp_paper/kfold/ad_vs_healthy/fold_5/test_predictions.csv",
+      "status": "ok",
+      "detail": "contains prob_* columns for ROC/AUC plotting"
+    },
+    {
+      "category": "report_csv",
+      "name": "paper_model_architecture.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/paper_model_architecture.csv",
+      "status": "ok",
+      "detail": "exists; size=1630"
+    },
+    {
+      "category": "report_csv",
+      "name": "model_parameters.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/model_parameters.csv",
+      "status": "ok",
+      "detail": "exists; size=13708"
+    },
+    {
+      "category": "report_csv",
+      "name": "run_summary.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/run_summary.csv",
+      "status": "ok",
+      "detail": "exists; size=3568"
+    },
+    {
+      "category": "report_csv",
+      "name": "classification_metrics.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/classification_metrics.csv",
+      "status": "ok",
+      "detail": "exists; size=7950"
+    },
+    {
+      "category": "report_csv",
+      "name": "confusion_matrices.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/confusion_matrices.csv",
+      "status": "ok",
+      "detail": "exists; size=3908"
+    },
+    {
+      "category": "report_csv",
+      "name": "support_comparison.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/support_comparison.csv",
+      "status": "ok",
+      "detail": "exists; size=5028"
+    },
+    {
+      "category": "report_csv",
+      "name": "history.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/history.csv",
+      "status": "ok",
+      "detail": "exists; size=155955"
+    },
+    {
+      "category": "report_csv",
+      "name": "accuracy.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/accuracy.csv",
+      "status": "ok",
+      "detail": "exists; size=1524"
+    },
+    {
+      "category": "report_csv",
+      "name": "kfold_accuracy.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/kfold_accuracy.csv",
+      "status": "ok",
+      "detail": "exists; size=1913"
+    },
+    {
+      "category": "report_csv",
+      "name": "paper_vs_ours.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/paper_vs_ours.csv",
+      "status": "ok",
+      "detail": "exists; size=23515"
+    },
+    {
+      "category": "report_csv",
+      "name": "table_summary.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/table_summary.csv",
+      "status": "ok",
+      "detail": "exists; size=3372"
+    },
+    {
+      "category": "report_csv",
+      "name": "protocol_manifest.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/protocol_manifest.csv",
+      "status": "ok",
+      "detail": "exists; size=3107"
+    },
+    {
+      "category": "report_csv",
+      "name": "issue_summary.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/issue_summary.csv",
+      "status": "ok",
+      "detail": "exists; size=2298"
+    },
+    {
+      "category": "report_csv",
+      "name": "literature_comparison.csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/literature_comparison.csv",
+      "status": "ok",
+      "detail": "exists; size=419"
+    },
+    {
+      "category": "report_content",
+      "name": "table_summary:table_1_to_14_coverage",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/table_summary.csv",
+      "status": "ok",
+      "detail": "covers expected tables: Table 1, Table 2, Table 3, Table 4, Table 5, Table 6, Table 7, Table 8, Table 9, Table 10, Table 11, Table 12, Table 13, Table 14"
+    },
+    {
+      "category": "report_content",
+      "name": "paper_vs_ours:table_3_to_13_coverage",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/paper_vs_ours.csv",
+      "status": "ok",
+      "detail": "covers expected tables: Table 3, Table 4, Table 5, Table 6, Table 7, Table 8, Table 9, Table 10, Table 11, Table 12, Table 13"
+    },
+    {
+      "category": "report_content",
+      "name": "issue_summary:issue_id_coverage",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/issue_summary.csv",
+      "status": "ok",
+      "detail": "covers expected issue ids: split_support_mismatch, ftd_healthy_support_swap, table6_healthy_support_typo, smote_accuracy_inconsistency, unspecified_smote_placement, epoch_level_leakage_risk"
+    },
+    {
+      "category": "report_content",
+      "name": "protocol_manifest:component_coverage",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/tables/protocol_manifest.csv",
+      "status": "ok",
+      "detail": "covers expected protocol components: raw_dataset, preprocessing_source, epoching, modified_rbp_bands, standard_rbp_bands, normalization, split, evaluation, model, model_hyperparameters, optimizer, training_runtime, smote, kfold, label_swap_audit, runs_dir"
+    },
+    {
+      "category": "rendered_table",
+      "name": "index.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/index.md",
+      "status": "ok",
+      "detail": "exists; size=1147"
+    },
+    {
+      "category": "rendered_table",
+      "name": "report.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/report.md",
+      "status": "ok",
+      "detail": "exists; size=42414"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_01_model_architecture.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_01_model_architecture.md",
+      "status": "ok",
+      "detail": "exists; size=1718"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_02_model_parameters.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_02_model_parameters.md",
+      "status": "ok",
+      "detail": "exists; size=14554"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_03_multiclass.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_03_multiclass.md",
+      "status": "ok",
+      "detail": "exists; size=1748"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_04_ad_ftd_vs_healthy.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_04_ad_ftd_vs_healthy.md",
+      "status": "ok",
+      "detail": "exists; size=924"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_05_ad_vs_healthy.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_05_ad_vs_healthy.md",
+      "status": "ok",
+      "detail": "exists; size=830"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_06_ftd_vs_healthy.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_06_ftd_vs_healthy.md",
+      "status": "ok",
+      "detail": "exists; size=1310"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_07_accuracy.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_07_accuracy.md",
+      "status": "ok",
+      "detail": "exists; size=822"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_08_smote_multiclass.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_08_smote_multiclass.md",
+      "status": "ok",
+      "detail": "exists; size=1055"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_09_smote_ad_vs_healthy.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_09_smote_ad_vs_healthy.md",
+      "status": "ok",
+      "detail": "exists; size=849"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_10_kfold_multiclass.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_10_kfold_multiclass.md",
+      "status": "ok",
+      "detail": "exists; size=730"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_11_kfold_ad_vs_healthy.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_11_kfold_ad_vs_healthy.md",
+      "status": "ok",
+      "detail": "exists; size=711"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_12_standard_rbp_multiclass.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_12_standard_rbp_multiclass.md",
+      "status": "ok",
+      "detail": "exists; size=879"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_13_standard_rbp_ad_vs_healthy.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_13_standard_rbp_ad_vs_healthy.md",
+      "status": "ok",
+      "detail": "exists; size=648"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_14_literature_comparison.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_14_literature_comparison.md",
+      "status": "ok",
+      "detail": "exists; size=532"
+    },
+    {
+      "category": "rendered_table",
+      "name": "protocol_manifest.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/protocol_manifest.md",
+      "status": "ok",
+      "detail": "exists; size=3333"
+    },
+    {
+      "category": "rendered_table",
+      "name": "issue_summary.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/issue_summary.md",
+      "status": "ok",
+      "detail": "exists; size=2321"
+    },
+    {
+      "category": "rendered_table",
+      "name": "table_summary.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/table_summary.md",
+      "status": "ok",
+      "detail": "exists; size=3408"
+    },
+    {
+      "category": "rendered_table",
+      "name": "confusion_matrices.md",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/paper_tables/confusion_matrices.md",
+      "status": "ok",
+      "detail": "exists; size=4788"
+    },
+    {
+      "category": "pipeline",
+      "name": "execution_manifest",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/pipeline_execution_manifest.json",
+      "status": "ok",
+      "detail": "exists; size=10381"
+    },
+    {
+      "category": "plot",
+      "name": "accuracy_comparison.svg",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/plots/accuracy_comparison.svg",
+      "status": "ok",
+      "detail": "exists; size=6034"
+    },
+    {
+      "category": "plot",
+      "name": "support_comparison.svg",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/plots/support_comparison.svg",
+      "status": "ok",
+      "detail": "exists; size=20808"
+    },
+    {
+      "category": "plot",
+      "name": "per_class_precision_recall_f1.svg",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/plots/per_class_precision_recall_f1.svg",
+      "status": "ok",
+      "detail": "exists; size=50286"
+    },
+    {
+      "category": "plot",
+      "name": "confusion_matrix_svgs",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/plots/confusion_matrices",
+      "status": "ok",
+      "detail": "contains 8 SVG file(s)"
+    },
+    {
+      "category": "plot",
+      "name": "training_history_svgs",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/plots/history",
+      "status": "ok",
+      "detail": "contains 10 SVG file(s)"
+    },
+    {
+      "category": "plot",
+      "name": "roc_auc_csv",
+      "path": "data/reports/ds004504_rbp_paper/val_as_test_80_20/plots/roc/roc_auc.csv",
+      "status": "ok",
+      "detail": "exists; size=1820"
+    }
+  ]
+}

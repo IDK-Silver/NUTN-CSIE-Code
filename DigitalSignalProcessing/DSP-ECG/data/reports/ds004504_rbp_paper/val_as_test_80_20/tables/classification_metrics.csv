@@ -1,0 +1,44 @@
+source,paper_table,experiment_kind,scenario,task_id,class_name,precision,recall,f1,sensitivity,specificity,support,value_scale,notes
+paper_reported,Table 3,modified_rbp,paper,multiclass,alzheimer,0.7,0.9,0.79,0.9,0.74,1876,decimal,
+paper_reported,Table 3,modified_rbp,paper,multiclass,frontotemporal_dementia,1.0,1.0,1.0,1.0,1.0,1597,decimal,Support is inconsistent with ds004504 FTD duration and matches healthy duration.
+paper_reported,Table 3,modified_rbp,paper,multiclass,healthy_control,0.68,0.35,0.47,0.35,0.95,1106,decimal,Support is inconsistent with ds004504 healthy duration and matches FTD duration.
+paper_reported,Table 4,modified_rbp,paper,ad_ftd_vs_healthy,alzheimer_or_frontotemporal_dementia,0.9977,0.9993,0.9985,1.0,1.0,2983,decimal,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_reported,Table 4,modified_rbp,paper,ad_ftd_vs_healthy,healthy_control,0.9987,0.9956,0.9972,1.0,1.0,1596,decimal,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_reported,Table 5,modified_rbp,paper,ad_vs_healthy,alzheimer,0.9963,0.9989,0.9976,1.0,1.0,1876,decimal,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_reported,Table 5,modified_rbp,paper,ad_vs_healthy,healthy_control,0.9987,0.9956,0.9972,1.0,1.0,1596,decimal,Paper table support is 1596; Figure 4c row sum is 1597.
+paper_reported,Table 6,modified_rbp,paper,ftd_vs_healthy,frontotemporal_dementia,0.9994,0.9956,0.9975,1.0,1.0,1597,decimal,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper_reported,Table 6,modified_rbp,paper,ftd_vs_healthy,healthy_control,0.9937,0.9991,0.9964,1.0,1.0,1596,decimal,Paper table support is 1596; Figure 4d row sum and text are 1106.
+paper_reported,Table 8,smote_modified_rbp,paper,multiclass,alzheimer,0.63,0.71,0.67,0.71,0.79,1876,decimal,
+paper_reported,Table 8,smote_modified_rbp,paper,multiclass,frontotemporal_dementia,1.0,1.0,1.0,1.0,1.0,1876,decimal,Table 8 supports are balanced to 1876 for every class.
+paper_reported,Table 8,smote_modified_rbp,paper,multiclass,healthy_control,0.67,0.58,0.62,0.58,0.86,1876,decimal,"The paper text reports 77.45% accuracy, but these equal supports and recalls imply 76.33%."
+paper_reported,Table 9,smote_modified_rbp,paper,ad_vs_healthy,alzheimer,99.73,99.7,99.71,,,1876,percent,"Paper table reports precision/recall/F1 as percentages, unlike Tables 3-8."
+paper_reported,Table 9,smote_modified_rbp,paper,ad_vs_healthy,healthy_control,99.7,99.71,99.73,,,1876,percent,"Paper table reports precision/recall/F1 as percentages, unlike Tables 3-8."
+paper_reported,Table 12,standard_rbp,paper,multiclass,alzheimer,0.6,0.77,0.67,,,1876,decimal,
+paper_reported,Table 12,standard_rbp,paper,multiclass,frontotemporal_dementia,0.68,0.68,0.68,,,1597,decimal,
+paper_reported,Table 12,standard_rbp,paper,multiclass,healthy_control,0.6,0.33,0.43,,,1106,decimal,
+paper_reported,Table 13,standard_rbp,paper,ad_vs_healthy,alzheimer,0.76,0.81,0.79,,,1876,decimal,
+paper_reported,Table 13,standard_rbp,paper,ad_vs_healthy,healthy_control,0.76,0.71,0.73,,,1597,decimal,
+ours,Table 3,modified_rbp,val_as_test_80_20,multiclass,alzheimer,0.5396319886765747,0.7893374741200828,0.6410256410256411,0.7893374741200828,0.5179696183771767,1932,decimal,
+ours,Table 3,modified_rbp,val_as_test_80_20,multiclass,frontotemporal_dementia,0.6591928251121076,0.13363636363636364,0.22222222222222224,0.13363636363636364,0.978476352308128,1100,decimal,
+ours,Table 3,modified_rbp,val_as_test_80_20,multiclass,healthy_control,0.6378002528445006,0.631019387116948,0.6343917007230431,0.631019387116948,0.8110158311345647,1599,decimal,
+ours,Table 4,modified_rbp,val_as_test_80_20,ad_ftd_vs_healthy,alzheimer_or_frontotemporal_dementia,0.7503463563313937,0.8931398416886543,0.8155398283391054,0.8931398416886543,0.4365228267667292,3032,decimal,
+ours,Table 4,modified_rbp,val_as_test_80_20,ad_ftd_vs_healthy,healthy_control,0.6829745596868885,0.4365228267667292,0.5326211369706219,0.4365228267667292,0.8931398416886543,1599,decimal,
+ours,Table 5,modified_rbp,val_as_test_80_20,ad_vs_healthy,alzheimer,0.7346326836581709,0.7608695652173914,0.7475209763539283,0.7608695652173914,0.6679174484052532,1932,decimal,
+ours,Table 5,modified_rbp,val_as_test_80_20,ad_vs_healthy,healthy_control,0.6980392156862745,0.6679174484052532,0.6826462128475551,0.6679174484052532,0.7608695652173914,1599,decimal,
+ours,Table 6,modified_rbp,val_as_test_80_20,ftd_vs_healthy,frontotemporal_dementia,0.6231884057971014,0.7427272727272727,0.6777270841974283,0.7427272727272727,0.6910569105691057,1100,decimal,
+ours,Table 6,modified_rbp,val_as_test_80_20,ftd_vs_healthy,healthy_control,0.7961095100864554,0.6910569105691057,0.7398727820555742,0.6910569105691057,0.7427272727272727,1599,decimal,
+ours,Table 12,standard_rbp,val_as_test_80_20,multiclass,alzheimer,0.5328125,0.7052740434332989,0.6070315976858034,0.7052740434332989,0.5573649148778682,967,decimal,
+ours,Table 12,standard_rbp,val_as_test_80_20,multiclass,frontotemporal_dementia,0.5656565656565656,0.20326678765880218,0.29906542056074764,0.20326678765880218,0.9513299377475948,551,decimal,
+ours,Table 12,standard_rbp,val_as_test_80_20,multiclass,healthy_control,0.6059523809523809,0.63625,0.6207317073170731,0.63625,0.7819499341238472,800,decimal,
+ours,Table 13,standard_rbp,val_as_test_80_20,ad_vs_healthy,alzheimer,0.7174721189591078,0.7983453981385729,0.7557513460597161,0.7983453981385729,0.62,967,decimal,
+ours,Table 13,standard_rbp,val_as_test_80_20,ad_vs_healthy,healthy_control,0.7178002894356006,0.62,0.6653252850435949,0.62,0.7983453981385729,800,decimal,
+ours,Table 8,smote_modified_rbp,val_as_test_80_20,multiclass,alzheimer,0.5125170687300865,0.582815734989648,0.5454105110196174,0.582815734989648,0.7228260869565217,1932,decimal,
+ours,Table 8,smote_modified_rbp,val_as_test_80_20,multiclass,frontotemporal_dementia,0.5197923426346528,0.41459627329192544,0.4612726749208177,0.41459627329192544,0.8084886128364389,1932,decimal,
+ours,Table 8,smote_modified_rbp,val_as_test_80_20,multiclass,healthy_control,0.60932944606414,0.6490683229813664,0.6285714285714286,0.6490683229813664,0.7919254658385093,1932,decimal,
+ours,Table 9,smote_modified_rbp,val_as_test_80_20,ad_vs_healthy,alzheimer,0.7419540229885058,0.6682194616977226,0.7031590413943356,0.6682194616977226,0.7675983436853002,1932,decimal,
+ours,Table 9,smote_modified_rbp,val_as_test_80_20,ad_vs_healthy,healthy_control,0.698210922787194,0.7675983436853002,0.7312623274161736,0.7675983436853002,0.6682194616977226,1932,decimal,
+ours_label_swap,Table 3,modified_rbp_label_swap,label_swap_80_20,multiclass,alzheimer,0.5451541850220264,0.7686335403726708,0.6378865979381443,0.7686335403726708,0.5409410892923305,1932,decimal,Audit run with FTD/Healthy target labels intentionally swapped.
+ours_label_swap,Table 3,modified_rbp_label_swap,label_swap_80_20,multiclass,frontotemporal_dementia,0.6191616766467066,0.6466541588492808,0.6326093606607526,0.6466541588492808,0.7902374670184696,1599,decimal,Audit run with FTD/Healthy target labels intentionally swapped.
+ours_label_swap,Table 3,modified_rbp_label_swap,label_swap_80_20,multiclass,healthy_control,0.6835443037974683,0.14727272727272728,0.24233358264771876,0.14727272727272728,0.9787595581988106,1100,decimal,Audit run with FTD/Healthy target labels intentionally swapped.
+ours_label_swap,Table 6,modified_rbp_label_swap,label_swap_80_20,ftd_vs_healthy,frontotemporal_dementia,0.7856115107913669,0.6829268292682927,0.7306791569086651,0.6829268292682927,0.7290909090909091,1599,decimal,Audit run with FTD/Healthy target labels intentionally swapped.
+ours_label_swap,Table 6,modified_rbp_label_swap,label_swap_80_20,ftd_vs_healthy,healthy_control,0.612681436210848,0.7290909090909091,0.6658364466583645,0.7290909090909091,0.6829268292682927,1100,decimal,Audit run with FTD/Healthy target labels intentionally swapped.

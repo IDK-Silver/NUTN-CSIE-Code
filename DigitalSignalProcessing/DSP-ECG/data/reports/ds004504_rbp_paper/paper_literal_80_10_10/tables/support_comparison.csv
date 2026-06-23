@@ -1,0 +1,53 @@
+scenario,source,paper_table,task_id,class_name,support,notes
+paper,paper_reported,Table 3,multiclass,alzheimer,1876,
+paper,paper_reported,Table 3,multiclass,frontotemporal_dementia,1597,Support is inconsistent with ds004504 FTD duration and matches healthy duration.
+paper,paper_reported,Table 3,multiclass,healthy_control,1106,Support is inconsistent with ds004504 healthy duration and matches FTD duration.
+paper,paper_reported,Table 4,ad_ftd_vs_healthy,alzheimer_or_frontotemporal_dementia,2983,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper,paper_reported,Table 4,ad_ftd_vs_healthy,healthy_control,1596,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper,paper_reported,Table 5,ad_vs_healthy,alzheimer,1876,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper,paper_reported,Table 5,ad_vs_healthy,healthy_control,1596,Paper table support is 1596; Figure 4c row sum is 1597.
+paper,paper_reported,Table 6,ftd_vs_healthy,frontotemporal_dementia,1597,Binary sensitivity/specificity are carried from the paper's single reported row.
+paper,paper_reported,Table 6,ftd_vs_healthy,healthy_control,1596,Paper table support is 1596; Figure 4d row sum and text are 1106.
+paper,paper_reported,Table 8,multiclass,alzheimer,1876,
+paper,paper_reported,Table 8,multiclass,frontotemporal_dementia,1876,Table 8 supports are balanced to 1876 for every class.
+paper,paper_reported,Table 8,multiclass,healthy_control,1876,"The paper text reports 77.45% accuracy, but these equal supports and recalls imply 76.33%."
+paper,paper_reported,Table 9,ad_vs_healthy,alzheimer,1876,"Paper table reports precision/recall/F1 as percentages, unlike Tables 3-8."
+paper,paper_reported,Table 9,ad_vs_healthy,healthy_control,1876,"Paper table reports precision/recall/F1 as percentages, unlike Tables 3-8."
+paper,paper_reported,Table 12,multiclass,alzheimer,1876,
+paper,paper_reported,Table 12,multiclass,frontotemporal_dementia,1597,
+paper,paper_reported,Table 12,multiclass,healthy_control,1106,
+paper,paper_reported,Table 13,ad_vs_healthy,alzheimer,1876,
+paper,paper_reported,Table 13,ad_vs_healthy,healthy_control,1597,
+paper,paper_figure,Table 3,multiclass,alzheimer,1876,Row sum from Figure 4a.
+paper,paper_figure,Table 3,multiclass,frontotemporal_dementia,1597,Row sum from Figure 4a.
+paper,paper_figure,Table 3,multiclass,healthy_control,1106,Row sum from Figure 4a.
+paper,paper_figure,Table 4,ad_ftd_vs_healthy,alzheimer_or_frontotemporal_dementia,2983,Row sum from Figure 4b.
+paper,paper_figure,Table 4,ad_ftd_vs_healthy,healthy_control,1596,Row sum from Figure 4b.
+paper,paper_figure,Table 5,ad_vs_healthy,alzheimer,1876,Row sum from Figure 4c.
+paper,paper_figure,Table 5,ad_vs_healthy,healthy_control,1597,Row sum from Figure 4c.
+paper,paper_figure,Table 6,ftd_vs_healthy,frontotemporal_dementia,1597,Row sum from Figure 4d.
+paper,paper_figure,Table 6,ftd_vs_healthy,healthy_control,1106,Row sum from Figure 4d.
+paper_literal_80_10_10,ours,Table 3,multiclass,alzheimer,967,
+paper_literal_80_10_10,ours,Table 3,multiclass,frontotemporal_dementia,551,
+paper_literal_80_10_10,ours,Table 3,multiclass,healthy_control,800,
+paper_literal_80_10_10,ours,Table 4,ad_ftd_vs_healthy,alzheimer_or_frontotemporal_dementia,1517,
+paper_literal_80_10_10,ours,Table 4,ad_ftd_vs_healthy,healthy_control,800,
+paper_literal_80_10_10,ours,Table 5,ad_vs_healthy,alzheimer,967,
+paper_literal_80_10_10,ours,Table 5,ad_vs_healthy,healthy_control,800,
+paper_literal_80_10_10,ours,Table 6,ftd_vs_healthy,frontotemporal_dementia,551,
+paper_literal_80_10_10,ours,Table 6,ftd_vs_healthy,healthy_control,800,
+paper_literal_80_10_10,ours,Table 12,multiclass,alzheimer,967,
+paper_literal_80_10_10,ours,Table 12,multiclass,frontotemporal_dementia,551,
+paper_literal_80_10_10,ours,Table 12,multiclass,healthy_control,800,
+paper_literal_80_10_10,ours,Table 13,ad_vs_healthy,alzheimer,967,
+paper_literal_80_10_10,ours,Table 13,ad_vs_healthy,healthy_control,800,
+paper_literal_80_10_10,ours,Table 8,multiclass,alzheimer,967,
+paper_literal_80_10_10,ours,Table 8,multiclass,frontotemporal_dementia,967,
+paper_literal_80_10_10,ours,Table 8,multiclass,healthy_control,967,
+paper_literal_80_10_10,ours,Table 9,ad_vs_healthy,alzheimer,967,
+paper_literal_80_10_10,ours,Table 9,ad_vs_healthy,healthy_control,967,
+label_swap_80_20,ours_label_swap,Table 3,multiclass,alzheimer,967,Audit run with FTD/Healthy target labels intentionally swapped.
+label_swap_80_20,ours_label_swap,Table 3,multiclass,frontotemporal_dementia,800,Audit run with FTD/Healthy target labels intentionally swapped.
+label_swap_80_20,ours_label_swap,Table 3,multiclass,healthy_control,551,Audit run with FTD/Healthy target labels intentionally swapped.
+label_swap_80_20,ours_label_swap,Table 6,ftd_vs_healthy,frontotemporal_dementia,800,Audit run with FTD/Healthy target labels intentionally swapped.
+label_swap_80_20,ours_label_swap,Table 6,ftd_vs_healthy,healthy_control,551,Audit run with FTD/Healthy target labels intentionally swapped.

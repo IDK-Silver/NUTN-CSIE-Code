@@ -1,0 +1,6 @@
+paper_table,paper,model,accuracy,feature_engineering,xai
+Table 14,Ma et al.,Support vector machine,91.5%,PHI,no
+Table 14,Miltiadous et al.,Dual-Input Convolution Encoder Network,83.28%,Band power and coherence,no
+Table 14,Kachare et al.,STEADYNet,97.59%,not listed,no
+Table 14,Chen et al.,Vision transformer + CNN,80.23%,frequency channels,no
+Table 14,This work,Proposed TCN-LSTM,"80.34%, 99.7%",Modified RBP,yes
